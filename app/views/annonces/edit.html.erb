@@ -1,0 +1,58 @@
+<h1 class="text-center mt-5 mb-4">Modifier votre annonce</h1>
+<div class="container center">
+  <div class="row justify-content-center">
+     <div class="col-12 col-md-6 col-lg-6">
+      <div class="center">
+        <%= simple_form_for [@annonce] do |f| %>
+          <%= f.input :titre_annonce, label: "Titre de l'annonce" %>
+          <%= f.input :type_de_bien, collection:
+            [
+              "Appartement",
+              "Maison",
+              "Terrain",
+              "Parking",
+              "Autre",
+            ] %>
+          <%= f.input :meublé, label: "Meublé / Non meublé",collection: ["Meublé", "Non meublé"]  %>
+          <%= f.input :surface %>
+          <%= f.input :pièces %>
+          <%= f.input :classe_énergie, collection:
+            [
+              "A (moins de 50)",
+              "B (de 51 à 90)]",
+              "C (de 91 à 150)]",
+              "D (de 151 à 230)]",
+              "E (de 231 à 330)]",
+              "F (de 331 à 450)]",
+              "G (de 451 à 590)]",
+              "H (de 591 à 750)]",
+              "I (de 751 et plus)]",
+              "Vierge"
+            ]  %>
+          <%= f.input :ges, collection:
+            [
+              "A (moins de 5)",
+              "B (de 5 à 10)]",
+              "C (de 11 à 20)]",
+              "D (de 21 à 35)]",
+              "E (de 36 à 55)]",
+              "F (de 56 à 80)]",
+              "G (de 81 à 110)]",
+              "H (de 111 à 145)]",
+              "I (de 146 et plus)]",
+              "Vierge"
+            ],label: "GES"  %>
+          <%= f.input :description %>
+          <%= f.input :loyer_mensuel %>
+          <%= f.input :ville %>
+          <%= f.input :adresse %>
+          <%= f.input :email %>
+          <%= f.input :téléphone %>
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
+          <%= f.submit "Modifier", class: "btn btn-success mb-5" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
