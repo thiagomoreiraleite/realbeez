@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-center">Toutes les annonces</h1>
+
+  <div class="row">
+    <% @annonces.each do |annonce| %>
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="content">
+          <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px" %>
+          <div class="mt-2">
+            <p class="text-left mb-2"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville %></p>
+            <p class="text-left mb-2"><%= annonce.titre_annonce %></p>
+          </div>
+
+          <div class="mt-0">
+            <p>Nb de pièces: <%= annonce.pièces %></p>
+            <p>Loyer mensuel: <%= annonce.loyer_mensuel %></p>
+            <div class="d-flex px-0">
+              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-calendar-alt"></i> <%= annonce.téléphone%></p>
+              <%= link_to "Details", annonce_path(annonce), class: "my-0 ml-5 stretched-link", style:"font-size: 14px; text-decoration: underline" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+
