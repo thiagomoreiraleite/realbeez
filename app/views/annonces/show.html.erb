@@ -1,2 +1,28 @@
-<h1>Annonces#show</h1>
-<p>Find me in app/views/annonces/show.html.erb</p>
+<div class="container">
+
+  <% if policy(@annonce).show? %>
+    <h1>Detail de l'annonce</h1>
+    <%= link_to "edit", edit_annonce_path(@annonce) %>
+    <%= link_to "supprimer", annonce_path(@annonce), method: :delete %>
+    <p><%= @annonce.photo %></p>
+    <p><%= @annonce.titre_annonce %></p>
+    <p>Type de bien : <%= @annonce.type_de_bien %></p>
+    <p>Surface : <%= @annonce.surface %>  m2</p>
+    <p>Classe énergie : <%= @annonce.classe_énergie %></p>
+    <p>GES : <%= @annonce.ges %></p>
+    <p><%= @annonce.description %></p>
+    <p>Loyer mensuel : <%= @annonce.loyer_mensuel %> euros / mois</p>
+    <p>Adresse : <%= @annonce.adresse %></p>
+    <p>Ville : <%= @annonce.ville %></p>
+    <p>Email : <%= @annonce.email %></p>
+    <p>Tel : <%= @annonce.téléphone %></p>
+
+    <%= link_to "Retour séléction", annonces_path  %>
+
+    <%= link_to "Gérer ce bien", new_annonce_candidature_path(@annonce), class: "btn btn-primary" %>
+
+    <%= link_to "Louer ce bien", "", class: "btn btn-success"  %>
+  <% end %>
+
+</div>
+

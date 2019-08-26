@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :annonces, dependent: :destroy
   has_many :candidatures, dependent: :destroy
-  # mount_uploader :photo, PhotoUploader
+  mount_uploader :photo, PhotoUploader
   validates :prénom, :nom, presence: true
   has_friendship
 end

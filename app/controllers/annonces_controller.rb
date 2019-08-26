@@ -32,7 +32,7 @@ class AnnoncesController < ApplicationController
 
   def update
      authorize @annonce
-    if @annonce.save
+    if @annonce.update(annonce_params)
       redirect_to @annonce
     else
       render :edit
@@ -42,8 +42,8 @@ class AnnoncesController < ApplicationController
   def destroy
     authorize @annonce
     @annonce.statut = "annulé"
-    @match.save
-    redirect_to root_path
+    @annonce.save
+    redirect_to annonces_path
   end
 
   private

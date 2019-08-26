@@ -1,0 +1,21 @@
+<h1 class="text-center mt-5 mb-4">Postuler pour gérer ce bien</h1>
+<div class="container center">
+  <div class="row justify-content-center">
+     <div class="col-12 col-md-6 col-lg-6">
+      <div class="center">
+        <%= simple_form_for [@annonce, @candidature] do |f| %>
+          <%= f.input :dispo_jours, label: "Jour disponible", collection: %w(Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche) %>
+          <%= f.input :dispo_heures, label: "plage horaire disponible",collection: [
+              "Matin (8h - 12h)",
+              "Midi (12h - 14h)",
+              "Après-midi (14 - 18h)",
+              "Soirée (après 18h)",
+              "Autre",
+              ] %>
+          <%= f.input :commentaire, label: "Veuillez fournir plus d'information si nécessaire : " %>
+          <%= f.submit "Valider", class: "btn btn-success mb-5" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
