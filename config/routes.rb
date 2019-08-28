@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   # Candidatures
-  resources :candidatures, only: [:edit, :update, :index]
+  resources :candidatures, only: [:edit, :update, :index, :create]
   post '/candidatures/:id/accept_candidature', to: 'candidatures#accept_candidature', as: :accept_candidature
   post '/candidatures/:id/reject_candidature', to: 'candidatures#reject_candidature', as: :reject_candidature
 

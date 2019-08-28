@@ -12,16 +12,34 @@ class CandidaturesController < ApplicationController
   end
 
   def create
-    authorize @candidature = Candidature.new(candidature_params)
-    @candidature.user = current_user
-    @annonce = Annonce.find(params[:annonce_id])
-    @candidature.annonce = @annonce
-    @candidature.statut = "pending"
-    if @candidature.save
-      redirect_to @annonce
+    if params[:candidature][:annonce_id].present?
+      @candidature = Candidature.new
+      @candidature.annonce_id = params[:candidature][:annonce_id]
+      @candidature.user_id = params[:candidature][:user_id]
+      @candidature.statut = "request"
+      authorize @candidature
+      if @candidature.save
+        redirect_to candidatures_path
+      else
+        render :new
+      end
     else
-      render :new
+      authorize @candidature = Candidature.new(candidature_params)
+      @candidature.user = current_user
+      @annonce = Annonce.find(params[:annonce_id])
+      @candidature.annonce = @annonce
+      @candidature.statut = "pending"
+      if @candidature.save
+        redirect_to candidatures_path
+      else
+        render :new
+      end
     end
+  end
+
+  def request_service
+
+
   end
 
   def edit
@@ -62,7 +80,7 @@ class CandidaturesController < ApplicationController
   private
 
   def candidature_params
-    params.require(:candidature).permit(:durée, :dispo_jours, :dispo_heures)
+    params.require(:candidature).permit(:durée, :dispo_jours, :dispo_heures, :commentaire)
   end
 
   def set_candidature

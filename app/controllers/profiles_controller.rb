@@ -14,8 +14,9 @@ class ProfilesController < ApplicationController
   def show
     @profile = User.find(params[:id])
     authorize @profile
-    @annonces = Annonce.where("user_id = ?", @profile.id).order(created_at: :desc)
+    @annonces = Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).order(created_at: :desc)
     @profiles = @profile.friends
+    @candidature = Candidature.new
   end
 
   def add_friend

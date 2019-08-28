@@ -18,6 +18,7 @@ class AnnoncesController < ApplicationController
   def create
     @annonce = Annonce.new(annonce_params)
     @annonce.user = current_user
+    @annonce.statut = "active"
     authorize @annonce
     if @annonce.save
       redirect_to @annonce

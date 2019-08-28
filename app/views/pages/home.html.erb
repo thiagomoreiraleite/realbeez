@@ -1,6 +1,24 @@
-<div class="container">
-  <h1>Realbeez</h1>
-  <p>Trouver un agent realbeez près de chez vous</p>
-  <%= link_to "Trouver un agent realbeez", profiles_path  %>
+<div style="margin-top:-15vh ;height: 95vh; background-size: cover; background-image:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.05)), url(https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80">
+  <div class="container">
+      <div class="d-flex justify-content-around align-items-center" style="height: 90vh">
+        <div>
+          <h3 style="color: white; font-weight:bold">Et si le meilleur agent immobilier était votre voisin de quartier...</h3>
+          <p style="color: rgb(50 50 50)">Trouver un agent <strong>Realbeez</strong> près de chez vous et (re)louer rapidement votre bien immobilier.</p>
+
+         <!-- Search_bar -->
+          <nav class="navbar navbar-light justify-content-around">
+            <%= form_for :search, defaults: { required: false }, url: "", method: "GET", html: { class: '' } do |f| %>
+              <section style="position: relative; text-align:center;">
+                <%= f.text_field :query, label: false, placeholder: "Search...", input_html: {value: ""}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+                <i class="fas fa-search" id="icon-search" style="position: relative; top: 2px; right: 52px; color: rgba(0,0,0,0.5);"></i>
+              </section>
+            <% end %>
+          </nav>
+        </div>
+      </div>
+  </div>
 </div>
 
+<div class="container">
+   <%= link_to "Trouver un agent realbeez", profiles_path  %>
+</div>
