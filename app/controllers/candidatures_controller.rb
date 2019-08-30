@@ -16,9 +16,10 @@ class CandidaturesController < ApplicationController
       @candidature = Candidature.new
       @candidature.annonce_id = params[:candidature][:annonce_id]
       @candidature.user_id = params[:candidature][:user_id]
+      @candidature.dispo_jours = params[:candidature][:dispo_jours]
       @candidature.statut = "request"
       authorize @candidature
-      if @candidature.save
+      if @candidature.save!
         redirect_to candidatures_path
       else
         render :new
@@ -28,6 +29,7 @@ class CandidaturesController < ApplicationController
       @candidature.user = current_user
       @annonce = Annonce.find(params[:annonce_id])
       @candidature.annonce = @annonce
+      @candidature.dispo_jours = params[:candidature][:dispo_jours]
       @candidature.statut = "pending"
       if @candidature.save
         redirect_to candidatures_path
@@ -38,7 +40,6 @@ class CandidaturesController < ApplicationController
   end
 
   def request_service
-
 
   end
 

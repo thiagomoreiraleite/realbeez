@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetings
   # Pages
   root to: 'pages#home'
 

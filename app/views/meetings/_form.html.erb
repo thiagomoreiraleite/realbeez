@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@meeting) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :start_time %>
+    <%= f.input :end_time %>
+    <%= f.input :annonce_id, label: "Choisir l'annonce:", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
