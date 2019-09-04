@@ -1,16 +1,4 @@
-class AnnoncePolicy < ApplicationPolicy
-
-  def index?
-    true
-  end
-
-  def mes_annonces?
-    true
-  end
-
-  def show?
-    true
-  end
+class AvailabilityPolicy < ApplicationPolicy
 
   def create?
     true

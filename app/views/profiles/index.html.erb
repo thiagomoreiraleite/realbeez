@@ -2,7 +2,7 @@
 <div class="container">
 
   <div class="search" id="buddies-index-searchbar">
-    <h2 class="text-center" style="margin: 10vh 0 4vh;">Voir concierge près de chez vous</h2>
+    <h3 class="text-center mt-5 mb-4" style="margin: 10vh 0 4vh;">Voir concierge près de chez vous</h3>
     <div class="text-center mr-0" id="form-search">
       <%= simple_form_for :search, defaults: { required: false }, url: profiles_path, method: "GET", html: { class: 'text-center mr-0', style: "" } do |f| %>
       <%= f.input :query, label: false, placeholder: "Entrer l'adresse de votre bien à louer", input_html: {value: ""} %>

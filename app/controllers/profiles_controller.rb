@@ -3,7 +3,15 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:add_friend, :accept_friend, :decline_friend]
 
   def index
-    @profiles = policy_scope(Profile).order(created_at: :desc)
+    if params.key?(:search)
+      if params[:search][:query].empty?
+        @profiles = policy_scope(Profile).order(created_at: :desc)
+      else
+         @profiles = policy_scope(Profile.search_profile(params[:search][:query]))
+      end
+    else
+      @profiles = policy_scope(Profile).order(created_at: :desc)
+    end
   end
 
   def my_friends
@@ -19,6 +27,7 @@ class ProfilesController < ApplicationController
     @candidature = Candidature.new
     @meetings = policy_scope(Meeting).order(created_at: :desc)
     @meeting = Meeting.new
+    @availabilities = Availability.where("user_id = ?", @profile.id)
   end
 
   def add_friend

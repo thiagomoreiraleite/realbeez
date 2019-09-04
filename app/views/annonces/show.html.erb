@@ -1,27 +1,56 @@
 <div class="container">
 
+<h3 class="text-center mt-5 mb-4">Détails de l'annonce</h3>
+
   <% if policy(@annonce).show? %>
-    <h1>Detail de l'annonce</h1>
-    <%= link_to "edit", edit_annonce_path(@annonce) %>
-    <%= link_to "supprimer", annonce_path(@annonce), method: :delete %>
-    <p><%= @annonce.photo %></p>
-    <p><%= @annonce.titre_annonce %></p>
-    <p>Type de bien : <%= @annonce.type_de_bien %></p>
-    <p>Surface : <%= @annonce.surface %>  m2</p>
-    <p>Classe énergie : <%= @annonce.classe_énergie %></p>
-    <p>GES : <%= @annonce.ges %></p>
-    <p><%= @annonce.description %></p>
-    <p>Loyer mensuel : <%= @annonce.loyer_mensuel %> euros / mois</p>
-    <p>Adresse : <%= @annonce.adresse %></p>
-    <p>Ville : <%= @annonce.ville %></p>
-    <p>Email : <%= @annonce.email %></p>
-    <p>Tel : <%= @annonce.téléphone %></p>
+    <%= cl_image_tag @annonce.photo, class: "rounded-top", style: "height:70vh; object-position: center center; object-fit: cover; width: 100%"%>
+    <div class="border p-3", style="box-shadow: 0 0 5px rgba(0,0,0,0.1)">
+      <% if current_user == @annonce.user %>
+        <h4 class="mr-3 mt-3 mb-0", style=""><%= @annonce.titre_annonce %> - <%= @annonce.loyer_mensuel %> euros / mois</h4>
+        <%= link_to "modifier", edit_annonce_path(@annonce) %> /
+        <%= link_to "supprimer", annonce_path(@annonce), method: :delete%>
+        <p class="mt-4">Description : <%= @annonce.description %></p>
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <p>Type de bien : <%= @annonce.type_de_bien %></p>
+            <p>Adresse : <%= @annonce.adresse %></p>
+            <p>GES : <%= @annonce.ges %></p>
+            <p>Email : <%= @annonce.email %></p>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <p>Surface : <%= @annonce.surface %>  m2</p>
+            <p>Ville : <%= @annonce.ville %></p>
+            <p>Classe énergie : <%= @annonce.classe_énergie %></p>
+            <p>Tel : <%= @annonce.téléphone %></p>
+          </div>
+        </div>
 
-    <%= link_to "Retour séléction", annonces_path  %>
+      <% else %>
+       <h4 class="mr-3 mt-3 mb-0", style=""><%= @annonce.titre_annonce %> - <%= @annonce.loyer_mensuel %> euros / mois</h4>
+       <p class="mt-4">Description : <%= @annonce.description %></p>
+       <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <p>Type de bien : <%= @annonce.type_de_bien %></p>
+            <p>Adresse : <%= @annonce.adresse %></p>
+            <p>GES : <%= @annonce.ges %></p>
+            <p>Email : <%= @annonce.email %></p>
+          </div>
+          <div class="col-sm-12 col-md-6 col-lg-6">
+            <p>Surface : <%= @annonce.surface %>  m2</p>
+            <p>Ville : <%= @annonce.ville %></p>
+            <p>Classe énergie : <%= @annonce.classe_énergie %></p>
+            <p>Tel : <%= @annonce.téléphone %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
+
+  <div class="mt-4 mb-2">
     <%= link_to "Gérer ce bien", new_annonce_candidature_path(@annonce), class: "btn btn-primary" %>
-
     <%= link_to "Louer ce bien", "", class: "btn btn-success"  %>
+  </div>
+  <div class="mb-4"><%= link_to "Retour séléction", annonces_path %></div>
   <% end %>
 
 </div>

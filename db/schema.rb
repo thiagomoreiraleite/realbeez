@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_155055) do
+ActiveRecord::Schema.define(version: 2019_09_03_110742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2019_08_29_155055) do
     t.string "statut"
     t.string "photo", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.index ["user_id"], name: "index_annonces_on_user_id"
+  end
+
+  create_table "availabilities", force: :cascade do |t|
+    t.string "jours"
+    t.text "heures", default: [], array: true
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_availabilities_on_user_id"
   end
 
   create_table "candidatures", force: :cascade do |t|
@@ -114,6 +123,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_155055) do
   end
 
   add_foreign_key "annonces", "users"
+  add_foreign_key "availabilities", "users"
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
   add_foreign_key "photos", "annonces"

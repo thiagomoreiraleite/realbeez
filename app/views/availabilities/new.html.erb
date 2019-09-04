@@ -1,0 +1,20 @@
+<h3 class="text-center mt-5 mb-4">Vos disponibilités</h3>
+<div class="container center">
+  <div class="row justify-content-center">
+     <div class="col-12 col-md-6 col-lg-6">
+      <div class="center">
+        <%= simple_form_for [@availability] do |f| %>
+          <%= f.input :jours, label: "Jours disponibles", collection: ["Du lundi au vendredi", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche", "Week end"] %>
+          <%= f.input :heures, label: "Plages horaires disponibles",collection: [
+              "Matin (8h - 12h)",
+              "Midi (12h - 14h)",
+              "Après-midi (14 - 18h)",
+              "Soirée (après 18h)",
+              "Autre",
+              ], as: :check_boxes, :include_hidden => false%>
+          <%= f.submit "Ajouter", class: "btn btn-success mb-5"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

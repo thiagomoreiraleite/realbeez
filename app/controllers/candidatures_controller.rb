@@ -6,9 +6,20 @@ class CandidaturesController < ApplicationController
     @annonces = current_user.annonces
   end
 
+  def candidature_proprio
+    authorize @candidatures = policy_scope( Candidature).order(created_at: :desc)
+    @annonces = current_user.annonces
+  end
+
+  def candidature_agent
+    authorize @candidatures = policy_scope(Candidature).order(created_at: :desc)
+    @annonces = current_user.annonces
+  end
+
   def new
     authorize @candidature = Candidature.new
     @annonce = Annonce.find(params[:annonce_id])
+    @availabilities = Availability.where("user_id = ?", current_user.id)
   end
 
   def create
@@ -16,10 +27,11 @@ class CandidaturesController < ApplicationController
       @candidature = Candidature.new
       @candidature.annonce_id = params[:candidature][:annonce_id]
       @candidature.user_id = params[:candidature][:user_id]
-      @candidature.dispo_jours = params[:candidature][:dispo_jours]
+      # @candidature.dispo_jours = params[:candidature][:dispo_jours]
       @candidature.statut = "request"
+      @availabilities = Availability.where("user_id = ?", @candidature.user_id)
       authorize @candidature
-      if @candidature.save!
+      if @candidature.save
         redirect_to candidatures_path
       else
         render :new
@@ -29,8 +41,9 @@ class CandidaturesController < ApplicationController
       @candidature.user = current_user
       @annonce = Annonce.find(params[:annonce_id])
       @candidature.annonce = @annonce
-      @candidature.dispo_jours = params[:candidature][:dispo_jours]
+      # @candidature.dispo_jours = params[:candidature][:dispo_jours]
       @candidature.statut = "pending"
+      @availabilities = Availability.where("user_id = ?", current_user.id)
       if @candidature.save
         redirect_to candidatures_path
       else

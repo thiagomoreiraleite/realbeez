@@ -1,19 +1,22 @@
-<h1 class="text-center mt-5 mb-4">Postuler pour gérer ce bien</h1>
+<h3 class="text-center mt-5 mb-4">Postuler pour gérer ce bien</h3>
 <div class="container center">
   <div class="row justify-content-center">
      <div class="col-12 col-md-6 col-lg-6">
       <div class="center">
+        <p>Vos disponibilités</p>
+        <% @availabilities.each do |availability| %>
+          <p><%= availability.jours %></p>
+            <p>
+              <% availability.heures.each do |heure| %>
+                <%= heure %>
+              <% end %>
+            </p>
+            <%= link_to "modifier", edit_availability_path(availability) %>
+            <%= link_to "supprimer", availability_path(availability), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }    %>
+        <% end %>
         <%= simple_form_for [@annonce, @candidature] do |f| %>
-          <%= f.input :dispo_jours, label: "Jour disponible", collection: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"], as: :check_boxes, :include_hidden => false %>
-          <%= f.input :dispo_heures, label: "plage horaire disponible",collection: [
-              "Matin (8h - 12h)",
-              "Midi (12h - 14h)",
-              "Après-midi (14 - 18h)",
-              "Soirée (après 18h)",
-              "Autre",
-              ], as: :check_boxes, :include_hidden => false%>
           <%= f.input :commentaire, label: "Veuillez fournir plus d'information si nécessaire : " %>
-          <%= f.submit "Postuler", class: "btn btn-success mb-5" %>
+          <%= f.submit "Postuler", data: { confirm: 'Etes-vous sûr de vouloir gerer ce bien?' }, class: "btn btn-success mb-5" %>
         <% end %>
       </div>
     </div>

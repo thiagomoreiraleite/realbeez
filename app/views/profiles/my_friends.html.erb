@@ -45,6 +45,7 @@
 <script>
   const addClassSelected = (target) => {
     // take parent class -> get children -> remove classes for all children
+    // console.log(target)
     const children = target.parentElement.children;
     const childAmount = target.parentElement.childElementCount;
     for (let i=0; i<childAmount; i++) {
@@ -55,6 +56,7 @@
   };
 
   this.addEventListener("click", (e) => {
+    console.log(e)
     const whereToShow = document.querySelector("#friends-toPlace");
     const id = e.target.id;
     if (id === "request-get") {

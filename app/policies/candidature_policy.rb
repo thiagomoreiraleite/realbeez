@@ -4,6 +4,14 @@ class CandidaturePolicy < ApplicationPolicy
     true
   end
 
+  def candidature_agent?
+    true
+  end
+
+  def candidature_proprio?
+    true
+  end
+
   def update?
     record.user == user
   end
