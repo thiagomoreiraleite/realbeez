@@ -1,62 +1,190 @@
 <div class="container">
-  <h3 class="text-center my-4">PROPRIETAIRES</h3>
+  <h3 class="text-center mt-5 mb-4">Propriétaires</h3>
 
-    <h4>Candidatures reçues</h4>
+  <div class="profile-friends">
+    <div class="search navigations">
+      <h3 id="candidature_reçue" class="active">Candidatures reçues</h3>
+      <h3 id="candidature_envoyé">Candidatures envoyées</h3>
+      <h3 id="candidature_accepté">Candidatures acceptées</h3>
+      <h3 id="candidature_rejeté">Candidatures rejetées</h3>
+    </div>
 
-    <% @annonces.each do |annonce| %>
-      <% annonce.candidatures.each do |candidature| %>
-        <% if candidature.statut == "pending" %>
-          <p><%= candidature.annonce.titre_annonce %></p>
-          <p>de <%= candidature.user.prénom %> <%= candidature.user.nom %></p>
-          <p>à <%= candidature.annonce.user.prénom %> <%= candidature.annonce.user.nom %></p>
-          <p><%= candidature.statut %></p>
-          <p><%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "" %></p>
-          <p><%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "" %></p>
-          <p>-------------------------------------</p>
+    <div id="friends-toPlace" class="row">
+      <% if @candidature_reçue != [] %>
+        <% @candidature_reçue.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="card-text"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    </div>
+                  </div class="">
+                  <div class="m-3">
+                    <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "btn btn-success" %>
+                        <%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
+                    <%= link_to "View Profile", profile_path(candidature.annonce.user), class: "btn btn-link" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature reçue"</h4>
       <% end %>
-    <% end %>
-
-    <h4>Candidatures envoyées</h4>
-
-    <% @annonces.each do |annonce| %>
-      <% annonce.candidatures.each do |candidature| %>
-        <% if candidature.statut == "request" %>
-          <p><%= candidature.annonce.titre_annonce %></p>
-          <p>de <%= candidature.annonce.user.prénom %> <%= candidature.annonce.user.nom %></p>
-          <p>à <%= candidature.user.prénom %> <%= candidature.user.nom %></p>
-          <p><%= candidature.statut %></p>
-          <p>-------------------------------------</p>
-        <% end %>
-      <% end %>
-    <% end %>
-
-
-    <h4>Candidatures acceptées</h4>
-
-    <% @annonces.each do |annonce| %>
-      <% annonce.candidatures.each do |candidature| %>
-        <% if candidature.statut == "accepté" %>
-          <p><%= candidature.annonce.titre_annonce %></p>
-          <p>de <%= candidature.user.prénom %> <%= candidature.user.nom %></p>
-          <p>à <%= candidature.annonce.user.prénom %> <%= candidature.annonce.user.nom %></p>
-          <p><%= candidature.statut %></p>
-          <p>-------------------------------------</p>
-        <% end %>
-      <% end %>
-    <% end %>
-
-    <h4>Candidatures rejetés</h4>
-
-    <% @annonces.each do |annonce| %>
-      <% annonce.candidatures.each do |candidature| %>
-        <% if candidature.statut == "rejeté" %>
-          <p><%= candidature.annonce.titre_annonce %></p>
-          <p>de <%= candidature.user.prénom %> <%= candidature.user.nom %></p>
-          <p>à <%= candidature.annonce.user.prénom %> <%= candidature.annonce.user.nom %></p>
-          <p><%= candidature.statut %></p>
-          <p>-------------------------------------</p>
-        <% end %>
-      <% end %>
-    <% end %>
+    </div>
+  </div>
 </div>
+
+<script>
+    const addClassSelected = (target) => {
+    // take parent class -> get children -> remove classes for all children
+    // console.log(target)
+    const children = target.parentElement.children;
+    const childAmount = target.parentElement.childElementCount;
+    for (let i=0; i<childAmount; i++) {
+      children[i].classList.remove("active");
+    }
+    // add class
+    target.classList.add("active");
+  };
+
+   this.addEventListener("click", (e) => {
+    console.log(e)
+    const whereToShow = document.querySelector("#friends-toPlace");
+    const id = e.target.id;
+    console.log(id)
+    if (id === "candidature_reçue") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_reçue != [] %>
+          <% @candidature_reçue.each do |candidature| %>
+            <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+              <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+                <div class="row no-gutters", style="border-radius: 30px">
+                  <div class="col-md-4">
+                    <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                  </div>
+                  <div class="col-md-8 d-flex flex-column justify-content-between">
+                    <div class="card-body">
+                      <div>
+                        <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                        <p class="card-text"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                        <p class="card-text"> Statut : <%= candidature.statut %></p>
+                      </div>
+                    </div class="">
+                    <div class="m-3">
+                          <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "btn btn-success" %>
+                          <%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
+                      <%= link_to "View Profile", profile_path(candidature.annonce.user), class: "btn btn-link" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h4 class="text-center" style="width: 100%;">"Aucune candidature reçue"</h4>
+        <% end %>
+      `);
+    }
+    else if (id === "candidature_envoyé") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_envoyé != [] %>
+        <% @candidature_envoyé.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="card-text"> Envoyée à : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    </div>
+                  </div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature envoyée"</h4>
+      <% end %>
+      `);
+    }
+    else if (id === "candidature_accepté") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_accepté != [] %>
+        <% @candidature_accepté.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="card-text"> Géré par : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    </div>
+                  </div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature acceptée"</h4>
+      <% end %>
+        `);
+    }
+    else if (id === "candidature_rejeté") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_rejeté != [] %>
+        <% @candidature_rejeté.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="card-text"> Postulant : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    </div>
+                  </div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature rejetée"</h4>
+      <% end %>
+      `);
+    };
+  });
+</script>
