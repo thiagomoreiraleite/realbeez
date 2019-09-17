@@ -1,20 +1,30 @@
 class AvailabilitiesController < ApplicationController
 
-    before_action :set_availability, only: [:edit, :update, :destroy]
+    before_action :set_availability, only: [:edit, :update]
 
   def new
     authorize @availability = Availability.new
   end
 
+  # def create
+  #   @availability = Availability.new(availability_params)
+  #   @availability.user = current_user
+  #   @availability.heures = params[:availability][:heures]
+  #   authorize @availability
+  #   if @availability.save
+  #     redirect_to profile_path(current_user)
+  #   else
+  #     render :new
+  #   end
+  # end
+
   def create
-    @availability = Availability.new(availability_params)
+    @availability = Availability.new
     @availability.user = current_user
-    @availability.heures = params[:availability][:heures]
+    @availability.jours = params[:jours]
     authorize @availability
     if @availability.save
       redirect_to profile_path(current_user)
-    else
-      render :new
     end
   end
 
@@ -32,7 +42,9 @@ class AvailabilitiesController < ApplicationController
     end
   end
 
-   def destroy
+  def destroy
+    @availabilities = Availability.all
+    @availability = @availabilities.select{|a| a.user_id == current_user.id && a.jours == params[:jours]}[0]
     authorize @availability
     @availability.destroy
     redirect_to profile_path(current_user)

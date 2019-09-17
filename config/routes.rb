@@ -29,5 +29,10 @@ Rails.application.routes.draw do
 
   # Availabilities
   resources :availabilities, only: [:new, :create, :edit, :update, :destroy]
+  get '/availabilities/book_dispo', to: 'availabilities#book_dispo', as: :book_dispo
 
+  # Devenir_agent
+  resources :agents, only: [:new, :create, :edit, :update, :destroy, :show, :index]
+  post '/agents/:id/accept', to: 'agents#accept_agent', as: :accept_agent
+  post '/agents/:id/decline', to: 'agents#decline_agent', as: :decline_agent
 end

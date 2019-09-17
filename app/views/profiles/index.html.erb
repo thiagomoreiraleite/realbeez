@@ -25,7 +25,7 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom.titlecase %></h5>
-                      <p class="card-text"><%= profile.ville %></p>
+                      <p class="card-text"><%= profile.ville.titlecase %></p>
                     </div>
                     <div class="mt-3">
                       <% unless profile.friends.any? { |f| f == current_user } %>

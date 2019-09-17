@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :candidatures, dependent: :destroy
   has_many :meetings, dependent: :destroy
   has_many :availabilities, dependent: :destroy
+  has_one :agent, dependent: :destroy
   mount_uploader :photo, PhotoUploader
   validates :prénom, :nom, presence: true
   has_friendship

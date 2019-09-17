@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_110742) do
+ActiveRecord::Schema.define(version: 2019_09_15_075206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "agents", force: :cascade do |t|
+    t.string "cv"
+    t.date "date_de_naissance"
+    t.string "auto_entrepreneur"
+    t.text "experience"
+    t.string "statut"
+    t.string "connaissance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_agents_on_user_id"
+  end
 
   create_table "annonces", force: :cascade do |t|
     t.string "titre_annonce"

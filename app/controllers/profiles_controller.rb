@@ -28,6 +28,7 @@ class ProfilesController < ApplicationController
     @meetings = policy_scope(Meeting).order(created_at: :desc)
     @meeting = Meeting.new
     @availabilities = Availability.where("user_id = ?", @profile.id)
+    @availability = Availability.where("user_id = ? && jours = ?", @profile.id, params[:jours])
   end
 
   def add_friend
@@ -40,7 +41,7 @@ class ProfilesController < ApplicationController
     redirect_to my_friends_path
   end
 
-   def decline_friend
+  def decline_friend
     current_user.decline_request(@profile)
     redirect_to my_friends_path
   end

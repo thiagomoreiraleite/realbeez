@@ -3,6 +3,7 @@
   <div class="row justify-content-center">
      <div class="col-12 col-md-6 col-lg-6">
       <div class="center">
+<% raise %>
         <%= simple_form_for [@availability] do |f| %>
           <%= f.input :jours, label: "Jours disponibles", collection: ["Du lundi au vendredi", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche", "Week end"] %>
           <%= f.input :heures, label: "Plages horaires disponibles",collection: [

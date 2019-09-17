@@ -1,0 +1,76 @@
+<h3 class="text-center mt-5 mb-4">Postuler pour devenir Agent Realbeez</h3>
+<div class="container center">
+  <div class="row justify-content-center">
+     <div class="col-12 col-md-6 col-lg-6">
+      <div class="center">
+        <p> Prénom : <%= current_user.prénom %> <%= link_to "edit", edit_user_registration_path  %></p>
+        <p> Nom : <%= current_user.nom  %> <%= link_to "edit", edit_user_registration_path  %></p>
+        <p> Email : <%= current_user.email %> <%= link_to "edit", edit_user_registration_path  %></p>
+        <p> Numéro de téléphone : <%= current_user.téléphone %> <%= link_to "edit", edit_user_registration_path  %></p>
+        <p> Adresse : <%= current_user.adresse %> <%= link_to "edit", edit_user_registration_path  %></p>
+        <p> Ville : <%= current_user.ville %> <%= link_to "edit", edit_user_registration_path  %></p>
+
+        <p style="font-weight: bold">Mes disponibilités pour effectuer les visites</p>
+        <% @availabilities.each do |availability| %>
+          <p><%= availability.jours %></p>
+            <p>
+              <% availability.heures.each do |heure| %>
+                <%= heure %>
+              <% end %>
+            </p>
+            <%= link_to "modifier", edit_availability_path(availability) %>
+            <%= link_to "supprimer", availability_path(availability), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }    %>
+        <% end %>
+        <%= link_to "ajouter une disponibilité", new_availability_path %>
+
+        <%= simple_form_for [@agent] do |f| %>
+          <% if @agent.errors.any? %>
+            <div class="errors-container">
+                <ul>
+                  <% @agent.errors.full_messages.each do |message| %>
+                      <% if message == "User has already been taken" %>
+                        <p>Vous avez déja postulé</p>
+                      <% end %>
+
+                      <%= f.input :date_de_naissance %>
+                      <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
+                      <%= f.input :connaissance, collection:
+                        [
+                          "Google",
+                          "Facebook",
+                          "Leboncoin",
+                          "Bouche à oreille",
+                          "Autre"
+                        ],label: "Comment avez-vous connue Realbeez?", as: :radio_buttons %>
+                      <%= f.input :cv, label: "Merci de télépcharger votre CV" %>
+                      <%= f.input :cv_cache, as: :hidden %>
+                      <%= f.submit "Postuler", class: "btn btn-success mb-5" %>
+                      <ul>
+                        <li>
+                          <%= message %>
+                        </li>
+                      </ul>
+                  <% end %>
+                </ul>
+              </div>
+          <% else %>
+            <%= f.input :date_de_naissance %>
+            <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
+            <%= f.input :connaissance, collection:
+              [
+                "Google",
+                "Facebook",
+                "Leboncoin",
+                "Bouche à oreille",
+                "Autre"
+              ],label: "Comment avez-vous connu Realbeez?", as: :radio_buttons %>
+            <%= f.input :experience, label: "Présentez-vous en quelques lignes : " %>
+            <%= f.input :cv, label: "Merci de télécharger votre CV" %>
+            <%= f.input :cv_cache, as: :hidden %>
+            <%= f.submit "Postuler", class: "btn btn-success mb-5" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

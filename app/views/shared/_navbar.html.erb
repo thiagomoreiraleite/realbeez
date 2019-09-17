@@ -1,9 +1,10 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon", style="background-color: transparent">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon", style="background-color: white">
   <%= link_to root_path, class: "navbar-brand" do %>
     <div class="d-flex align-items-center">
       <%= image_tag "logo_rb.png", style: "" %>
-      <span class="ml-2", style="font-family: simply rounded; color: rgb(60 60 60); font-size: 30px; letter-spacing: 1px">Real</span>
-      <span style="font-family: simply rounded; color: rgb(216 167 40); font-size: 30px; letter-spacing: 1px">beez</span>
+      <%= image_tag "logo_text.png", class: "ml-2", style: "width: 140px" %>
+     <!--  <span class="ml-2", style="font-family: simply rounded; color: rgb(60 60 60); font-size: 30px; letter-spacing: 1px">Real</span>
+      <span style="font-family: simply rounded; color: rgb(216 167 40); font-size: 30px; letter-spacing: 1px">beez</span> -->
     </div>
   <% end %>
 
@@ -18,7 +19,7 @@
           <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Devenir agent Realbeez", "", class: "nav-link" %>
+          <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Nos Annonces", annonces_path, class: "nav-link" %>
@@ -35,6 +36,7 @@
             <%= link_to "Candidatures propriétaire", candidature_proprio_path, class: "dropdown-item" %>
             <%= link_to "Candidatures agent", candidature_agent_path, class: "dropdown-item" %>
             <%= link_to "Mes annonces", mes_annonces_path, class: "dropdown-item" %>
+            <%= link_to "Candidatures agent Realbeez", agents_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
