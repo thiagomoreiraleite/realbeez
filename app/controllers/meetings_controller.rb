@@ -4,7 +4,8 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = policy_scope(Meeting).order(created_at: :desc)
+    # @meetings = policy_scope(Meeting).order(created_at: :desc)
+    @meetings = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :desc)
   end
 
   # GET /meetings/1

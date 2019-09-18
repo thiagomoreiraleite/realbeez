@@ -53,77 +53,32 @@
         <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @profile.email %></p>
         <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @profile.téléphone %></p>
       <% end %>
-
     </div>
   </div>
 </div>
 
-<div class="container">
-  <% unless @profile.agent.nil? %>
-    <% if @profile.agent.statut == "Approuvé" %>
-      <p class="pt-4 text-center pb-2 my-5" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
-      <p style="font-weight: bold">Mes disponibilités pour effectuer les visites</p>
+<div style="background-color: #FFFFFF; box-shadow: 0 0 8px rgba(0,0,0,0.1); ">
+  <!-- Tableau de bord -->
+  <div class="container justify-content-center ">
+    <% unless @profile.agent.nil? %>
+      <% if @profile.agent.statut == "Approuvé" %>
+        <p class="pt-4 text-center pb-2 my-5" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
 
-      <!-- Disponibilité -->
-      <%= render 'shared/calendriers' %>
+        <!-- Disponibilité -->
+        <%= render 'shared/disponibilités' %>
 
-      <!-- Mon calendrier -->
-        <p class="mt-5" style="font-weight: bold">Mon calendrier</p>
-
-        <%= month_calendar events: @meetings do |date, meetings| %>
-          <p class="text-truncate" style='font-size: 10px'><%= date.strftime("%d") %></p>
-          <% meetings.each do |meeting| %>
-            <div>
-              <p class="text-truncate" style='font-size: 10px'><%= meeting.name %></p>
-
-            </div>
-          <% end %>
-        <% end %>
-
-        <p id="notice"><%= notice %></p>
-
-        <p style="font-weight: bold">Mes rendez-vous</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Titre</th>
-              <th>Annonce</th>
-              <th>Date</th>
-              <th>de</th>
-              <th>à</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @meetings.each do |meeting| %>
-              <tr>
-                <td><%= meeting.name %></td>
-                <td><%= meeting.annonce.titre_annonce %></td>a
-                <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
-                <td><%= meeting.start_time.strftime("%l:%M") %></td>
-                <td><%= meeting.end_time.strftime("%l:%M") %></td>
-                <td><%= link_to 'Show', meeting %></td>
-                <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-                <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <br>
-
-      <%= link_to 'New Meeting', new_meeting_path %>
-      </div>
-    </div>
-  <% end %>
-
-  <% else %>
-    <% if @profile.id == current_user.id %>
-      <%= link_to "Devenir agent Realbeez", new_agent_path  %>
+        <!-- Mon calendrier -->
+        <!-- render 'shared/calendriers' -->
+      <% end %>
+    <% else %>
+      <% if @profile.id == current_user.id %>
+        <%= link_to "Devenir agent Realbeez", new_agent_path  %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
+<!-- Demander les services d'un concierge -->
 <div class="container" style="text-align: center">
   <% if user_signed_in? && params[:id].to_i != current_user.id %>
     <h2 class="text-center mb-4 mt-5" style="font-weight: bold">Demander les services de <%= @profile.prénom.capitalize %></h2>

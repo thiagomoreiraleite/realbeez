@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
     @annonces = Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).order(created_at: :desc)
     @profiles = @profile.friends
     @candidature = Candidature.new
-    @meetings = policy_scope(Meeting).order(created_at: :desc)
+    @meetings = policy_scope(Meeting.where("user_id = ?", @profile.id)).order(start_time: :desc)
     @meeting = Meeting.new
     @availabilities = Availability.where("user_id = ?", @profile.id)
     @availability = Availability.where("user_id = ? && jours = ?", @profile.id, params[:jours])
