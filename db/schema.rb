@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_15_075206) do
+ActiveRecord::Schema.define(version: 2019_09_19_063829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "agents", force: :cascade do |t|
-    t.string "cv"
+    t.string "cv", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.date "date_de_naissance"
     t.string "auto_entrepreneur"
     t.text "experience"

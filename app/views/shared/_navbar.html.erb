@@ -1,3 +1,7 @@
+<% if  %>
+
+<% end %>
+
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon", style="background-color: white">
   <%= link_to root_path, class: "navbar-brand" do %>
     <div class="d-flex align-items-center">
@@ -36,7 +40,8 @@
             <%= link_to "Candidatures propriétaire", candidature_proprio_path, class: "dropdown-item" %>
             <%= link_to "Candidatures agent", candidature_agent_path, class: "dropdown-item" %>
             <%= link_to "Mes annonces", mes_annonces_path, class: "dropdown-item" %>
-            <%= link_to "Mes visites", meetings_path, class: "dropdown-item" %>
+            <%= link_to "Visites agent", meetings_path, class: "dropdown-item" %>
+            <%= link_to "Visites propriétaire", meetings_path(visites: {from: 'proprio'}), class: "dropdown-item" %>
             <%= link_to "Candidatures agent Realbeez", agents_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>

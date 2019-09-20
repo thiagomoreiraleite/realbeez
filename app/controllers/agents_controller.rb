@@ -13,6 +13,7 @@ class AgentsController < ApplicationController
     authorize @agent = Agent.new
     authorize @availability = Availability.new
     @availabilities = Availability.where("user_id = ?", current_user.id)
+    @availability = Availability.where("user_id = ? && jours = ?", current_user.id, params[:jours])
   end
 
   def create

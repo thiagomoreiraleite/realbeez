@@ -3,7 +3,6 @@ class AnnoncesController < ApplicationController
   before_action :set_annonce, only: [:show, :edit, :update, :destroy]
 
   def index
-
     if params.key?(:search)
       if params[:search][:query].empty?
         @annonces = policy_scope(Annonce).order(created_at: :desc)

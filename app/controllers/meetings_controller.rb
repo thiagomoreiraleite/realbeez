@@ -4,8 +4,17 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    # @meetings = policy_scope(Meeting).order(created_at: :desc)
-    @meetings = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :desc)
+    @meetings = policy_scope(Meeting).order(created_at: :desc)
+    @meetings_agent = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
+    @meetings_proprio = current_user.annonces.map{|a| a.meetings}
+  end
+
+  def meetings_agent
+    @meetings_agent = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
+  end
+
+  def meetings_proprio
+    @meetings_proprio = current_user.annonces.map{|a| a.meetings}
   end
 
   # GET /meetings/1
@@ -33,6 +42,7 @@ class MeetingsController < ApplicationController
     @meeting.annonce_id = params[:meeting][:annonce_id]
     respond_to do |format|
       if @meeting.save
+
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
       else

@@ -21,14 +21,20 @@
           <p class="font-weight-bold text-center mt-2 mb-0"><%= @profile.prénom.capitalize %> <%= @profile.nom.capitalize %></p>
           <p class="text-center mt-0 mb-3" style="font-size: 12px" ><%= @profile.ville %></p>
           <% unless @profile.agent.nil? %>
-          <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut  : <%= @profile.agent.statut %></p>
-          <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "", edit_agent_path(@profile.agent.id), class: "fas fa-edit" %> / <%= link_to "", agent_path(@profile.agent.id), method: :delete, class: "fas fa-trash" %></p>
+            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut  : <%= @profile.agent.statut %></p>
+            <% if @profile.id == current_user.id %>
+              <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "", edit_agent_path(@profile.agent.id), class: "fas fa-edit" %> / <%= link_to "", agent_path(@profile.agent.id), method: :delete, class: "fas fa-trash" %></p>
+            <% end %>
+          <% else %>
+            <% if @profile.id == current_user.id %>
+              <p class="text-center mt-0 mb-3" ><%= link_to "Devenir agent Realbeez", new_agent_path  %></p>
+            <% end %>
           <% end %>
         </div>
       </div>
     </div>
       <!-- 2 - OTHER INFO -->
-    <div class="col-sm-12 col-md-12 col-lg-8" style="border-radius: 10px">
+    <div class="col-sm-12 col-md-12 col-lg-8 pb-5" style="border-radius: 10px">
       <div class="pb-2 border-bottom border-info"></div>
       <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes connexions</p>
       <div class="col mr-0">
@@ -57,40 +63,41 @@
   </div>
 </div>
 
-<div style="background-color: #FFFFFF; box-shadow: 0 0 8px rgba(0,0,0,0.1); ">
-  <!-- Tableau de bord -->
-  <div class="container justify-content-center ">
-    <% unless @profile.agent.nil? %>
-      <% if @profile.agent.statut == "Approuvé" %>
-        <p class="pt-4 text-center pb-2 my-5" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
+<% unless @profile.agent.nil?%>
+  <% if @profile.agent.statut == "Approuvé" %>
+    <div style="background-color: #FFFFFF; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+      <% if user_signed_in? && params[:id].to_i != current_user.id%>
+        <div class="mt-5 py-2" style="">
 
-        <!-- Disponibilité -->
-        <%= render 'shared/disponibilités' %>
-
-        <!-- Mon calendrier -->
-        <!-- render 'shared/calendriers' -->
+          <!-- Demander les services d'un concierge -->
+          <div class="container border-bottom" style="text-align: center">
+            <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Demander les services de <%= @profile.prénom.capitalize %></p>
+            <div class="row justify-content-center">
+              <div class="col-12 col-md-6 col-md-offset-3">
+                <%= simple_form_for @candidature do |f| %>
+                  <%= f.input :annonce_id, label: "Choisir l'annonce:", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id%>
+                <%= f.hidden_field :user_id, value: @profile.id %>
+                <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent?' }, class: "btn btn-success mt-4 mb-5 " %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-    <% else %>
-      <% if @profile.id == current_user.id %>
-        <%= link_to "Devenir agent Realbeez", new_agent_path  %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
 
-<!-- Demander les services d'un concierge -->
-<div class="container" style="text-align: center">
-  <% if user_signed_in? && params[:id].to_i != current_user.id %>
-    <h2 class="text-center mb-4 mt-5" style="font-weight: bold">Demander les services de <%= @profile.prénom.capitalize %></h2>
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-md-offset-3">
-        <%= simple_form_for @candidature do |f| %>
-          <%= f.input :annonce_id, label: "Choisir l'annonce:", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id%>
-          <%= f.hidden_field :user_id, value: @profile.id %>
-          <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent?' }, class: "btn btn-success mt-4 mb-5 " %>
-        <% end %>
+      <!-- Tableau de bord -->
+      <div class="container justify-content-center ">
+            <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
       </div>
-    </div>
+      <!-- Disponibilité -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-11 offset-lg-1">
+            <%= render "shared/disponibilités" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
