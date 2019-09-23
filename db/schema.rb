@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_063829) do
+ActiveRecord::Schema.define(version: 2019_09_23_073445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 2019_09_19_063829) do
     t.datetime "updated_at", null: false
     t.string "statut"
     t.string "photo", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
+    t.string "photo1", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 

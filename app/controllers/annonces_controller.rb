@@ -3,19 +3,57 @@ class AnnoncesController < ApplicationController
   before_action :set_annonce, only: [:show, :edit, :update, :destroy]
 
   def index
+
+    # @annonces = policy_scope(Annonce.geocoded) #returns flats with coordinates
+
+    # @markers = @annonces.map do |annonce|
+    #   {
+    #     lat: annonce.latitude,
+    #     lng: annonce.longitude
+    #   }
+    # end
+
     if params.key?(:search)
       if params[:search][:query].empty?
         @annonces = policy_scope(Annonce).order(created_at: :desc)
+        @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+          {
+            lat: annonce.latitude,
+            lng: annonce.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+          }
+        end
       else
         @annonces = policy_scope(Annonce.search_annonce(params[:search][:query]))
+        @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+          {
+            lat: annonce.latitude,
+            lng: annonce.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+          }
+        end
       end
     else
       @annonces = policy_scope(Annonce).order(created_at: :desc)
+      @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+        {
+          lat: annonce.latitude,
+          lng: annonce.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+        }
+      end
     end
   end
 
   def mes_annonces
     @annonces = current_user.annonces
+    @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+      {
+        lat: annonce.latitude,
+        lng: annonce.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+      }
+    end
     authorize @annonces
   end
 
@@ -77,7 +115,8 @@ class AnnoncesController < ApplicationController
     :ville,
     :email,
     :téléphone,
-    :photo
+    :photo,
+    :photo1
   )
   end
 

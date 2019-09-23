@@ -5,6 +5,9 @@ class Annonce < ApplicationRecord
   has_many :meetings
   validates :titre_annonce, :surface, :description, :loyer_mensuel, :ville, :email, :téléphone, presence: true
   mount_uploader :photo, PhotoUploader
+  mount_uploader :photo1, PhotoUploader
+  geocoded_by :adresse
+  after_validation :geocode, if: :will_save_change_to_adresse?
 
   # belongs_to :user
   # include PgSearch::Model
