@@ -31,6 +31,7 @@ class AgentsController < ApplicationController
   def edit
     authorize @agent
     @availabilities = Availability.where("user_id = ?", current_user.id)
+    @availability = Availability.where("user_id = ? && jours = ?", current_user.id, params[:jours])
   end
 
   def update
@@ -51,7 +52,9 @@ class AgentsController < ApplicationController
   def accept_agent
     authorize @agent
     @agent.statut = "Approuvé"
+    @agent.user.statut = "Agent"
     @agent.save
+    @agent.user.save
     redirect_to agents_path
   end
 

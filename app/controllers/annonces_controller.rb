@@ -24,7 +24,7 @@ class AnnoncesController < ApplicationController
           }
         end
       else
-        @annonces = policy_scope(Annonce.search_annonce(params[:search][:query]))
+        @annonces = policy_scope(Annonce.near(params[:search][:query],20))
         @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
           {
             lat: annonce.latitude,

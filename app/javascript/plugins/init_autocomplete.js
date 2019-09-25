@@ -14,6 +14,13 @@ const initAutocompleteAnnonce = () => {
   }
 };
 
+const initAutocompleteProfile = () => {
+  const addressInputProfile = document.getElementById('user_adresse');
+  if (addressInputProfile) {
+    places({ container: addressInputProfile });
+  }
+};
 
 export { initAutocomplete };
 export { initAutocompleteAnnonce };
+export { initAutocompleteProfile };

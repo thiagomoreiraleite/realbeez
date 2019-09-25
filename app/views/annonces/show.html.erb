@@ -78,8 +78,10 @@
     <%= link_to "Gérer ce bien", new_annonce_candidature_path(@annonce), class: "btn btn-primary" %>
     <%= link_to "Louer ce bien", "", class: "btn btn-success"  %>
   </div>
-  <div class="mb-4"><%= link_to "Retour séléction", annonces_path %></div>
+  <div class="mb-4"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
   <% end %>
+
+
 
 </div>
 
