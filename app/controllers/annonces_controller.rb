@@ -1,6 +1,6 @@
 class AnnoncesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_annonce, only: [:show, :edit, :update, :destroy]
+  before_action :set_annonce, only: [:show, :edit, :update, :destroy, :checkout_agent, :checkout_proprio]
 
   def index
 
@@ -47,6 +47,8 @@ class AnnoncesController < ApplicationController
 
   def mes_annonces
     @annonces = current_user.annonces
+    @annonces_proprio_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
+    @annonces_proprio_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
       {
         lat: annonce.latitude,
@@ -57,8 +59,47 @@ class AnnoncesController < ApplicationController
     authorize @annonces
   end
 
+  def biens_a_gerer
+    @annonces = Annonce.where("agent = ?", current_user.id.to_s)
+    @annonces_agent_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
+    @annonces_agent_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
+    @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+      {
+        lat: annonce.latitude,
+        lng: annonce.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+      }
+    end
+    authorize @annonces
+  end
+
+  def checkout_agent
+    authorize @annonce
+    @annonce.checkout_agent = "check"
+    @annonce.save
+    if @annonce.checkout_agent == "check" && @annonce.checkout_proprio == "check"
+      @annonce.statut = "Loué"
+      @annonce.save
+    end
+    redirect_to @annonce
+  end
+
+  def checkout_proprio
+    authorize @annonce
+    @annonce.checkout_proprio = "check"
+    @annonce.save
+    if @annonce.checkout_agent == "check" && @annonce.checkout_proprio == "check"
+      @annonce.statut = "Loué"
+      @annonce.save
+    end
+    redirect_to @annonce
+  end
+
   def show
     authorize @annonce
+    unless @annonce.agent.nil?
+      @agent = User.find(@annonce.agent.to_i)
+    end
   end
 
   def new

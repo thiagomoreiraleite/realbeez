@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :candidatures, only: [:new, :create]
   end
   get '/mes_annonces', to: 'annonces#mes_annonces', as: :mes_annonces
+  get '/biens_a_gerer', to: 'annonces#biens_a_gerer', as: :biens_a_gerer
+  get '/annonces/:id/checkout_agent', to: 'annonces#checkout_agent', as: :checkout_agent
+  get '/annonces/:id/checkout_proprio', to: 'annonces#checkout_proprio', as: :checkout_proprio
 
   # Candidatures
   resources :candidatures, only: [:edit, :update, :index, :create]

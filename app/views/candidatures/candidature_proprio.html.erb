@@ -27,8 +27,8 @@
                     </div>
                   </div class="">
                   <div class="m-3">
-                    <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "btn btn-success" %>
-                        <%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
+                    <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "btn btn-success" %>
+                        <%= link_to "Rejeter" , reject_candidature_path(candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "View Profile", profile_path(candidature.annonce.user), class: "btn btn-link" %>
                   </div>
                 </div>

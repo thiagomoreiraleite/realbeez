@@ -8,6 +8,18 @@ class AnnoncePolicy < ApplicationPolicy
     true
   end
 
+  def biens_a_gerer?
+    true
+  end
+
+  def checkout_proprio?
+    true
+  end
+
+  def checkout_agent?
+    true
+  end
+
   def show?
     true
   end

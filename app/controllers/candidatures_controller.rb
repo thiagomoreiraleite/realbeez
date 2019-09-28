@@ -34,6 +34,7 @@ class CandidaturesController < ApplicationController
     authorize @candidature = Candidature.new
     @annonce = Annonce.find(params[:annonce_id])
     @availabilities = Availability.where("user_id = ?", current_user.id)
+    @availability = Availability.where("user_id = ? && jours = ?", current_user.id, params[:jours])
   end
 
   def create
@@ -46,7 +47,7 @@ class CandidaturesController < ApplicationController
       @availabilities = Availability.where("user_id = ?", @candidature.user_id)
       authorize @candidature
       if @candidature.save
-        redirect_to candidatures_path
+        redirect_to candidature_proprio_path
       else
         render :new
       end
@@ -59,7 +60,7 @@ class CandidaturesController < ApplicationController
       @candidature.statut = "pending"
       @availabilities = Availability.where("user_id = ?", current_user.id)
       if @candidature.save
-        redirect_to candidatures_path
+        redirect_to candidature_agent_path
       else
         render :new
       end
@@ -94,15 +95,25 @@ class CandidaturesController < ApplicationController
   def accept_candidature
     authorize @candidature
     @candidature.statut = "accepté"
+    @candidature.annonce.agent = @candidature.user_id
     @candidature.save
-    redirect_to candidatures_path
+    @candidature.annonce.save
+     if params[:from] == "proprio"
+      redirect_to candidature_proprio_path
+    else
+      redirect_to candidature_agent_path
+    end
   end
 
   def reject_candidature
     authorize @candidature
     @candidature.statut = "rejeté"
     @candidature.save
-    redirect_to candidatures_path
+    if params[:from] == "proprio"
+      redirect_to candidature_proprio_path
+    else
+      redirect_to candidature_agent_path
+    end
   end
 
   private
