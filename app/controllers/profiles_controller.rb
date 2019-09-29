@@ -35,6 +35,39 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def profile_all_users
+    if params.key?(:search_profile)
+      if params[:search_profile][:query].empty?
+        authorize @profiles = Profile.all.order(created_at: :desc)
+        @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+          {
+            lat: profile.latitude,
+            lng: profile.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+          }
+        end
+      else
+        authorize @profiles = Profile.search_profile(params[:search_profile][:query])
+        @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+          {
+            lat: profile.latitude,
+            lng: profile.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+          }
+        end
+      end
+    else
+      authorize @profiles = Profile.all.order(created_at: :desc)
+      @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+        {
+          lat: profile.latitude,
+          lng: profile.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+        }
+      end
+    end
+  end
+
   def my_friends
     @profiles = current_user.friends
     authorize @profiles

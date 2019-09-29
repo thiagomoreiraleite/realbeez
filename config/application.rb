@@ -20,5 +20,8 @@ module Realbeez
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # To add a video
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
   end
 end

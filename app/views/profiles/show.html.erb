@@ -39,15 +39,19 @@
       <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes connexions</p>
       <div class="col mr-0">
         <div class= "row d-flex">
-          <% User.find(params[:id]).friends.each do |friend| %>
-            <div class="col-4 col-md-2">
-              <div class="text-center">
-                <%= link_to (cl_image_tag friend.photo, crop: :fill, style:"object-fit:cover; height: 50px; width: 50px", class: "rounded-circle center justify-content-center text-center"), profile_path(friend)  %>
+          <% if User.find(params[:id]).friends == [] %>
+            <p class="" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune connexion actuellement"</p>
+          <% else %>
+            <% User.find(params[:id]).friends.each do |friend| %>
+              <div class="col-4 col-md-2">
+                <div class="text-center">
+                  <%= link_to (cl_image_tag friend.photo, crop: :fill, style:"object-fit:cover; height: 50px; width: 50px", class: "rounded-circle center justify-content-center text-center"), profile_path(friend)  %>
+                </div>
+                <div class="text-center mt-1 mb-4 text-black-50" style="">
+                  <%= friend.prénom %>
+                </div>
               </div>
-              <div class="text-center mt-1 mb-4 text-black-50" style="">
-                <%= friend.prénom %>
-              </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>

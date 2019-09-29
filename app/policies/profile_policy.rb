@@ -8,6 +8,10 @@ class ProfilePolicy < UserPolicy
     true
   end
 
+  def profile_all_users?
+    true
+  end
+
   def add_friend?
     true
   end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Users
   devise_for :users
   resources :profiles, only: [:index, :show]
+  get '/all_users', to: 'profiles#profile_all_users', as: :profile_all_users
 
   # Annonces
   resources :annonces do

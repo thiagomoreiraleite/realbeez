@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
+
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
@@ -16,4 +17,43 @@
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="row mx-0 pt-3"  style="background-color: #F4F4F4; height: 25vh">
+      <div class="col-12 col-md-6 mb-3">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <div class="d-flex align-items-center">
+            <%= image_tag "logo_text.png", class: "", style: "width: 90px" %>
+          </div>
+        <% end %>
+        <div>
+            <a href="" style="color: black; opacity: 0.6; font-size: 14px"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+        <div>
+            <a href="" style="color: black; opacity: 0.6; font-size: 14px"><i class="fab fa-facebook"></i> Facebook</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div>
+          <!-- TODO: -->
+          <a href="" style="color:#F4F4F4">p</a>
+        </div>
+        <div>
+          <!-- TODO: -->
+          <a href="" style="color: black; opacity: 0.6; font-size: 14px">Terms & Conditions</a>
+        </div>
+        <div>
+          <!-- TODO: -->
+          <a href=""style="color: black; opacity: 0.6; font-size: 14px">Leave Us Feedbacks</a>
+        </div>
+        <div>
+          <!-- TODO: -->
+          <a href="" style="color: black; opacity: 0.6; font-size: 14px">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
 </html>
