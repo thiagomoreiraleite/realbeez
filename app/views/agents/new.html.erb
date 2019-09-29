@@ -38,7 +38,7 @@
     </div>
   </div>
 </div>
-<div class="container center">
+<div class="container center mb-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-8">
       <div class="center border p-3" style="background-color: white; border-radius: 10px; ; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
@@ -50,7 +50,9 @@
                   <% if message == "User has already been taken" %>
                     <p>Vous avez déja postulé</p>
                   <% end %>
-                  <%= f.input :date_de_naissance %>
+                  <%= f.input :date_de_naissance, as: :date, start_year: Date.today.year - 90,
+                                                end_year: Date.today.year - 12, discard_day: true,
+                                                order: [:month, :year] %>
                   <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
                   <%= f.input :connaissance, collection:
                         [

@@ -1,4 +1,4 @@
-<h3 class="text-center mt-5 mb-4">Modifier votre annonce</h3>
+<h3 class="text-center mt-5 mb-4">Publier une annonce</h3>
 <div class="container center">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-6">
@@ -46,11 +46,13 @@
           <%= f.input :loyer_mensuel %>
           <%= f.input :ville %>
           <%= f.input :adresse %>
-          <%= f.input :email %>
-          <%= f.input :téléphone %>
+          <%= f.input :email, placeholder: current_user.email %>
+          <%= f.input :téléphone, placeholder: current_user.téléphone %>
           <%= f.input :photo %>
           <%= f.input :photo_cache, as: :hidden %>
-          <%= f.submit "Modifier", class: "btn btn-success mb-5" %>
+          <%= f.input :photo1 %>
+          <%= f.input :photo1_cache, as: :hidden %>
+          <%= f.submit "Create", class: "btn btn-success mb-5" %>
         <% end %>
       </div>
     </div>
