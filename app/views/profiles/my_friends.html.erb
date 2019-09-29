@@ -6,7 +6,6 @@
         <h3 id="all-friends">My Sport Buddies</h3>
         <h3 id="request-sent">Request Sent</h3>
       </div>
-
       <div id="friends-toPlace" class="row">
         <% if current_user.requested_friends != [] %>
           <% current_user.requested_friends.each do |friend| %>
@@ -24,24 +23,23 @@
                       </div>
                     </div class="">
                     <div class="m-3">
-                          <%= link_to "Accept", accept_friend_path(friend), method: :post, class: "btn btn-success" %>
-                          <%= link_to "Decline", decline_friend_path(friend), method: :post, class: "btn btn-danger" %>
+                      <%= link_to "Accept", accept_friend_path(friend), method: :post, class: "btn btn-success" %>
+                      <%= link_to "Decline", decline_friend_path(friend), method: :post, class: "btn btn-danger" %>
                       <%= link_to "View Profile", profile_path(friend), class: "btn btn-link" %>
                     </div>
-                  </div>
                   </div>
                 </div>
               </div>
             </div>
-          <% end %>
-        <% else %>
-          <h4 class="text-center" style="width: 100%;">"You have no pending friend requests"</h4>
+          </div>
         <% end %>
-      </div>
-    <% end %>
-  </div>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"You have no pending friend requests"</h4>
+      <% end %>
+    </div>
+  <% end %>
 </div>
-
+</div>
 <script>
   const addClassSelected = (target) => {
     // take parent class -> get children -> remove classes for all children
@@ -54,7 +52,7 @@
     // add class
     target.classList.add("active");
   };
-
+  
   this.addEventListener("click", (e) => {
     console.log(e)
     const whereToShow = document.querySelector("#friends-toPlace");

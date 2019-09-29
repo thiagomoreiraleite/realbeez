@@ -2,15 +2,12 @@
   <!-- show annonces of current user -->
   <% if params[:action] == "mes_annonces" %>
     <%= render 'shared/mes_annonces' %>
-
-  <!-- show flats managed by current user -->
+    <!-- show flats managed by current user -->
   <% elsif params[:action] == "biens_a_gerer" %>
     <%= render 'shared/biens_a_gerer' %>
-
   <% else %>
     <!-- show all annonces -->
     <h3 class="text-center mt-5 mb-4">Toutes les annonces</h3>
-
     <!-- search bar looking for address nearby 20 km -->
     <nav class="navbar navbar-light justify-content-around">
       <%= form_for :search, defaults: { required: false }, url:annonces_path, method: "GET", html: { class: '' } do |f| %>
@@ -19,13 +16,11 @@
         </section>
       <% end %>
     </nav>
-
     <div id="" class="row mt-5">
-
       <% if @annonces != []  %>
         <% @annonces.each do |annonce| %>
           <% unless annonce.statut == "annulé" || annonce.statut == "Loué" %>
-           <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
               <div class="content border mb-5", style="box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh">
                 <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
                 <div class="px-3">
@@ -43,39 +38,37 @@
                       <% else %>
                         <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                       <% end %>
-                     <%= link_to "Details", annonce_path(annonce), class: "my-0 ml-5", style:"font-size: 14px; text-decoration: underline" %>
+                      <%= link_to "Details", annonce_path(annonce), class: "my-0 ml-5", style:"font-size: 14px; text-decoration: underline" %>
                     </div>
                   </div>
                 </div>
-
                 <!-- all links with gérer et valider -->
                 <% if user_signed_in?  %>
                   <!-- if no agent is managing the flat -->
                   <% if annonce.agent.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                     <div class="text-center mt-2" >
                       <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-primary", style:"font-size: 14px" %>
-
                     </div>
-                   <!-- if agent assigned and the agent is the current user -->
+                    <!-- if agent assigned and the agent is the current user -->
                   <% elsif annonce.agent != nil && annonce.agent == current_user.id.to_s %>
-                   <!-- when flat is rented need to checkout -->
+                    <!-- when flat is rented need to checkout -->
                     <% if annonce.checkout_agent != "check" %>
                       <div class="text-center mt-2 " style="">
                         <!-- <p style="font-weight: bold; color: #D8A727">Valider lorsque ce bien est loué</p> -->
                         <p><%= link_to "Valider lorsque ce bien est loué", checkout_agent_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p>
                       </div>
                     <% else %>
-                     <!-- flat is rented and checked out by proprio -->
+                      <!-- flat is rented and checked out by proprio -->
                       <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
-                       Validation agent
+                        Validation agent
                         <% if annonce.checkout_agent == "check" %>
-                         <i class="fas fa-check" style="color: green"></i>
+                          <i class="fas fa-check" style="color: green"></i>
                         <% else %>
-                         <i class="fas fa-times" style="color: red"></i>
+                          <i class="fas fa-times" style="color: red"></i>
                         <% end %>
                       </div>
                       <div class="text-center" style="font-size: 12px; font-weight: bold">
-                       Validation propriétaire
+                        Validation propriétaire
                         <% if annonce.checkout_proprio == "check" %>
                           <i class="fas fa-check" style="color: green"></i>
                         <% else %>
@@ -83,26 +76,26 @@
                         <% end %>
                       </div>
                     <% end %>
-                  <!-- agent is assigned and the flat owner is the current user -->
+                    <!-- agent is assigned and the flat owner is the current user -->
                   <% elsif annonce.agent != nil && annonce.user_id == current_user.id %>
                     <!-- when flat is rented need to checkout -->
                     <% if annonce.checkout_proprio != "check" %>
                       <div class="text-center mt-2" style="">
                         <!-- <p style="font-weight: bold; color: #D8A727">Confirmer que l'agent a loué ce bien</p> -->
-                        <p><%= link_to "Votre bien est loué", checkout_proprio_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p>
+                        <p><%= link_to "Votre bisen est loué", checkout_proprio_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p>
                       </div>
                     <% else %>
                       <!-- flat is rented and checked out by proprio -->
                       <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
-                       Validation agent
+                        Validation agent
                         <% if annonce.checkout_agent == "check" %>
-                         <i class="fas fa-check" style="color: green"></i>
+                          <i class="fas fa-check" style="color: green"></i>
                         <% else %>
                           <i class="fas fa-times" style="color: red"></i>
                         <% end %>
                       </div>
                       <div class="text-center" style="font-size: 12px; font-weight: bold">
-                       Validation propriétaire
+                        Validation propriétaire
                         <% if annonce.checkout_proprio == "check" %>
                           <i class="fas fa-check" style="color: green"></i>
                         <% else %>
@@ -115,9 +108,6 @@
               </div>
             </div>
           <% end %>
-
-
-
         <% end %>
         <!-- Mapbox -->
         <div class="container">
@@ -129,14 +119,9 @@
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
           ></div>
         </div>
-
       <% else %>
         <h4 class="text-center mt-4" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce actuellement"</h4>
       <% end %>
     </div>
   <% end %>
 </div>
-
-
-
-

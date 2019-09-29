@@ -5,7 +5,6 @@
     <h3 id="en_cours" class="active">En cours</h3>
     <h3 id="loué">Loués</h3>
   </div>
-
   <div id="friends-toPlace" class="row">
     <% if @annonces_proprio_en_cours != []  %>
       <% @annonces_proprio_en_cours.each do |annonce| %>
@@ -33,28 +32,27 @@
                 <% if annonce.agent.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                   <div class="text-center mt-2" >
                     <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-primary", style:"font-size: 14px" %>
-
                   </div>
-                 <!-- if agent assigned and the agent is the current user -->
+                  <!-- if agent assigned and the agent is the current user -->
                 <% elsif annonce.agent != nil && annonce.agent == current_user.id.to_s %>
-                 <!-- when flat is rented need to checkout -->
+                  <!-- when flat is rented need to checkout -->
                   <% if annonce.checkout_agent != "check" %>
                     <div class="text-center mt-2 " style="">
                       <!-- <p style="font-weight: bold; color: #D8A727">Valider lorsque ce bien est loué</p> -->
                       <p><%= link_to "Valider lorsque ce bien est loué", checkout_agent_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p>
                     </div>
                   <% else %>
-                   <!-- flat is rented and checked out by proprio -->
+                    <!-- flat is rented and checked out by proprio -->
                     <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
-                     Validation agent
+                      Validation agent
                       <% if annonce.checkout_agent == "check" %>
-                       <i class="fas fa-check" style="color: green"></i>
+                        <i class="fas fa-check" style="color: green"></i>
                       <% else %>
-                       <i class="fas fa-times" style="color: red"></i>
+                        <i class="fas fa-times" style="color: red"></i>
                       <% end %>
                     </div>
                     <div class="text-center" style="font-size: 12px; font-weight: bold">
-                     Validation propriétaire
+                      Validation propriétaire
                       <% if annonce.checkout_proprio == "check" %>
                         <i class="fas fa-check" style="color: green"></i>
                       <% else %>
@@ -62,7 +60,7 @@
                       <% end %>
                     </div>
                   <% end %>
-                <!-- agent is assigned and the flat owner is the current user -->
+                  <!-- agent is assigned and the flat owner is the current user -->
                 <% elsif annonce.agent != nil && annonce.user_id == current_user.id %>
                   <!-- when flat is rented need to checkout -->
                   <% if annonce.checkout_proprio != "check" %>
@@ -73,15 +71,15 @@
                   <% else %>
                     <!-- flat is rented and checked out by proprio -->
                     <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
-                     Validation agent
+                      Validation agent
                       <% if annonce.checkout_agent == "check" %>
-                       <i class="fas fa-check" style="color: green"></i>
+                        <i class="fas fa-check" style="color: green"></i>
                       <% else %>
                         <i class="fas fa-times" style="color: red"></i>
                       <% end %>
                     </div>
                     <div class="text-center" style="font-size: 12px; font-weight: bold">
-                     Validation propriétaire
+                      Validation propriétaire
                       <% if annonce.checkout_proprio == "check" %>
                         <i class="fas fa-check" style="color: green"></i>
                       <% else %>
@@ -100,7 +98,6 @@
     <% end %>
   </div>
 </div>
-
 <script>
   const addClassSelected = (target) => {
   // take parent class -> get children -> remove classes for all children
@@ -112,8 +109,8 @@
   }
   // add class
   target.classList.add("active");
-};
-
+  };
+  
    this.addEventListener("click", (e) => {
     console.log(e)
     const whereToShow = document.querySelector("#friends-toPlace");
@@ -149,7 +146,7 @@
                     <% if annonce.agent.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                       <div class="text-center mt-2" >
                         <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-primary", style:"font-size: 14px" %>
-
+  
                       </div>
                      <!-- if agent assigned and the agent is the current user -->
                     <% elsif annonce.agent != nil && annonce.agent == current_user.id.to_s %>
@@ -246,7 +243,7 @@
                     <% if annonce.agent.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                       <div class="text-center mt-2" >
                         <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-primary", style:"font-size: 14px" %>
-
+  
                       </div>
                      <!-- if agent assigned and the agent is the current user -->
                     <% elsif annonce.agent != nil && annonce.agent == current_user.id.to_s %>
@@ -315,9 +312,3 @@
     };
   });
 </script>
-
-
-
-
-
-

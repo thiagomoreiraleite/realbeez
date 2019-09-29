@@ -1,7 +1,5 @@
 <div class="container">
-
   <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Détails de la visite</p>
-
   <div class="container center mb-5" >
     <div class="row justify-content-center">
       <div class="col-12 col-md-6 col-lg-8">
@@ -31,48 +29,22 @@
       </div>
     </div>
   </div>
-
   <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Détails de l'annonce</p>
-
-
   <%= cl_image_tag @meeting.annonce.photo, class: "rounded-top", style: "height:70vh; object-position: center center; object-fit: cover; width: 100%"%>
   <div class="border p-3", style="box-shadow: 0 0 5px rgba(0,0,0,0.1)">
-     <h4 class="mr-3 mt-3 mb-0", style=""><%= @meeting.annonce.titre_annonce %> - <%= @meeting.annonce.loyer_mensuel %> euros / mois</h4>
-     <p class="mt-4">Description : <%= @meeting.annonce.description %></p>
-     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <p>Type de bien : <%= @meeting.annonce.type_de_bien %></p>
-
-          <p>GES : <%= @meeting.annonce.ges %></p>
-          <p>Email : <%= @meeting.annonce.email %></p>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
-          <p>Surface : <%= @meeting.annonce.surface %>  m2</p>
-
-          <p>Classe énergie : <%= @meeting.annonce.classe_énergie %></p>
-          <p>Tel : <%= @meeting.annonce.téléphone %></p>
-        </div>
+    <h4 class="mr-3 mt-3 mb-0", style=""><%= @meeting.annonce.titre_annonce %> - <%= @meeting.annonce.loyer_mensuel %> euros / mois</h4>
+    <p class="mt-4">Description : <%= @meeting.annonce.description %></p>
+    <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <p>Type de bien : <%= @meeting.annonce.type_de_bien %></p>
+        <p>GES : <%= @meeting.annonce.ges %></p>
+        <p>Email : <%= @meeting.annonce.email %></p>
       </div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+        <p>Surface : <%= @meeting.annonce.surface %>  m2</p>
+        <p>Classe énergie : <%= @meeting.annonce.classe_énergie %></p>
+        <p>Tel : <%= @meeting.annonce.téléphone %></p>
+      </div>
+    </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

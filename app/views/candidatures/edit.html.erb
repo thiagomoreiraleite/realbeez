@@ -1,18 +1,18 @@
 <h3 class="text-center mt-5 mb-4">Postuler pour gérer ce bien</h3>
 <div class="container center">
   <div class="row justify-content-center">
-     <div class="col-12 col-md-6 col-lg-6">
+    <div class="col-12 col-md-6 col-lg-6">
       <div class="center">
         <p>Vos disponibilités</p>
         <% @availabilities.each do |availability| %>
           <p><%= availability.jours %></p>
-            <p>
-              <% availability.heures.each do |heure| %>
-                <%= heure %>
-                <%= link_to "modifier", edit_availability_path(availability) %>
-                <%= link_to "supprimer", availability_path(availability), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }    %>
-              <% end %>
-            </p>
+          <p>
+            <% availability.heures.each do |heure| %>
+              <%= heure %>
+              <%= link_to "modifier", edit_availability_path(availability) %>
+              <%= link_to "supprimer", availability_path(availability), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }    %>
+            <% end %>
+          </p>
         <% end %>
         <%= simple_form_for [@annonce, @candidature] do |f| %>
           <%= f.input :commentaire, label: "Veuillez fournir plus d'information si nécessaire : " %>
@@ -22,4 +22,3 @@
     </div>
   </div>
 </div>
-

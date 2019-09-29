@@ -9,7 +9,6 @@
       <% end %>
     </div>
   </div>
-
   <!-- 1 - PROFILE IMG -->
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-4 p-0">
@@ -33,7 +32,7 @@
         </div>
       </div>
     </div>
-      <!-- 2 - OTHER INFO -->
+    <!-- 2 - OTHER INFO -->
     <div class="col-sm-12 col-md-12 col-lg-8 pb-5" style="border-radius: 10px">
       <div class="pb-2 border-bottom border-info"></div>
       <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes connexions</p>
@@ -55,7 +54,6 @@
           <% end %>
         </div>
       </div>
-
       <% unless @profile.agent.nil? %>
         <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes informations</p>
         <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i> <%= @profile.agent.experience %></p>
@@ -65,24 +63,22 @@
         <% end %>
         <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @profile.email %></p>
         <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @profile.téléphone %></p>
-      <% else %>
-        <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes informations</p>
-        <% if @profile == current_user %>
-          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @profile.adresse %> à  <%= @profile.ville %></p>
-        <% end %>
-        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @profile.email %></p>
-        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @profile.téléphone %></p>
+    <% else %>
+      <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes informations</p>
+      <% if @profile == current_user %>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @profile.adresse %> à  <%= @profile.ville %></p>
       <% end %>
-    </div>
-  </div>
+      <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @profile.email %></p>
+      <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @profile.téléphone %></p>
+  <% end %>
 </div>
-
+</div>
+</div>
 <% unless @profile.agent.nil?%>
   <% if @profile.agent.statut == "Approuvé" %>
     <div style="background-color: #FFFFFF; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
       <% if user_signed_in? && params[:id].to_i != current_user.id%>
         <div class="mt-5 py-2" style="">
-
           <!-- Demander les services d'un concierge -->
           <div class="container border-bottom" style="text-align: center">
             <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Demander les services de <%= @profile.prénom.capitalize %></p>
@@ -90,18 +86,17 @@
               <div class="col-12 col-md-6 col-md-offset-3">
                 <%= simple_form_for @candidature do |f| %>
                   <%= f.input :annonce_id, label: "Choisir l'annonce:", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id%>
-                <%= f.hidden_field :user_id, value: @profile.id %>
-                <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent?' }, class: "btn btn-success mt-4 mb-5 " %>
+                  <%= f.hidden_field :user_id, value: @profile.id %>
+                  <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent?' }, class: "btn btn-success mt-4 mb-5 " %>
                 <% end %>
               </div>
             </div>
           </div>
         </div>
       <% end %>
-
       <!-- Tableau de bord -->
       <div class="container justify-content-center ">
-            <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
+        <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
       </div>
       <!-- Disponibilité -->
       <div class="container">
@@ -110,33 +105,8 @@
             <%= render "shared/disponibilités" %>
           </div>
         </div>
+        <div class="container"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
       </div>
     <% end %>
   <% end %>
-
-  <div class="container mb-4"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
-
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

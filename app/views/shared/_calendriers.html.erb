@@ -8,56 +8,49 @@
     <% end %>
   </div>
 <% end %> -->
-
-
-
-
 <p id="notice"><%= notice %></p>
-
 <p class="mt-5" style="font-weight: bold; color: #D8A727">Mes visites</p>
-
 <div class="row">
-      <% @meetings.each do |meeting| %>
-          <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1)">
-              <%= cl_image_tag meeting.annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
-              <div class="px-3">
-                <div class="mt-2">
-                  <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= meeting.annonce.ville %></p>
-                  <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= meeting.annonce.titre_annonce %></p>
-                </div>
-                <div class="mt-0">
-                  <p style="font-size: 14px">Le <%= meeting.start_time.strftime("%d/%m/%Y") %> à  <%= meeting.start_time.strftime("%l:%M") %></p>
-                  <p style="font-size: 14px">Détails: <%= meeting.name  %></p>
-                  <div class="d-flex px-0 justify-content-around">
-                    <%= link_to "Details annonce", annonce_path(meeting.annonce), class: "my-0 stretched-link", style:"font-size: 14px; text-decoration: underline" %>
-                    <div>
-                      <<%= link_to 'Show', meeting %>
+  <% @meetings.each do |meeting| %>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1)">
+        <%= cl_image_tag meeting.annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+        <div class="px-3">
+          <div class="mt-2">
+            <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= meeting.annonce.ville %></p>
+            <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= meeting.annonce.titre_annonce %></p>
+          </div>
+          <div class="mt-0">
+            <p style="font-size: 14px">Le <%= meeting.start_time.strftime("%d/%m/%Y") %> à  <%= meeting.start_time.strftime("%l:%M") %></p>
+            <p style="font-size: 14px">Détails: <%= meeting.name  %></p>
+            <div class="d-flex px-0 justify-content-around">
+              <%= link_to "Details annonce", annonce_path(meeting.annonce), class: "my-0 stretched-link", style:"font-size: 14px; text-decoration: underline" %>
+              <div>
+                <<%= link_to 'Show', meeting %>
                       <%= link_to '', edit_meeting_path(meeting), class: "fas fa-pen mx-3" %>
                       <%= link_to '', meeting, method: :delete, data: { confirm: 'Are you sure?' }, class: "fas fa-trash" %>
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       <% end %>
     </div>
-
-<div class="row">
-  <% @meetings.each do |meeting| %>
-    <div class="col-10 offset-1 col-lg-3 border mb-2">
-      <p><%= meeting.name %></p>
-      <p><%= meeting.annonce.titre_annonce %></p>a
-      <p><%= meeting.start_time.strftime("%d/%m/%Y") %></p>
-      <p><%= meeting.start_time.strftime("%l:%M") %></p>
-      <p><%= meeting.end_time.strftime("%l:%M") %></p>
-      <p><%= link_to 'Show', meeting %></p>
-      <p><%= link_to 'Edit', edit_meeting_path(meeting) %></p>
-      <p><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <div class="row">
+      <% @meetings.each do |meeting| %>
+        <div class="col-10 offset-1 col-lg-3 border mb-2">
+          <p><%= meeting.name %></p>
+          <p><%= meeting.annonce.titre_annonce %></p>
+          a
+          <p><%= meeting.start_time.strftime("%d/%m/%Y") %></p>
+          <p><%= meeting.start_time.strftime("%l:%M") %></p>
+          <p><%= meeting.end_time.strftime("%l:%M") %></p>
+          <p><%= link_to 'Show', meeting %></p>
+          <p><%= link_to 'Edit', edit_meeting_path(meeting) %></p>
+          <p><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
-<br>
-
-<%= link_to 'New Meeting', new_meeting_path %>
+    <br>
+    <%= link_to 'New Meeting', new_meeting_path %>
