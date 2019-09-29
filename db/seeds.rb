@@ -26,6 +26,11 @@ User.create!(
   admin: true
 )
 
+Agent.create!(
+  statut: "Approuvé",
+  user_id: 1
+)
+
 User.create!(
   email: 'ly.somchit@gmail.com',
   password: '123456',
@@ -49,6 +54,11 @@ User.create!(
   statut: 'Agent'
 )
 
+Agent.create!(
+  statut: "Approuvé",
+  user_id: 3
+)
+
 User.create!(
   email: 'ly8david@gmail.com',
   password: '123456',
@@ -70,6 +80,11 @@ User.create!(
   ville: 'Lutterbach',
   téléphone: '0666774000',
   statut: 'Agent'
+)
+
+Agent.create!(
+  statut: "Approuvé",
+  user_id: 5
 )
 
 User.create!(
@@ -100,6 +115,7 @@ Annonce.create!(
   ville: 'Riedisheim',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
+  statut: "active",
   user_id: 1
 )
 
@@ -121,6 +137,7 @@ Disponible immédiatement et pas de frais d’agence à payer.',
   ville: 'Altkirch',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
+  statut: "active",
   user_id: 1
 )
 
@@ -142,5 +159,6 @@ Charges: 40€ (eau froide, entretien chaudière + commun)',
   ville: 'Thann',
   email: 'ly.somchit@gmail.com',
   téléphone: '0651402566',
+  statut: "active",
   user_id: 2
 )
