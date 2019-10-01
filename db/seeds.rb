@@ -116,6 +116,9 @@ Annonce.create!(
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
+  photo: "image/upload/v1569945259/uygnlkuciqkafqczgrup.jpg",
+  photo1: "image/upload/v1569945261/xp7so01tjnbfddnwrbyx.jpg",
+  photo2: "image/upload/v1569945263/ng2llj4cmimqizcvczdn.jpg",
   user_id: 1
 )
 
@@ -138,6 +141,9 @@ Disponible immédiatement et pas de frais d’agence à payer.',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
+  photo: "image/upload/v1569945312/ikhicfjlbmjc4atmhxr2.jpg",
+  photo1: "image/upload/v1569945314/snn8cpvcodtc1imy0pdv.jpg",
+  photo2: "image/upload/v1569945315/so0irqhhayu79gzbh4v2.jpg",
   user_id: 1
 )
 
@@ -160,5 +166,8 @@ Charges: 40€ (eau froide, entretien chaudière + commun)',
   email: 'ly.somchit@gmail.com',
   téléphone: '0651402566',
   statut: "active",
+  photo: "image/upload/v1569945389/unmww35wcztexqxyafk8.jpg",
+  photo1: "image/upload/v1569945390/dnbc64cyg5vurgjejuym.jpg",
+  photo2: "image/upload/v1569945391/q1yguhhfegdmsus1vvax.jpg",
   user_id: 2
 )

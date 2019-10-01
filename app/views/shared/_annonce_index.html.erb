@@ -21,7 +21,7 @@
         <% @annonces.each do |annonce| %>
           <% unless annonce.statut == "annulé" || annonce.statut == "Loué" %>
             <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="content border mb-5", style="box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh">
+              <div class="content border mb-5", style="box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh; background-color: white">
                 <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
                 <div class="px-3">
                   <div class="mt-2">

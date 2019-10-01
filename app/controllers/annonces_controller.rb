@@ -124,7 +124,7 @@ class AnnoncesController < ApplicationController
   end
 
   def update
-     authorize @annonce
+    authorize @annonce
     if @annonce.update(annonce_params)
       redirect_to @annonce
     else
@@ -142,23 +142,26 @@ class AnnoncesController < ApplicationController
   private
 
   def annonce_params
-  params.require(:annonce).permit(
-    :titre_annonce,
-    :type_de_bien,
-    :meublé,
-    :surface,
-    :pièces,
-    :classe_énergie,
-    :ges,
-    :description,
-    :loyer_mensuel,
-    :adresse,
-    :ville,
-    :email,
-    :téléphone,
-    :photo,
-    :photo1
-  )
+    params.require(:annonce).permit(
+      :titre_annonce,
+      :type_de_bien,
+      :meublé,
+      :surface,
+      :pièces,
+      :classe_énergie,
+      :ges,
+      :description,
+      :loyer_mensuel,
+      :adresse,
+      :ville,
+      :email,
+      :téléphone,
+      :photo,
+      :photo1,
+      :photo2,
+      :photo3,
+      :photo4
+    )
   end
 
   # def photo_params

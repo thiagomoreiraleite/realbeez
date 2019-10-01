@@ -6,6 +6,9 @@ class Annonce < ApplicationRecord
   validates :titre_annonce, :surface, :description, :loyer_mensuel, :ville, :email, :téléphone, presence: true
   mount_uploader :photo, PhotoUploader
   mount_uploader :photo1, PhotoUploader
+  mount_uploader :photo2, PhotoUploader
+  mount_uploader :photo3, PhotoUploader
+  mount_uploader :photo4, PhotoUploader
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?
 
@@ -25,5 +28,5 @@ class Annonce < ApplicationRecord
   #   against: [ :ville, :adresse, :titre_annonce, :type_de_bien],
   #   using: {
   #     tsearch: { prefix: true }
-    # }
+  # }
 end

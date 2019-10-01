@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :meetings
   # Pages
   root to: 'pages#home'
+  get '/tarifs', to: 'pages#details_tarifs', as: :details
 
   # Users
   devise_for :users

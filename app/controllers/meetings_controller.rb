@@ -15,6 +15,7 @@ class MeetingsController < ApplicationController
 
   def meetings_proprio
     @meetings_proprio = current_user.annonces.map{|a| a.meetings}
+    raise
   end
 
   # GET /meetings/1
@@ -26,7 +27,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     authorize @meeting = Meeting.new
-    @annonces = Annonce.all
+    @annonces = Annonce.where("agent = ?", current_user.id.to_s)
   end
 
   # GET /meetings/1/edit
@@ -79,13 +80,13 @@ class MeetingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def meeting_params
-      params.require(:meeting).permit(:name, :start_time, :end_time)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def meeting_params
+    params.require(:meeting).permit(:name, :start_time, :end_time)
+  end
 end

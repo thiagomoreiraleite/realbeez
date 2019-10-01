@@ -9,7 +9,10 @@ import { initAutocompleteProfile } from '../plugins/init_autocomplete';
 
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
+import { initUpdateNavbarOnScroll } from '../components/navbar';
+
 initMapbox();
 initAutocomplete();
 initAutocompleteAnnonce();
 initAutocompleteProfile();
+initUpdateNavbarOnScroll();

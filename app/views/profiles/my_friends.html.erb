@@ -1,10 +1,11 @@
 <div class="container">
+  <h3 class="text-center mt-5 mb-4">Mes Connections</h3>
   <div class="profile-friends">
     <% if policy(@profiles).my_friends? %>
       <div class="search navigations">
-        <h3 id="request-get" class="active">Request Received</h3>
-        <h3 id="all-friends">My Sport Buddies</h3>
-        <h3 id="request-sent">Request Sent</h3>
+        <h3 id="request-get" class="active" style="font-size: 16px">Reçues</h3>
+        <h3 id="all-friends" style="font-size: 16px">Acceptées</h3>
+        <h3 id="request-sent" style="font-size: 16px">Envoyées</h3>
       </div>
       <div id="friends-toPlace" class="row">
         <% if current_user.requested_friends != [] %>
@@ -34,7 +35,7 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"You have no pending friend requests"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucune demande connection reçue"</h4>
       <% end %>
     </div>
   <% end %>
@@ -88,7 +89,7 @@
         </div>
       <% end %>
     <% else %>
-      <h4 class="text-center" style="width: 100%;">"You have no pending friend requests"</h4>
+      <h4 class="text-center" style="width: 100%;">"Aucune demande de connection reçue"</h4>
     <% end %>
       `);
     }
@@ -121,7 +122,7 @@
             </div>
           <% end %>
         <% else %>
-          <h4 class="text-center" style="width: 100%;">"You have no friends"</h4>
+          <h4 class="text-center" style="width: 100%;">"Aucune connection actuellement"</h4>
         <% end %>
       `);
     }
@@ -155,7 +156,7 @@
             </div>
           <% end %>
         <% else %>
-          <h4 class="text-center" style="width: 100%;">"You have no pending sent friend requests"</h4>
+          <h4 class="text-center" style="width: 100%;">"Aucune connection envoyé"</h4>
         <% end %>
       `);
     };

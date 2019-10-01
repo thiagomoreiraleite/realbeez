@@ -1,11 +1,11 @@
 <div class="container">
-  <h3 class="text-center mt-5 mb-4">Agent Realbeez</h3>
+  <h3 class="text-center mt-5 mb-4">Mes Candidatures</h3>
   <div class="profile-friends">
     <div class="search navigations">
-      <h3 id="candidature_reçue" class="active">Candidatures reçues</h3>
-      <h3 id="candidature_envoyé">Candidatures envoyées</h3>
-      <h3 id="candidature_accepté">Candidatures acceptées</h3>
-      <h3 id="candidature_rejeté">Candidatures rejetées</h3>
+      <h3 id="candidature_reçue" class="active" style="font-size: 16px">Reçues</h3>
+      <h3 id="candidature_envoyé" style="font-size: 16px">Envoyées</h3>
+      <h3 id="candidature_accepté" style="font-size: 16px">Acceptées</h3>
+      <h3 id="candidature_rejeté" style="font-size: 16px">Rejetées</h3>
     </div>
     <div id="friends-toPlace" class="row">
       <% if @candidature_reçue != [] %>
@@ -25,7 +25,7 @@
                     </div>
                   </div class="">
                   <div class="m-3">
-                    <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "btn btn-success" %>
+                    <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer par le propriétaire en cas de location sera 350 euros TTC' }, class: "btn btn-success" %>
                     <%= link_to "Rejeter" , reject_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "Voir annonce", annonce_path(candidature.annonce), class: "btn btn-link" %>
                   </div>
@@ -79,7 +79,7 @@
                     </div>
                   </div class="">
                   <div class="m-3">
-                        <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 350 euros' }, class: "btn btn-success" %>
+                        <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer par le propriétaire en cas de location sera 350 euros TTC' }, class: "btn btn-success" %>
                         <%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "Voir annonce", annonce_path(candidature.annonce), class: "btn btn-link" %>
                   </div>

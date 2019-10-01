@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Détails de la visite</p>
   <div class="container center mb-5" >
     <div class="row justify-content-center">
@@ -10,22 +10,22 @@
               <%= @meeting.name.titlecase %>
               <span class="mb-4 ml-2"><%= link_to '', edit_meeting_path(@meeting), class:"fas fa-edit" %></span>
             </p>
-            <p>
-              <strong>Date : </strong>
-              <%= @meeting.start_time.strftime("%d/%m/%Y") %>
-            </p>
             <p> <strong>Adresse : </strong> <%= @meeting.annonce.adresse %> </p>
-            <div class="mb-4"><%= link_to 'Retour', meetings_path %></div>
+            <p> <strong>Ville : </strong><%= @meeting.annonce.ville %></p>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <p style="color: white"> A</p>
             <p>
+              <strong>Date : </strong>
+              <%= @meeting.start_time.strftime("%d/%m/%Y") %>
+            </p>
+            <p>
               <strong>Heure : </strong>
               <%= @meeting.start_time.strftime("%l:%M")%>
             </p>
-            <p> <strong>Ville : </strong><%= @meeting.annonce.ville %></p>
           </div>
         </div>
+        <div class="mb-2 mt-1"><%= link_to 'Retour', meetings_path %></div>
       </div>
     </div>
   </div>

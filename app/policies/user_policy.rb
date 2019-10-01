@@ -12,6 +12,10 @@ class UserPolicy < ApplicationPolicy
     true
   end
 
+  def details?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.where(user: user)

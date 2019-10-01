@@ -1,16 +1,16 @@
 <!-- show flats managed by current user -->
-<h3 class="text-center mt-5 mb-5", style="">Biens à gérer</h3>
+<h3 class="text-center mt-5 mb-5", style="">Mes biens à gérer</h3>
 <div class="profile-friends">
   <div class="search navigations">
-    <h3 id="en_cours" class="active">En cours</h3>
-    <h3 id="loué">Loués</h3>
+    <h3 id="en_cours" class="active" style="font-size: 16px">En cours</h3>
+    <h3 id="loué" style="font-size: 16px">Loués</h3>
   </div>
   <div id="friends-toPlace" class="row">
     <% if @annonces_agent_en_cours != []  %>
       <% @annonces_agent_en_cours.each do |annonce| %>
         <%# unless annonce.statut == "annulé" || annonce.statut == "Loué" %>
         <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh">
+          <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh; background-color: white">
             <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
             <div class="px-3">
               <div class="mt-2">
@@ -124,7 +124,7 @@
           <% @annonces_agent_en_cours.each do |annonce| %>
             <%# unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
               <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh">
+                <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh; background-color: white">
                   <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
                   <div class="px-3">
                     <div class="mt-2">
@@ -222,7 +222,7 @@
           <% @annonces_agent_loué.each do |annonce| %>
             <%# if annonce.statut == "Loué" %>
               <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh">
+                <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); height: 65vh; background-color: white">
                   <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
                   <div class="px-3">
                     <div class="mt-2">
