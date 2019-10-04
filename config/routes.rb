@@ -41,4 +41,6 @@ Rails.application.routes.draw do
   post '/agents/:id/accept', to: 'agents#accept_agent', as: :accept_agent
   post '/agents/:id/decline', to: 'agents#decline_agent', as: :decline_agent
 
+  # Orders
+  resources :orders, only: [:show, :create]
 end

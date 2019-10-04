@@ -170,4 +170,8 @@
     </div>
     <div class="mb-4"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
   <% end %>
+  <%= form_tag orders_path do %>
+    <%= hidden_field_tag 'annonce_id', @annonce.id %>
+    <%= submit_tag 'Payer frais de 350 euros', class: 'btn btn-primary' %>
+  <% end %>
 </div>

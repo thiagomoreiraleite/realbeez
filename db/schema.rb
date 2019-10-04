@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_01_153012) do
+ActiveRecord::Schema.define(version: 2019_10_04_154623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_153012) do
     t.string "photo2", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.string "photo3", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.string "photo4", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
+    t.integer "price_cents", default: 0, null: false
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 
@@ -105,6 +106,19 @@ ActiveRecord::Schema.define(version: 2019_10_01_153012) do
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "state"
+    t.string "annonce_sku"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "checkout_session_id"
+    t.bigint "user_id"
+    t.bigint "annonce_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["annonce_id"], name: "index_orders_on_annonce_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string "photo1", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.string "photo2", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
@@ -152,5 +166,7 @@ ActiveRecord::Schema.define(version: 2019_10_01_153012) do
   add_foreign_key "availabilities", "users"
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
+  add_foreign_key "orders", "annonces"
+  add_foreign_key "orders", "users"
   add_foreign_key "photos", "annonces"
 end

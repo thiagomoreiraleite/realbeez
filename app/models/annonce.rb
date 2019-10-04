@@ -11,6 +11,7 @@ class Annonce < ApplicationRecord
   mount_uploader :photo4, PhotoUploader
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?
+  monetize :price_cents
 
   # belongs_to :user
   # include PgSearch::Model

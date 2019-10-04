@@ -116,6 +116,7 @@ annonce = Annonce.create!(
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
+  price_cents: 50,
   user_id: 1
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945259/uygnlkuciqkafqczgrup.jpg"
@@ -143,6 +144,7 @@ Disponible immédiatement et pas de frais d’agence à payer.',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
+  price_cents: 50,
   user_id: 1
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945312/ikhicfjlbmjc4atmhxr2.jpg"
@@ -169,6 +171,7 @@ Charges: 40€ (eau froide, entretien chaudière + commun)',
   email: 'ly.somchit@gmail.com',
   téléphone: '0651402566',
   statut: "active",
+  price_cents: 50,
   user_id: 2
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945389/unmww35wcztexqxyafk8.jpg"
