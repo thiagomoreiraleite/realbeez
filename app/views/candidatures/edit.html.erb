@@ -1,19 +1,40 @@
-<h3 class="text-center mt-5 mb-4">Postuler pour gérer ce bien</h3>
+<h3 class="text-center mt-5 mb-5">Postuler pour gérer ce bien</h3>
 <div class="container center">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-6">
+    <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
+      <p class="p-0"style="font-weight: bold; color: #D8A727">Mon profile <%= link_to "",edit_user_registration_path, class:"fas fa-edit ml-2" %> </p>
+    </div>
+  </div>
+</div>
+<div class="container center mb-5" >
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-8">
+      <div class="row  border p-2" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+        <div class="col-12 col-md-6 col-lg-6" >
+          <p> Prénom : <%= current_user.prénom %> </p>
+          <p><i class="fas fa-phone-square mr-3"></i> <%= current_user.téléphone %></p>
+          <p><i class="fas fa-map-marker-alt mr-3"></i> <%= current_user.adresse %></p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <p> Nom : <%= current_user.nom  %></p>
+          <p><i class="fas fa-envelope mr-3"></i> <%= current_user.email %></p>
+          <p><i class="fas fa-city mr-3"></i> <%= current_user.ville %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container center">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
+      <%= render "shared/disponibilités" %>
+    </div>
+  </div>
+</div>
+<div class="container center">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 offset-lg-2">
       <div class="center">
-        <p>Vos disponibilités</p>
-        <% @availabilities.each do |availability| %>
-          <p><%= availability.jours %></p>
-          <p>
-            <% availability.heures.each do |heure| %>
-              <%= heure %>
-              <%= link_to "modifier", edit_availability_path(availability) %>
-              <%= link_to "supprimer", availability_path(availability), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }    %>
-            <% end %>
-          </p>
-        <% end %>
         <%= simple_form_for [@annonce, @candidature] do |f| %>
           <%= f.input :commentaire, label: "Veuillez fournir plus d'information si nécessaire : " %>
           <%= f.submit "Postuler", data: { confirm: 'Etes-vous sûr de vouloir gerer ce bien?' }, class: "btn btn-success mb-5" %>

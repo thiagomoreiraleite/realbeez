@@ -84,9 +84,9 @@
                 "Bouche à oreille",
                 "Autre"
               ],label: "Comment avez-vous connu Realbeez?", as: :radio_buttons %>
-            <%= f.input :experience, label: "Décrivez vos expériences ou télécharger votre CV : " %>
-            <%= f.input :cv, label: false  %>
-            <%= f.input :cv_cache, as: :hidden %>
+            <%= f.input :experience, label: "Décrivez vos expériences" %>
+            <%#= f.input :cv, label: false  %>
+            <%#= f.input :cv_cache, as: :hidden %>
             <%= f.submit "Postuler", class: "btn btn-success" %>
           <% end %>
         <% end %>

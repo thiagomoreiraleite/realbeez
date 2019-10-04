@@ -98,7 +98,7 @@ User.create!(
   téléphone: '0623894028'
 )
 
-Annonce.create!(
+annonce = Annonce.create!(
   titre_annonce: 'Charmant F3 au coeur de Riedisheim (parking disponible)',
   type_de_bien: 'Appartement',
   meublé: 'Non meublé',
@@ -116,13 +116,15 @@ Annonce.create!(
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
-  photo: "image/upload/v1569945259/uygnlkuciqkafqczgrup.jpg",
-  photo1: "image/upload/v1569945261/xp7so01tjnbfddnwrbyx.jpg",
-  photo2: "image/upload/v1569945263/ng2llj4cmimqizcvczdn.jpg",
   user_id: 1
 )
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945259/uygnlkuciqkafqczgrup.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945261/xp7so01tjnbfddnwrbyx.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945263/ng2llj4cmimqizcvczdn.jpg"
+annonce.save!
 
-Annonce.create!(
+
+annonce = Annonce.create!(
   titre_annonce: 'Local commercial de 52 m2',
   type_de_bien: 'Autre',
   meublé: 'Non meublé',
@@ -141,13 +143,14 @@ Disponible immédiatement et pas de frais d’agence à payer.',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
-  photo: "image/upload/v1569945312/ikhicfjlbmjc4atmhxr2.jpg",
-  photo1: "image/upload/v1569945314/snn8cpvcodtc1imy0pdv.jpg",
-  photo2: "image/upload/v1569945315/so0irqhhayu79gzbh4v2.jpg",
   user_id: 1
 )
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945312/ikhicfjlbmjc4atmhxr2.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945314/snn8cpvcodtc1imy0pdv.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945315/so0irqhhayu79gzbh4v2.jpg"
+annonce.save!
 
-Annonce.create!(
+annonce = Annonce.create!(
   titre_annonce: 'Proche musée, studio au rez-de-chaussée',
   type_de_bien: 'Appartement',
   meublé: 'Non meublé',
@@ -166,8 +169,9 @@ Charges: 40€ (eau froide, entretien chaudière + commun)',
   email: 'ly.somchit@gmail.com',
   téléphone: '0651402566',
   statut: "active",
-  photo: "image/upload/v1569945389/unmww35wcztexqxyafk8.jpg",
-  photo1: "image/upload/v1569945390/dnbc64cyg5vurgjejuym.jpg",
-  photo2: "image/upload/v1569945391/q1yguhhfegdmsus1vvax.jpg",
   user_id: 2
 )
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945389/unmww35wcztexqxyafk8.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945390/dnbc64cyg5vurgjejuym.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945391/q1yguhhfegdmsus1vvax.jpg"
+annonce.save!
