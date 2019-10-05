@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   def create
     authorize annonce = Annonce.find(params[:annonce_id])
-    authorize order  = Order.create!(annonce: annonce, amount: annonce.price, state: 'pending', user: annonce.user)
+    authorize order  = Order.create!(annonce: annonce, amount: annonce.price, state: 'pending', user: current_user)
 
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -18,6 +18,10 @@ class OrdersController < ApplicationController
     )
 
     order.update(checkout_session_id: session.id)
-    redirect_to annonce_path(annonce)
+    redirect_to order_path(order)
+  end
+
+  def show
+    authorize @order = current_user.orders.find(params[:id])
   end
 end

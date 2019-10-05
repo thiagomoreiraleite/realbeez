@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row py-4">
+    <div class="col-md-3"><%= image_tag @order.annonce.photo_url, width: '100%' %></div>
+    <div class="col">
+      <h1>Commande #<%= @order.id %> <small><span class="badge badge-primary"><%= @order.state %></span></small></h1>
+      <ul class="list-unstyled">
+        <li><strong>EFFECTUE LE</strong> <%= @order.created_at.to_date %></li>
+        <li><strong>Annonce : </strong> <%= @order.annonce.titre_annonce %></li>
+        <li><strong>TOTAL</strong> <%= humanized_money_with_symbol @order.amount %></li>
+      </li>
+    </ul>
+    <% if @order.state == "pending" %>
+      <%= link_to "Payer", new_order_payment_path(@order), class:"btn btn-primary"  %>
+    <% end %>
+  </div>
+</div>
+</div>

@@ -42,5 +42,11 @@ Rails.application.routes.draw do
   post '/agents/:id/decline', to: 'agents#decline_agent', as: :decline_agent
 
   # Orders
-  resources :orders, only: [:show, :create]
+  resources :orders, only: [:show, :create] do
+    # Payments
+    resources :payments, only: :new
+  end
+
+  # Stripe Webhook
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end
