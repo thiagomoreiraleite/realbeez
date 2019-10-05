@@ -66,7 +66,11 @@
                   <% if annonce.checkout_proprio != "check" %>
                     <div class="text-center mt-2" style="">
                       <!-- <p style="font-weight: bold; color: #D8A727">Confirmer que l'agent a loué ce bien</p> -->
-                      <p><%= link_to "Votre bien est loué", checkout_proprio_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p>
+                      <!-- <p><%#= link_to "Votre bien est loué", checkout_proprio_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p> -->
+                      <%= form_tag orders_path do %>
+                        <%= hidden_field_tag 'annonce_id', annonce.id %>
+                        <%= submit_tag 'Votre bien a été loué', data: { confirm: 'Vous confirmez que votre bien a été loué et vous payez les frais d\'agence.' }, class: 'btn btn-success' %>
+                      <% end %>
                     </div>
                   <% else %>
                     <!-- flat is rented and checked out by proprio -->

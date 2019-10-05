@@ -49,5 +49,5 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :destroy, :show]
 
   # Stripe Webhook
-  # mount StripeEvent::Engine, at: '/stripe-webhooks'
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end

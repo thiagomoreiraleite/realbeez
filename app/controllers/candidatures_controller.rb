@@ -19,7 +19,7 @@ class CandidaturesController < ApplicationController
     @candidature_reçue = @candidatures.select{ |c| c.statut == "pending" }
     @candidature_envoyé = @candidatures.select{ |c| c.statut == "request" }
     @candidature_accepté = @candidatures.select{ |c| c.statut == "accepté" }
-    @candidature_rejeté = @candidatures.select{ |c| c.statut == "rejeté" } && @candidatures.select{ |c| c.statut == "pourvu" }
+    @candidature_rejeté = @candidatures.select{ |c| c.statut == "rejeté" } || @candidatures.select{ |c| c.statut == "pourvu" }
   end
 
   def candidature_agent
@@ -27,7 +27,7 @@ class CandidaturesController < ApplicationController
     @candidature_reçue = Candidature.where("statut = ? AND user_id = ?", "request", current_user)
     @candidature_envoyé = Candidature.where("statut = ? AND user_id = ?", "pending", current_user)
     @candidature_accepté = Candidature.where("statut = ? AND user_id = ?", "accepté", current_user)
-    @candidature_rejeté = Candidature.where("statut = ? AND user_id = ?", "rejeté", current_user) && Candidature.where("statut = ? AND user_id = ?", "pourvu", current_user)
+    @candidature_rejeté = Candidature.where("statut = ? AND user_id = ?", "rejeté", current_user) || Candidature.where("statut = ? AND user_id = ?", "pourvu", current_user)
   end
 
   def new
@@ -106,7 +106,7 @@ class CandidaturesController < ApplicationController
       end
     end
 
-     if params[:from] == "proprio"
+    if params[:from] == "proprio"
       redirect_to candidature_proprio_path
     else
       redirect_to candidature_agent_path
