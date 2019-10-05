@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :set_order, only: [:show, :destroy]
 
   def create
     authorize annonce = Annonce.find(params[:annonce_id])
@@ -18,10 +19,37 @@ class OrdersController < ApplicationController
     )
 
     order.update(checkout_session_id: session.id)
+
+    annonce.checkout_proprio = "check"
+    annonce.save
+    if annonce.checkout_agent == "check" && annonce.checkout_proprio == "check"
+      annonce.statut = "Loué"
+      annonce.save
+    end
     redirect_to order_path(order)
   end
 
   def show
-    authorize @order = current_user.orders.find(params[:id])
+    authorize @order
   end
+
+  def index
+    @orders = policy_scope(Order).order(created_at: :asc)
+  end
+
+  def destroy
+    authorize @order
+    @order.annonce.statut = 'active'
+    @order.annonce.checkout_proprio = nil
+    @order.annonce.save
+    @order.destroy
+    redirect_to orders_path
+  end
+
+  private
+
+  def set_order
+    @order = current_user.orders.find(params[:id])
+  end
+
 end

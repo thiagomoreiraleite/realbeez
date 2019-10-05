@@ -7,9 +7,13 @@ class OrderPolicy < ApplicationPolicy
     true
   end
 
+  def destroy?
+    true
+  end
+
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 end
