@@ -1,10 +1,89 @@
 <div class="container">
   <h3 class="text-center mt-5 mb-4">Mes paiements</h3>
-  <% if @orders != [] %>
-    <% @orders.each do |order| %>
+  <div class="profile-friends">
+    <div class="search navigations">
+      <h3 id="orders_en_attente" class="active" style="font-size: 16px">En attente</h3>
+      <h3 id="orders_payés" style="font-size: 16px">Payés</h3>
+    </div>
+    <div id="friends-toPlace" class="">
+      <% if @orders_en_attente != [] %>
+        <% @orders_en_attente.each do |order| %>
+          <div class="row py-4">
+            <div class="col-md-3"><%= image_tag order.annonce.photo_url, width: '100%' %></div>
+            <div class="col mt-2">
+              <h5>COMMANDE #<%= order.id %> <small><span class="badge badge-primary"><%= order.state %></span></small></h5>
+              <ul class="list-unstyled">
+                <li><strong>Effectué le</strong> <%= order.created_at.to_date %></li>
+                <li><strong>Annonce : </strong> <%= order.annonce.titre_annonce %></li>
+                <li><strong>TOTAL</strong> <%= humanized_money_with_symbol order.amount %></li>
+              </ul>
+              <% if order.state == "pending" %>
+                <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-success"  %>
+                <%= link_to "Annuler", order_path(order), data: { confirm: 'En annulant vous confirmer que le bien n\'a pas été loué.' }, method: :delete, class:"btn btn-danger"  %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%; color: #DA334A; font-style: italic">"Aucun paiement en attente"</h4>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  const addClassSelected = (target) => {
+  // take parent class -> get children -> remove classes for all children
+  // console.log(target)
+  const children = target.parentElement.children;
+  const childAmount = target.parentElement.childElementCount;
+  for (let i=0; i<childAmount; i++) {
+    children[i].classList.remove("active");
+  }
+  // add class
+  target.classList.add("active");
+    };
+  
+     this.addEventListener("click", (e) => {
+  console.log(e)
+  const whereToShow = document.querySelector("#friends-toPlace");
+  const id = e.target.id;
+  console.log(id)
+  if (id === "orders_en_attente") {
+    addClassSelected(e.target);
+    whereToShow.innerHTML = "";
+    whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @orders_en_attente != [] %>
+        <% @orders_en_attente.each do |order| %>
+          <div class="row py-4">
+            <div class="col-md-3"><%= image_tag order.annonce.photo_url, width: '100%' %></div>
+            <div class="col mt-2">
+              <h5>COMMANDE #<%= order.id %> <small><span class="badge badge-primary"><%= order.state %></span></small></h5>
+              <ul class="list-unstyled">
+                <li><strong>Effectué le</strong> <%= order.created_at.to_date %></li>
+                <li><strong>Annonce : </strong> <%= order.annonce.titre_annonce %></li>
+                <li><strong>TOTAL</strong> <%= humanized_money_with_symbol order.amount %></li>
+              </ul>
+              <% if order.state == "pending" %>
+                <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-success"  %>
+                <%= link_to "Annuler", order_path(order), data: { confirm: 'En annulant vous confirmer que le bien n\'a pas été loué.' }, method: :delete, class:"btn btn-danger"  %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%; color: #DA334A; font-style: italic">"Aucun paiement en attente"</h4>
+      <% end %>
+     `);
+  }
+  else if (id === "orders_payés") {
+    addClassSelected(e.target);
+    whereToShow.innerHTML = "";
+    whereToShow.insertAdjacentHTML("beforeend", `
+  <% if @orders_payés != [] %>
+    <% @orders_payés.each do |order| %>
       <div class="row py-4">
         <div class="col-md-3"><%= image_tag order.annonce.photo_url, width: '100%' %></div>
-        <div class="col">
+        <div class="col mt-2">
           <h5>COMMANDE #<%= order.id %> <small><span class="badge badge-primary"><%= order.state %></span></small></h5>
           <ul class="list-unstyled">
             <li><strong>Effectué le</strong> <%= order.created_at.to_date %></li>
@@ -21,4 +100,7 @@
   <% else %>
     <h4 class="text-center" style="width: 100%; color: #DA334A; font-style: italic">"Aucun paiement en attente"</h4>
   <% end %>
-</div>
+         `);
+  };
+    });
+</script>

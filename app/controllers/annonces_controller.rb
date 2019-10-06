@@ -60,7 +60,7 @@ class AnnoncesController < ApplicationController
   end
 
   def biens_a_gerer
-    @annonces = Annonce.where("agent = ?", current_user.id.to_s)
+    @annonces = Annonce.where("agent_user_id = ?", current_user.id.to_s)
     @annonces_agent_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
     @annonces_agent_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
@@ -97,8 +97,8 @@ class AnnoncesController < ApplicationController
 
   def show
     authorize @annonce
-    unless @annonce.agent.nil?
-      @agent = User.find(@annonce.agent.to_i)
+    unless @annonce.agent_user_id.nil?
+      @agent = User.find(@annonce.agent_user_id.to_i)
     end
   end
 

@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
       annonce.statut = "Loué"
       annonce.save
     end
-    redirect_to order_path(order)
+    redirect_to orders_path
   end
 
   def show
@@ -35,6 +35,8 @@ class OrdersController < ApplicationController
 
   def index
     @orders = policy_scope(Order).order(created_at: :asc)
+    @orders_en_attente = policy_scope(Order.where("state = ?", "pending")).order(created_at: :asc)
+    @orders_payés = policy_scope(Order.where("state = ?", "paid")).order(created_at: :asc)
   end
 
   def destroy

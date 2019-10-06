@@ -76,7 +76,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = User.find(params[:id])
     authorize @profile
-    @annonces= Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).select{ |annonce| annonce.agent == nil}
+    @annonces= Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).select{ |annonce| annonce.agent_user_id == nil}
     @profiles = @profile.friends
     @candidature = Candidature.new
     @meetings = policy_scope(Meeting.where("user_id = ?", @profile.id)).order(start_time: :desc)

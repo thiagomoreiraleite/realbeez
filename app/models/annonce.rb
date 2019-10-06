@@ -12,6 +12,7 @@ class Annonce < ApplicationRecord
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?
   monetize :price_cents
+  has_many :orders
 
   # belongs_to :user
   # include PgSearch::Model

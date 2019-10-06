@@ -18,8 +18,8 @@
                   <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %></p>
                   <div class="d-flex px-0">
                     <!-- if agent is assigned to the flat show agent info -->
-                    <% unless annonce.agent.nil? %>
-                      <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent).téléphone%></p>
+                    <% unless annonce.agent_user_id.nil? %>
+                      <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
                     <% else %>
                       <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                     <% end %>

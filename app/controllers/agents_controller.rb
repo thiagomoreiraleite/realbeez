@@ -68,13 +68,13 @@ class AgentsController < ApplicationController
   private
 
   def agent_params
-  params.require(:agent).permit(
-    :cv,
-    :date_de_naissance,
-    :auto_entrepreneur,
-    :experience,
-    :connaissance
-  )
+    params.require(:agent).permit(
+      :cv,
+      :date_de_naissance,
+      :auto_entrepreneur,
+      :experience,
+      :connaissance
+    )
   end
 
   def set_agent

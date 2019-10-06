@@ -33,8 +33,8 @@
                     <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %></p>
                     <div class="d-flex px-0">
                       <!-- if agent is assigned to the flat show agent info -->
-                      <% unless annonce.agent.nil? %>
-                        <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent).téléphone%></p>
+                      <% unless annonce.agent_user_id.nil? %>
+                        <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
                       <% else %>
                         <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                       <% end %>
@@ -45,12 +45,12 @@
                 <!-- all links with gérer et valider -->
                 <% if user_signed_in?  %>
                   <!-- if no agent is managing the flat -->
-                  <% if annonce.agent.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
+                  <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                     <div class="text-center mt-2" >
                       <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-primary", style:"font-size: 14px" %>
                     </div>
                     <!-- if agent assigned and the agent is the current user -->
-                  <% elsif annonce.agent != nil && annonce.agent == current_user.id.to_s %>
+                  <% elsif annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
                     <!-- when flat is rented need to checkout -->
                     <% if annonce.checkout_agent != "check" %>
                       <div class="text-center mt-2 " style="">
@@ -77,12 +77,14 @@
                       </div>
                     <% end %>
                     <!-- agent is assigned and the flat owner is the current user -->
-                  <% elsif annonce.agent != nil && annonce.user_id == current_user.id %>
+                  <% elsif annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
                     <!-- when flat is rented need to checkout -->
                     <% if annonce.checkout_proprio != "check" %>
                       <div class="text-center mt-2" style="">
-                        <!-- <p style="font-weight: bold; color: #D8A727">Confirmer que l'agent a loué ce bien</p> -->
-                        <p><%= link_to "Votre bisen est loué", checkout_proprio_path(annonce), class: "btn btn-success", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %></p>
+                        <%= form_tag orders_path do %>
+                          <%= hidden_field_tag 'annonce_id', annonce.id %>
+                          <%= submit_tag 'Votre bien a été loué', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-success' %>
+                        <% end %>
                       </div>
                     <% else %>
                       <!-- flat is rented and checked out by proprio -->

@@ -95,7 +95,7 @@ class CandidaturesController < ApplicationController
   def accept_candidature
     authorize @candidature
     @candidature.statut = "accepté"
-    @candidature.annonce.agent = @candidature.user_id
+    @candidature.annonce.agent_user_id = @candidature.user_id
     @candidature.save
     @candidature.annonce.save
 
