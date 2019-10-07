@@ -1,19 +1,38 @@
-<!-- style="margin-top:0vh ;height: 91.5vh; background-size: cover; background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)" -->
-<!-- url(https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80" -->
-<div class="" style="">
+<div class="" style="height: 100vh; background-size: cover; background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.1)), url(https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1498&q=80)">
+  <div class="container d-flex align-items-center justify-content-around" style="height: 100vh">
+    <div class="">
+      <h3 class="px-2" style="color: white; font-weight:bold">Et si le meilleur agent immobilier était votre voisin de quartier...</h3>
+      <p class="px-2" style="color: white">Trouver un agent <strong>Realbeez</strong> près de chez vous et (re)louer rapidement votre bien immobilier.</p>
+      -->
+      <!-- Search_bar -->
+      <nav class="navbar navbar-light justify-content-around">
+        <%= form_for :search, defaults: { required: false }, url:profiles_path, method: "GET", html: { class: '' } do |f| %>
+          <section style=" text-align:center;">
+            <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {value: ""}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8" %>
+          </section>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+  <div class="d-flex justify-content-around" style=''>
+    <i class="arrow down" style="width: 0;height: 0; border-left: 30px solid transparent;border-right: 30px solid transparent; border-top: 20px solid white; position: absolute; bottom: 10px"></i>
+  </div>
+</div>
+<!-- BACKGROUND AS VIDEO -->
+<!-- <div class="" style="">
   <div class="home-video-wrapper d-flex justify-content-around align-items-center" style="height: 100vh">
-    <%= video_tag "video.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video", style:"width: 100vw; height: 100vh; position: absolute; object-fit: cover; top: 0; z-index: -2" %>
+    <%#= video_tag "video.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video", style:"width: 100vw; height: 100vh; position: absolute; object-fit: cover; top: 0; z-index: -2" %>
     <div class="" style="">
       <div>
         <h3 class="px-2" style="color: white; font-weight:bold">Et si le meilleur agent immobilier était votre voisin de quartier...</h3>
-        <p class="px-2" style="color: white">Trouver un agent <strong>Realbeez</strong> près de chez vous et (re)louer rapidement votre bien immobilier.</p>
-        <!-- Search_bar -->
-        <nav class="navbar navbar-light justify-content-around">
-          <%= form_for :search, defaults: { required: false }, url:profiles_path, method: "GET", html: { class: '' } do |f| %>
+        <p class="px-2" style="color: white">Trouver un agent <strong>Realbeez</strong> près de chez vous et (re)louer rapidement votre bien immobilier.</p> -->
+<!-- Search_bar -->
+<!--    <nav class="navbar navbar-light justify-content-around">
+          <%#= form_for :search, defaults: { required: false }, url:profiles_path, method: "GET", html: { class: '' } do |f| %>
             <section style=" text-align:center;">
-              <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {value: ""}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8" %>
+              <%#= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {value: ""}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8" %>
             </section>
-          <% end %>
+          <%# end %>
         </nav>
       </div>
       <div class="d-flex justify-content-around" style=''>
@@ -21,7 +40,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <%= render "shared/choisir_realbeez" %>
 <%= render "shared/fonctionnement" %>
 <%= render "shared/annonce_home" %>

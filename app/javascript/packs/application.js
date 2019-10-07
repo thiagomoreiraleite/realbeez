@@ -1,4 +1,6 @@
 import "bootstrap";
+import { initUpdateNavbarOnScroll } from '../components/navbar';
+initUpdateNavbarOnScroll();
 
 import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
 
@@ -9,10 +11,8 @@ import { initAutocompleteProfile } from '../plugins/init_autocomplete';
 
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
-import { initUpdateNavbarOnScroll } from '../components/navbar';
 
 initMapbox();
 initAutocomplete();
 initAutocompleteAnnonce();
 initAutocompleteProfile();
-initUpdateNavbarOnScroll();

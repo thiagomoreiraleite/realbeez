@@ -12,5 +12,12 @@
 @import "components/index";
 @import "pages/index";
 
+.hide-on-mobile {
+  @media only screen and (max-width: 576px) {
+     background-color: white !important;
+     color: rgb(80, 80, 80) !important;
+     position: relative;
+  }
+}
 
 
