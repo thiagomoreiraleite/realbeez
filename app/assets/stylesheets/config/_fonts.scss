@@ -17,8 +17,7 @@ $headers-font: "Raleway", "Helvetica", "sans-serif";
 
 @font-face {
   font-family: "Simply Rounded";
-  src: url('/assets/fonts/SimplyRounded.ttf') format("truetype");
-  src: url('/assets/fonts/SimplyRoundedBold.ttf') format("truetype");
-  src: url('/assets/fonts/SimplyRoundedBoldItali.ttf') format("truetype");
-  src: url('/assets/fonts/SimplyRoundedItalic.ttf') format("truetype");
+  src: font-url("SimplyRounded.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
