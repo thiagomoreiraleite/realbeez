@@ -46,8 +46,8 @@
           <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises)" %>
           <%= f.input :ville %>
           <%= f.input :adresse %>
-          <%= f.input :email, placeholder: current_user.email %>
-          <%= f.input :téléphone, placeholder: current_user.téléphone %>
+          <%= f.input :email, input_html: {value: current_user.email}  %>
+          <%= f.input :téléphone, input_html: {value: current_user.téléphone}  %>
           <%= f.input :photo %>
           <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :photo1 %>
