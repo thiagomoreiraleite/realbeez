@@ -5,7 +5,7 @@ class CreateAnnonces < ActiveRecord::Migration[5.2]
       t.string :type_de_bien
       t.string :meublé
       t.integer :surface
-      t.string :pièces
+      t.integer :pièces
       t.string :classe_énergie
       t.string :ges
       t.text :description

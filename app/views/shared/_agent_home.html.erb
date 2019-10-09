@@ -21,12 +21,12 @@
                     <div class="mt-3">
                       <% unless profile.friends.any? { |f| f == current_user } %>
                         <% if profile.requested_friends.any? { |f| f == current_user } %>
-                          <%= link_to "Pending", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
+                          <%= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                         <% else %>
-                          <%= link_to "Connect", add_friend_path(profile), method: :post, class: "btn btn-success" %>
+                          <%= link_to "Connecter", add_friend_path(profile), method: :post, class: "btn btn-success" %>
                         <% end %>
                       <% end %>
-                      <%= link_to "View Profile", profile_path(profile), class: "btn btn-link" %>
+                      <%= link_to "Voir Profil", profile_path(profile), class: "btn btn-link" %>
                     </div>
                   </div>
                 </div>
@@ -54,10 +54,10 @@
                           <% if profile.requested_friends.any? { |f| f == current_user } %>
                             <%= link_to "Pending", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                           <% else %>
-                            <%= link_to "Connect", add_friend_path(profile), method: :post, class: "btn btn-success" %>
+                            <%= link_to "Connecter", add_friend_path(profile), method: :post, class: "btn btn-success" %>
                           <% end %>
                         <% end %>
-                        <%= link_to "View Profile", profile_path(profile), class: "btn btn-link" %>
+                        <%= link_to "Voir Profil", profile_path(profile), class: "btn btn-link" %>
                       </div>
                     </div>
                   </div>

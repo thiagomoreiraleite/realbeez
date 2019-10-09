@@ -51,7 +51,7 @@
                   <% if message == "User has already been taken" %>
                     <p>Vous avez déja postulé</p>
                   <% end %>
-                  <%= f.input :date_de_naissance%>
+                  <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
                   <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
                   <%= f.input :connaissance, collection:
                         [
@@ -73,7 +73,7 @@
               </ul>
             </div>
           <% else %>
-            <%= f.input :date_de_naissance %>
+            <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
             <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
             <%= f.input :connaissance, collection:
               [
@@ -86,7 +86,8 @@
             <%= f.input :experience, label: "Décrivez vos expériences" %>
             <%#= f.input :cv, label: false  %>
             <%#= f.input :cv_cache, as: :hidden %>
-            <%= f.submit "Postuler", class: "btn btn-success" %>
+            <%= f.submit "Modifier", class: "btn btn-success" %>
+            <%= link_to "Annuler", root_path, class:"btn btn-danger"  %>
           <% end %>
         <% end %>
       </div>

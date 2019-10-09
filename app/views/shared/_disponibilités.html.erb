@@ -30,15 +30,15 @@
         <div class="border p-1" style="">
           Lun
         </div>
-        <div class="border p-1">
+        <div class="border p-1"  >
           <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_matin"} %>
             <i class="fas fa-user-check" style="color: green"></i>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px", id:"lundi_matin_delete" %>
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green", id:"lundi_matin" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -52,7 +52,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -66,7 +66,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -80,7 +80,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -102,7 +102,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -116,7 +116,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -130,7 +130,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -144,7 +144,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -166,7 +166,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -180,7 +180,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -194,7 +194,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -208,7 +208,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -230,7 +230,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -244,7 +244,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -258,7 +258,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -272,7 +272,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -294,7 +294,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -308,7 +308,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -322,7 +322,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -336,7 +336,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -358,7 +358,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -372,7 +372,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -386,7 +386,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -400,7 +400,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -422,7 +422,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -436,7 +436,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -450,7 +450,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -464,7 +464,7 @@
             <% end %>
           <% else %>
             <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
               <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
@@ -506,7 +506,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -514,7 +514,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'lundi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -522,7 +522,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'lundi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -530,7 +530,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'lundi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>
@@ -546,7 +546,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mardi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -554,7 +554,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mardi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -562,7 +562,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mardi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -570,7 +570,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mardi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>
@@ -586,7 +586,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mercredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -594,7 +594,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mercredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -602,7 +602,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mercredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -610,7 +610,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'mercredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>
@@ -626,7 +626,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'jeudi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -634,7 +634,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'jeudi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -642,7 +642,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'jeudi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -650,7 +650,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'jeudi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>
@@ -666,7 +666,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'vendredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -674,7 +674,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'vendredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -682,7 +682,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'vendredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -690,7 +690,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'vendredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>
@@ -706,7 +706,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'samedi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -714,7 +714,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'samedi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -722,7 +722,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'samedi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -730,7 +730,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'samedi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>
@@ -746,7 +746,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'dimanche_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -754,7 +754,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'dimanche_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -762,7 +762,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'dimanche_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
         <div class="border p-1">
@@ -770,7 +770,7 @@
             <i class="fas fa-user-check" style="color: green"></i>
             <%= link_to "", availability_path(@availability, {jours: 'dimanche_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
           <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
           <% end %>
         </div>
       </div>

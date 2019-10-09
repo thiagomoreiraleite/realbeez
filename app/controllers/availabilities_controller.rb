@@ -1,6 +1,6 @@
 class AvailabilitiesController < ApplicationController
 
-    before_action :set_availability, only: [:edit, :update]
+  before_action :set_availability, only: [:edit, :update]
 
   def new
     authorize @availability = Availability.new
@@ -24,11 +24,12 @@ class AvailabilitiesController < ApplicationController
     @availability.jours = params[:jours]
     authorize @availability
     if @availability.save
-      redirect_to profile_path(current_user)
+      # redirect_to profile_path(current_user)
+      redirect_to request.referrer
     end
   end
 
-   def edit
+  def edit
     authorize @availability
   end
 
@@ -36,7 +37,8 @@ class AvailabilitiesController < ApplicationController
     authorize @availability
     @availability.heures = params[:availability][:heures]
     if @availability.update(availability_params)
-      redirect_to profile_path(current_user)
+      # redirect_to profile_path(current_user)
+      redirect_to request.referrer
     else
       render :edit
     end
@@ -47,10 +49,11 @@ class AvailabilitiesController < ApplicationController
     @availability = @availabilities.select{|a| a.user_id == current_user.id && a.jours == params[:jours]}[0]
     authorize @availability
     @availability.destroy
-    redirect_to profile_path(current_user)
+    # redirect_to profile_path(current_user)
+    redirect_to request.referrer
   end
 
-private
+  private
 
   def availability_params
     params.require(:availability).permit(:jours, :heures)

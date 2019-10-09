@@ -13,6 +13,8 @@ class Annonce < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_adresse?
   monetize :price_cents
   has_many :orders
+  validates :surface, numericality: { greater_than_or_equal_to: 0 }
+  validates :pièces, numericality: { greater_than_or_equal_to: 0 }
 
   # belongs_to :user
   # include PgSearch::Model

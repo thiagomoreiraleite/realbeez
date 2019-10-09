@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_082914) do
+ActiveRecord::Schema.define(version: 2019_10_09_085549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_082914) do
     t.string "type_de_bien"
     t.string "meublé"
     t.integer "surface"
-    t.string "pièces"
     t.string "classe_énergie"
     t.string "ges"
     t.text "description"
@@ -57,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_08_082914) do
     t.string "photo3", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.string "photo4", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.integer "price_cents", default: 0, null: false
+    t.integer "pièces"
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 
@@ -119,18 +119,6 @@ ActiveRecord::Schema.define(version: 2019_10_08_082914) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string "photo1", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
-    t.string "photo2", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
-    t.string "photo3", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
-    t.string "photo4", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
-    t.string "photo5", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
-    t.bigint "annonce_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["annonce_id"], name: "index_photos_on_annonce_id"
-  end
-
   create_table "pictures", force: :cascade do |t|
     t.string "photo"
     t.bigint "annonce_id"
@@ -176,6 +164,5 @@ ActiveRecord::Schema.define(version: 2019_10_08_082914) do
   add_foreign_key "candidatures", "users"
   add_foreign_key "orders", "annonces"
   add_foreign_key "orders", "users"
-  add_foreign_key "photos", "annonces"
   add_foreign_key "pictures", "annonces"
 end

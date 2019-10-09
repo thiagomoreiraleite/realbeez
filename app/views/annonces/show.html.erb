@@ -193,7 +193,11 @@
       <% end %>
       <%#= link_to "Louer ce bien", "", class: "btn btn-success"  %>
     </div>
-    <div class="mb-4"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
+    <!-- link to previous page -->
+    <!--  <div class="mb-4"><%#= link_to 'Retour', 'javascript:history.go(-1);' %></div> -->
+    <div class="mb-5">
+      <%= link_to "Toutes les annonces", annonces_path, style:"font-size: 16px" %>
+    </div>
   <% end %>
 </div>
 <!-- code to show all the picture uploaded by multiple upload -->

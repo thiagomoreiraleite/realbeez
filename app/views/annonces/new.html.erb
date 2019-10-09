@@ -14,8 +14,8 @@
               "Autre",
             ] %>
           <%= f.input :meublé, label: "Meublé / Non meublé",collection: ["Meublé", "Non meublé"]  %>
-          <%= f.input :surface %>
-          <%= f.input :pièces %>
+          <%= f.input :surface, input_html: { min: '0', step: 'any' } %>
+          <%= f.input :pièces, input_html: { min: '0', step: 'any' }  %>
           <%= f.input :classe_énergie, collection:
             [
               "A (moins de 50)",
@@ -57,6 +57,7 @@
           <!-- multiple upload photo -->
           <%#= f.input :pictures, as: :file, input_html: { multiple: true } %>
           <%= f.submit "Publier", class: "btn btn-success mb-5" %>
+          <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
         <% end %>
       </div>
     </div>

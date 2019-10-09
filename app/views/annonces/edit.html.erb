@@ -14,8 +14,8 @@
               "Autre",
             ] %>
           <%= f.input :meublé, label: "Meublé / Non meublé",collection: ["Meublé", "Non meublé"]  %>
-          <%= f.input :surface %>
-          <%= f.input :pièces %>
+          <%= f.input :surface, input_html: { min: '0', step: 'any' } %>
+          <%= f.input :pièces, input_html: { min: '0', step: 'any' }  %>
           <%= f.input :classe_énergie, collection:
             [
               "A (moins de 50)",
@@ -46,15 +46,18 @@
           <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises)" %>
           <%= f.input :ville %>
           <%= f.input :adresse %>
-          <%= f.input :email, placeholder: current_user.email %>
-          <%= f.input :téléphone, placeholder: current_user.téléphone %>
-          <%= f.input :photo %>
+          <%= f.input :email, input_html: {value: current_user.email}  %>
+          <%= f.input :téléphone, input_html: {value: current_user.téléphone}  %>
+          <%= f.input :photo, label: "Photo principale" %>
           <%= f.input :photo_cache, as: :hidden %>
-          <%= f.input :photo1 %>
+          <%= f.input :photo1, label: "Photo 2" %>
           <%= f.input :photo1_cache, as: :hidden %>
-          <%= f.input :photo2 %>
+          <%= f.input :photo2, label: "Photo 3" %>
           <%= f.input :photo2_cache, as: :hidden %>
+          <!-- multiple upload photo -->
+          <%#= f.input :pictures, as: :file, input_html: { multiple: true } %>
           <%= f.submit "Modifier", class: "btn btn-success mb-5" %>
+          <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
         <% end %>
       </div>
     </div>

@@ -28,7 +28,7 @@ User.create!(
 
 Agent.create!(
   statut: "Approuvé",
-  user_id: 1
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
 )
 
 User.create!(
@@ -56,7 +56,7 @@ User.create!(
 
 Agent.create!(
   statut: "Approuvé",
-  user_id: 3
+  user_id: User.where("email = ? ", "ly8thierry@gmail.com")[0].id
 )
 
 User.create!(
@@ -84,7 +84,7 @@ User.create!(
 
 Agent.create!(
   statut: "Approuvé",
-  user_id: 5
+  user_id: User.where("email = ? ", "immolaurent68@gmail.com")[0].id
 )
 
 User.create!(
@@ -117,7 +117,7 @@ annonce = Annonce.create!(
   téléphone: '0642808389',
   statut: "active",
   price_cents: 50,
-  user_id: 1
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945259/uygnlkuciqkafqczgrup.jpg"
 annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945261/xp7so01tjnbfddnwrbyx.jpg"
@@ -145,7 +145,7 @@ Disponible immédiatement et pas de frais d’agence à payer.',
   téléphone: '0642808389',
   statut: "active",
   price_cents: 50,
-  user_id: 1
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945312/ikhicfjlbmjc4atmhxr2.jpg"
 annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945314/snn8cpvcodtc1imy0pdv.jpg"
@@ -172,7 +172,7 @@ Charges: 40€ (eau froide, entretien chaudière + commun)',
   téléphone: '0651402566',
   statut: "active",
   price_cents: 50,
-  user_id: 2
+  user_id: User.where("email = ? ", "ly.somchit@gmail.com")[0].id
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945389/unmww35wcztexqxyafk8.jpg"
 annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1569945390/dnbc64cyg5vurgjejuym.jpg"
