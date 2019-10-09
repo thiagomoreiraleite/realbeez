@@ -26,7 +26,7 @@
                     <% if meeting.start_time>= Time.now%>
                       <tr>
                         <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
-                        <td><%= meeting.start_time.strftime("%l:%M") %></td>
+                        <td><%= meeting.start_time.strftime("%H:%M") %></td>
                         <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
                         <td><%= link_to '', meeting, class:"fas fa-search" %></td>
                         <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>

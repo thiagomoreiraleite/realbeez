@@ -1,4 +1,5 @@
-<h3 class="text-center mt-5 mb-5">Postuler pour devenir Agent Realbeez</h3>
+<h3 class="text-center mt-5 mb-3">Postuler pour devenir Agent Realbeez</h3>
+<div class="mb-5 text-center"><%= render "shared/info_agent" %></div>
 <div class="container center">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
@@ -50,9 +51,7 @@
                   <% if message == "User has already been taken" %>
                     <p>Vous avez déja postulé</p>
                   <% end %>
-                  <%= f.input :date_de_naissance, as: :date, start_year: Date.today.year - 90,
-                                                end_year: Date.today.year - 12, discard_day: true,
-                                                order: [:month, :year] %>
+                  <%= f.input :date_de_naissance%>
                   <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
                   <%= f.input :connaissance, collection:
                         [
