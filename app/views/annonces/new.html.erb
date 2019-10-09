@@ -48,12 +48,14 @@
           <%= f.input :adresse %>
           <%= f.input :email, input_html: {value: current_user.email}  %>
           <%= f.input :téléphone, input_html: {value: current_user.téléphone}  %>
-          <%= f.input :photo %>
+          <%= f.input :photo, label: "Photo principale" %>
           <%= f.input :photo_cache, as: :hidden %>
-          <%= f.input :photo1 %>
+          <%= f.input :photo1, label: "Photo 2" %>
           <%= f.input :photo1_cache, as: :hidden %>
-          <%= f.input :photo2 %>
+          <%= f.input :photo2, label: "Photo 3" %>
           <%= f.input :photo2_cache, as: :hidden %>
+          <!-- multiple upload photo -->
+          <%#= f.input :pictures, as: :file, input_html: { multiple: true } %>
           <%= f.submit "Create", class: "btn btn-success mb-5" %>
         <% end %>
       </div>

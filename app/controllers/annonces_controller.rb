@@ -15,8 +15,8 @@ class AnnoncesController < ApplicationController
 
     if params.key?(:search)
       if params[:search][:query].empty?
-        @annonces = policy_scope(Annonce).order(created_at: :desc)
-        @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+        @annonces = policy_scope(Annonce).order(created_at: :desc).page(params[:page]).per_page(9)
+        @markers = @annonces.where.not(latitude: nil, longitude: nil).where("statut = ?", "active").order(created_at: :desc).map do |annonce|
           {
             lat: annonce.latitude,
             lng: annonce.longitude,
@@ -24,8 +24,8 @@ class AnnoncesController < ApplicationController
           }
         end
       else
-        @annonces = policy_scope(Annonce.near(params[:search][:query],20))
-        @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+        @annonces = policy_scope(Annonce.near(params[:search][:query],20)).where("statut = ?", "active").page(params[:page]).per_page(9)
+        @markers = @annonces.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
           {
             lat: annonce.latitude,
             lng: annonce.longitude,
@@ -34,8 +34,8 @@ class AnnoncesController < ApplicationController
         end
       end
     else
-      @annonces = policy_scope(Annonce).order(created_at: :desc)
-      @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+      @annonces = policy_scope(Annonce).order(created_at: :desc).page(params[:page]).per_page(9)
+      @markers = @annonces.where.not(latitude: nil, longitude: nil).where("statut = ?", "active").order(created_at: :desc).map do |annonce|
         {
           lat: annonce.latitude,
           lng: annonce.longitude,
@@ -113,6 +113,8 @@ class AnnoncesController < ApplicationController
     @annonce.statut = "active"
     authorize @annonce
     if @annonce.save
+      # for multiple upload photo
+      # create_pictures
       redirect_to @annonce
     else
       render :new
@@ -172,5 +174,12 @@ class AnnoncesController < ApplicationController
     @annonce = Annonce.find(params[:id])
   end
 
+  # FOR MULTIPLE UPLOAD
+  # def create_pictures
+  #   images = params.dig(:annonce, :pictures) || []
+  #   images.each do |image|
+  #     @annonce.pictures.create(photo: image)
+  #   end
+  # end
 
 end
