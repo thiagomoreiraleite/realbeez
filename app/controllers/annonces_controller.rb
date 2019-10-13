@@ -97,6 +97,15 @@ class AnnoncesController < ApplicationController
 
   def show
     authorize @annonce
+    @annonces = []
+    @annonces << @annonce
+    @markers = @annonces.map do |annonce|
+      {
+        lat: annonce.latitude,
+        lng: annonce.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+      }
+    end
     unless @annonce.agent_user_id.nil?
       @agent = User.find(@annonce.agent_user_id.to_i)
     end
