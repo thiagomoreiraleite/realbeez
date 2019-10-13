@@ -30,269 +30,269 @@
                         <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
                         <td><%= link_to '', meeting, class:"fas fa-search" %></td>
                         <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
-                        <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %>
+                        <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+              <br>
+            </div>
+          <% else %>
+            <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
+          <% end %>
+        </div>
+        <script>
+          const addClassSelected = (target) => {
+          // take parent class -> get children -> remove classes for all children
+          // console.log(target)
+          const children = target.parentElement.children;
+          const childAmount = target.parentElement.childElementCount;
+          for (let i=0; i<childAmount; i++) {
+            children[i].classList.remove("active");
+          }
+          // add class
+          target.classList.add("active");
+          };
+          
+                  this.addEventListener("click", (e) => {
+          console.log(e)
+          const whereToShow = document.querySelector("#friends-toPlace");
+          const id = e.target.id;
+          console.log(id)
+          if (id === "meeting_future") {
+            addClassSelected(e.target);
+            whereToShow.innerHTML = "";
+            whereToShow.insertAdjacentHTML("beforeend", `
+              <div id="friends-toPlace">
+                <% if @meetings_agent != [] %>
+                  <div>
+                    <table class="table table-hover" style="background-color: white">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Heure</th>
+                          <th scope="col">Adresse</th>
+                          <th scope="col" colspan="3"></th>
+                        </tr>
+                      </thead>
+          
+                      <tbody>
+                        <% @meetings_agent.each do |meeting| %>
+                          <% if meeting.start_time>= Time.now%>
+                            <tr>
+                              <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
+                              <td><%= meeting.start_time.strftime("%l:%M") %></td>
+                              <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                              <td><%= link_to '', meeting, class:"fas fa-search" %></td>
+                              <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
+                              <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
+                            </tr>
+                          <% end %>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                <% else %>
+                  <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
+                <% end %>
+              </div>
+            `);
+          }
+          else if (id === "meeting_past") {
+            addClassSelected(e.target);
+            whereToShow.innerHTML = "";
+            whereToShow.insertAdjacentHTML("beforeend", `
+              <div id="friends-toPlace">
+                <% if @meetings_agent != [] %>
+                  <div>
+                    <table class="table table-hover" style="background-color: white">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Heure</th>
+                          <th scope="col">Adresse</th>
+                          <th scope="col" colspan="3"></th>
+                        </tr>
+                      </thead>
+          
+                      <tbody>
+                        <% @meetings_agent.each do |meeting| %>
+                          <% if meeting.start_time < Time.now %>
+                            <tr>
+                              <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
+                              <td><%= meeting.start_time.strftime("%l:%M") %></td>
+                              <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                              <td><%= link_to '', meeting, class:"fas fa-search" %></td>
+                              <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
+                              <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
+                            </tr>
+                          <% end %>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                <% else %>
+                  <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
+                <% end %>
+              </div>
+                `);
+              };
+            });
+        </script>
+        <%= link_to 'Ajouter une visite', new_meeting_path,style:'font-size: 14px' %>
+      </div>
+    </div>
+    <!-- For Landlords -->
+  <% else %>
+    <div class="container">
+      <p id="notice"><%= notice %></p>
+      <h3 class="text-center mt-5 mb-4">Calendrier de visites de mes agents</h3>
+      <div class="profile-friends">
+        <div class="search navigations">
+          <h3 id="meeting_future" class="active" style="font-size: 16px">Visites prévues</h3>
+          <h3 id="meeting_past" style="font-size: 16px">Visites effectuées</h3>
+        </div>
+        <div id="friends-toPlace">
+          <% if @meetings_proprio != [] %>
+            <div>
+              <table class="table table-hover" style="background-color: white">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Heure</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Agent</th>
+                    <th scope="col" colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @meetings_proprio.each do |meeting| %>
+                    <% unless meeting[0].nil? %>
+                      <% if meeting[0].start_time >= Time.now%>
+                        <tr>
+                          <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
+                          <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
+                          <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
+                          <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom.capitalize %></td>
                         </tr>
                       <% end %>
                     <% end %>
-                  </tbody>
-                </table>
-                <br>
-              </div>
-            <% else %>
-              <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
-            <% end %>
-          </div>
-          <script>
-            const addClassSelected = (target) => {
-            // take parent class -> get children -> remove classes for all children
-            // console.log(target)
-            const children = target.parentElement.children;
-            const childAmount = target.parentElement.childElementCount;
-            for (let i=0; i<childAmount; i++) {
-              children[i].classList.remove("active");
-            }
-            // add class
-            target.classList.add("active");
-            };
-            
-                    this.addEventListener("click", (e) => {
-            console.log(e)
-            const whereToShow = document.querySelector("#friends-toPlace");
-            const id = e.target.id;
-            console.log(id)
-            if (id === "meeting_future") {
-              addClassSelected(e.target);
-              whereToShow.innerHTML = "";
-              whereToShow.insertAdjacentHTML("beforeend", `
-                <div id="friends-toPlace">
-                  <% if @meetings_agent != [] %>
-                    <div>
-                      <table class="table table-hover" style="background-color: white">
-                        <thead>
-                          <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Heure</th>
-                            <th scope="col">Adresse</th>
-                            <th scope="col" colspan="3"></th>
-                          </tr>
-                        </thead>
-            
-                        <tbody>
-                          <% @meetings_agent.each do |meeting| %>
-                            <% if meeting.start_time>= Time.now%>
-                              <tr>
-                                <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
-                                <td><%= meeting.start_time.strftime("%l:%M") %></td>
-                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
-                                <td><%= link_to '', meeting, class:"fas fa-search" %></td>
-                                <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
-                                <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Are you sure?'}, class:"fas fa-trash"  %></td>
-                              </tr>
-                            <% end %>
-                          <% end %>
-                        </tbody>
-                      </table>
-                      <br>
-                    </div>
-                  <% else %>
-                    <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
                   <% end %>
-                </div>
-              `);
-            }
-            else if (id === "meeting_past") {
-              addClassSelected(e.target);
-              whereToShow.innerHTML = "";
-              whereToShow.insertAdjacentHTML("beforeend", `
-                <div id="friends-toPlace">
-                  <% if @meetings_agent != [] %>
-                    <div>
-                      <table class="table table-hover" style="background-color: white">
-                        <thead>
-                          <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Heure</th>
-                            <th scope="col">Adresse</th>
-                            <th scope="col" colspan="3"></th>
-                          </tr>
-                        </thead>
-            
-                        <tbody>
-                          <% @meetings_agent.each do |meeting| %>
-                            <% if meeting.start_time < Time.now %>
-                              <tr>
-                                <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
-                                <td><%= meeting.start_time.strftime("%l:%M") %></td>
-                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
-                                <td><%= link_to '', meeting, class:"fas fa-search" %></td>
-                                <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
-                                <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Are you sure?'}, class:"fas fa-trash"  %></td>
-                              </tr>
-                            <% end %>
-                          <% end %>
-                        </tbody>
-                      </table>
-                      <br>
-                    </div>
-                  <% else %>
-                    <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
-                  <% end %>
-                </div>
-                  `);
-                };
-              });
-          </script>
-          <%= link_to 'Ajouter une visite', new_meeting_path,style:'font-size: 14px' %>
+                </tbody>
+              </table>
+              <br>
+            </div>
+          <% else %>
+            <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
+          <% end %>
         </div>
-      </div>
-      <!-- For Landlords -->
-    <% else %>
-      <div class="container">
-        <p id="notice"><%= notice %></p>
-        <h3 class="text-center mt-5 mb-4">Calendrier de visites de mes agents</h3>
-        <div class="profile-friends">
-          <div class="search navigations">
-            <h3 id="meeting_future" class="active" style="font-size: 16px">Visites prévues</h3>
-            <h3 id="meeting_past" style="font-size: 16px">Visites effectuées</h3>
-          </div>
-          <div id="friends-toPlace">
-            <% if @meetings_proprio != [] %>
-              <div>
-                <table class="table table-hover" style="background-color: white">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Heure</th>
-                      <th scope="col">Adresse</th>
-                      <th scope="col">Agent</th>
-                      <th scope="col" colspan="3"></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @meetings_proprio.each do |meeting| %>
-                      <% unless meeting[0].nil? %>
-                        <% if meeting[0].start_time >= Time.now%>
-                          <tr>
-                            <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
-                            <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
-                            <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
-                            <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom.capitalize %></td>
-                          </tr>
+        <script>
+          const addClassSelected = (target) => {
+          // take parent class -> get children -> remove classes for all children
+          // console.log(target)
+          const children = target.parentElement.children;
+          const childAmount = target.parentElement.childElementCount;
+          for (let i=0; i<childAmount; i++) {
+            children[i].classList.remove("active");
+          }
+          // add class
+          target.classList.add("active");
+          };
+          
+                  this.addEventListener("click", (e) => {
+          console.log(e)
+          const whereToShow = document.querySelector("#friends-toPlace");
+          const id = e.target.id;
+          console.log(id)
+          if (id === "meeting_future") {
+            addClassSelected(e.target);
+            whereToShow.innerHTML = "";
+            whereToShow.insertAdjacentHTML("beforeend", `
+              <div id="friends-toPlace">
+                <% if @meetings_proprio != [] %>
+                  <div>
+                    <table class="table table-hover" style="background-color: white">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Heure</th>
+                          <th scope="col">Adresse</th>
+                          <th scope="col">Agent</th>
+                          <th scope="col" colspan="3"></th>
+                        </tr>
+                      </thead>
+          
+                      <tbody>
+                        <% @meetings_proprio.each do |meeting| %>
+                          <% unless meeting[0].nil? %>
+                            <% if meeting[0].start_time >= Time.now %>
+                              <tr>
+                                <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
+                                <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
+                                <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
+                                <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom.capitalize %></td>
+                              </tr>
+                            <% end %>
+                          <% end %>
                         <% end %>
-                      <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
-                <br>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                <% else %>
+                  <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
+                <% end %>
               </div>
-            <% else %>
-              <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
-            <% end %>
-          </div>
-          <script>
-            const addClassSelected = (target) => {
-            // take parent class -> get children -> remove classes for all children
-            // console.log(target)
-            const children = target.parentElement.children;
-            const childAmount = target.parentElement.childElementCount;
-            for (let i=0; i<childAmount; i++) {
-              children[i].classList.remove("active");
-            }
-            // add class
-            target.classList.add("active");
-            };
-            
-                    this.addEventListener("click", (e) => {
-            console.log(e)
-            const whereToShow = document.querySelector("#friends-toPlace");
-            const id = e.target.id;
-            console.log(id)
-            if (id === "meeting_future") {
-              addClassSelected(e.target);
-              whereToShow.innerHTML = "";
-              whereToShow.insertAdjacentHTML("beforeend", `
-                <div id="friends-toPlace">
-                  <% if @meetings_proprio != [] %>
-                    <div>
-                      <table class="table table-hover" style="background-color: white">
-                        <thead>
-                          <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Heure</th>
-                            <th scope="col">Adresse</th>
-                            <th scope="col">Agent</th>
-                            <th scope="col" colspan="3"></th>
-                          </tr>
-                        </thead>
-            
-                        <tbody>
-                          <% @meetings_proprio.each do |meeting| %>
-                            <% unless meeting[0].nil? %>
-                              <% if meeting[0].start_time >= Time.now %>
-                                <tr>
-                                  <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
-                                  <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
-                                  <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
-                                  <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom.capitalize %></td>
-                                </tr>
-                              <% end %>
+            `);
+          }
+          else if (id === "meeting_past") {
+            addClassSelected(e.target);
+            whereToShow.innerHTML = "";
+            whereToShow.insertAdjacentHTML("beforeend", `
+              <div id="friends-toPlace">
+                <% if @meetings_proprio != [] %>
+                  <div>
+                    <table class="table table-hover" style="background-color: white">
+                      <thead>
+                        <tr>
+                          <th scope="col">Date</th>
+                          <th scope="col">Heure</th>
+                          <th scope="col">Adresse</th>
+                          <th scope="col">Agent</th>
+                          <th scope="col" colspan="3"></th>
+                        </tr>
+                      </thead>
+          
+                      <tbody>
+                        <% @meetings_proprio.each do |meeting| %>
+                          <% unless meeting[0].nil? %>
+                            <% if meeting[0].start_time < Time.now%>
+                              <tr>
+                                <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
+                                <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
+                                <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
+                                <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom.capitalize %></td>
+                              </tr>
                             <% end %>
                           <% end %>
-                        </tbody>
-                      </table>
-                      <br>
-                    </div>
-                  <% else %>
-                    <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
-                  <% end %>
-                </div>
-              `);
-            }
-            else if (id === "meeting_past") {
-              addClassSelected(e.target);
-              whereToShow.innerHTML = "";
-              whereToShow.insertAdjacentHTML("beforeend", `
-                <div id="friends-toPlace">
-                  <% if @meetings_proprio != [] %>
-                    <div>
-                      <table class="table table-hover" style="background-color: white">
-                        <thead>
-                          <tr>
-                            <th scope="col">Date</th>
-                            <th scope="col">Heure</th>
-                            <th scope="col">Adresse</th>
-                            <th scope="col">Agent</th>
-                            <th scope="col" colspan="3"></th>
-                          </tr>
-                        </thead>
-            
-                        <tbody>
-                          <% @meetings_proprio.each do |meeting| %>
-                            <% unless meeting[0].nil? %>
-                              <% if meeting[0].start_time < Time.now%>
-                                <tr>
-                                  <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
-                                  <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
-                                  <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
-                                  <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom.capitalize %></td>
-                                </tr>
-                              <% end %>
-                            <% end %>
-                          <% end %>
-                        </tbody>
-                      </table>
-                      <br>
-                    </div>
-                  <% else %>
-                    <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
-                  <% end %>
-                </div>
-                  `);
-                };
-              });
-          </script>
-          <%#= link_to 'Ajouter une visite', new_meeting_path %>
-        </div>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    <br>
+                  </div>
+                <% else %>
+                  <h4 class="text-center" style="width: 100%;">"Aucune visite de prévue"</h4>
+                <% end %>
+              </div>
+                `);
+              };
+            });
+        </script>
+        <%#= link_to 'Ajouter une visite', new_meeting_path %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>

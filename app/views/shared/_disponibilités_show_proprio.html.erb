@@ -1,0 +1,273 @@
+<p style="font-weight: bold; color: #D8A727">Disponibilités de <%= @profile.prénom.capitalize %> pour effectuer les visites</p>
+<div class="container row" style="font-size: 14px">
+  <!-- 1ère colonne -->
+  <div class="col-3 col-lg-1 p-0 text-center" style="font-size:">
+    <div class="border p-1">
+      Heures
+    </div>
+    <div class="border p-1">
+      8h - 12h
+    </div>
+    <div class="border p-1">
+      12h - 14h
+    </div>
+    <div class="border p-1">
+      14h - 18h
+    </div>
+    <div class="border p-1 mb-5">
+      après 18h
+    </div>
+  </div>
+  <!-- Lundi -->
+  <div class="col-3 col-lg-1 p-0 text-center">
+    <div>
+      <div class="border p-1" style="">
+        Lun
+      </div>
+      <div class="border p-1"  >
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- mardi -->
+  <div class="col-3 col-lg-1 p-0 text-center">
+    <div>
+      <div class="border p-1" style="">
+        Mar
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- mercredi -->
+  <div class="col-3 col-lg-1 p-0 text-center">
+    <div>
+      <div class="border p-1" style="">
+        Mer
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- jeudi -->
+  <div class="col-3 col-lg-1 p-0 text-center">
+    <div>
+      <div class="border p-1" style="">
+        Jeu
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- vendredi -->
+  <div class="col-3 col-lg-1 p-0 text-center">
+    <div>
+      <div class="border p-1" style="">
+        Ven
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- samedi -->
+  <div class="col-3 col-lg-1 p-0 text-center">
+    <div>
+      <div class="border p-1" style="">
+        Sam
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!-- dimanche -->
+  <div class="col-3 col-lg-1 p-0 text-center mb-5">
+    <div>
+      <div class="border p-1" style="">
+        Dim
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_matin"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_midi"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_aprèm"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+      <div class="border p-1">
+        <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_soir"} %>
+          <i class="fas fa-user-check" style="color: green"></i>
+        <% else %>
+          <i class="fas fa-times-circle" style="color: red"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

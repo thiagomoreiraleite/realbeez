@@ -25,8 +25,9 @@
                       <p class="card-text">Tel :<%= agent.user.téléphone %></p>
                       <p class="card-text">Email : <%= agent.user.email %></p>
                       <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
+                      <p class="card-text">Expériences : <%= agent.experience %></p>
                       <p class="card-text">Statut : <%= agent.statut %></p>
-                      <%= image_tag (cl_image_path agent.cv) %>
+                      <%#= image_tag (cl_image_path agent.cv) %>
                       <p style="font-weight: bold">Disponibilités</p>
                       <% agent.user.availabilities.each do |availability| %>
                         <p><%= availability.jours %></p>
@@ -93,8 +94,9 @@
                     <p class="card-text">Tel :<%= agent.user.téléphone %></p>
                     <p class="card-text">Email : <%= agent.user.email %></p>
                     <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
+                    <p class="card-text">Expériences : <%= agent.experience %></p>
                     <p class="card-text">Statut : <%= agent.statut %></p>
-                    <%= image_tag (cl_image_path agent.cv) %>
+                    <%#= image_tag (cl_image_path agent.cv) %>
                     <p style="font-weight: bold">Disponibilités</p>
                     <% agent.user.availabilities.each do |availability| %>
                       <p><%= availability.jours %></p>
@@ -142,8 +144,9 @@
                     <p class="card-text">Tel :<%= agent.user.téléphone %></p>
                     <p class="card-text">Email : <%= agent.user.email %></p>
                     <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
+                    <p class="card-text">Expériences : <%= agent.experience %></p>
                     <p class="card-text">Statut : <%= agent.statut %></p>
-                    <%= image_tag (cl_image_path agent.cv) %>
+                    <%#= image_tag (cl_image_path agent.cv) %>
                     <p style="font-weight: bold">Disponibilités</p>
                     <% agent.user.availabilities.each do |availability| %>
                       <p><%= availability.jours %></p>
@@ -191,8 +194,9 @@
                     <p class="card-text">Tel :<%= agent.user.téléphone %></p>
                     <p class="card-text">Email : <%= agent.user.email %></p>
                     <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
+                    <p class="card-text">Expériences : <%= agent.experience %></p>
                     <p class="card-text">Statut : <%= agent.statut %></p>
-                    <%= image_tag (cl_image_path agent.cv) %>
+                    <%#= image_tag (cl_image_path agent.cv) %>
                     <p style="font-weight: bold">Disponibilités</p>
                     <% agent.user.availabilities.each do |availability| %>
                       <p><%= availability.jours %></p>

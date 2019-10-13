@@ -1,5 +1,5 @@
 class CandidaturesController < ApplicationController
-  before_action :set_candidature, only: [:edit, :update, :destroy, :show, :accept_candidature, :reject_candidature]
+  before_action :set_candidature, only: [:edit, :update, :destroy, :show, :accept_candidature, :reject_candidature, :show_proprio, :show_agent]
 
   def index
     @candidatures = policy_scope(Candidature).order(created_at: :desc)
@@ -33,6 +33,17 @@ class CandidaturesController < ApplicationController
   end
 
   #&& Candidature.where("statut = ? AND user_id = ?", "pourvu", current_user)
+
+  def show_proprio
+    authorize @candidature
+    @profile = @candidature.user
+    @availabilities = Availability.where("user_id = ?", @candidature.user.id)
+    @availability = Availability.where("user_id = ? && jours = ?", @candidature.user.id, params[:jours])
+  end
+
+  def show_agent
+    authorize @candidature
+  end
 
   def new
     authorize @candidature = Candidature.new
@@ -77,13 +88,16 @@ class CandidaturesController < ApplicationController
 
   def edit
     authorize @candidature
+    @annonce = Candidature.find(params[:id]).annonce
+    @availabilities = Availability.where("user_id = ?", current_user.id)
+    @availability = Availability.where("user_id = ? && jours = ?", current_user.id, params[:jours])
   end
 
   def update
     authorize @candidature
-    @candidature = Candidature.new(candidature_params)
-    if @candidature.save
-      redirect_to @annonce
+    @annonce = Candidature.find(params[:id]).annonce
+    if Candidature.update(candidature_params)
+      redirect_to candidature_agent_path
     else
       render :edit
     end
@@ -91,9 +105,9 @@ class CandidaturesController < ApplicationController
 
   def destroy
     authorize @candidature
-    @candidature.status = "annulé"
+    @candidature.destroy
     @candidature.save
-    redirect_to candidatures_path
+    redirect_to request.referrer
   end
 
   def accept_candidature

@@ -8,7 +8,19 @@ class CandidaturePolicy < ApplicationPolicy
     true
   end
 
+  def show_proprio?
+    true
+  end
+
+  def show_agent?
+    true
+  end
+
   def candidature_proprio?
+    true
+  end
+
+  def edit?
     true
   end
 
@@ -16,8 +28,8 @@ class CandidaturePolicy < ApplicationPolicy
     record.user == user
   end
 
-   def destroy?
-    record.user == user
+  def destroy?
+    true
   end
 
   def accept_candidature?

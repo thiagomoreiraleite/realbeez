@@ -10,13 +10,16 @@
           <section style=" text-align:center;">
             <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {value: ""}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8" %>
           </section>
+          <section style=" text-align:center;">
+            <%= f.submit "Let's go!", class: "btn-recherche my-3" %>
+          </section>
         <% end %>
       </nav>
     </div>
   </div>
-  <div class="d-flex justify-content-around" style=''>
+  <!-- <div class="d-flex justify-content-around" style=''>
     <i class="arrow down" style="width: 0;height: 0; border-left: 30px solid transparent;border-right: 30px solid transparent; border-top: 20px solid white; position: absolute; bottom: 10px"></i>
-  </div>
+  </div> -->
 </div>
 <!-- BACKGROUND AS VIDEO -->
 <!-- <div class="" style="">
@@ -44,3 +47,25 @@
 <%= render "shared/choisir_realbeez" %>
 <%= render "shared/fonctionnement" %>
 <%= render "shared/annonce_home" %>
+<style>
+  .btn-recherche {
+    border: 2px solid transparent ;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #D8A727;
+    font-weight: bold;
+    transition: all .15s ease-in-out;
+    color: white;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    i {
+      padding-right: 4px;
+    }
+  }
+  
+  .btn-recherche:hover {
+  background-color:#d69d00 ;
+  }
+</style>

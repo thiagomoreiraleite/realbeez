@@ -20,11 +20,13 @@ Rails.application.routes.draw do
   get '/annonces/:id/checkout_proprio', to: 'annonces#checkout_proprio', as: :checkout_proprio
 
   # Candidatures
-  resources :candidatures, only: [:edit, :update, :index, :create]
+  resources :candidatures, only: [:edit, :update, :index, :create, :destroy]
   post '/candidatures/:id/accept_candidature', to: 'candidatures#accept_candidature', as: :accept_candidature
   post '/candidatures/:id/reject_candidature', to: 'candidatures#reject_candidature', as: :reject_candidature
   get '/candidatures/proprio', to: 'candidatures#candidature_proprio', as: :candidature_proprio
   get '/candidatures/agent', to: 'candidatures#candidature_agent', as: :candidature_agent
+  get '/candidatures/:id/show_proprio', to: 'candidatures#show_proprio', as: :show_proprio
+  get '/candidatures/:id/show_agent', to: 'candidatures#show_agent', as: :show_agent
 
   # Friends
   get '/my_friends', to: 'profiles#my_friends', as: :my_friends

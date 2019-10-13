@@ -19,7 +19,7 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
                       <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
@@ -27,7 +27,7 @@
                   <div class="m-3">
                     <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter la gestion de ce bien?' }, class: "btn btn-success" %>
                     <%= link_to "Rejeter" , reject_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
-                    <%= link_to "Voir annonce", annonce_path(candidature.annonce), class: "btn btn-link" %>
+                    <%= link_to "Voir annonce", show_agent_path(candidature.annonce), class: "btn btn-link" %>
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
                       <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
@@ -108,9 +108,11 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
                     <p class="card-text"> Envoyée à : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    <%= link_to '', edit_candidature_path(candidature), class:"fas fa-edit" %> /
+                    <%= link_to '', candidature_path(candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette candidature?'}, class:"fas fa-trash"  %>
                   </div>
                 </div class="">
               </div>
@@ -138,7 +140,7 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
                     <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>
@@ -168,7 +170,7 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
                     <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>

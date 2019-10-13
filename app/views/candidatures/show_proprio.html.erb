@@ -1,0 +1,115 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12 col-md-4">
+    </div>
+    <div class="d-flex col-12 col-md-8 align-items-center">
+      <h3 class="" >Profil de <%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom.capitalize %></h3>
+      <% if @candidature.user.id == current_user.id %>
+        <%= link_to "", edit_user_registration_path(current_user), class: "ml-3 fas fa-edit"%>
+      <% end %>
+    </div>
+  </div>
+  <!-- 1 - PROFILE IMG -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-4 p-0">
+      <div class="d-flex justify-content-center p-0 mb-0", style="border-radius: 5px">
+        <div class="rounded p-5">
+          <div class="text-center mb-3">
+            <%= image_tag (cl_image_path @candidature.user.photo), crop: :fill, style:"object-fit:cover; height: 30vh; width: 30vh", class: "rounded-circle center" %>
+          </div>
+          <p class="font-weight-bold text-center mt-2 mb-0"><%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom.capitalize %></p>
+          <p class="text-center mt-0 mb-3" style="font-size: 12px" ><%= @candidature.user.ville %></p>
+          <% unless @candidature.user.agent.nil? %>
+            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut  : <%= @candidature.user.agent.statut %></p>
+            <% if @candidature.user.id == current_user.id %>
+              <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "", edit_agent_path(@candidature.user.agent.id), class: "fas fa-edit" %> / <%= link_to "", agent_path(@candidature.user.agent.id), method: :delete, class: "fas fa-trash" %></p>
+            <% end %>
+          <% else %>
+            <% if @candidature.user.id == current_user.id %>
+              <p class="text-center mt-0 mb-3" ><%= link_to "Devenir agent Realbeez", new_agent_path  %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- 2 - OTHER INFO -->
+    <div class="col-sm-12 col-md-12 col-lg-8 pb-5" style="border-radius: 10px">
+      <div class="pb-2 border-bottom border-info"></div>
+      <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Connexions</p>
+      <div class="col mr-0">
+        <div class= "row d-flex">
+          <% if Candidature.find(params[:id]).user.friends == [] %>
+            <p class="" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune connexion actuellement"</p>
+          <% else %>
+            <% Candidature.find(params[:id]).user.friends.each do |friend| %>
+              <div class="col-4 col-md-2">
+                <div class="text-center">
+                  <%= link_to (cl_image_tag friend.photo, crop: :fill, style:"object-fit:cover; height: 50px; width: 50px", class: "rounded-circle center justify-content-center text-center"), profile_path(friend)  %>
+                </div>
+                <div class="text-center mt-1 mb-4 text-black-50" style="">
+                  <%= friend.prénom.capitalize %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% unless @candidature.user.agent.nil? %>
+        <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i> <%= @candidature.user.agent.experience %></p>
+        <!-- show address only if profile the one of the user -->
+        <% if @candidature.user == current_user %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @candidature.user.adresse %> à  <%= @candidature.user.ville %></p>
+        <% end %>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @candidature.user.email %></p>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @candidature.user.téléphone %></p>
+    <% else %>
+      <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
+      <% if @candidature.user == current_user %>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @candidature.user.adresse %> à  <%= @candidature.user.ville %></p>
+      <% end %>
+      <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @candidature.user.email %></p>
+      <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @candidature.user.téléphone %></p>
+  <% end %>
+</div>
+</div>
+</div>
+<% unless @candidature.user.agent.nil?%>
+  <% if @candidature.user.agent.statut == "Approuvé" %>
+    <div style="background-color: #FFFFFF; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+      <!-- Tableau de bord -->
+      <div class="container justify-content-center">
+        <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
+      </div>
+      <!-- Disponibilité -->
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-11 offset-lg-1">
+            <%= render "shared/disponibilités_show_proprio" %>
+            <!-- retour vers page précédente -->
+            <!-- <div class="container pb-3 px-0"><%#= link_to 'Retour', 'javascript:history.go(-1);' %></div> -->
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="container justify-content-center mb-5">
+  <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Candidature pour la gestion de votre bien </p>
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-1">
+      <p><strong>Annonce : </strong> <%= @candidature.annonce.titre_annonce %></p>
+      <% if @candidature.commentaire != "" %>
+        <p><strong>Commentaire de <%= @candidature.user.prénom.capitalize %> : </strong></p>
+        <p>"<%= @candidature.commentaire%>"</p>
+      <% end %>
+      <div class="mt-4">
+        <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter? Le montant à payer en cas de location sera 375 euros TTC' }, class: "btn btn-success" %>
+        <%= link_to "Rejeter" , reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-8 offset-md-1 mt-2 pl-0">
+    <%= link_to "retour candidatures", candidature_proprio_path  %>
+  </div>
+</div>
