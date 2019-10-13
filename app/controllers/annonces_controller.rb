@@ -99,12 +99,14 @@ class AnnoncesController < ApplicationController
     authorize @annonce
     @annonces = []
     @annonces << @annonce
-    @markers = @annonces.map do |annonce|
-      {
-        lat: annonce.latitude,
-        lng: annonce.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
-      }
+    if annonce.latitude != nil
+      @markers = @annonces.map do |annonce|
+        {
+          lat: annonce.latitude,
+          lng: annonce.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+        }
+      end
     end
     unless @annonce.agent_user_id.nil?
       @agent = User.find(@annonce.agent_user_id.to_i)
