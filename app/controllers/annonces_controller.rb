@@ -99,7 +99,7 @@ class AnnoncesController < ApplicationController
     authorize @annonce
     @annonces = []
     @annonces << @annonce
-    if annonce.latitude != nil
+    if @annonce.latitude != nil
       @markers = @annonces.map do |annonce|
         {
           lat: annonce.latitude,
