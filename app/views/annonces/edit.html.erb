@@ -14,7 +14,7 @@
               "Autre",
             ] %>
           <%= f.input :meublé, label: "Meublé / Non meublé",collection: ["Meublé", "Non meublé"]  %>
-          <%= f.input :surface, input_html: { min: '0', step: 'any' } %>
+          <%= f.input :surface, input_html: { min: '0', step: 'any' }, label: "Surface en m2" %>
           <%= f.input :pièces, input_html: { min: '0', step: 'any' }  %>
           <%= f.input :classe_énergie, collection:
             [
@@ -43,7 +43,7 @@
               "Vierge"
             ],label: "GES"  %>
           <%= f.input :description %>
-          <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises)" %>
+          <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises) en €" %>
           <%= f.input :ville %>
           <%= f.input :adresse %>
           <%= f.input :email, input_html: {value: current_user.email}  %>

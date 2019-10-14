@@ -12,7 +12,7 @@ class Annonce < ApplicationRecord
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?
   monetize :price_cents
-  has_many :orders
+  has_many :orders, dependent: :destroy
   validates :surface, numericality: { greater_than_or_equal_to: 0 }
   validates :pièces, numericality: { greater_than_or_equal_to: 0 }
 

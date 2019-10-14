@@ -13,5 +13,5 @@ class User < ApplicationRecord
   has_friendship
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?
-  has_many :orders
+  has_many :orders, dependent: :destroy
 end
