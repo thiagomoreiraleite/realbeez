@@ -7,7 +7,7 @@
     <%= render 'shared/biens_a_gerer' %>
   <% else %>
     <!-- show all annonces -->
-    <h3 class="text-center mt-5 mb-4">Toutes les annonces</h3>
+    <h3 class="text-center mt-5 mb-4">Annonces de biens à louer</h3>
     <!-- search bar looking for address nearby 20 km -->
     <nav class="navbar navbar-light justify-content-around">
       <%= form_for :search, defaults: { required: false }, url:annonces_path, method: "GET", html: { class: '' } do |f| %>

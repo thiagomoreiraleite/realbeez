@@ -123,6 +123,11 @@ class AnnoncesController < ApplicationController
     @annonce.user = current_user
     @annonce.statut = "active"
     authorize @annonce
+    if @annonce.latitude == nil or @annonce.longitude == nil
+      results = Geocoder.search("#{@annonce.ville}")
+      @annonce.latitude = results.first.coordinates[0]
+      @annonce.longitude = results.first.coordinates[1]
+    end
     if @annonce.save
       # for multiple upload photo
       # create_pictures
