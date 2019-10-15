@@ -12,11 +12,15 @@
     <nav class="navbar navbar-light justify-content-around">
       <%= form_for :search, defaults: { required: false }, url:annonces_path, method: "GET", html: { class: '' } do |f| %>
         <section style="position: relative; text-align:center;">
-          <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+          <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+        </section>
+        <section style=" text-align:center;">
+          <%= f.submit "Let's go!", class: "btn-recherche my-3" %>
         </section>
       <% end %>
     </nav>
-    <div id="" class="row mt-5">
+    <p class="border-top my-3 pt-2" style="color: rgb(150, 150, 150);"><em>Nombre de biens trouvés (<%= @annonces.count %>)</em></p>
+    <div id="" class="row mt-4">
       <% if @annonces != []  %>
         <% @annonces.each do |annonce| %>
           <% unless annonce.statut == "annulé" || annonce.statut == "Loué" %>
@@ -121,7 +125,7 @@
         <% end %>
         <!-- Mapbox -->
         <div class="container">
-          <div class="mb-5">
+          <div class="mb-5 d-flex justify-content-around">
             <%= will_paginate @annonces, :page_links => true %>
           </div>
           <div

@@ -87,8 +87,13 @@
             <%= f.input :experience, label: "Décrivez vos expériences" %>
             <%#= f.input :cv, label: false  %>
             <%#= f.input :cv_cache, as: :hidden %>
-            <%= f.submit "Postuler", class: "btn btn-success" %>
-            <%= link_to "Annuler", root_path, class:"btn btn-danger" %>
+            <% if current_user.agent == nil %>
+              <%= f.submit "Postuler", class: "btn btn-success" %>
+              <%= link_to "Annuler", root_path, class:"btn btn-danger" %>
+            <% else %>
+              <p style="font-weight: bold; color:green">Déja postulé</p>
+              <%= link_to "Retour", root_path  %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

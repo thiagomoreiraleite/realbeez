@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     if user_signed_in?
       ville = current_user.ville
       if Annonce.where("statut = ?", "active" ).near("#{ville}",50) == []
-        @annonces = Annonce.where("statut = ?", "active").limit(3)
+        @annonces = Annonce.where("statut = ?", "active").near('paris',20).limit(3)
       else
         @annonces = Annonce.where("statut = ?", "active" ).near("#{ville}",50).limit(3)
       end
@@ -16,7 +16,7 @@ class PagesController < ApplicationController
       #   @profiles = Profile.where("statut = ?", "Agent" ).near(current_user.adresse,100).limit(4)
       # end
     else
-      @annonces = Annonce.where("statut = ?", "active").limit(3)
+      @annonces = Annonce.where("statut = ?", "active").near('paris',20).limit(3)
       # @profiles = Profile.where("statut = ?", "Agent").limit(4)
     end
   end

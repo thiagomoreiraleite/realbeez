@@ -33,11 +33,11 @@
     </div>
     <div class=" p-3", style="box-shadow: 0 0 5px rgba(0,0,0,0.1)">
       <h4 class="mr-3 mt-3 mb-0", style=""><%= @candidature.annonce.titre_annonce %> - <%= @candidature.annonce.loyer_mensuel %> euros / mois</h4>
-      <p class="mt-4">Description : <%= @candidature.annonce.description %></p>
+      <p class="mt-4"><strong>Description</strong> : <%= simple_format(@candidature.annonce.description %>)</p>
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">
-          <p>Type de bien : <%= @candidature.annonce.type_de_bien %></p>
-          <p>GES : <%= @candidature.annonce.ges %></p>
+          <p><strong>Type de bien </strong>: <%= @candidature.annonce.type_de_bien %></p>
+          <p><strong>GES</strong> : <%= @candidature.annonce.ges %></p>
           <p><i class="fas fa-map-marker-alt mr-3"></i> <%= @candidature.annonce.adresse %></p>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-6">

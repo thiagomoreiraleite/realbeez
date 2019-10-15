@@ -3,7 +3,7 @@ class Annonce < ApplicationRecord
   # has_many :pictures, dependent: :destroy
   has_many :candidatures
   has_many :meetings
-  validates :titre_annonce, :surface, :description, :loyer_mensuel, :ville, :email, :téléphone, presence: true
+  validates :titre_annonce, :surface, :description, :loyer_mensuel, :ville, presence: true
   mount_uploader :photo, PhotoUploader
   mount_uploader :photo1, PhotoUploader
   mount_uploader :photo2, PhotoUploader

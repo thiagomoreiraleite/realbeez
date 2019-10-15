@@ -1,0 +1,20 @@
+.btn-recherche {
+  border: 2px solid transparent ;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #D8A727;
+  font-weight: bold;
+  transition: all .15s ease-in-out;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  i {
+    padding-right: 4px;
+  }
+}
+
+.btn-recherche:hover {
+background-color:#d69d00 ;
+}

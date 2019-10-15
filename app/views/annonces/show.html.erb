@@ -37,17 +37,17 @@
         <h4 class="mr-3 mt-3 mb-0", style=""><%= @annonce.titre_annonce %> - <%= @annonce.loyer_mensuel %> euros / mois</h4>
         <%= link_to "modifier", edit_annonce_path(@annonce) %> /
         <%= link_to "supprimer", annonce_path(@annonce), method: :delete%>
-        <p class="mt-4">Description : <%= @annonce.description %></p>
+        <p class="mt-4"><strong>Description</strong> : <%= simple_format(@annonce.description) %></p>
         <div class="row">
           <div class="col-sm-12 col-md-6 col-lg-6">
-            <p>Type de bien : <%= @annonce.type_de_bien %></p>
-            <p>Nombre de pièces : <%= @annonce.pièces %> </p>
-            <p>Surface : <%= @annonce.surface %>  m2</p>
-            <p>Meublé : <%= @annonce.meublé == "Meublé" ? "Oui" : 'Non' %></p>
+            <p><strong>Type de bien</strong> : <%= @annonce.type_de_bien %></p>
+            <p><strong>Nombre de pièces</strong> : <%= @annonce.pièces %> </p>
+            <p><strong>Surface</strong> : <%= @annonce.surface %>  m2</p>
+            <p><strong>Meublé</strong> : <%= @annonce.meublé == "Meublé" ? "Oui" : 'Non' %></p>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6">
-            <p>GES : <%= @annonce.ges %></p>
-            <p>Classe énergie : <%= @annonce.classe_énergie %></p>
+            <p><strong>GES</strong> : <%= @annonce.ges %></p>
+            <p><strong>Classe énergie</strong> : <%= @annonce.classe_énergie %></p>
             <p><i class="fas fa-map-marker-alt mr-3"></i> <%= @annonce.adresse %></p>
             <p><i class="fas fa-city mr-3"></i> <%= @annonce.ville %></p>
           </div>
@@ -68,17 +68,17 @@
         <!-- Le current_user n'a pas publié l'annonce  -->
       <% else %>
         <h4 class="mr-3 mt-3 mb-0", style=""><%= @annonce.titre_annonce %> - <%= @annonce.loyer_mensuel %> euros / mois</h4>
-        <p class="mt-4">Description : <%= @annonce.description %></p>
+        <p class="mt-4"><strong>Description</strong> : <%= simple_format(@annonce.description) %></p>
         <div class="row">
           <div class="col-sm-12 col-md-6 col-lg-6">
-            <p>Type de bien : <%= @annonce.type_de_bien %></p>
-            <p>Nombre de pièces : <%= @annonce.pièces %> </p>
-            <p>Surface : <%= @annonce.surface %>  m2</p>
-            <p>Meublé : <%= @annonce.meublé == "Meublé" ? "Oui" : 'Non' %></p>
+            <p><strong>Type de bien</strong> : <%= @annonce.type_de_bien %></p>
+            <p><strong>Nombre de pièces</strong> : <%= @annonce.pièces %> </p>
+            <p><strong>Surface</strong> : <%= @annonce.surface %>  m2</p>
+            <p><strong>Meublé</strong> : <%= @annonce.meublé == "Meublé" ? "Oui" : 'Non' %></p>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6">
-            <p>GES : <%= @annonce.ges %></p>
-            <p>Classe énergie : <%= @annonce.classe_énergie %></p>
+            <p><strong>GES</strong> : <%= @annonce.ges %></p>
+            <p><strong>Classe énergie</strong> : <%= @annonce.classe_énergie %></p>
             <p><i class="fas fa-city mr-3"></i> <%= @annonce.ville %></p>
           </div>
         </div>
