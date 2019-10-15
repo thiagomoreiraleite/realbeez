@@ -34,7 +34,7 @@
                   </div>
                   <div class="mt-0">
                     <p class='my-1', style="font-size: 14px">Nb de pièces: <%= annonce.pièces %></p>
-                    <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %></p>
+                    <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %> €</p>
                     <div class="d-flex px-0">
                       <!-- if agent is assigned to the flat show agent info -->
                       <% unless annonce.agent_user_id.nil? %>

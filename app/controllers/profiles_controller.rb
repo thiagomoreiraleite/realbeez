@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
           }
         end
       else
-        @profiles = policy_scope(Profile.where("statut = ?", "Agent" ).near(params[:search][:query],20)).page(params[:page]).per_page(10)
+        @profiles = policy_scope(Profile.where("statut = ?", "Agent" ).near(params[:search][:query],30)).page(params[:page]).per_page(10)
         @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
           {
             lat: profile.latitude,

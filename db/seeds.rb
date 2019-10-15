@@ -916,3 +916,411 @@ annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1
 annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571110391/mlkhhxqmvxxarwavpesh.jpg"
 annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571110393/gzmmui6bnlkvckpnqavv.jpg"
 annonce.save!
+
+# 14
+annonce = Annonce.create!(
+  titre_annonce: 'WICKERSCHWIHR magnifique maison neuve 127m2 sur terrain de 5 ares',
+  type_de_bien: 'Maison',
+  meublé: 'Non meublé',
+  surface: '127',
+  pièces: '5',
+  description:
+  'Loue maison neuve (1ère occupation), lumineuse sur Wickerschwihr dans un quartier résidentiel très calme
+Terrain : environ 5 ares engazonné et arboré avec arrosage automatique
+Maison rdc et 1er étage d\'environ 127.00m2 avec 2 belles terrasses de plus de 25 m2
+RDC : un sas d\'entrée, une cuisine équipée ouverte avec plans de travail en granit poli, un grand salon séjour d\'environ 45m2 avec 3 grandes baies vitrées,un local technique, un wc avec lave-mains
+1er étage : pièce sur toute hauteur (sans rampants), 3 chambres lumineuses, une salle de bains avec meuble lavabo, sèche serviettes, douche, baignoire, un wc séparé.
+Garage : grand garage double de 7.00/6.00m avec porte automatique
+Chemins d\'accès en béton architectural, éclairage extérieur des chemins + éclairage des terrasses
+Pergola bioclimatique végétalisée sur façade sud
+Équipements haut de gamme: Double-flux avec puits canadien, ballon d\'eau chaude thermodynamique, éclairage LED
+Isolation très haut de gamme avec très faible consommation énergétique
+Chauffage : récupération des calories par l\'échangeur dans la double flux + poêle à bois étanche + plancher chauffant électrique dans toutes les pièces sur thermostat individuel en période de très grand froid
+Étanchéité optimisée à tous les niveaux permettant d\'avoir une inertie thermique optimale (confort intérieur au top)
+Très faible consommation énergétique
+Contrat d\'entretien en place pour les espaces verts et l\'entretien de la double-flux : 80.00€ /mensuel
+Nous recherchons de personnes sérieuses, motivées et solvables.
+Curieux s\'abstenir',
+  loyer_mensuel: 1420,
+  adresse: 'Wickerschwihr, Grand-Est, France',
+  ville: 'Wickerschwihr',
+  téléphone: '0617711183',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124691/lcflg9ezpz7ngrvt7sbw.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124692/ejfjidao63qjfu6abivu.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124694/xrsgk14qdniepzrkhcst.jpg"
+annonce.save!
+
+# 15
+annonce = Annonce.create!(
+  titre_annonce: 'Meublé 3 Pièces Mulhouse Dornach',
+  type_de_bien: 'Appartement',
+  meublé: 'Meublé',
+  surface: '61',
+  pièces: '3',
+  description:
+  'A louer, appartement meublé 3 pieces situé à Dornach (Chateau Zu-Rhein), proche station de tram, gare, accès autoroute, station vélocité, université, IUT... dans une petit copropriété de standing de 3 étages.
+
+Entrée avec grand placard.
+
+Salle de bain avec baignoire, vasque, et machine à laver. WC séparé.
+
+Grande pièce à vivre orientée sud-ouest et donnant accès à un balcon de 4m2: canapé, meuble tv, bibliothèque, table et chaises.
+
+Deux chambres à coucher de 10m2 chacune.
+
+Une cuisine équipée, avec lave-vaisselle, frigo donnant accès à un petit balcon de 2m2.
+
+Garage individuel pour un véhicule et une cave.
+
+Chauffage individuel au gaz naturel
+
+Loyer: 620 euros + 80 euros de charges (eau, entretien des communs, jardinière...). Appartement disponible à partir du 1er Novembre 2019.',
+  loyer_mensuel: 700,
+  adresse: 'Rue Thenard, Mulhouse, Grand-Est, France',
+  ville: 'Mulhouse',
+  téléphone: '0671150916',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124742/qtf7ug0hjnjcn6k9vdgb.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124747/iprwlrtwoupg0emtsbin.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124750/fx7mg7xmc2zffkawl0y7.jpg"
+annonce.save!
+
+# 16
+annonce = Annonce.create!(
+  titre_annonce: 'COLMAR Petite Venise F4 94m2 670',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '94',
+  pièces: '4',
+  description:
+  'Colmar Duplex F4/5 quartier Petite Venise
+3ème et dernier étage lumineux, transversal,
+Surface habitable 94 m2 Surface utile 120 m2
+Chauffage individuel au gaz
+
+Cuisine meublée Salon Salle à manger
+Trois chambres
+Salle de bain: baignoire Salle d\'eau: douche
+
+Commerces, écoles, collège, lycée, gare proche
+
+Loyer 670 € Charges 45 € comprenant:
+l\'eau, la taxe ordures ménagères, l\'électricité
+des communs et l\'entretien de la chaudière
+
+Tél. du propriétaire: 06 76 93 26 60',
+  loyer_mensuel: 715,
+  adresse: 'Colmar, Grand-Est, France',
+  ville: 'Colmar',
+  téléphone: '0676932660',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124807/fyguvov5j82ncefcev0f.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124811/jxhwsodmhzg1zefm3a6t.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124814/y4atydsknbufxwu7so4e.jpg"
+annonce.save!
+
+# 17
+annonce = Annonce.create!(
+  titre_annonce: 'Sublime F3 neuf de 88m2. Extremement lumineux',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '80',
+  pièces: '3',
+  description:
+  'Mise en location d’un magnifique F3 de 88m2 proche centre ville de Altkirch
+
+Équipé :
+- D’une impressionnante pièce salon-cuisine de 45m2, avec superbe cuisine et poêle à pellets
+- D’une grande salle de bain avec sèche serviettes, double vasque, WC suspendu, douche et baignoire
+- Ainsi que de deux grandes et lumineuses chambres
+
+Les plus :
+- Poêle à pellets et chauffage au sol gaz de dernière génération (économe et comfortable)
+- Cuisine neuve tout équipée
+- Isolation et insonorisation très performante
+- Vastes fenêtres double vitrage pour une belle luminosité
+- 2 emplacements parking à l’arrière du bâtiment
+- Porte d’entrée blindée
+- Cave pour stocker petit matériel
+………………………………………………………………………………
+Loyer 940 Euros + 40 Euros de charges mensuelles.
+Disponible fin Octobre 2019',
+  loyer_mensuel: 715,
+  adresse: 'Altkirch, Grand-Est, France',
+  ville: 'Altkirch',
+  téléphone: '0685061031',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124852/loczqv4f3otsb1jzfq1q.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124856/amheo6fmegg8ndsw12oq.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124858/r5u6f4xspqxqrkjk7imy.jpg"
+annonce.save!
+
+# 18
+annonce = Annonce.create!(
+  titre_annonce: 'Appartement T4 avec GARAGE à SAINT-LOUIS',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '80',
+  pièces: '4',
+  description:
+  'T4 avec balcon couvert de 13 m² et 1 garage au sous-sol, dans un immeuble collectif récent et de standing à SAINT-LOUIS, proche de l\'Aéroport et à 200 m de la gare SNCF de Saint-Louis la Chaussée (qui dessert Bâle).
+L\'appartement avec ascenseur se trouve au 2ème et dernier étage du bâtiment avec un balcon sans vis à vis.
+DESCRIPTIF DE L\'APPARTEMENT :
+- cuisine équipée (évier, lave-vaisselle, four, plaque de cuisson, hotte, éléments hauts et bas, sauf frigo) ouverte sur séjour de 33 m² donnant sur un balcon couvert de 13 m²
+- 1 chambre de 14 m²
+- 1 chambre de 10 m²
+- 1 chambre de 9 m²
+- 1 salle de bains avec baignoire et attente pour machine à laver
+- 1 WC séparé
+L\'appartement dispose également d\'un garage au sous-sol :
+- 1 grand garage (pour PMR) de 21 m², largeur 3.30 m, équipée d\'une porte basculante électrique et de prises (pour congélateur)
+
+Possibilité de louer un 2ème garage de 18 m² au sous-sol, si souhaité.
+
+PRESTATIONS :
+- chauffage individuel au gaz
+- double vitrage
+- ascenseur
+- fibre
+
+Loyer : 920 €
+Charges mensuelles comprenant l\'eau froide, entretien chaudière, ordures ménagères, charges des communs : 140 €
+Dépôt de garantie : 920 €
+
+L\'appartement est disponible début janvier 2020.
+visite sur RDV tél 06 12 32 65 81',
+  loyer_mensuel: 1060,
+  adresse: 'Rue de la Barrière, Saint-Louis, Grand-Est, France',
+  ville: 'Saint-Louis',
+  téléphone: '0612626581',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124896/oo9jmdrlq7qcq1scgpdt.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124898/w04b3ozeuun7lqoqgmjx.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124901/rndp4fzsnny1smfg2c6m.jpg"
+annonce.save!
+
+# 19
+annonce = Annonce.create!(
+  titre_annonce: 'Colmar-Appartement neuf (1ère location).2 pièces 50 m2 environ Loyer 520 hors charges',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '50',
+  pièces: '2',
+  description:
+  'Résidence L’EMPREINTE (Nouveau lotissement de La Croix Blanche).48 rue de Vienne
+Dans résidence neuve, entourée d’espaces verts, face aux vignes et aux Vosges, très beau F2 de 50 m2 au 3è étage avec ascenseur comprenant :
+-une entrée
+-un séjour avec jolie cuisine neuve équipée ouvert sur une grande terrasse de 17 m2 exposée plein sud avec vue sur les Vosges
+-une chambre avec accès à la terrasse
+-une salle de bain avec douche italienne et WC
+-un cellier
+-un garage fermé de 17 m2 en souterrain
+Chauffage collectif au gaz.
+Loyer : 520€.
+Charges locatives : 80€/mois environ.
+La location est soumise au respect des plafonds de ressources de la loi Pinel
+80€ de provisions sur charges (eau incluse) avec régularisation annuelle.
+Le dépôt de garantie représente un mois de loyer hors charges soit 520€
+Modalité de récupération des charges locatives : provision avec régularisation annuelle
+PAS DE FRAIS D’AGENCE
+Ce bien sera disponible en novembre
+Téléphone : 06 08 89 49 71',
+  loyer_mensuel: 600,
+  adresse: 'Quai de la Sinn, Colmar, Grand-Est, France',
+  ville: 'Colmar',
+  téléphone: '0608498971',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124984/fqdeicw2u9w5ehjlumb0.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124986/bjfj1kogq7uirksu6hy0.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571124989/lv1hbwnhfrtfaosdertg.jpg"
+annonce.save!
+
+# 20
+annonce = Annonce.create!(
+  titre_annonce: 'Spacieux/lumineux Appartement 89m2',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '89',
+  pièces: '3',
+  description:
+  'Particulier loue charmant F3 de 89m2 dans petite copropriété, 1er étage sans ascenseur, au centre de Village-Neuf.
+92 rue du Général de Gaulle
+Avec balcon ensoleillé
+Deux chambres
+Grande cuisine équipée séparée
+Salle de bain avec WC
+Chaudière individuelle gaz (eau chaude et chauffage)
+
+Appartement très propre, récemment repeint
+Grande cave privative au sous-sol avec branchement lave-linge et sèche-linge
+Parking dans cours privée
+Local sécurisé pour vélos
+Loyer 740EUR hors charge
+Provision sur Charges 50 EUR/mois (frais de copropriété, ménage commun)
+
+Disponible 01/11/19',
+  loyer_mensuel: 790,
+  adresse: 'Village-Neuf, Grand-Est, France',
+  ville: 'Village-Neuf',
+  téléphone: '0607456621',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125049/qwik1sh6xusgmsz0vd3s.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125054/mf0x4bxnnkgjpdqanbyo.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125061/n1jh16wcmp6bwotsrhim.jpg"
+annonce.save!
+
+# 21
+annonce = Annonce.create!(
+  titre_annonce: '2 pièces au 4B av de la 1ère DB.Rebberg Mulhouse',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '37',
+  pièces: '2',
+  description:
+  '2 pièces au 4B av de la 1ère DB dans maison bourgeoise entourée d\'espaces verts, calme, entièrement équipé :
+cuisine plaque induction, four, hotte, frigo-congélateur ;
+salle de bains avec meuble vasque, douche ; revêtement sol carrelage & parquet
+parking privé. Proche de la gare, arrêt bus à 200 m.
+Loyer 440 € avance sur charges 30 €
+rendez-vous par téléphone de préférence au 0389484153 ou 0607734024',
+  loyer_mensuel: 470,
+  adresse: 'Avenue de la 1ère Division Blindée, Mulhouse, Grand-Est, France',
+  ville: 'Mulhouse',
+  téléphone: '0389484153',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125101/r9dqqlitahhxcx522oy1.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125104/invg0vtv9qnyxy7univ5.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125105/qbc5t730lmxtyv1oiiqv.jpg"
+annonce.save!
+
+# 22
+annonce = Annonce.create!(
+  titre_annonce: 'F4 duplex',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '100',
+  pièces: '4',
+  description:
+  'Spacieux f4 d\'environ 100m2 en duplex au coeur du vignoble Alsacien.
+  Au premier étage, un vaste séjour et une cuisine non équipée.
+  A l\'étage, 3 pièces une salle d\'eau et un wc séparé.
+  Une cave complète ce descriptif. Le chauffage est électrique.
+  Un parking public à 100m.',
+  loyer_mensuel: 650,
+  adresse: 'Saint-Hippolyte, Grand-Est, France',
+  ville: 'Saint-Hippolyte',
+  téléphone: '0688505614',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125229/yv2ubittoyr1dkinpwet.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125233/wbnjagptrm9lnp33j9b7.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125238/k23zpocbqiyb6gkpgvyq.jpg"
+annonce.save!
+
+# 23
+annonce = Annonce.create!(
+  titre_annonce: 'Grand 2 pièces 70m² avec jardin',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '70',
+  pièces: '2',
+  description:
+  'Grand 2 pièces de 70 m² état neuf, non meublé, dans maison individuelle.
+Équipé d\'une cheminée dans le séjour, sol en marbre, jardin privatif et débarras.
+Cuisine semi-équipée (nombreux placards, plaques de cuisson et hotte aspirante).
+Salle de bain avec grande douche et WC.
+
+Fenêtres double vitrage.
+Chauffage collectif au gaz (compris dans les charges)
+
+Option garage fermé.
+
+Quartier calme et proche commerces.
+A 10 minutes en voiture de la gare de Colmar.
+
+Disponibilité : Libre fin d\'année (entrée possible plus tôt, à discuter)
+Prix : 630 € + 120 charges
+Caution : 1 mois de loyer (soit 630 €)
+
+Recherche locataires sérieux et calmes. Pas de frais d\'agence.
+Agence et démarcheurs s\'abstenir svp.
+
+Contacter de préférence directement par téléphone au 06.20.36.76.85.',
+  loyer_mensuel: 650,
+  adresse: 'Wintzenheim, Grand-Est, France',
+  ville: 'Wintzenheim',
+  téléphone: '0688505614',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125281/jkgnhzdm8e1xxac280g2.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125288/trujqgrxncz8qa5qr6hq.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125292/kpq49bv639hkhqhelgug.jpg"
+annonce.save!
+
+# 24
+annonce = Annonce.create!(
+  titre_annonce: 'Grande maison 160m²',
+  type_de_bien: 'Appartement',
+  meublé: 'Non meublé',
+  surface: '160',
+  pièces: '7',
+  description:
+  'à 5 min de Ferrette...
+grande maison lumineuse de 160 m² avec grange attenante, 3 garages et un grand espace vert (env.12 ares).
+RDC: cuisine équipée, salon et salle à manger, salle d\'eau et WC.
+1er étage: 4 grandes chambres et une salle de bain
+Grands combles aménageables.
+Chauffage au fioul ou bois
+DPE: D',
+  loyer_mensuel: 1150,
+  adresse: 'Kœstlach, Grand-Est, France',
+  ville: 'Kœstlach',
+  téléphone: '0768415151',
+  statut: "active",
+  price_cents: 37500,
+  user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
+)
+
+annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125330/zsnnuvhcd2l0fubxjl1b.jpg"
+annonce.remote_photo1_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125332/yezudylowvgayejkviox.jpg"
+annonce.remote_photo2_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571125334/toa6p70tjyzox7adcyqs.jpg"
+annonce.save!
