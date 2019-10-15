@@ -3,18 +3,29 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:add_friend, :accept_friend, :decline_friend]
 
   def index
-    if params.key?(:search)
-      if params[:search][:query].empty?
-        @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user)).order(created_at: :desc).page(params[:page]).per_page(10)
-        @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
-          {
-            lat: profile.latitude,
-            lng: profile.longitude,
-            infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
-          }
+    if user_signed_in?
+      if params.key?(:search)
+        if params[:search][:query].empty?
+          @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user)).order(created_at: :desc).page(params[:page]).per_page(10)
+          @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+            {
+              lat: profile.latitude,
+              lng: profile.longitude,
+              infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+            }
+          end
+        else
+          @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],30)).page(params[:page]).per_page(10)
+          @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+            {
+              lat: profile.latitude,
+              lng: profile.longitude,
+              infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+            }
+          end
         end
       else
-        @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],30)).page(params[:page]).per_page(10)
+        @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user )).order(created_at: :desc).page(params[:page]).per_page(10)
         @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
           {
             lat: profile.latitude,
@@ -24,13 +35,35 @@ class ProfilesController < ApplicationController
         end
       end
     else
-      @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user )).order(created_at: :desc).page(params[:page]).per_page(10)
-      @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
-        {
-          lat: profile.latitude,
-          lng: profile.longitude,
-          infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
-        }
+      if params.key?(:search)
+        if params[:search][:query].empty?
+          @profiles = policy_scope(Profile.where("statut = ?", "Agent")).order(created_at: :desc).page(params[:page]).per_page(10)
+          @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+            {
+              lat: profile.latitude,
+              lng: profile.longitude,
+              infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+            }
+          end
+        else
+          @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],30)).page(params[:page]).per_page(10)
+          @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+            {
+              lat: profile.latitude,
+              lng: profile.longitude,
+              infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+            }
+          end
+        end
+      else
+        @profiles = policy_scope(Profile.where("statut = ?", "Agent" )).order(created_at: :desc).page(params[:page]).per_page(10)
+        @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
+          {
+            lat: profile.latitude,
+            lng: profile.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+          }
+        end
       end
     end
   end

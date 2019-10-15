@@ -1213,7 +1213,7 @@ parking privé. Proche de la gare, arrêt bus à 200 m.
 Loyer 440 € avance sur charges 30 €
 rendez-vous par téléphone de préférence au 0389484153 ou 0607734024',
   loyer_mensuel: 470,
-  adresse: 'Avenue de la 1ère Division Blindée, Mulhouse, Grand-Est, France',
+  adresse: 'Avenue de la 1re Division Blindée, Mulhouse',
   ville: 'Mulhouse',
   téléphone: '0389484153',
   statut: "active",
