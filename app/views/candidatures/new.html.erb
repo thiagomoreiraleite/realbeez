@@ -1,4 +1,5 @@
-<h3 class="text-center mt-5 mb-5">Postuler pour gérer ce bien</h3>
+<h3 class="text-center mt-5 mb-3">Postuler pour gérer ce bien</h3>
+<div class="mb-5 text-center"><%= render "shared/tasks_agent" %></div>
 <div class="container center">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
@@ -11,12 +12,12 @@
     <div class="col-12 col-md-6 col-lg-8">
       <div class="row  border p-2" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
         <div class="col-12 col-md-6 col-lg-6" >
-          <p> Prénom : <%= current_user.prénom %> </p>
+          <p> Prénom : <%= current_user.prénom.capitalize %> </p>
           <p><i class="fas fa-phone-square mr-3"></i> <%= current_user.téléphone %></p>
           <p><i class="fas fa-map-marker-alt mr-3"></i> <%= current_user.adresse %></p>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
-          <p> Nom : <%= current_user.nom  %></p>
+          <p> Nom : <%= current_user.nom.capitalize  %></p>
           <p><i class="fas fa-envelope mr-3"></i> <%= current_user.email %></p>
           <p><i class="fas fa-city mr-3"></i> <%= current_user.ville %></p>
         </div>
