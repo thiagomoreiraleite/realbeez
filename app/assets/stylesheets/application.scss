@@ -14,9 +14,16 @@
 
 .hide-on-mobile {
   @media only screen and (max-width: 576px) {
-     background-color: white !important;
-     color: rgb(80, 80, 80) !important;
-     position: relative;
+    background-color: white !important;
+    color: rgb(80, 80, 80) !important;
+    position: relative;
+    div {
+      > p {
+        > span {
+          color: #3a3a3c !important;
+        }
+      }
+    }
   }
 }
 
