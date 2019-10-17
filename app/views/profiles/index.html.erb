@@ -1,6 +1,9 @@
 <div class="container mb-5">
   <div class="search" id="buddies-index-searchbar">
-    <h3 class="text-center mt-5 mb-4" style="margin: 10vh 0 4vh;">Trouver un Agent Realbeez</h3>
+    <div class="d-flex align-items-center justify-content-center mt-5 mb-4">
+      <h3 class="text-center" style="margin-bottom: 0px">Trouver un Agent Realbeez </h3>
+      <p class="ml-3 my-0 " style="font-size:16px"><%= render "shared/info_proprio" %></p>
+    </div>
     <div class="text-center mr-0" id="form-search">
       <!-- Search_bar -->
       <nav class="navbar navbar-light justify-content-around">
@@ -33,14 +36,14 @@
                       <p class="card-text"><%= profile.ville.titlecase %></p>
                     </div>
                     <div class="mt-3">
-                      <% unless profile.friends.any? { |f| f == current_user } %>
-                        <% if profile.requested_friends.any? { |f| f == current_user } %>
-                          <%= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
-                        <% else %>
-                          <%= link_to "Connecter", add_friend_path(profile), method: :post, class: "btn btn-success" %>
-                        <% end %>
-                      <% end %>
-                      <%= link_to "Voir Profil", profile_path(profile), class: "btn btn-link" %>
+                      <%# unless profile.friends.any? { |f| f == current_user } %>
+                      <%# if profile.requested_friends.any? { |f| f == current_user } %>
+                      <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
+                      <%# else %>
+                      <%= link_to "Confiez la gestion", profile_path(profile), class: "btn btn-success" %>
+                      <%# end %>
+                      <%# end %>
+                      <%#= link_to "Message", "", class: "btn btn-primary" %>
                     </div>
                   </div>
                 </div>
@@ -64,14 +67,14 @@
                         <p class="card-text"><%= profile.ville %></p>
                       </div>
                       <div class="mt-3">
-                        <% unless profile.friends.any? { |f| f == current_user } %>
-                          <% if profile.requested_friends.any? { |f| f == current_user } %>
-                            <%= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
-                          <% else %>
-                            <%= link_to "Connecter", add_friend_path(profile), method: :post, class: "btn btn-success" %>
-                          <% end %>
-                        <% end %>
-                        <%= link_to "Voir Profil", profile_path(profile), class: "btn btn-link" %>
+                        <%# unless profile.friends.any? { |f| f == current_user } %>
+                        <%# if profile.requested_friends.any? { |f| f == current_user } %>
+                        <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
+                        <%# else %>
+                        <%= link_to "Confier la gestion", profile_path(profile), class: "btn btn-success" %>
+                        <%# end %>
+                        <%# end %>
+                        <%#= link_to "Message", "", class: "btn btn-primary" %>
                       </div>
                     </div>
                   </div>

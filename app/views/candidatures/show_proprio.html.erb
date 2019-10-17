@@ -52,25 +52,25 @@
       <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @candidature.user.email %></p>
       <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @candidature.user.téléphone %></p>
   <% end %>
-  <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Connexions</p>
+  <!-- <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Connexions</p>
   <div class="col mr-0">
     <div class= "row d-flex">
-      <% if Candidature.find(params[:id]).user.friends == [] %>
+      <%# if Candidature.find(params[:id]).user.friends == [] %>
         <p class="" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune connexion actuellement"</p>
-      <% else %>
-        <% Candidature.find(params[:id]).user.friends.each do |friend| %>
+      <%# else %>
+        <%# Candidature.find(params[:id]).user.friends.each do |friend| %>
           <div class="col-4 col-md-2">
             <div class="text-center">
-              <%= link_to (cl_image_tag friend.photo, crop: :fill, style:"object-fit:cover; height: 50px; width: 50px", class: "rounded-circle center justify-content-center text-center"), profile_path(friend)  %>
+              <%#= link_to (cl_image_tag friend.photo, crop: :fill, style:"object-fit:cover; height: 50px; width: 50px", class: "rounded-circle center justify-content-center text-center"), profile_path(friend)  %>
             </div>
             <div class="text-center mt-1 mb-4 text-black-50" style="">
-              <%= friend.prénom.capitalize %>
+              <%#= friend.prénom.capitalize %>
             </div>
           </div>
-        <% end %>
-      <% end %>
+        <%# end %>
+      <%# end %>
     </div>
-  </div>
+  </div> -->
 </div>
 </div>
 </div>

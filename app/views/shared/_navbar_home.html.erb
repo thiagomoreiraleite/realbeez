@@ -32,7 +32,7 @@
           <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", profile_path(current_user), class: "dropdown-item" %>
-            <%= link_to "Mon réseau", my_friends_path, class: "dropdown-item" %>
+            <%#= link_to "Mon réseau", my_friends_path, class: "dropdown-item" %>
             <% if current_user.annonces !=  [] %>
               <div class="border-top">
                 <p class="text-center mt-2 mb-0" style="font-weight: bold; color: #D8A727">Propriétaire</p>
