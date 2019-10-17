@@ -20,7 +20,7 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                      <p class="card-text"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                      <p class="card-text"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
                   </div class="">
@@ -74,7 +74,7 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                      <p class="card-text"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                      <p class="card-text"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
                   </div class="">
@@ -109,7 +109,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Envoyée à : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                    <p class="card-text"> Envoyée à : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                     <%= link_to "Supprimer", candidature_path(candidature), method: :delete  %>
                   </div>
@@ -140,7 +140,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Géré par : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                    <p class="card-text"> Géré par : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>
                 </div class="">
@@ -170,7 +170,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Postulant : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.capitalize %></p>
+                    <p class="card-text"> Postulant : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>
                 </div class="">

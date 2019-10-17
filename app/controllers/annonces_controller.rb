@@ -122,6 +122,7 @@ class AnnoncesController < ApplicationController
     @annonce = Annonce.new(annonce_params)
     @annonce.user = current_user
     @annonce.statut = "active"
+    @annonce.price_cents = 37500
     authorize @annonce
     if @annonce.latitude == nil or @annonce.longitude == nil
       results = Geocoder.search("#{@annonce.ville}")

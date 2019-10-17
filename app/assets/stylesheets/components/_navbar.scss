@@ -16,6 +16,11 @@
 .navbar-lewagon-white {
   background-color: white;
   div {
+    > p {
+      > span {
+        color: #3a3a3c !important;
+      }
+    }
     > ul {
       > li {
         > a {

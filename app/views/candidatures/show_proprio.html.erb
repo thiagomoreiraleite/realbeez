@@ -3,7 +3,7 @@
     <div class="col-12 col-md-4">
     </div>
     <div class="d-flex col-12 col-md-8 align-items-center">
-      <h3 class="" >Profil de <%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom.capitalize %></h3>
+      <h3 class="" >Profil de <%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom[0].titlecase+"." %></h3>
       <% if @candidature.user.id == current_user.id %>
         <%= link_to "", edit_user_registration_path(current_user), class: "ml-3 fas fa-edit"%>
       <% end %>
@@ -17,7 +17,7 @@
           <div class="text-center mb-3">
             <%= image_tag (cl_image_path @candidature.user.photo), crop: :fill, style:"object-fit:cover; height: 30vh; width: 30vh", class: "rounded-circle center" %>
           </div>
-          <p class="font-weight-bold text-center mt-2 mb-0"><%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom.capitalize %></p>
+          <p class="font-weight-bold text-center mt-2 mb-0"><%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom[0].titlecase+"." %></p>
           <p class="text-center mt-0 mb-3" style="font-size: 12px" ><%= @candidature.user.ville %></p>
           <% unless @candidature.user.agent.nil? %>
             <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut  : <%= @candidature.user.agent.statut %></p>

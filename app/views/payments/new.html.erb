@@ -3,7 +3,7 @@
     <div class="col-md-3 mb-3"><%= image_tag @order.annonce.photo_url, width: '100%' %></div>
     <div class="col">
       <h3>Récapitulatif</h3>
-      <p>Paiement pour les services de <strong><%= User.find(@order.annonce.agent_user_id.to_i).prénom.capitalize %> <%= User.find(@order.annonce.agent_user_id.to_i).nom.capitalize %></strong></p>
+      <p>Paiement pour les services de <strong><%= User.find(@order.annonce.agent_user_id.to_i).prénom.capitalize %> <%= User.find(@order.annonce.agent_user_id.to_i).nom[0].titlecase+"." %></strong></p>
       <p>Pour la relocation du <strong><%= @order.annonce.titre_annonce %></strong> (<%= @order.annonce.adresse %>)</p>
       <p>Montant à payer : <strong><%= humanized_money_with_symbol @order.amount %></strong>
       </%></p>

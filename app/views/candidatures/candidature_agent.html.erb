@@ -20,7 +20,7 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                      <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
+                      <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
                   </div class="">
@@ -74,7 +74,7 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                      <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
+                      <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
                   </div class="">
@@ -109,7 +109,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Envoyée à : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
+                    <p class="card-text"> Envoyée à : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                     <%= link_to '', edit_candidature_path(candidature), class:"fas fa-edit" %> /
                     <%= link_to '', candidature_path(candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette candidature?'}, class:"fas fa-trash"  %>
@@ -141,7 +141,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
+                    <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>
                 </div class="">
@@ -171,7 +171,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.capitalize %></p>
+                    <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>
                 </div class="">

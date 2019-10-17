@@ -7,7 +7,7 @@
       <div class="d-flex flex-column justify-content-between">
         <div class="card-body">
           <div>
-            <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom.titlecase %></h5>
+            <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %></h5>
             <p class="card-text"><%= profile.ville %></p>
           </div>
           <div class="mt-3">

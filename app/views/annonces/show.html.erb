@@ -118,7 +118,7 @@
           <div class="row p-2 mt-5">
             <div class="col-12 col-md-8">
               <p style="font-weight: bold">Récuperer les clés du bien à louer auprès du propriétaire ci-dessous :</p>
-              <p>Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.capitalize %></p>
+              <p>Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.titlecase %></p>
               <p>Adresse du bien à louer : <%= @annonce.adresse %></p>
               <p><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.user.email %></p>
               <p><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
