@@ -7,13 +7,13 @@
       <p>Le soussigné : bailleur</p>
       <p><%= @candidature.annonce.user.civilité %> <%= @candidature.annonce.user.prénom.capitalize %> <%= @candidature.annonce.user.nom.capitalize %></p>
       <p>agissant en qualité de seuls propriétaires, vous mandatons par la présente afin de rechercher un locataire et faire toutes les démarches en vue de louer les biens mobiliers et immobiliers ci-après désignés aux loyers, charges et conditions cités ci-dessous.</p>
-      <h5 class="my-4"><strong>LE MANDATAIRE</strong></h5>
+      <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LE MANDATAIRE</strong></h5>
       <p><strong>Nom </strong>: Realbeez</p>
       <p><strong>Adresse</strong> : 90 avenue de Choisy, 75013 Paris</p>
       <p><strong>Représenté par</strong> : <%= @candidature.user.prénom %> <%= @candidature.user.nom %></p>
       <p><strong>RCS </strong>: En cours</p>
       <p><strong>Carte professionnelle</strong> : En cours</p>
-      <h5 class="my-4"><strong>LA SITUATION ET DESIGNATION DU BIEN</strong></h5>
+      <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA SITUATION ET DESIGNATION DU BIEN</strong></h5>
       <p><strong>Adresse</strong> : <%= @candidature.annonce.adresse %></p>
       <p><strong>Description</strong> : <%= @candidature.annonce.titre_annonce %> <%= link_to "voir détail de l'annonce", annonce_path(@candidature.annonce) , target: :_blank %> </p>
       <p><strong>Loyer</strong> : Le loyer initial mensuel sera de <%= @candidature.annonce.loyer_mensuel %> € charges
@@ -35,7 +35,7 @@
         En conséquence, pendant la durée du mandat, nous nous engageons à ratifier la location à tout preneur
         que vous nous présenterez et acceptant les loyers, charges et conditions des présentes.
         A défaut, nous serions personnellement responsables du paiement de la commission ci-après convenue.</p>
-      <h5 class="my-4"><strong>LA REMUNERATION</strong></h5>
+      <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA REMUNERATION</strong></h5>
       <p>Lorsque la location aura été effectivement conclue, votre rémunération sera exigible. Celle-ci est fixée à la
         somme de 375 € toutes taxes comprises (TVA à 20%).</p>
       <p><em>soit la rémunération de l'agent de 250 €, 62,5 € de TVA, 11 € de frais de transaction et le reste de frais de gestion de Realbeez</em></p>

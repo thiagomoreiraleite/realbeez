@@ -16,7 +16,8 @@
 }
 
 .btn-yellow-mustard-big:hover {
-background-color:#d69d00 ;
+background-color:#d69d00;
+color:white;
 }
 
 .btn-yellow-mustard {
@@ -35,11 +36,12 @@ background-color:#d69d00 ;
 }
 
 .btn-yellow-mustard:hover {
-background-color:#d69d00 ;
+background-color:#d69d00;
+color:white;
 }
 
 .btn-transparent-bold {
-  border: 1px solid #D8A727 ;
+  border: 1px solid #D8A727;
   padding: 4px 8px;
   border-radius: 4px;
   background-color: transparent;
@@ -53,13 +55,13 @@ background-color:#d69d00 ;
 
 .btn-transparent-bold:hover {
 border: 1px solid transparent;
-color: #FFF;
-background-color:#D8A727  ;
+color: white;
+background-color:#D8A727;
 }
 
 
 .btn-transparent {
-  border: 1px solid #D8A727 ;
+  border: 1px solid #D8A727;
   padding: 4px 8px;
   border-radius: 4px;
   background-color: transparent;
@@ -72,6 +74,6 @@ background-color:#D8A727  ;
 
 .btn-transparent:hover {
   border: 1px solid transparent;
-  color: #FFF;
+  color: white;
   background-color:#D8A727  ;
 }
