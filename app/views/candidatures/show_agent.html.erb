@@ -54,7 +54,7 @@
     </div>
     <div class="my-3 text-center">
       <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Accepter la gestion de ce bien </p>
-      <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter la gestion de ce bien?' }, class: "btn btn-success" %>
+      <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter la gestion de ce bien?' }, class: "btn btn-yellow-mustard" %>
       <%= link_to "Rejeter" , reject_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
     </div>
     <div class="mb-5">

@@ -1,8 +1,10 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon", style="background-color: white">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon py-0", style="background-color: white">
   <%= link_to root_path, class: "navbar-brand" do %>
     <div class="d-flex align-items-center">
       <%= image_tag "logo_rb.png", style: "" %>
-      <%= image_tag "logo_text.png", class: "ml-2", style: "width: 140px" %>
+      <%#= image_tag "logo_text.png", class: "ml-2", style: "width: 140px" %>
+      <p class="ml-2 mb-0 p-0" style="font-family: Simply Rounded"><span style="color:#3a3a3c; font-size: 35px">Real</span></p>
+      <p class="mb-0 p-0" style="color:#D8A727; font-size: 35px; font-family: Simply Rounded">beez</p>
     </div>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,19 +13,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Tarifs", details_path, class: "nav-link" %>
+        <%= link_to "Agents", profiles_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <%= link_to "Annonces", annonces_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Agents", profiles_path, class: "nav-link" %>
+        <%= link_to "Tarifs", details_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link" %>
       </li>
       <% if user_signed_in? %>
         <li class="nav-item dropdown">

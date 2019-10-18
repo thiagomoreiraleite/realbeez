@@ -11,6 +11,15 @@ const initMapbox = () => {
       style: 'mapbox://styles/mapbox/streets-v10'
     });
 
+    // disable map zoom when using scroll
+    map.scrollZoom.disable();
+
+    // Searchar
+    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken }));
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+
     // Add markers
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
@@ -23,7 +32,6 @@ const initMapbox = () => {
 
     fitMapToMarkers(map, markers);
 
-    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken }));
   }
 };
 
@@ -34,5 +42,6 @@ const fitMapToMarkers = (map, markers) => {
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
 };
+
 
 

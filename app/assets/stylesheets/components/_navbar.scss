@@ -13,6 +13,21 @@
   width: 40px;
 }
 
+.hide-on-mobile {
+  @media only screen and (max-width: 768px) {
+    background-color: white !important;
+    color: rgb(80, 80, 80) !important;
+    position: relative;
+    div {
+      > p {
+        > span {
+          color: #3a3a3c !important;
+        }
+      }
+    }
+  }
+}
+
 .navbar-lewagon-white {
   background-color: white;
   div {
@@ -24,9 +39,30 @@
     > ul {
       > li {
         > a {
+          color: rgba(0, 0, 0, 0.5) !important;
+        }
+      }
+    }
+  }
+}
+
+.navbar-lewagon-white {
+  background-color: white;
+ div {
+    > ul {
+      > li {
+        > a:hover {
           color: rgb(80, 80, 80) !important;
         }
       }
     }
   }
+}
+
+a.nav-link.hide-on-mobile.nav-white{
+  color: white;
+}
+
+a.nav-link.hide-on-mobile.nav-white:hover {
+  color: #D8A727;
 }

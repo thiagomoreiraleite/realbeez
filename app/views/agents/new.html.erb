@@ -64,7 +64,7 @@
                   <%= f.input :experience, label: "Décrivez vos expériences" %>
                   <%#= f.input :cv, label: "Merci de télépcharger votre CV" %>
                   <%#= f.input :cv_cache, as: :hidden %>
-                  <%= f.submit "Postuler", class: "btn btn-success mb-5" %>
+                  <%= f.submit "Postuler", class: "btn btn-yellow-mustard mb-5" %>
                   <ul>
                     <li>
                       <%= message %>
@@ -88,7 +88,7 @@
             <%#= f.input :cv, label: false  %>
             <%#= f.input :cv_cache, as: :hidden %>
             <% if current_user.agent == nil %>
-              <%= f.submit "Postuler", class: "btn btn-success" %>
+              <%= f.submit "Postuler", class: "btn btn-yellow-mustard" %>
               <%= link_to "Annuler", root_path, class:"btn btn-danger" %>
             <% else %>
               <p style="font-weight: bold; color:green">Déja postulé</p>

@@ -7,7 +7,7 @@
       <p>Pour la relocation du <strong><%= @order.annonce.titre_annonce %></strong> (<%= @order.annonce.adresse %>)</p>
       <p>Montant à payer : <strong><%= humanized_money_with_symbol @order.amount %></strong>
       </%></p>
-    <button id="pay" class="btn btn-primary mb-2">Payer</button>
+    <button id="pay" class="btn btn-transparent-bold mb-2">Payer</button>
     <!--  <p><em>Aucun frais ne sera débité avant que vous confirmiez que le bien soit effectivement loué</em></p> -->
     <!-- # Commented for the lecture, remove comments. -->
     <script src="https://js.stripe.com/v3/"></script>

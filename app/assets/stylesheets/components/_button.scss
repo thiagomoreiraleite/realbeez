@@ -1,4 +1,4 @@
-.btn-recherche {
+.btn-yellow-mustard-big {
   border: 2px solid transparent ;
   padding: 4px 8px;
   border-radius: 4px;
@@ -15,6 +15,63 @@
   }
 }
 
-.btn-recherche:hover {
+.btn-yellow-mustard-big:hover {
 background-color:#d69d00 ;
+}
+
+.btn-yellow-mustard {
+  border: 2px solid transparent ;
+  border-radius: 2px;
+  background-color: #D8A727;
+  transition: all .15s ease-in-out;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  i {
+    padding-right: 4px;
+  }
+}
+
+.btn-yellow-mustard:hover {
+background-color:#d69d00 ;
+}
+
+.btn-transparent-bold {
+  border: 1px solid #D8A727 ;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  font-weight: bold;
+  transition: all .15s ease-in-out;
+  color: #D8A727;
+  i {
+    padding-right: 4px;
+  }
+}
+
+.btn-transparent-bold:hover {
+border: 1px solid transparent;
+color: #FFF;
+background-color:#D8A727  ;
+}
+
+
+.btn-transparent {
+  border: 1px solid #D8A727 ;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: all .15s ease-in-out;
+  color: #D8A727;
+  i {
+    padding-right: 4px;
+  }
+}
+
+.btn-transparent:hover {
+  border: 1px solid transparent;
+  color: #FFF;
+  background-color:#D8A727  ;
 }

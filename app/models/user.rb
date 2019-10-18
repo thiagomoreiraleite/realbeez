@@ -14,4 +14,5 @@ class User < ApplicationRecord
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?
   has_many :orders, dependent: :destroy
+  has_many :mandats, dependent: :destroy
 end

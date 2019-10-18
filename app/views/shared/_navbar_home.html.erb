@@ -13,19 +13,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link hide-on-mobile", style:"color: white" %>
+        <%= link_to "Agents", profiles_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile", style:"color: white" %>
+        <%= link_to "Annonces", annonces_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Tarifs", details_path, class: "nav-link hide-on-mobile", style:"color: white" %>
+        <%= link_to "Tarifs", details_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Annonces", annonces_path, class: "nav-link hide-on-mobile", style:"color: white" %>
+        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Agents", profiles_path, class: "nav-link hide-on-mobile", style:"color: white" %>
+        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <% if user_signed_in? %>
         <li class="nav-item dropdown">

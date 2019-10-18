@@ -10,9 +10,17 @@ import { initAutocompleteAnnonce } from '../plugins/init_autocomplete';
 import { initAutocompleteProfile } from '../plugins/init_autocomplete';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'plugins/init_flatpickr'
+import { initSweetalert } from '../plugins/init_sweetalert';
 
 initMapbox();
 initAutocomplete();
 initAutocompleteAnnonce();
 initAutocompleteProfile();
 
+initSweetalert('#sweet-alert-demo', {
+  title: "A nice alert",
+  text: "This is a great alert, isn't it?",
+  icon: "success"
+}, (value) => {
+  console.log(value);
+});

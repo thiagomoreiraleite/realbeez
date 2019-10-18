@@ -12,7 +12,7 @@
             <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {value: ""}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
           </section>
           <section style=" text-align:center;">
-            <%= f.submit "Let's go!", class: "btn-recherche my-3" %>
+            <%= f.submit "Let's go!", class: "btn-yellow-mustard-big my-3" %>
           </section>
         <% end %>
       </nav>
@@ -40,7 +40,7 @@
                       <%# if profile.requested_friends.any? { |f| f == current_user } %>
                       <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                       <%# else %>
-                      <%= link_to "Confiez la gestion", profile_path(profile), class: "btn btn-success" %>
+                      <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
                       <%# end %>
                       <%# end %>
                       <%#= link_to "Message", "", class: "btn btn-primary" %>
@@ -71,7 +71,7 @@
                         <%# if profile.requested_friends.any? { |f| f == current_user } %>
                         <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                         <%# else %>
-                        <%= link_to "Confier la gestion", profile_path(profile), class: "btn btn-success" %>
+                        <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
                         <%# end %>
                         <%# end %>
                         <%#= link_to "Message", "", class: "btn btn-primary" %>

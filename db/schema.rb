@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_053139) do
+ActiveRecord::Schema.define(version: 2019_10_18_054605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 2019_10_15_053139) do
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
   end
 
+  create_table "mandats", force: :cascade do |t|
+    t.boolean "acceptation_proprio"
+    t.boolean "acceptation_agent"
+    t.string "statut"
+    t.bigint "candidature_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidature_id"], name: "index_mandats_on_candidature_id"
+    t.index ["user_id"], name: "index_mandats_on_user_id"
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.string "name"
     t.datetime "start_time"
@@ -162,6 +174,8 @@ ActiveRecord::Schema.define(version: 2019_10_15_053139) do
   add_foreign_key "availabilities", "users"
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
+  add_foreign_key "mandats", "candidatures"
+  add_foreign_key "mandats", "users"
   add_foreign_key "orders", "annonces"
   add_foreign_key "orders", "users"
   add_foreign_key "pictures", "annonces"

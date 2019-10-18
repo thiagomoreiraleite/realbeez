@@ -34,7 +34,7 @@
                       <%# if profile.requested_friends.any? { |f| f == current_user } %>
                       <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                       <% #else %>
-                      <%= link_to "Confier la gestion", add_friend_path(profile), class: "btn btn-success" %>
+                      <%= link_to "Sélectionner", add_friend_path(profile), class: "btn btn-transparent" %>
                       <%# end %>
                       <%# end %>
                       <%#= link_to "Voir Profil", profile_path(profile), class: "btn btn-link" %>
@@ -65,7 +65,7 @@
                         <%# if profile.requested_friends.any? { |f| f == current_user } %>
                         <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                         <%# else %>
-                        <%= link_to "Confier la gestion", add_friend_path(profile), class: "btn btn-success" %>
+                        <%= link_to "Sélectionner", add_friend_path(profile), class: "btn btn-transparent" %>
                         <%# end %>
                         <%# end %>
                         <%#= link_to "Voir Profil", profile_path(profile), class: "btn btn-link" %>

@@ -15,8 +15,8 @@ class AnnoncesController < ApplicationController
 
     if params.key?(:search)
       if params[:search][:query].empty?
-        @annonces = policy_scope(Annonce).order(created_at: :desc).page(params[:page]).per_page(9)
-        @markers = @annonces.where.not(latitude: nil, longitude: nil).where("statut = ?", "active").order(created_at: :desc).map do |annonce|
+        @annonces = policy_scope(Annonce.where("statut = ?", "active")).order(created_at: :desc).page(params[:page]).per_page(9)
+        @markers = @annonces.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
           {
             lat: annonce.latitude,
             lng: annonce.longitude,
@@ -34,8 +34,8 @@ class AnnoncesController < ApplicationController
         end
       end
     else
-      @annonces = policy_scope(Annonce).order(created_at: :desc).page(params[:page]).per_page(9)
-      @markers = @annonces.where.not(latitude: nil, longitude: nil).where("statut = ?", "active").order(created_at: :desc).map do |annonce|
+      @annonces = policy_scope(Annonce.where("statut = ?", "active")).order(created_at: :desc).page(params[:page]).per_page(9)
+      @markers = @annonces.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
         {
           lat: annonce.latitude,
           lng: annonce.longitude,

@@ -53,6 +53,7 @@ class CandidaturesController < ApplicationController
   end
 
   def create
+    # create as a proprio (but user_id will be assigned to agent.id)
     if params[:candidature][:annonce_id].present?
       @candidature = Candidature.new
       @candidature.annonce_id = params[:candidature][:annonce_id]
@@ -62,11 +63,12 @@ class CandidaturesController < ApplicationController
       @availabilities = Availability.where("user_id = ?", @candidature.user_id)
       authorize @candidature
       if @candidature.save
-        redirect_to candidature_proprio_path
+        redirect_to new_candidature_mandat_path(@candidature)
       else
         render :new
       end
     else
+      # create as an agent
       authorize @candidature = Candidature.new(candidature_params)
       @candidature.user = current_user
       @annonce = Annonce.find(params[:annonce_id])
@@ -75,7 +77,7 @@ class CandidaturesController < ApplicationController
       @candidature.statut = "pending"
       @availabilities = Availability.where("user_id = ?", current_user.id)
       if @candidature.save
-        redirect_to candidature_agent_path
+        redirect_to new_candidature_mandat_path(@candidature)
       else
         render :new
       end
@@ -107,7 +109,11 @@ class CandidaturesController < ApplicationController
     authorize @candidature
     @candidature.destroy
     @candidature.save
-    redirect_to request.referrer
+    if params[:from] == "annulation_mandat"
+      redirect_to root_path
+    else
+      redirect_to request.referrer
+    end
   end
 
   def accept_candidature
@@ -123,12 +129,12 @@ class CandidaturesController < ApplicationController
         candidature.save
       end
     end
-
-    if params[:from] == "proprio"
-      redirect_to candidature_proprio_path
-    else
-      redirect_to candidature_agent_path
-    end
+    redirect_to edit_mandat_path(@candidature.mandat.id)
+    # if params[:from] == "proprio"
+    #   redirect_to candidature_proprio_path
+    # else
+    #   redirect_to candidature_agent_path
+    # end
   end
 
   def reject_candidature

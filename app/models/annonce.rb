@@ -15,6 +15,7 @@ class Annonce < ApplicationRecord
   has_many :orders, dependent: :destroy
   validates :surface, numericality: { greater_than_or_equal_to: 0 }
   validates :pièces, numericality: { greater_than_or_equal_to: 0 }
+  has_many :mandats, through: :candidatures
 
   # belongs_to :user
   # include PgSearch::Model

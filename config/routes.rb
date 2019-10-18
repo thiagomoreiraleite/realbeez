@@ -28,6 +28,12 @@ Rails.application.routes.draw do
   get '/candidatures/:id/show_proprio', to: 'candidatures#show_proprio', as: :show_proprio
   get '/candidatures/:id/show_agent', to: 'candidatures#show_agent', as: :show_agent
 
+  # Mandat de gestion
+  resources :candidatures do
+    resources :mandats, only: [:new, :create]
+  end
+  resources :mandats, only: [:show, :edit, :update]
+
   # Friends
   get '/my_friends', to: 'profiles#my_friends', as: :my_friends
   post '/profiles/:id/add', to: 'profiles#add_friend', as: :add_friend

@@ -18,7 +18,7 @@
                 <li><strong>TOTAL</strong> <%= humanized_money_with_symbol order.amount %></li>
               </ul>
               <% if order.state == "pending" %>
-                <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-success"  %>
+                <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-yellow-mustard"  %>
                 <%= link_to "Annuler", order_path(order), data: { confirm: 'En annulant vous confirmer que le bien n\'a pas été loué.' }, method: :delete, class:"btn btn-danger"  %>
               <% end %>
             </div>
@@ -64,7 +64,7 @@
                 <li><strong>TOTAL</strong> <%= humanized_money_with_symbol order.amount %></li>
               </ul>
               <% if order.state == "pending" %>
-                <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-success"  %>
+                <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-yellow-mustard"  %>
                 <%= link_to "Annuler", order_path(order), data: { confirm: 'En annulant vous confirmer que le bien n\'a pas été loué.' }, method: :delete, class:"btn btn-danger"  %>
               <% end %>
             </div>
@@ -91,7 +91,7 @@
             <li><strong>TOTAL</strong> <%= humanized_money_with_symbol order.amount %></li>
           </ul>
           <% if order.state == "pending" %>
-            <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-success"  %>
+            <%= link_to "Payer", new_order_payment_path(order), class:"btn btn-yellow-mustard"  %>
             <%= link_to "Annuler", order_path(order), data: { confirm: 'En annulant vous confirmer que le bien n\'a pas été loué.' }, method: :delete, class:"btn btn-danger"  %>
           <% end %>
         </div>
