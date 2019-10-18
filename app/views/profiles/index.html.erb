@@ -26,11 +26,11 @@
           <div class="col-sm-8 offset-lg-0 col-lg-6">
             <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
               <div class="row no-gutters", style="border-radius: 30px">
-                <div class="col-md-4">
+                <div class="col-4">
                   <p class="mb-0"><%= image_tag (cl_image_path profile.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3" %></p>
                 </div>
-                <div class="col-md-8 d-flex flex-column justify-content-between">
-                  <div class="card-body">
+                <div class="col-8 d-flex flex-column justify-content-between">
+                  <div class="card-body ml-4">
                     <div>
                       <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
                       <p class="card-text"><%= profile.ville.titlecase %></p>
@@ -57,11 +57,11 @@
             <div class="col-sm-8 offset-lg-0 col-lg-6">
               <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
                 <div class="row no-gutters", style="border-radius: 30px">
-                  <div class="col-md-4">
+                  <div class="col-4">
                     <p class="mb-0"><%= image_tag (cl_image_path profile.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3" %></p>
                   </div>
-                  <div class="col-md-8 d-flex flex-column justify-content-between">
-                    <div class="card-body">
+                  <div class="col-8 d-flex flex-column justify-content-between">
+                    <div class="card-body ml-4">
                       <div>
                         <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %></h5>
                         <p class="card-text"><%= profile.ville %></p>
