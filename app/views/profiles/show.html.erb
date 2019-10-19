@@ -20,7 +20,11 @@
           <p class="font-weight-bold text-center mt-2 mb-0"><%= @profile.prénom.capitalize %> <%= @profile.nom[0].titlecase+"." %></p>
           <p class="text-center mt-0 mb-3" style="font-size: 12px" ><%= @profile.ville %></p>
           <% unless @profile.agent.nil? %>
-            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut  : <%= @profile.agent.statut %></p>
+            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut Agent
+              <% if @profile.agent.statut == "Approuvé" %>
+                <i class="fas fa-check-circle ml-1" style="color: green"></i>
+              <% end %>
+            </p>
             <% if @profile.id == current_user.id %>
               <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "", edit_agent_path(@profile.agent.id), class: "fas fa-edit" %> / <%= link_to "", agent_path(@profile.agent.id), method: :delete, class: "fas fa-trash" %></p>
             <% end %>
@@ -94,8 +98,9 @@
                   <%= simple_form_for @candidature do |f| %>
                     <%= f.input :annonce_id, label: "Choisir votre bien à louer", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id, label_html: { style: "font-weight: bold; color: #D8A727"} %>
                     <%= f.hidden_field :user_id, value: @profile.id %>
-                    <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent? Vous allez être rediriger vers le mandat de location.' }, class: "btn btn-yellow-mustard mt-4 mb-5 ", id:"" %>
+                    <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent? Vous allez être rediriger vers le mandat de location.' }, class: "btn btn-yellow-mustard mt-4 ", id:"" %>
                   <% end %>
+                  <p class="mb-5 mt-2" style="font-style: italic"><%= link_to "Votre annonce n'est pas encore publiée?", new_annonce_path("", {from: 'profile_page'}) %></p>
                 </div>
               </div>
             <% end %>

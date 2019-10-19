@@ -129,10 +129,11 @@ class AnnoncesController < ApplicationController
       @annonce.latitude = results.first.coordinates[0]
       @annonce.longitude = results.first.coordinates[1]
     end
+    raise
     if @annonce.save
+      redirect_to @annonce
       # for multiple upload photo
       # create_pictures
-      redirect_to @annonce
     else
       render :new
     end

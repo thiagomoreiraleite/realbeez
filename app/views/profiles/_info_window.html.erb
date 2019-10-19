@@ -15,7 +15,7 @@
             <%# if profile.requested_friends.any? { |f| f == current_user } %>
             <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
             <%# else %>
-            <%= link_to "Sélectionner", profile_path(profile), method: :post, class: "btn btn-transparent" %>
+            <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
             <%# end %>
             <%# end %>
             <%#= link_to "Voir profile", profile_path(profile), class: "btn btn-link p-0" %>

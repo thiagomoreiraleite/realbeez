@@ -20,7 +20,11 @@
           <p class="font-weight-bold text-center mt-2 mb-0"><%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom[0].titlecase+"." %></p>
           <p class="text-center mt-0 mb-3" style="font-size: 12px" ><%= @candidature.user.ville %></p>
           <% unless @candidature.user.agent.nil? %>
-            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut  : <%= @candidature.user.agent.statut %></p>
+            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut Agent
+              <% if @candidature.user.agent.statut == "Approuvé" %>
+                <i class="fas fa-check-circle ml-1" style="color: green"></i>
+              <% end %>
+            </p>
             <% if @candidature.user.id == current_user.id %>
               <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "", edit_agent_path(@candidature.user.agent.id), class: "fas fa-edit" %> / <%= link_to "", agent_path(@candidature.user.agent.id), method: :delete, class: "fas fa-trash" %></p>
             <% end %>
