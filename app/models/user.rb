@@ -15,4 +15,5 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_adresse?
   has_many :orders, dependent: :destroy
   has_many :mandats, dependent: :destroy
+  has_many :notifications, foreign_key: :recipient_id
 end

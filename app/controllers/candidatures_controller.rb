@@ -62,6 +62,11 @@ class CandidaturesController < ApplicationController
       @candidature.statut = "request"
       @availabilities = Availability.where("user_id = ?", @candidature.user_id)
       authorize @candidature
+
+      # Create a notification
+      Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_create_proprio", notifiable: @candidature)
+
+
       if @candidature.save
         redirect_to new_candidature_mandat_path(@candidature)
       else
@@ -76,6 +81,12 @@ class CandidaturesController < ApplicationController
       # @candidature.dispo_jours = params[:candidature][:dispo_jours]
       @candidature.statut = "pending"
       @availabilities = Availability.where("user_id = ?", current_user.id)
+
+      # Create a notification
+      Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_create_agent", notifiable: @candidature)
+
+
+
       if @candidature.save
         redirect_to new_candidature_mandat_path(@candidature)
       else

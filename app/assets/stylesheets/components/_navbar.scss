@@ -24,6 +24,15 @@
           color: #3a3a3c !important;
         }
       }
+      > ul {
+        > div {
+          > button {
+            > i {
+              color: #3a3a3c !important;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -40,6 +49,13 @@
       > li {
         > a {
           color: rgba(0, 0, 0, 0.5) !important;
+        }
+      }
+      > div {
+        > button {
+          > i {
+            color: #3a3a3c !important;
+          }
         }
       }
     }

@@ -117,7 +117,7 @@
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                     <% if candidature.mandat != nil %>
                       <div class="d-flex justify-content-between">
-                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-link pl-0" %>
+                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-transparent" %>
                         <div>
                           <% if candidature.mandat.acceptation_proprio == true %>
                             <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
@@ -165,7 +165,7 @@
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                     <% if candidature.mandat != nil %>
                       <div class="d-flex justify-content-between">
-                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-link pl-0" %>
+                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-transparent" %>
                         <div>
                           <% if candidature.mandat.acceptation_proprio == true %>
                             <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
