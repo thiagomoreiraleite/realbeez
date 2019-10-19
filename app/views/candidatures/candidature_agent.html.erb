@@ -20,11 +20,11 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                      <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
+                      <p class="card-text m-0"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
                   </div class="">
-                  <div class="m-3">
+                  <div class="mx-3 mb-3">
                     <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être rediriger vers le contrat de location.' }, class: "btn btn-yellow-mustard" %>
                     <%= link_to "Rejeter" , reject_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "Voir annonce", show_agent_path(candidature.annonce), class: "btn btn-link" %>
@@ -74,11 +74,11 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                      <p class="card-text"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
+                      <p class="card-text m-0"> Reçue de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
                   </div class="">
-                  <div class="m-3">
+                  <div class="mx-3 mb-3">
                         <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être rediriger vers le contrat de location.' }, class: "btn btn-yellow-mustard" %>
                         <%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "Voir annonce", annonce_path(candidature.annonce), class: "btn btn-link" %>
@@ -108,14 +108,31 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Envoyée à : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
+                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %>
+                      <span class="ml-2" style="font-size: 14px">
+                        <%= link_to '', edit_candidature_path(candidature), class:"fas fa-edit" %> /
+                        <%= link_to '', candidature_path(candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette candidature?'}, class:"fas fa-trash"  %>
+                      </span>
+                    </h5>
+                    <p class="card-text m-0"> Envoyée à : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
-                    <%= link_to '', edit_candidature_path(candidature), class:"fas fa-edit" %> /
-                    <%= link_to '', candidature_path(candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette candidature?'}, class:"fas fa-trash"  %>
                     <% if candidature.mandat != nil %>
-                      <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-link ml-3" %>
-                    <% end %> %>
+                      <div class="d-flex justify-content-between">
+                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-link pl-0" %>
+                        <div>
+                          <% if candidature.mandat.acceptation_proprio == true %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+                          <% else %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+                          <% end %>
+                          <% if candidature.mandat.acceptation_agent == true %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+                          <% else %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
                   </div>
                 </div class="">
               </div>
@@ -144,10 +161,24 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
+                    <p class="card-text m-0"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                      <% if candidature.mandat != nil %>
-                      <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-link pl-0" %>
+                      <div class="d-flex justify-content-between">
+                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-link pl-0" %>
+                        <div>
+                          <% if candidature.mandat.acceptation_proprio == true %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+                          <% else %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+                          <% end %>
+                          <% if candidature.mandat.acceptation_agent == true %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+                          <% else %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+                          <% end %>
+                        </div>
+                      </div>
                     <% end %>
                   </div>
                 </div class="">
@@ -177,7 +208,7 @@
                 <div class="card-body">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
-                    <p class="card-text"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
+                    <p class="card-text m-0"> Bien de : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>
                 </div class="">
