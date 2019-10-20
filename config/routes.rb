@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :meetings
   # Pages
   root to: 'pages#home'
   get '/tarifs', to: 'pages#details_tarifs', as: :details
@@ -18,6 +17,10 @@ Rails.application.routes.draw do
   get '/biens_a_gerer', to: 'annonces#biens_a_gerer', as: :biens_a_gerer
   get '/annonces/:id/checkout_agent', to: 'annonces#checkout_agent', as: :checkout_agent
   get '/annonces/:id/checkout_proprio', to: 'annonces#checkout_proprio', as: :checkout_proprio
+
+  # Meeting
+  resources :meetings
+  get '/meetings_proprio_view', to: 'meetings#meetings_proprio_view', as: :meetings_proprio_view
 
   # Candidatures
   resources :candidatures, only: [:edit, :update, :index, :create, :destroy]

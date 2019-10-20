@@ -88,10 +88,6 @@ class CandidaturesController < ApplicationController
     end
   end
 
-  def request_service
-
-  end
-
   def edit
     authorize @candidature
     @annonce = Candidature.find(params[:id]).annonce
@@ -113,6 +109,12 @@ class CandidaturesController < ApplicationController
     authorize @candidature
     @candidature.destroy
     @candidature.save
+    # In case a candidature is deleted, need to delete also all notification linked to it
+    @notifications = Notification.where("notifiable_id = ?", @candidature)
+    @notifications.each do |notification|
+      notification.destroy
+      notification.save
+    end
     if params[:from] == "annulation_mandat"
       redirect_to root_path
     else
@@ -141,7 +143,15 @@ class CandidaturesController < ApplicationController
       # Create a notification
       Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_accept_agent", notifiable: @candidature)
     end
-    redirect_to edit_mandat_path(@candidature.mandat.id)
+    if @candidature.mandat != nil
+      redirect_to edit_mandat_path(@candidature.mandat.id)
+    else
+      if params[:from] == "proprio"
+        redirect_to candidature_proprio_path
+      else
+        redirect_to candidature_agent_path
+      end
+    end
   end
 
   def reject_candidature

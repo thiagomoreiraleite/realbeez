@@ -9,15 +9,6 @@ class MeetingsController < ApplicationController
     @meetings_proprio = current_user.annonces.map{|a| a.meetings}
   end
 
-  def meetings_agent
-    @meetings_agent = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
-  end
-
-  def meetings_proprio
-    @meetings_proprio = current_user.annonces.map{|a| a.meetings}
-    raise
-  end
-
   # GET /meetings/1
   # GET /meetings/1.json
   def show
@@ -74,6 +65,12 @@ class MeetingsController < ApplicationController
   def destroy
     authorize @meeting
     @meeting.destroy
+    # In case a meeting is deleted, need to delete also all notification linked to it
+    @notifications = Notification.where("notifiable_id = ?", @meeting)
+    @notifications.each do |notification|
+      notification.destroy
+      notification.save
+    end
     respond_to do |format|
       format.html { redirect_to meetings_url, notice: 'Meeting was successfully destroyed.' }
       format.json { head :no_content }

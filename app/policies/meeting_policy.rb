@@ -7,6 +7,10 @@ class MeetingPolicy < ApplicationPolicy
     true
   end
 
+  def meetings_proprio_view?
+    true
+  end
+
   def create?
     true
   end

@@ -128,6 +128,8 @@
                           <% end %>
                         </div>
                       </div>
+                    <% else %>
+                      <%= link_to 'Signer le mandat', new_candidature_mandat_path(candidature), class:"btn btn-transparent" %>
                     <% end %>
                     <%#= link_to "Voir mandat", mandat_path(candidature.mandat.id), method: :delete  %>
                   </div>
@@ -179,6 +181,8 @@
                           <% end %>
                         </div>
                       </div>
+                    <% else %>
+                      <%= link_to 'Signer le mandat', new_candidature_mandat_path(candidature), class:"btn btn-transparent" %>
                     <% end %>
                   </div>
                 </div class="">

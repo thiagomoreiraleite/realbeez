@@ -1,6 +1,6 @@
 <div style="font-size: 12px">
   <!-- For Agents -->
-  <% if  params[:visites] != nil %>
+  <% if  params[:visites].nil? %>
     <div class="container">
       <p id="notice"><%= notice %></p>
       <h3 class="text-center mt-5 mb-4">Mon calendrier de visites</h3>
@@ -146,7 +146,7 @@
       </div>
     </div>
     <!-- For Landlords -->
-  <% else %>
+  <% elsif params[:visites][:from] == "proprio" %>
     <div class="container">
       <p id="notice"><%= notice %></p>
       <h3 class="text-center mt-5 mb-4">Calendrier de visites de mes agents</h3>

@@ -36,6 +36,6 @@ json.array!  @notifications do |notification|
   elsif notification.action == "candidature_reject_agent"
     json.url candidature_proprio_path
   elsif notification.action == "visit_agent"
-    json.url meetings_path
+    json.url meetings_path(visites: {from: 'proprio'})
   end
 end
