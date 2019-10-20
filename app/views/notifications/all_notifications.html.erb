@@ -1,0 +1,52 @@
+<div class="container" style="font-size: 12px">
+  <h3 class="text-center mt-5 mb-4">Mes notifications</h3>
+  <% if @notifications != [] %>
+    <div>
+      <table class="table table-hover" style="background-color: white">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Heure</th>
+            <th scope="col">Message</th>
+            <th scope="col" colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @notifications.each do |notification| %>
+            <tr>
+              <td><%= notification.created_at.strftime("%d/%m/%Y") %></td>
+              <td><%= notification.created_at.strftime("%H:%M") %></td>
+              <% if notification.action == "candidature_create_proprio" %>
+                <td><%= User.find(notification.actor_id).prénom.capitalize %> demande vos services.</td>
+                <td><%= link_to '', candidature_agent_path, class:"fas fa-search" %></td>
+              <% elsif notification.action == "candidature_create_agent"  %>
+                <td><%= User.find(notification.actor_id).prénom.capitalize %> propose ses services.</td>
+                <td><%= link_to '', candidature_proprio_path, class:"fas fa-search" %></td>
+              <% elsif notification.action == "candidature_accept_proprio"  %>
+                <td><%= User.find(notification.actor_id).prénom.capitalize %> accepte vos services.</td>
+                <td><%= link_to '', candidature_agent_path, class:"fas fa-search" %></td>
+              <% elsif notification.action == "candidature_accept_agent"  %>
+                <td><%= User.find(notification.actor_id).prénom.capitalize %> accepte votre demande.</td>
+                <td><%= link_to '', candidature_proprio_path, class:"fas fa-search" %></td>
+              <% elsif notification.action == "candidature_reject_proprio"  %>
+                <td><%= User.find(notification.actor_id).prénom.capitalize %> rejète vos services.</td>
+                <td><%= link_to '', candidature_agent_path, class:"fas fa-search" %></td>
+              <% elsif notification.action == "candidature_reject_agent"  %>
+                <td><%= User.find(notification.actor_id).prénom.capitalize %> rejète votre demande.</td>
+                <td><%= link_to '', candidature_proprio_path, class:"fas fa-search" %></td>
+              <% elsif notification.action == "visit_agent" %>
+                <td><%=  User.find(notification.actor_id).prénom.capitalize %> a prévu une visite.</td>
+                <td><%= link_to '', meetings_path, class:"fas fa-search" %></td>
+              <% end %>
+              <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    </div>
+  <% else %>
+    <h4 class="text-center" style="width: 100%;">"Aucune notification"</h4>
+  <% end %>
+  <%= link_to "Retour", root_path %>
+</div>

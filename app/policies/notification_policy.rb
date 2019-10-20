@@ -4,6 +4,14 @@ class NotificationPolicy < ApplicationPolicy
     true
   end
 
+  def all_notifications?
+    true
+  end
+
+  def destroy?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.all
