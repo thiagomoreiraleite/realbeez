@@ -2,7 +2,7 @@
 
 const notificationMethod = () => {
 
-  const urlPath = "http://localhost:3000"
+  const urlPath = origin
   const url = urlPath + "/notifications.json"
 
   // GET REQUEST
