@@ -106,13 +106,9 @@
                 <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
               </div>
               <div class="col-md-8 d-flex flex-column justify-content-between">
-                <div class="card-body">
+                <div class="card-body pb-2">
                   <div>
                     <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %>
-                      <span class="ml-2" style="font-size: 14px">
-                        <%= link_to '', edit_candidature_path(candidature), class:"fas fa-edit" %> /
-                        <%= link_to '', candidature_path(candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette candidature?'}, class:"fas fa-trash"  %>
-                      </span>
                     </h5>
                     <p class="card-text m-0"> Envoyée à : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
@@ -135,6 +131,10 @@
                     <% end %>
                   </div>
                 </div class="">
+                <div class="pl-4 mb-2" style="font-size: 14px">
+                  <%= link_to '', edit_candidature_path(candidature), class:"fas fa-edit" %> /
+                  <%= link_to '', candidature_path(candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette candidature?'}, class:"fas fa-trash"  %>
+                </div>
               </div>
             </div>
           </div>
