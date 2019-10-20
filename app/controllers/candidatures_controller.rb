@@ -62,11 +62,8 @@ class CandidaturesController < ApplicationController
       @candidature.statut = "request"
       @availabilities = Availability.where("user_id = ?", @candidature.user_id)
       authorize @candidature
-
       # Create a notification
       Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_create_proprio", notifiable: @candidature)
-
-
       if @candidature.save
         redirect_to new_candidature_mandat_path(@candidature)
       else
@@ -81,12 +78,8 @@ class CandidaturesController < ApplicationController
       # @candidature.dispo_jours = params[:candidature][:dispo_jours]
       @candidature.statut = "pending"
       @availabilities = Availability.where("user_id = ?", current_user.id)
-
       # Create a notification
       Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_create_agent", notifiable: @candidature)
-
-
-
       if @candidature.save
         redirect_to new_candidature_mandat_path(@candidature)
       else
@@ -140,12 +133,15 @@ class CandidaturesController < ApplicationController
         candidature.save
       end
     end
+    # Create a notification
+    if params[:from] == "proprio"
+      # Create a notification
+      Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_accept_proprio", notifiable: @candidature)
+    else
+      # Create a notification
+      Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_accept_agent", notifiable: @candidature)
+    end
     redirect_to edit_mandat_path(@candidature.mandat.id)
-    # if params[:from] == "proprio"
-    #   redirect_to candidature_proprio_path
-    # else
-    #   redirect_to candidature_agent_path
-    # end
   end
 
   def reject_candidature
@@ -153,8 +149,12 @@ class CandidaturesController < ApplicationController
     @candidature.statut = "rejeté"
     @candidature.save
     if params[:from] == "proprio"
+      # Create a notification
+      Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_reject_proprio", notifiable: @candidature)
       redirect_to candidature_proprio_path
     else
+      # Create a notification
+      Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_reject_agent", notifiable: @candidature)
       redirect_to candidature_agent_path
     end
   end

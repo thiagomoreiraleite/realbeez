@@ -2,7 +2,10 @@
 
 const notificationMethod = () => {
 
-  const urlPath = origin
+  // TEST
+  // const urlPath = "http://localhost:3000"
+  // PROD
+  const urlPath = "http://realbeez.com"
   const url = urlPath + "/notifications.json"
 
   // GET REQUEST
@@ -21,7 +24,6 @@ const notificationMethod = () => {
       notificationCount.insertAdjacentHTML("beforeend", countInput)
     });
 
-
   // POST REQUEST
   const dropdownMenuButton = document.querySelector("#dropdownMenuButton")
 
@@ -39,9 +41,9 @@ const notificationMethod = () => {
     })
 
   // Auto refresh every 20 seconds
-  document.addEventListener("DOMContentLoaded", () => {
-    setInterval('window.location.reload()', 20000); // Every 1 second, the `refresh` function is called.
-  });
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   setInterval('window.location.reload()', 20000); // Every 1 second, the `refresh` function is called.
+  // });
 }
 
 export { notificationMethod }

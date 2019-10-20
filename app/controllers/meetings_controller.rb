@@ -41,9 +41,10 @@ class MeetingsController < ApplicationController
     authorize @meeting = Meeting.new(meeting_params)
     @meeting.user_id = current_user.id
     @meeting.annonce_id = params[:meeting][:annonce_id]
+    # Create a notification
+    Notification.create(recipient: @meeting.annonce.user, actor: current_user, action: "visit_agent", notifiable: @meeting)
     respond_to do |format|
       if @meeting.save
-
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render :show, status: :created, location: @meeting }
       else

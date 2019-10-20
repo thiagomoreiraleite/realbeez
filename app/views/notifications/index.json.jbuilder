@@ -8,7 +8,17 @@ json.array!  @notifications do |notification|
     if notification.action == "candidature_create_proprio"
       json.type "demande vos services"
     elsif notification.action == "candidature_create_agent"
-      json.type "postule pour louer votre bien"
+      json.type "propose ses services"
+    elsif notification.action == "candidature_accept_proprio"
+      json.type "accepte vos services"
+    elsif notification.action == "candidature_accept_agent"
+      json.type "accepte votre demande"
+    elsif notification.action == "candidature_reject_proprio"
+      json.type "rejète vos services"
+    elsif notification.action == "candidature_reject_agent"
+      json.type "rejète votre demande"
+    elsif notification.action == "visit_agent"
+      json.type "a prévu une visite"
     end
   end
 
@@ -17,5 +27,15 @@ json.array!  @notifications do |notification|
     json.url candidature_agent_path
   elsif notification.action == "candidature_create_agent"
     json.url candidature_proprio_path
+  elsif notification.action == "candidature_accept_proprio"
+    json.url candidature_agent_path
+  elsif notification.action == "candidature_accept_agent"
+    json.url candidature_proprio_path
+  elsif notification.action == "candidature_reject_proprio"
+    json.url candidature_agent_path
+  elsif notification.action == "candidature_reject_agent"
+    json.url candidature_proprio_path
+  elsif notification.action == "visit_agent"
+    json.url meetings_path
   end
 end

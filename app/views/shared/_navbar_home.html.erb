@@ -51,7 +51,7 @@
               <div class="border-top">
                 <p class="text-center mt-2 mb-0" style="font-weight: bold; color: #D8A727">Propriétaire</p>
                 <%= link_to "Mes annonces", mes_annonces_path, class: "dropdown-item" %>
-                <%= link_to "Visites de mes agents", meetings_path(visites: {from: 'proprio'}), class: "dropdown-item" %>
+                <%= link_to "Visites de mes agents", meetings_path, class: "dropdown-item" %>
                 <%= link_to "Candidatures d'agents", candidature_proprio_path, class: "dropdown-item" %>
                 <%= link_to "Mes paiements", orders_path, class: "dropdown-item" %>
               </div>
@@ -60,7 +60,7 @@
               <div class="border-top">
                 <p class="text-center mt-2 mb-0" style="font-weight: bold; color: #D8A727">Agent Realbeez</p>
                 <%= link_to "Mes biens à gérer", biens_a_gerer_path, class: "dropdown-item" %>
-                <%= link_to "Mes visites", meetings_path, class: "dropdown-item" %>
+                <%= link_to "Mes visites", meetings_path(visites: {from: 'agent'}), class: "dropdown-item" %>
                 <%= link_to "Mes candidatures", candidature_agent_path, class: "dropdown-item" %>
               </div>
             <% end %>
