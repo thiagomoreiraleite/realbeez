@@ -37,6 +37,9 @@
               <% elsif notification.action == "visit_agent" %>
                 <td><%=  User.find(notification.actor_id).prénom.capitalize %> a prévu une visite.</td>
                 <td><%= link_to '', meetings_path(visites: {from: 'proprio'}), class:"fas fa-search" %></td>
+              <% elsif notification.action == "rating_agent" %>
+                <td><%=  User.find(notification.actor_id).prénom.capitalize %> a publié un avis.</td>
+                <td><%= link_to '', profile_path(current_user), class:"fas fa-search" %></td>
               <% end %>
               <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
             </tr>

@@ -9,6 +9,8 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     @agent = Agent.find(params[:agent_id])
     @review.agent = @agent
+    # Create a notification
+    Notification.create(recipient: @agent.user, actor: current_user, action: "rating_agent", notifiable: @review)
     if @review.save
       redirect_to profile_path(@agent.user)
     else

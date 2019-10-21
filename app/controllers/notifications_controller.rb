@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
   end
 
   def all_notifications
-    authorize @notifications = policy_scope(Notification.where("recipient_id = ?", current_user.id))
+    authorize @notifications = policy_scope(Notification.where("recipient_id = ?", current_user.id)).order(created_at: :desc)
   end
 
   def destroy

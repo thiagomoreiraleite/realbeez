@@ -19,6 +19,8 @@ json.array!  @notifications do |notification|
       json.type "rejète votre demande"
     elsif notification.action == "visit_agent"
       json.type "a prévu une visite"
+    elsif notification.action == "rating_agent"
+      json.type "a publié un avis"
     end
   end
 
@@ -37,5 +39,7 @@ json.array!  @notifications do |notification|
     json.url candidature_proprio_path
   elsif notification.action == "visit_agent"
     json.url meetings_path(visites: {from: 'proprio'})
+  elsif notification.action == "rating_agent"
+    json.url profile_path(current_user)
   end
 end
