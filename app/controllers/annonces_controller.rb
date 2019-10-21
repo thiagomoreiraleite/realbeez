@@ -132,10 +132,12 @@ class AnnoncesController < ApplicationController
     @annonce.statut = "active"
     @annonce.price_cents = 37500
     authorize @annonce
-    if @annonce.latitude == nil or @annonce.longitude == nil
-      results = Geocoder.search("#{@annonce.ville}")
-      @annonce.latitude = results.first.coordinates[0]
-      @annonce.longitude = results.first.coordinates[1]
+    unless @annonce.ville == ""
+      if @annonce.latitude == nil or @annonce.longitude == nil
+        results = Geocoder.search("#{@annonce.ville}")
+        @annonce.latitude = results.first.coordinates[0]
+        @annonce.longitude = results.first.coordinates[1]
+      end
     end
     if @annonce.save
       redirect_to @annonce

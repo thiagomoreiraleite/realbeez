@@ -38,9 +38,9 @@ const notificationMethod = () => {
     })
 
   // Auto refresh every 30 seconds
-  document.addEventListener("DOMContentLoaded", () => {
-    setInterval('window.location.reload()', 30000);
-  });
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   setInterval('window.location.reload()', 30000);
+  // });
 }
 
 export { notificationMethod }

@@ -39,7 +39,7 @@
                   <% if annonce.checkout_agent != "check" %>
                     <div class="text-center my-2 " style="">
                       <!-- <p style="font-weight: bold; color: #D8A727">Valider lorsque ce bien est loué</p> -->
-                      <%= link_to "Valider lorsque ce bien est loué", checkout_agent_path(annonce), class: "btn btn-transparent-bold", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %>
+                      <%= link_to "Vous avez loué ce bien!", checkout_agent_path(annonce), class: "btn btn-transparent-bold", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %>
                     </div>
                   <% else %>
                     <!-- flat is rented and checked out by proprio -->
@@ -67,7 +67,7 @@
                     <div class="text-center my-2" style="">
                       <%= form_tag orders_path do %>
                         <%= hidden_field_tag 'annonce_id', annonce.id %>
-                        <%= submit_tag 'Votre bien a été loué', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
+                        <%= submit_tag 'J\'ai loué mon bien!', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
                       <% end %>
                     </div>
                   <% else %>
@@ -158,7 +158,7 @@
                       <% if annonce.checkout_agent != "check" %>
                         <div class="text-center my-2 " style="">
                           <!-- <p style="font-weight: bold; color: #D8A727">Valider lorsque ce bien est loué</p> -->
-                          <%= link_to "Valider lorsque ce bien est loué", checkout_agent_path(annonce), class: "btn btn-transparent-bold", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %>
+                          <%= link_to "Vous avez loué ce bien!", checkout_agent_path(annonce), class: "btn btn-transparent-bold", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %>
                         </div>
                       <% else %>
                        <!-- flat is rented and checked out by proprio -->
@@ -186,7 +186,7 @@
                         <div class="text-center my-2" style="">
                           <%= form_tag orders_path do %>
                             <%= hidden_field_tag 'annonce_id', annonce.id %>
-                            <%= submit_tag 'Votre bien a été loué', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
+                            <%= submit_tag 'J\'ai loué mon bien!', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
                           <% end %>
                         </div>
                       <% else %>
@@ -268,7 +268,7 @@
                       <% if annonce.checkout_agent != "check" %>
                         <div class="text-center my-2 " style="">
                           <!-- <p style="font-weight: bold; color: #D8A727">Valider lorsque ce bien est loué</p> -->
-                          <%= link_to "Valider lorsque ce bien est loué", checkout_agent_path(annonce), class: "btn btn-transparent-bold", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %>
+                          <%= link_to "Vous avez loué ce bien!", checkout_agent_path(annonce), class: "btn btn-transparent-bold", style:"font-size: 14px",data: { confirm: 'Vous confirmer que ce bien a été loué.' } %>
                         </div>
                       <% else %>
                        <!-- flat is rented and checked out by proprio -->
@@ -296,7 +296,7 @@
                         <div class="text-center my-2" style="">
                           <%= form_tag orders_path do %>
                             <%= hidden_field_tag 'annonce_id', annonce.id %>
-                            <%= submit_tag 'Votre bien a été loué', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
+                            <%= submit_tag 'J\'ai loué mon bien!', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
                           <% end %>
                         </div>
                       <% else %>

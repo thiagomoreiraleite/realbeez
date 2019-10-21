@@ -45,7 +45,7 @@
         <!-- =========================================== -->
         <li class="nav-item dropdown">
           <%#= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="nav-link dropdown-toggle p-0 m-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag (cl_image_path current_user.photo), crop: :fill, style: "height: 40px; width: 40px; object-fit: cover; border-radius: 50%" %>
           </div>
           <!-- PROFILE DROPDOWN -->

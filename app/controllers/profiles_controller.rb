@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:add_friend, :accept_friend, :decline_friend]
 
   def index
+
     if user_signed_in?
       if params.key?(:search)
         if params[:search][:query].empty?
@@ -132,6 +133,16 @@ class ProfilesController < ApplicationController
     @meeting = Meeting.new
     @availabilities = Availability.where("user_id = ?", @profile.id)
     @availability = Availability.where("user_id = ? && jours = ?", @profile.id, params[:jours])
+    # RATINGS
+    unless @profile.agent.reviews ==[]
+      @sum_ratings = @profile.agent.reviews.inject(0) {|sum, i|  sum + i.rating }.to_f
+      @nb_ratings = @profile.agent.reviews.count.to_f
+      @average_ratings = (@sum_ratings/@nb_ratings)
+      @full_stars = @average_ratings.to_i
+      @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1
+      @empty_stars = 5 - @full_stars - @half_full_stars
+      @reviews = @profile.agent.reviews.order(created_at: :desc)
+    end
   end
 
   def add_friend

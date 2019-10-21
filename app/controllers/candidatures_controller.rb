@@ -39,6 +39,15 @@ class CandidaturesController < ApplicationController
     @profile = @candidature.user
     @availabilities = Availability.where("user_id = ?", @candidature.user.id)
     @availability = Availability.where("user_id = ? && jours = ?", @candidature.user.id, params[:jours])
+    unless @candidature.user.agent.reviews ==[]
+      @sum_ratings = @candidature.user.agent.reviews.inject(0) {|sum, i|  sum + i.rating }.to_f
+      @nb_ratings = @candidature.user.agent.reviews.count.to_f
+      @average_ratings = (@sum_ratings/@nb_ratings)
+      @full_stars = @average_ratings.to_i
+      @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1
+      @empty_stars = 5 - @full_stars - @half_full_stars
+      @reviews = @candidature.user.agent.reviews.order(created_at: :desc)
+    end
   end
 
   def show_agent

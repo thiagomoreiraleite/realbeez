@@ -66,4 +66,12 @@ Rails.application.routes.draw do
   resources :notifications, only: [:new, :create, :index, :destroy], defaults: { format: :json }
   post '/notifications/mark_as_read', to: 'notifications#mark_as_read', as: :mark_as_read, defaults: { format: :json }
   get '/notifications/all_notifications', to: 'notifications#all_notifications', as: :all_notifications
+
+  # Reviews
+  resources :agents do
+    resources :reviews, only: [:new, :create]
+  end
+
+  resources :reviews, only: [:index]
+
 end

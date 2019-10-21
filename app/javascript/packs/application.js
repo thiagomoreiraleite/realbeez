@@ -11,12 +11,14 @@ import { initAutocompleteProfile } from '../plugins/init_autocomplete';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'plugins/init_flatpickr'
 import { notificationMethod } from './notification';
+import { initStarRating } from '../plugins/init_star_rating';
 
 initMapbox();
 initAutocomplete();
 initAutocompleteAnnonce();
 initAutocompleteProfile();
 notificationMethod();
+initStarRating();
 
 
 

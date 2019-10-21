@@ -1,0 +1,13 @@
+<h3 class="text-center mt-5 mb-4">Noter votre agent</h3>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 mt-3 mb-5">
+      <%= simple_form_for [@agent, @review] do |f| %>
+        <%= f.input :content, label: "Votre commentaire" %>
+        <%= f.input :rating, collection: (1..5).to_a, label: false %>
+        <%= f.submit "Publier", class:"btn btn-yellow-mustard mt-3" %>
+        <%= link_to "Annuler", profiles_path, class:"mt-3 btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>

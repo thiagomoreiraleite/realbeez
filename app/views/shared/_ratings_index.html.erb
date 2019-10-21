@@ -1,0 +1,21 @@
+<% unless profile.agent.reviews == [] %>
+  <%  @sum_ratings = profile.agent.reviews.inject(0) {|sum, i|  sum + i.rating }.to_f%>
+  <% @nb_ratings = profile.agent.reviews.count.to_f%>
+  <% @average_ratings = (@sum_ratings/@nb_ratings)%>
+  <% @full_stars = @average_ratings.to_i%>
+  <% @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1 %>
+  <% @empty_stars = 5 - @full_stars - @half_full_stars%>
+  <% @reviews = profile.agent.reviews.order(created_at: :desc)%>
+  <div style="font-size: 14px">
+    <% @full_stars.times do  %>
+      <i class="fas fa-star" style="color:#D8A727"></i>
+    <% end %>
+    <% @half_full_stars.times do  %>
+      <i class="fas fa-star-half-alt" style="color:#D8A727"></i>
+    <% end %>
+    <% @empty_stars.times do  %>
+      <i class="far fa-star mt-2" style="color:#D8A727"></i>
+    <% end %>
+    <%= @average_ratings.round(1) %>
+  </div>
+<% end %>

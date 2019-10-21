@@ -83,4 +83,7 @@ a.nav-link.hide-on-mobile.nav-white:hover {
   color: #D8A727;
 }
 
-
+// To remove the margin-left of the caret
+.dropdown-toggle::after{
+    margin-left: 0 !important;
+}

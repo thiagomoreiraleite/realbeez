@@ -16,4 +16,5 @@ class User < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :mandats, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id
+  has_many :reviews
 end

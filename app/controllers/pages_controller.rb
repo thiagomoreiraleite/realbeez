@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
 
-    if user_signed_in?
+    if user_signed_in? && current_user.ville != nil
       ville = current_user.ville
       if Annonce.where("statut = ?", "active" ).near("#{ville}",30) == []
         @annonces = Annonce.where("statut = ?", "active").near('paris',30).limit(3)

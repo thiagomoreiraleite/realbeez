@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn-transparent-bold" data-toggle="modal" data-target="#exampleModalLong" >
+  <i class="fas fa-info-circle mr-1"></i>Tous les avis
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle"> <%= @nb_ratings.to_i %> notations pour une moyenne de <%= @average_ratings.round(2) %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left" style="">
+        <% @reviews.each do |review| %>
+          <div class="mt-3 pt-2 border-top border-light" style="font-size: 14px">
+            <p class="m-0 mb-2"><%= review.user.prénom.capitalize %> le <%= review.created_at.strftime("%d/%m/%Y") %></p>
+            <% review.rating.times do  %>
+              <i class="fas fa-star" style="color:#D8A727"></i>
+            <% end %>
+            <% (5 - review.rating).times do  %>
+              <i class="far fa-star" style="color:#D8A727"></i>
+            <% end %>
+            <% if review.content != "" %>
+              <p class="m-0"><%= simple_format(review.content.capitalize) %></p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
