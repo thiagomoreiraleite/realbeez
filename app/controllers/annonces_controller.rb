@@ -32,6 +32,14 @@ class AnnoncesController < ApplicationController
             infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
           }
         end
+        @annonces_no_result = policy_scope(Annonce.near("paris",30)).where("statut = ?", "active").page(params[:page]).per_page(9)
+        @markers = @annonces_no_result.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
+          {
+            lat: annonce.latitude,
+            lng: annonce.longitude,
+            infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+          }
+        end
       end
     else
       @annonces = policy_scope(Annonce.where("statut = ?", "active")).order(created_at: :desc).page(params[:page]).per_page(9)
