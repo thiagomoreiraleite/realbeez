@@ -29,22 +29,26 @@
       </li>
       <% if user_signed_in? %>
         <!--============= NOTIFICATIONS================ -->
-        <div class="d-flex mx-2">
+        <div class="d-flex mx-2 align-items-center">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle p-0" style="background-color: transparent; border-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-bell" style="font-size: 20px; position:"></i>
+              <i class="fas fa-bell" style="font-size: 20px; "></i>
             </button>
             <div id="notification-start" class="dropdown-menu dropdown-menu-right" style="" aria-labelledby="dropdownMenuButton">
               <!-- <a  class="dropdown-item" href="#"></a> -->
               <%= link_to "Voir toutes les notifications", all_notifications_path, class:"pl-4 dropdown-item", style:"" %>
             </div>
           </div>
-          <div id="count" class="border text-center" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1; position:;margin-right: ; top:;">
+          <div id="count" class="border text-center mb-3" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1; position:;margin-right: ; top:;">
           </div>
         </div>
         <!-- =========================================== -->
         <li class="nav-item dropdown">
-          <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%#= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= image_tag (cl_image_path current_user.photo), crop: :fill, style: "height: 40px; width: 40px; object-fit: cover; border-radius: 50%" %>
+          </div>
+          <!-- PROFILE DROPDOWN -->
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Profile", profile_path(current_user), class: "dropdown-item" %>
             <%#= link_to "Mon réseau", my_friends_path, class: "dropdown-item" %>
