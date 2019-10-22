@@ -3,7 +3,11 @@
     <div class="col-12 col-md-6 col-lg-6">
       <div class="center">
         <h3 class="text-center mt-5 mb-4">Ajouter une visite</h3>
-        <%= render 'form', meeting: @meeting %>
+        <% if @annonces != [] %>
+          <%= render 'form', meeting: @meeting %>
+        <% else %>
+          <h4 class="my-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez aucun bien en gestion actuellement"</h4>
+        <% end %>
         <%= link_to 'Retour', meetings_path %>
       </div>
     </div>
