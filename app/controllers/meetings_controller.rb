@@ -18,7 +18,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     authorize @meeting = Meeting.new
-    @annonces = Annonce.where("agent_user_id = ?", current_user.id.to_s)
+    @annonces = Annonce.where("agent_user_id = ? AND statut = ?", current_user.id.to_s, "active")
   end
 
   # GET /meetings/1/edit
