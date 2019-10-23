@@ -1,0 +1,37 @@
+<div class="container">
+  <h3 class="text-center mt-5 mb-5">Toutes mes conversations</h3>
+  <% if @conversations_mailbox != [] %>
+    <div style="font-size: 12px">
+      <table class="table table-hover" style="background-color: white">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">À</th>
+            <th scope="col">Messages</th>
+            <th scope="col" colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @conversations_mailbox.each do |conversation| %>
+            <tr>
+              <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %></td>
+              <td>
+                <% conversation.participants.each do |participant| %>
+                  <% if participant != current_user %>
+                    <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %></td>
+              <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+              <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    </div>
+  <% else %>
+    <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucune notification actuellement"</h4>
+  <% end %>
+</div>

@@ -27,9 +27,12 @@
       <li class="nav-item">
         <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
+      <div class="d-flex align-items-center px-2">
+        <li><%= link_to "", conversations_path, class:"fas fa-envelope", style:"color:white; font-size: 20px" %></li>
+      </div>
       <% if user_signed_in? %>
         <!--============= NOTIFICATIONS================ -->
-        <div class="d-flex mx-2 align-items-center">
+        <div class="d-flex px-2 align-items-center">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle p-0" style="background-color: transparent; border-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-bell" style="font-size: 20px; "></i>

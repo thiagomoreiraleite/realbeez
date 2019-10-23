@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-6">
+      <h3 class="text-center my-5">Vos messages</h3>
+      <p class="" style="font-weight:bold; color: #D8A727">Objet : <%= @conversation.subject %></p>
+      <div class="text-center mb-5">
+        <%= form_for :message, url: conversation_messages_path(@conversation) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :body, placeholder: "Votre message", rows: 4, class: "form-control" %>
+          </div>
+          <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right' %>
+        <% end %>
+      </div>
+      <div class="mb-5">
+        <% if @conversation.receipts_for(current_user) != [] %>
+          <% @conversation.receipts_for(current_user).order(created_at: :desc).each do |comment| %>
+            <div class="border my-3 p-2" style="background-color: white; border-radius: 30px">
+              <div id='forumstart'></div>
+              <%# dayCount = (Time.new(Time.now - comment.created_at).day) -1 %>
+              <!-- IF DAYS == 0 THEN DONT SHOW DAYS -->
+              <div class="m-0 text-center" style="font-weight: bold">
+                <!-- TODO: CHANGE NAME INTO LINK TO USER -->
+                <% if comment.message.sender.statut == "Agent"   %>
+                  <%= link_to comment.message.sender.prénom.capitalize, profile_path(comment.message.sender) %>
+                <% else %>
+                  <%= comment.message.sender.prénom.capitalize%>
+                <% end %>
+                <!-- <%# if dayCount != 0 %> - <%#= dayCount unless dayCount == 0 %> days ago<%# else %> -->
+                - <%= comment.created_at.strftime("%d/%m/%Y") %> <%= comment.created_at.strftime("%H:%M") %>
+                <%#= comment.created_at.strftime("%H:%M") %>
+                <%# end %></div>
+              <div class="text-left px-4">
+                <p  style=""><%= simple_format(comment.message.body) %></p>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="m-3 comments">
+            <!-- IF DAYS == 0 THEN DONT SHOW DAYS -->
+            <h5 class="m-0">"There is no comments"</h5>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

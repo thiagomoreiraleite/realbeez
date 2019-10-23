@@ -32,6 +32,13 @@
             }
           }
         }
+        > div {
+          > li {
+            > a {
+              color: rgba(0, 0, 0, 0.5) !important;
+            }
+          }
+        }
       }
     }
   }
@@ -54,6 +61,13 @@
       > div {
         > div {
           > button {
+            color: rgba(0, 0, 0, 0.5) !important;
+          }
+        }
+      }
+      > div {
+        > li {
+          > a {
             color: rgba(0, 0, 0, 0.5) !important;
           }
         }

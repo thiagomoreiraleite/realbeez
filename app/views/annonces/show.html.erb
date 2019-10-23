@@ -92,10 +92,17 @@
             <p style="font-weight: bold"><%= @agent.prénom.titlecase %></p>
             <p><i class="fas fa-envelope mr-3 mr-3"></i> <%= @agent.email %></p>
             <p class="m-0"><i class="fas fa-phone-square mr-3"></i> <%= @agent.téléphone %></p>
+            <!-- send a messge -->
+            <div class="d-flex justify-content-around mt-3">
+              <%= link_to "Contacter", new_conversation_path(message: {to: @agent.profile.id }), class: "btn btn-transparent mb-1 text-center" %>
+            </div>
           <% else %>
             <!-- if no agent show proprio info  -->
             <p><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.email %></p>
             <p class="m-0"><i class="fas fa-phone-square mr-3"></i> <%= @annonce.téléphone %></p>
+            <div class="d-flex justify-content-around mt-3">
+              <%= link_to "Contacter", new_conversation_path(message: {to: @annonce.user.id }), class: "btn btn-transparent mb-1 text-center" %>
+            </div>
           <% end %>
         </div>
       <% end %>

@@ -71,7 +71,11 @@ Rails.application.routes.draw do
   resources :agents do
     resources :reviews, only: [:new, :create]
   end
-
   resources :reviews, only: [:index]
+
+  # Conversations and messages
+  resources :conversations do
+    resources :messages
+  end
 
 end

@@ -49,6 +49,10 @@
           <!-- if no agent show proprio info  -->
           <p><i class="fas fa-envelope mr-3 mr-3"></i> <%= @candidature.annonce.email %></p>
           <p class="m-0"><i class="fas fa-phone-square mr-3"></i> <%= @candidature.annonce.téléphone %></p>
+          <!-- send a messge -->
+          <div class="d-flex justify-content-around mt-3">
+            <%= link_to "Contacter", new_conversation_path(message: {to: @candidature.annonce.user.id }), class: "btn btn-transparent mb-1 text-center" %>
+          </div>
         </div>
       </div>
     </div>

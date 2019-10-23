@@ -33,6 +33,11 @@
               <p class="text-center mt-0 mb-3" ><%= link_to "Devenir agent Realbeez", new_agent_path  %></p>
             <% end %>
           <% end %>
+          <% if @profile != current_user %>
+            <div class="d-flex justify-content-around">
+              <%= link_to "Contacter", new_conversation_path(message: {to: @profile.id }), class: "btn btn-transparent mb-1 text-center" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

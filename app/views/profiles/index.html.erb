@@ -71,7 +71,8 @@
                       <%# if profile.requested_friends.any? { |f| f == current_user } %>
                       <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                       <%# else %>
-                      <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
+                      <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent mb-1" %>
+                      <%= link_to "Contacter", new_conversation_path(message: {to: profile.id }), class: "btn btn-transparent mb-1" %>
                       <%# end %>
                       <%# end %>
                       <%#= link_to "Message", "", class: "btn btn-primary" %>
@@ -94,7 +95,11 @@
                   <div class="col-8 d-flex flex-column justify-content-between">
                     <div class="card-body ml-4">
                       <div>
-                        <h5 class="card-title mb-0"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %></h5>
+                        <h5 class="card-title mb-0"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %>
+                          <span class="ml-2">
+                            <%= link_to "", new_conversation_path(message: {to: profile.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                          </span>
+                        </h5>
                         <!-- ==========RATING ============-->
                         <div class="mb-2">
                           <% unless profile.agent.reviews == [] %>
@@ -133,7 +138,7 @@
                         <%# if profile.requested_friends.any? { |f| f == current_user } %>
                         <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                         <%# else %>
-                        <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
+                        <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent mb-1" %>
                         <%# end %>
                         <%# end %>
                         <%#= link_to "Message", "", class: "btn btn-primary" %>
@@ -214,7 +219,7 @@
                       <%# if profile.requested_friends.any? { |f| f == current_user } %>
                       <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                       <%# else %>
-                      <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
+                      <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent mb-1" %>
                       <%# end %>
                       <%# end %>
                       <%#= link_to "Message", "", class: "btn btn-primary" %>
@@ -237,7 +242,11 @@
                   <div class="col-8 d-flex flex-column justify-content-between">
                     <div class="card-body ml-4">
                       <div>
-                        <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %></h5>
+                        <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %>
+                          <span class="ml-2">
+                            <%= link_to "", new_conversation_path(message: {to: profile.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                          </span>
+                        </h5>
                         <!-- ==========RATING ============-->
                         <div class="mb-2">
                           <% unless profile.agent.reviews == [] %>
@@ -276,7 +285,7 @@
                         <%# if profile.requested_friends.any? { |f| f == current_user } %>
                         <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                         <%# else %>
-                        <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
+                        <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent mb-1" %>
                         <%# end %>
                         <%# end %>
                         <%#= link_to "Message", "", class: "btn btn-primary" %>
