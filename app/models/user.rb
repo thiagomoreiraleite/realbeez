@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
-  acts_as_messageable
   has_many :annonces, dependent: :destroy
   has_many :candidatures, dependent: :destroy
   has_many :meetings, dependent: :destroy
@@ -18,6 +17,7 @@ class User < ApplicationRecord
   has_many :mandats, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id
   has_many :reviews
+  acts_as_messageable
 
   def mailboxer_name
     email
