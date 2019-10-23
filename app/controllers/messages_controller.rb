@@ -3,9 +3,8 @@ class MessagesController < ApplicationController
 
   def create
     skip_authorization
-    receipt = current_user.reply_to_conversation(@conversation, params[:body])
+    authorize receipt = current_user.reply_to_conversation(@conversation, params[:body])
     redirect_to conversation_path(receipt.conversation)
-
   end
 
   private

@@ -5,19 +5,19 @@
       <p class="" style="font-weight:bold; color: #D8A727">Objet : <%= @conversation.subject %></p>
       <div class="text-center mb-5">
         <!-- ===================================== -->
-        <%= form_tag conversation_messages_path(@conversation), method: :post do %>
+        <!--   <%#= form_tag conversation_messages_path(@conversation), method: :post do %>
           <div>
             <%= text_area_tag :body %>
           </div>
           <%= submit_tag %>
-        <% end %>
-        <!-- ======================================= -->
-        <!--   <%#= form_for "", url: conversation_messages_path(@conversation) do |f| %>
-          <div class="form-group">
-            <%#= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
-          </div>
-          <%#= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right' %>
         <%# end %> -->
+        <!-- ======================================= -->
+        <%= form_for "", url: conversation_messages_path(@conversation) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
+          </div>
+          <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right' %>
+        <% end %>
         <!-- ============================================ -->
       </div>
       <div class="mb-5">
