@@ -74,8 +74,8 @@ Rails.application.routes.draw do
   resources :reviews, only: [:index]
 
   # Conversations and messages
-  resources :conversations do
-    resources :messages
+  resources :conversations, only: [:index, :show, :new, :create, :destroy]  do
+    resources :messages, only: [:create]
   end
 
 end
