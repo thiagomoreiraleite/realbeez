@@ -22,12 +22,8 @@ class ConversationsController < ApplicationController
     skip_authorization
     recipient = User.find(params[:user_id])
     receipt = current_user.send_message(recipient, params[:body], params[:subject])
-    # @conversation = params[:conversation_id]
-    if receipt != nil
-      redirect_to conversation_path(receipt.conversation)
-    else
-      flash[:alert] = "Veuillez remplir tous les champs"
-    end
+    redirect_to conversations_path
+    # redirect_to conversation_path(receipt.conversation)
   end
 
   def destroy
