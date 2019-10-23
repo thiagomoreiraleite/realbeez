@@ -27,10 +27,10 @@
       <li class="nav-item">
         <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link" %>
       </li>
-      <div class="d-flex align-items-center px-2">
-        <li><%= link_to "", conversations_path, class:"fas fa-envelope", style:"color:rgba(0, 0, 0, 0.5); font-size: 20px" %></li>
-      </div>
       <% if user_signed_in? %>
+        <div class="d-flex align-items-center px-2">
+          <li><%= link_to "", conversations_path, class:"fas fa-envelope", style:"color:rgba(0, 0, 0, 0.5); font-size: 20px" %></li>
+        </div>
         <!--============= NOTIFICATIONS================ -->
         <div class="d-flex mx-2 align-items-center">
           <div class="dropdown">

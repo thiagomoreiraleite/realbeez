@@ -3,8 +3,12 @@ class MessagesController < ApplicationController
 
   def create
     skip_authorization
-    receipt = current_user.reply_to_conversation(@conversation, params[:message][:body])
-    redirect_to conversation_path(receipt.conversation)
+    receipt = current_user.reply_to_conversation(@conversation, params[:body])
+    if receipt != nil
+      redirect_to conversation_path(receipt.conversation)
+    else
+      flash[:alert] = "Veuillez remplir tous les champs"
+    end
   end
 
   private
