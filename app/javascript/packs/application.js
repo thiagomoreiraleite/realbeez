@@ -24,7 +24,7 @@ initStarRating();
 
 // Auto refresh every 10 seconds
 // document.addEventListener("DOMContentLoaded", () => {
-//   setInterval('window.location.reload(false)', 1000);
+// setInterval('window.location.reload(false)', 1000);
 // });
 
 

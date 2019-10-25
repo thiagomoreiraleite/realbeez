@@ -17,9 +17,18 @@
         <% end %>
       </nav>
     </div>
-    <p class="border-top my-3 pt-2" style="color: rgb(150, 150, 150);"><em>Nombre d'agents trouvés (<%= @profiles.count %>)</em></p>
+    <div class="border-top mt-3 mb-5 pt-2 d-flex justify-content-between" >
+      <p style="color: rgb(150, 150, 150);"><em>Nombre d'agents trouvés (<%= @profiles.count %>)</em></p>
+      <!-- ==========search by name ======== -->
+      <%= form_for :search_all, defaults: { required: false }, url:profiles_path, method: "GET", html: { class: '' } do |f| %>
+        <section style="position: relative; text-align:center;">
+          <%= f.text_field :query, label: false, placeholder: "Rechercher", input_html: {value: ""}, style: "width: 8em; border-radius: 5px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+        </section>
+      <% end %>
+      <!-- ================================== -->
+    </div>
   </div>
-  <div class="row justify-content-center" id="profile-index-buddy">
+  <div class="row" id="profile-index-buddy">
     <% if @profiles != [] %>
       <% if current_user.nil? %>
         <% @profiles.each do |profile| %>
@@ -166,7 +175,7 @@
       </div>
     <% else %>
       <div class="container">
-        <h4 class="text-center mt-4 pb-5 mb-5" style="width: 100%; color:#DA334A; font-style: italic;">"Aucun agent trouvé dans votre secteur"</h4>
+        <h4 class="text-center mt-4 pb-5 mb-5" style="width: 100%; color:#DA334A; font-style: italic;">"Aucun agent trouvé"</h4>
         <p class="mt-3 mb-4" style="color: rgb(150, 150, 150); width: 100%"><em>Nos agents disponibles à Paris (<%= @profiles_no_result.count %>)</em></p>
       </div>
       <% if current_user.nil? %>
@@ -301,7 +310,7 @@
       <!-- Mapbox map -->
       <div class="container mt-5">
         <div class="mb-5 d-flex justify-content-around">
-          <%= will_paginate @annonces, :page_links => true %>
+          <%= will_paginate @profiles_no_result, :page_links => true %>
         </div>
         <div
         id="map"

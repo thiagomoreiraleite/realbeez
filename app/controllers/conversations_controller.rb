@@ -25,7 +25,7 @@ class ConversationsController < ApplicationController
   def show
     skip_authorization
     @conversation = current_user.mailbox.conversations.find(params[:id])
-    @messages = @conversation.receipts.map { |receipt| receipt.message}
+    @messages = @conversation.receipts_for(current_user).map { |receipt| receipt.message}
     @conversation.receipts_for(current_user).mark_as_read
   end
 

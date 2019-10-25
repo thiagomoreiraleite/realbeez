@@ -19,7 +19,20 @@
         </section>
       <% end %>
     </nav>
-    <p class="border-top my-3 pt-2" style="color: rgb(150, 150, 150);"><em>Nombre de biens trouvés (<%= @annonces.count %>)</em></p>
+    <div class="border-top mt-3 mb-5 pt-2 d-flex justify-content-between">
+      <% if @annonces.nil? %>
+        <p class="" style="color: rgb(150, 150, 150);"><em>Nombre de biens trouvés (<%= @annonces_no_result.count %>)</em></p>
+      <% else %>
+        <p class="" style="color: rgb(150, 150, 150);"><em>Nombre de biens trouvés (<%= @annonces.count %>)</em></p>
+      <% end %>
+      <!-- ==========search by name ======= -->
+      <%= form_for :search_all, defaults: { required: false }, url:annonces_path, method: "GET", html: { class: '' } do |f| %>
+        <section style="position: relative; text-align:center;">
+          <%= f.text_field :query, label: false, placeholder: "Rechercher", input_html: {}, style: "width: 8em; border-radius: 5px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8; " %>
+        </section>
+      <% end %>
+      <!-- =================================== -->
+    </div>
     <div id="" class="row mt-4">
       <% if @annonces != []  %>
         <% @annonces.each do |annonce| %>
@@ -139,7 +152,7 @@
         </div>
       <% else %>
         <div class="container">
-          <h4 class="text-center mt-4 pb-5 mb-5" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce trouvée dans votre secteur"</h4>
+          <h4 class="text-center mt-4 pb-5 mb-5" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce trouvée"</h4>
           <p class="mt-3 mb-4" style="color: rgb(150, 150, 150); width: 100%"><em>Nos annonces disponibles à Paris (<%= @annonces_no_result.count %>)</em></p>
         </div>
         <% @annonces_no_result.each do |annonce| %>
@@ -247,7 +260,7 @@
         <!-- Mapbox -->
         <div class="container">
           <div class="mb-5 d-flex justify-content-around">
-            <%= will_paginate @annonces, :page_links => true %>
+            <%= will_paginate @annonces_no_result, :page_links => true %>
           </div>
           <div
             id="map"

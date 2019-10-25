@@ -19,6 +19,13 @@ class User < ApplicationRecord
   has_many :reviews
   acts_as_messageable
 
+  include PgSearch::Model
+  pg_search_scope :search_agent,
+    against: [ :nom, :prénom, :adresse, :ville, :civilité, :téléphone],
+  using: {
+    tsearch: { prefix: true }
+  }
+
   def mailboxer_name
     email
   end
