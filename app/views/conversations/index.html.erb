@@ -1,58 +1,282 @@
 <div class="container">
-  <h3 class="text-center mt-5 mb-5">Toutes mes conversations <span style="font-size: 16px">(<%= @conversations_unread %> <%= @conversations_unread == 0 || @conversations_unread == 1 ? "message non lu" : "messages non lus" %>)</span></h3>
-  <% if @conversations_mailbox != [] %>
-    <div style="font-size: 12px">
-      <table class="table table-hover" style="background-color: white">
-        <thead>
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">À</th>
-            <th scope="col">Messages</th>
-            <th scope="col" colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @conversations_mailbox.each do |conversation| %>
-            <!-- if always read = false then return true -->
-            <% if conversation.receipts_for(current_user).any? { |receipt| receipt.is_unread?} %>
-              <tr style="font-weight: bold">
-                <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
-                </td>
-                <td>
-                  <% conversation.participants.each do |participant| %>
-                    <% if participant != current_user %>
-                      <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
-                    <% end %>
-                  <% end %>
-                </td>
-                <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
-                </td>
-                <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
-                <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
-              </tr>
-            <% else %>
-              <tr>
-                <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
-                </td>
-                <td>
-                  <% conversation.participants.each do |participant| %>
-                    <% if participant != current_user %>
-                      <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
-                    <% end %>
-                  <% end %>
-                </td>
-                <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
-                </td>
-                <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
-                <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-      <br>
+  <h3 class="text-center mt-5 mb-5">Toutes mes conversations</h3>
+  <!-- ======================choice bar===================== -->
+  <div class="profile-friends">
+    <div class="search navigations">
+      <h3 id="inbox" class="active" style="font-size: 16px">Boîte de reception</h3>
+      <h3 id="sentbox" style="font-size: 16px">Messages envoyés</h3>
+      <h3 id="trash" style="font-size: 16px">Corbeille</h3>
     </div>
-  <% else %>
-    <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucune conversation actuellement"</h4>
-  <% end %>
+    <p style="color: rgb(150, 150, 150); "><em>(<%= @conversations_unread %> <%= @conversations_unread == 0 || @conversations_unread == 1 ? "message non lu" : "messages non lus" %>)</em></p>
+    <div id="friends-toPlace">
+      <!-- ===================inbox ======================= -->
+      <% if @conversations_inbox != [] %>
+        <div style="font-size: 12px">
+          <table class="table table-hover" style="background-color: white">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">À</th>
+                <th scope="col">Messages</th>
+                <th scope="col" colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @conversations_inbox.each do |conversation| %>
+                <!-- if always read = false then return true -->
+                <% if conversation.receipts_for(current_user).any? { |receipt| receipt.is_unread?} %>
+                  <tr style="font-weight: bold">
+                    <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                    </td>
+                    <td>
+                      <% conversation.participants.each do |participant| %>
+                        <% if participant != current_user %>
+                          <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                    </td>
+                    <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                    <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                  </tr>
+                <% else %>
+                  <tr>
+                    <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                    </td>
+                    <td>
+                      <% conversation.participants.each do |participant| %>
+                        <% if participant != current_user %>
+                          <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                    </td>
+                    <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                    <td><%= link_to '', conversation_path(conversation, delete: {from: "reçu_envoyé"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+        </div>
+      <% else %>
+        <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucun message reçu"</h4>
+      <% end %>
+    </div>
+    <script>
+      const addClassSelected = (target) => {
+      // take parent class -> get children -> remove classes for all children
+      // console.log(target)
+      const children = target.parentElement.children;
+      const childAmount = target.parentElement.childElementCount;
+      for (let i=0; i<childAmount; i++) {
+        children[i].classList.remove("active");
+      }
+      // add class
+      target.classList.add("active");
+      };
+      
+      this.addEventListener("click", (e) => {
+        console.log(e)
+        const whereToShow = document.querySelector("#friends-toPlace");
+        const id = e.target.id;
+        console.log(id)
+        if (id === "inbox") {
+        addClassSelected(e.target);
+        whereToShow.innerHTML = "";
+        whereToShow.insertAdjacentHTML("beforeend", `
+        <div id="friends-toPlace">
+          <!-- ===================inbox ======================= -->
+          <% if @conversations_inbox != [] %>
+            <div style="font-size: 12px">
+              <table class="table table-hover" style="background-color: white">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">À</th>
+                    <th scope="col">Messages</th>
+                    <th scope="col" colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @conversations_inbox.each do |conversation| %>
+                    <!-- if always read = false then return true -->
+                    <% if conversation.receipts_for(current_user).any? { |receipt| receipt.is_unread?} %>
+                      <tr style="font-weight: bold">
+                        <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                        </td>
+                        <td>
+                          <% conversation.participants.each do |participant| %>
+                            <% if participant != current_user %>
+                              <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                        </td>
+                        <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                        <td><%= link_to '', conversation_path(conversation, delete: {from: "reçu_envoyé"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                      </tr>
+                    <% else %>
+                      <tr>
+                        <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                        </td>
+                        <td>
+                          <% conversation.participants.each do |participant| %>
+                            <% if participant != current_user %>
+                              <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                        </td>
+                        <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                        <td><%= link_to '', conversation_path(conversation, delete: {from: "reçu_envoyé"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+              <br>
+            </div>
+          <% else %>
+            <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucun message reçu"</h4>
+          <% end %>
+        </div>
+        `);
+        }
+        else if (id === "sentbox") {
+        addClassSelected(e.target);
+        whereToShow.innerHTML = "";
+        whereToShow.insertAdjacentHTML("beforeend", `
+        <div id="friends-toPlace">
+          <!-- =================== sentbox ======================= -->
+          <% if @conversations_sentbox != [] %>
+            <div style="font-size: 12px">
+              <table class="table table-hover" style="background-color: white">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">À</th>
+                    <th scope="col">Messages</th>
+                    <th scope="col" colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @conversations_sentbox.each do |conversation| %>
+                    <!-- if always read = false then return true -->
+                    <% if conversation.receipts_for(current_user).any? { |receipt| receipt.is_unread?} %>
+                      <tr style="font-weight: bold">
+                        <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                        </td>
+                        <td>
+                          <% conversation.participants.each do |participant| %>
+                            <% if participant != current_user %>
+                              <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                        </td>
+                        <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                        <td><%= link_to '', conversation_path(conversation, delete: {from: "reçu_envoyé"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                      </tr>
+                    <% else %>
+                      <tr>
+                        <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                        </td>
+                        <td>
+                          <% conversation.participants.each do |participant| %>
+                            <% if participant != current_user %>
+                              <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                        </td>
+                        <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                        <td><%= link_to '', conversation_path(conversation, delete: {from: "reçu_envoyé"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+              <br>
+            </div>
+          <% else %>
+            <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucun message envoyé"</h4>
+          <% end %>
+        </div>
+        `);
+        }
+        else if (id === "trash") {
+        addClassSelected(e.target);
+        whereToShow.innerHTML = "";
+        whereToShow.insertAdjacentHTML("beforeend", `
+        <div id="friends-toPlace">
+          <!-- =================== trash ======================= -->
+          <% if @conversations_trash != [] %>
+            <div style="font-size: 12px">
+              <table class="table table-hover" style="background-color: white">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">À</th>
+                    <th scope="col">Messages</th>
+                    <th scope="col" colspan="3"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @conversations_trash.each do |conversation| %>
+                    <!-- if always read = false then return true -->
+                    <% if conversation.receipts_for(current_user).any? { |receipt| receipt.is_unread?} %>
+                      <tr style="font-weight: bold">
+                        <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                        </td>
+                        <td>
+                          <% conversation.participants.each do |participant| %>
+                            <% if participant != current_user %>
+                              <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                        </td>
+                        <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                        <td><%= link_to '', conversation_path(conversation, delete: {from: "corbeille"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                      </tr>
+                    <% else %>
+                      <tr>
+                        <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                        </td>
+                        <td>
+                          <% conversation.participants.each do |participant| %>
+                            <% if participant != current_user %>
+                              <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                        </td>
+                        <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                        <td><%= link_to '', conversation_path(conversation, delete: {from: "corbeille"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion définitivement?"}  %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
+                </tbody>
+              </table>
+              <br>
+            </div>
+          <% else %>
+            <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucun message supprimé"</h4>
+          <% end %>
+        </div>
+             `);
+           };
+         });
+    </script>
+  </div>
 </div>

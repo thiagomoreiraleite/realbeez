@@ -11,6 +11,7 @@ import { initAutocompleteProfile } from '../plugins/init_autocomplete';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'plugins/init_flatpickr'
 import { notificationMethod } from './notification';
+import { messageMethod } from './message';
 import { initStarRating } from '../plugins/init_star_rating';
 
 initMapbox();
@@ -18,28 +19,13 @@ initAutocomplete();
 initAutocompleteAnnonce();
 initAutocompleteProfile();
 notificationMethod();
+messageMethod();
 initStarRating();
 
- const urlPath = origin
-  const url = urlPath + "/conversations.json"
-
-  // GET REQUEST
-  fetch(url)
-   .then(response => response.json())
-    .then((data) => {
-      console.log(data)
-      console.log(data.length)
-      // notificationStart.innerHTML = ""
-      // data.forEach((result) => {
-      //   const notificationStart = document.querySelector("#notification-start")
-      //   const notificationMessage = `<a class="dropdown-item truncate" style="color:rgba(0, 0, 0, 0.5);" href="${urlPath+result.url}"> ${result.actor[0].toUpperCase() + result.actor.slice(1) +" "+ result.notifiable.type}<a>`
-      //   notificationStart.insertAdjacentHTML("beforeend", notificationMessage)
-
-      // })
-      const messageCount = document.querySelector("#message-count")
-      const countInput = data.length
-      messageCount.insertAdjacentHTML("beforeend", countInput)
-    });
+// Auto refresh every 10 seconds
+// document.addEventListener("DOMContentLoaded", () => {
+//   setInterval('window.location.reload(false)', 1000);
+// });
 
 
 

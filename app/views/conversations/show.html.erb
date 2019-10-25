@@ -12,7 +12,7 @@
           <%= submit_tag %>
         <%# end %> -->
         <!-- ======================================= -->
-        <%= form_for "", url: conversation_messages_path(@conversation) do |f| %>
+        <%= form_for "", url: conversation_messages_path(@conversation), :html => {:id => "new_forum"} do |f| %>
           <div class="form-group">
             <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
           </div>
@@ -21,10 +21,10 @@
         <!-- ============================================ -->
       </div>
       <div class="mb-5">
+        <div id='forumstart'></div>
         <% if @conversation.receipts_for(current_user) != [] %>
           <% @conversation.receipts_for(current_user).order(created_at: :desc).each do |comment| %>
             <div class="border my-3 p-2" style="background-color: white; border-radius: 30px">
-              <div id='forumstart'></div>
               <%# dayCount = (Time.new(Time.now - comment.created_at).day) -1 %>
               <!-- IF DAYS == 0 THEN DONT SHOW DAYS -->
               <div class="m-0 text-center" style="font-weight: bold">
@@ -49,6 +49,7 @@
             <h5 class="m-0">"There is no comments"</h5>
           </div>
         <% end %>
+        <%= link_to "Mes conversations", conversations_path %>
       </div>
     </div>
   </div>
