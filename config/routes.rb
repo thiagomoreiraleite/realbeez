@@ -63,9 +63,11 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe-webhooks'
 
   # Notifications
-  resources :notifications, only: [:new, :create, :index, :destroy], defaults: { format: :json }
-  post '/notifications/mark_as_read', to: 'notifications#mark_as_read', as: :mark_as_read, defaults: { format: :json }
+  resources :notifications, only: [:new, :create, :index, :destroy]
+  post '/notifications/mark_as_read', to: 'notifications#mark_as_read', as: :mark_as_read
   get '/notifications/all_notifications', to: 'notifications#all_notifications', as: :all_notifications
+
+  # , defaults: { format: :json }
 
   # Reviews
   resources :agents do

@@ -16,7 +16,7 @@ const notificationMethod = () => {
         notificationStart.insertAdjacentHTML("beforeend", notificationMessage)
 
       })
-      const notificationCount = document.querySelector("#count")
+      const notificationCount = document.querySelector("#notification-count")
       const countInput = data.length
       notificationCount.insertAdjacentHTML("beforeend", countInput)
     });

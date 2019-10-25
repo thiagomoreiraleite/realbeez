@@ -20,7 +20,26 @@ initAutocompleteProfile();
 notificationMethod();
 initStarRating();
 
+ const urlPath = origin
+  const url = urlPath + "/conversations.json"
 
+  // GET REQUEST
+  fetch(url)
+   .then(response => response.json())
+    .then((data) => {
+      console.log(data)
+      console.log(data.length)
+      // notificationStart.innerHTML = ""
+      // data.forEach((result) => {
+      //   const notificationStart = document.querySelector("#notification-start")
+      //   const notificationMessage = `<a class="dropdown-item truncate" style="color:rgba(0, 0, 0, 0.5);" href="${urlPath+result.url}"> ${result.actor[0].toUpperCase() + result.actor.slice(1) +" "+ result.notifiable.type}<a>`
+      //   notificationStart.insertAdjacentHTML("beforeend", notificationMessage)
+
+      // })
+      const messageCount = document.querySelector("#message-count")
+      const countInput = data.length
+      messageCount.insertAdjacentHTML("beforeend", countInput)
+    });
 
 
 

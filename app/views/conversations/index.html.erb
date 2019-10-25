@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 class="text-center mt-5 mb-5">Toutes mes conversations</h3>
+  <h3 class="text-center mt-5 mb-5">Toutes mes conversations <span style="font-size: 16px">(<%= @conversations_unread %> <%= @conversations_unread == 0 || @conversations_unread == 1 ? "message non lu" : "messages non lus" %>)</span></h3>
   <% if @conversations_mailbox != [] %>
     <div style="font-size: 12px">
       <table class="table table-hover" style="background-color: white">
@@ -13,19 +13,40 @@
         </thead>
         <tbody>
           <% @conversations_mailbox.each do |conversation| %>
-            <tr>
-              <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %></td>
-              <td>
-                <% conversation.participants.each do |participant| %>
-                  <% if participant != current_user %>
-                    <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+            <!-- if always read = false then return true -->
+            <% if conversation.receipts_for(current_user).any? { |receipt| receipt.is_unread?} %>
+              <tr style="font-weight: bold">
+                <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                </td>
+                <td>
+                  <% conversation.participants.each do |participant| %>
+                    <% if participant != current_user %>
+                      <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </td>
-              <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %></td>
-              <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
-              <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
-            </tr>
+                </td>
+                <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                </td>
+                <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+              </tr>
+            <% else %>
+              <tr>
+                <td><%= conversation.updated_at.strftime("%d/%m/%Y") %> <%= conversation.updated_at.strftime("%H:%M") %>
+                </td>
+                <td>
+                  <% conversation.participants.each do |participant| %>
+                    <% if participant != current_user %>
+                      <%= participant.prénom.capitalize %> <%= participant.nom[0] + "." %>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td class="truncate"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
+                </td>
+                <td><%= link_to '', conversation_path(conversation), class:"fas fa-search" %></td>
+                <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

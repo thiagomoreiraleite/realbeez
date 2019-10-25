@@ -28,8 +28,11 @@
         <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <% if user_signed_in? %>
+        <!-- =============Messages================ -->
         <div class="d-flex align-items-center px-2">
           <li><%= link_to "", conversations_path, class:"fas fa-envelope", style:"color:white; font-size: 20px" %></li>
+          <div id="message-count" class="border text-center mb-3" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1;">
+          </div>
         </div>
         <!--============= NOTIFICATIONS================ -->
         <div class="d-flex px-2 align-items-center">
@@ -42,7 +45,7 @@
               <%= link_to "Voir toutes les notifications", all_notifications_path, class:"pl-4 dropdown-item", style:"" %>
             </div>
           </div>
-          <div id="count" class="border text-center mb-3" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1; position:;margin-right: ; top:;">
+          <div id="notification-count" class="border text-center mb-3" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1; position:;margin-right: ; top:;">
           </div>
         </div>
         <!-- =========================================== -->
