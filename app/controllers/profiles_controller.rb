@@ -5,6 +5,11 @@ class ProfilesController < ApplicationController
   def index
     if user_signed_in?
       if params.key?(:search)
+        if params[:search][:distance] == "" || params[:search][:distance] == nil
+          @distance = 30
+        else
+          @distance = params[:search][:distance].to_i
+        end
         if params[:search][:query].empty?
           @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user)).order(created_at: :desc).page(params[:page]).per_page(10)
           @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
@@ -15,8 +20,8 @@ class ProfilesController < ApplicationController
             }
           end
         else
-          if policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],30)) != []
-            @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],30)).page(params[:page]).per_page(10)
+          if policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],@distance)) != []
+            @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
             @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
               {
                 lat: profile.latitude,
@@ -25,7 +30,7 @@ class ProfilesController < ApplicationController
               }
             end
           else
-            @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],30)).page(params[:page]).per_page(10)
+            @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
             @profiles_no_result = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near("paris",30)).page(params[:page]).per_page(10)
             @markers = @profiles_no_result.where.not(latitude: nil, longitude: nil).map do |profile|
               {
@@ -80,6 +85,11 @@ class ProfilesController < ApplicationController
       end
     else
       if params.key?(:search)
+        if params[:search][:distance] == ""
+          @distance = 30
+        else
+          @distance = params[:search][:distance].to_i
+        end
         if params[:search][:query].empty?
           @profiles = policy_scope(Profile.where("statut = ?", "Agent")).order(created_at: :desc).page(params[:page]).per_page(10)
           @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
@@ -90,8 +100,8 @@ class ProfilesController < ApplicationController
             }
           end
         else
-          if policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],30)).page(params[:page]) != []
-            @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],30)).page(params[:page]).per_page(10)
+          if policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]) != []
+            @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
             @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
               {
                 lat: profile.latitude,
@@ -100,7 +110,7 @@ class ProfilesController < ApplicationController
               }
             end
           else
-            @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],30)).page(params[:page]).per_page(10)
+            @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
             @profiles_no_result = policy_scope(Profile.where("statut = ?", "Agent").near("paris",30)).page(params[:page]).per_page(10)
             @markers = @profiles_no_result.where.not(latitude: nil, longitude: nil).map do |profile|
               {
