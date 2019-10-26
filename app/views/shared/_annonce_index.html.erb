@@ -11,9 +11,15 @@
     <!-- search bar looking for address nearby 20 km -->
     <nav class="navbar navbar-light justify-content-around">
       <%= form_for :search, defaults: { required: false }, url:annonces_path, method: "GET", html: { class: '' } do |f| %>
-        <section style="position: relative; text-align:center;">
-          <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
-        </section>
+        <div class="align-items-center justify-content-center">
+          <section class="" style="">
+            <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+          </section>
+          <section class="text-center mt-2" style="font-size:12px">
+            <%= f.select :distance,  [10, 20, 30, 50], html: { style:"border: solid"} %>
+            <span class="my-0">km</span>
+          </section>
+        </div>
         <section style=" text-align:center;">
           <%= f.submit "Let's go!", class: "btn-yellow-mustard-big my-3" %>
         </section>

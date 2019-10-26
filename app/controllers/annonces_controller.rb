@@ -3,17 +3,13 @@ class AnnoncesController < ApplicationController
   before_action :set_annonce, only: [:show, :edit, :update, :destroy, :checkout_agent, :checkout_proprio]
 
   def index
-
-    # @annonces = policy_scope(Annonce.geocoded) #returns flats with coordinates
-
-    # @markers = @annonces.map do |annonce|
-    #   {
-    #     lat: annonce.latitude,
-    #     lng: annonce.longitude
-    #   }
-    # end
     # ===================Search by address========================
     if params.key?(:search)
+      if params[:search][:distance] == ""
+        @distance = 30
+      else
+        @distance = params[:search][:distance].to_i
+      end
       if params[:search][:query].empty?
         @annonces = policy_scope(Annonce.where("statut = ?", "active")).order(created_at: :desc).page(params[:page]).per_page(9)
         @markers = @annonces.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
@@ -24,8 +20,8 @@ class AnnoncesController < ApplicationController
           }
         end
       else
-        if policy_scope(Annonce.near(params[:search][:query],30)).where("statut = ?", "active") != []
-          @annonces = policy_scope(Annonce.near(params[:search][:query],30)).where("statut = ?", "active").page(params[:page]).per_page(9)
+        if policy_scope(Annonce.near(params[:search][:query],@distance)).where("statut = ?", "active") != []
+          @annonces = policy_scope(Annonce.near(params[:search][:query],@distance)).where("statut = ?", "active").page(params[:page]).per_page(9)
           @markers = @annonces.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
             {
               lat: annonce.latitude,
@@ -34,8 +30,8 @@ class AnnoncesController < ApplicationController
             }
           end
         else
-          @annonces = policy_scope(Annonce.near(params[:search][:query],30)).where("statut = ?", "active").page(params[:page]).per_page(9)
-          @annonces_no_result = policy_scope(Annonce.near("paris",30)).where("statut = ?", "active").page(params[:page]).per_page(9)
+          @annonces = policy_scope(Annonce.near(params[:search][:query],@distance)).where("statut = ?", "active").page(params[:page]).per_page(9)
+          @annonces_no_result = policy_scope(Annonce.near("paris",@distance)).where("statut = ?", "active").page(params[:page]).per_page(9)
           @markers = @annonces_no_result.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
             {
               lat: annonce.latitude,
@@ -45,6 +41,7 @@ class AnnoncesController < ApplicationController
           end
         end
       end
+      # =======================Search by name =======================
     elsif params.key?(:search_all)
       if params[:search_all][:query].empty?
         @annonces = policy_scope(Annonce.where("statut = ?", "active")).order(created_at: :desc).page(params[:page]).per_page(9)
@@ -87,7 +84,6 @@ class AnnoncesController < ApplicationController
         }
       end
     end
-    # =======================Search by name =======================
     # if params.key?(:search_all)
     #   if params[:search_all][:query].empty?
     #     @annonces = policy_scope(Annonce.where("statut = ?", "active")).order(created_at: :desc).page(params[:page]).per_page(9)
