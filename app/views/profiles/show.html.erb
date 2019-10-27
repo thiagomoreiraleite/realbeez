@@ -46,7 +46,7 @@
       <div class="pb-2 border-bottom border-info"></div>
       <% unless @profile.agent.nil? %>
         <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
-        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i> <%= @profile.agent.experience.nil? ? "Aucune description" : simple_format(@profile.agent.experience) %></p>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i> <%= @profile.agent.experience.nil? || @profile.agent.experience == "" ? "Aucune description" : simple_format(@profile.agent.experience) %></p>
         <!-- show address only if profile the one of the user -->
         <% if @profile == current_user %>
           <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @profile.adresse %> à  <%= @profile.ville %></p>
