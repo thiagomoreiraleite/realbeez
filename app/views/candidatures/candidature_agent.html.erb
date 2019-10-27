@@ -25,7 +25,7 @@
                     </div>
                   </div class="">
                   <div class="mx-3 mb-3">
-                    <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être rediriger vers le contrat de location.' }, class: "btn btn-yellow-mustard" %>
+                    <%= link_to "Accepter" , accept_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être redirigé vers le contrat de location.' }, class: "btn btn-yellow-mustard" %>
                     <%= link_to "Rejeter" , reject_candidature_path(candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "Voir annonce", show_agent_path(candidature), class: "btn btn-link" %>
                   </div>
@@ -79,7 +79,7 @@
                     </div>
                   </div class="">
                   <div class="mx-3 mb-3">
-                        <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être rediriger vers le contrat de location.' }, class: "btn btn-yellow-mustard" %>
+                        <%= link_to "Accepter" , accept_candidature_path(candidature), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être redirigé vers le contrat de location.' }, class: "btn btn-yellow-mustard" %>
                         <%= link_to "Rejeter" , reject_candidature_path(candidature), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
                     <%= link_to "Voir annonce", show_agent_path(candidature), class: "btn btn-link" %>
                   </div>

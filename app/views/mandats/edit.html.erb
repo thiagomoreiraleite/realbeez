@@ -20,7 +20,11 @@
             <% end %>
           <% end %>
           <%= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
-          <%= link_to 'Annuler', candidature_path(@candidature, {from: 'annulation_mandat'}), method: :delete, data: { confirm: 'En annulant, vous confirmez vouloir supprimer cette candidature.'}, class:"btn btn-danger mb-5" %>
+          <% if @mandat.user == current_user %>
+            <%= link_to 'Annuler', reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'En annulant, vous confirmez rejeter cette candidature.'}, class:"btn btn-danger mb-5" %>
+          <% else %>
+            <%= link_to 'Annuler', reject_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'En annulant, vous confirmez rejeter cette candidature.'}, class:"btn btn-danger mb-5" %>
+          <% end %>
         <% end %>
       </div>
     </div>

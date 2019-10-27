@@ -15,14 +15,14 @@
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
         <%= f.input :password,
-                    hint: "leave it blank if you don't want to change it",
+                    hint: "Laissez le champ vide si vous ne voulez pas le changer",
                     required: false,
                     input_html: { autocomplete: "new-password" }, label: "Changer votre mot de passe" %>
         <%= f.input :password_confirmation,
                     required: false,
                     input_html: { autocomplete: "new-password" }, label: "Confirmer votre nouveau mot de passe" %>
         <%= f.input :current_password,
-                    hint: "we need your current password to confirm your changes",
+                    hint: "Nous avons besoin de votre mot de passe actuel pour confirmer vos modifications",
                     required: true,
                     input_html: { autocomplete: "current-password" }, label: "Votre mot de passe actuel" %>
         <%= f.input :photo %>

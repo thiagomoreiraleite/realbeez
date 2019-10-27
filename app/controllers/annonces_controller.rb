@@ -188,7 +188,7 @@ class AnnoncesController < ApplicationController
       end
     end
     unless @annonce.agent_user_id.nil?
-      @agent = User.find(@annonce.agent_user_id.to_i)
+      @agent_user = User.find(@annonce.agent_user_id.to_i)
     end
   end
 

@@ -139,7 +139,7 @@
         <p>"<%= @candidature.commentaire%>"</p>
       <% end %>
       <div class="mt-4">
-        <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Vous confirmez accepter les services de cet agent. Le montant à payer en cas de location sera 375 euros TTC. Vous allez être rediriger vers le mandat de location.' }, class: "btn btn-yellow-mustard" %>
+        <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Vous confirmez accepter les services de cet agent. Le montant à payer en cas de location sera 375 euros TTC. Vous allez être redirigé vers le mandat de location.' }, class: "btn btn-yellow-mustard" %>
         <%= link_to "Rejeter" , reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
       </div>
     </div>

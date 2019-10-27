@@ -61,9 +61,15 @@
                       <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                     <% end %>
                     <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
-                    <% if annonce.user != current_user  %>
+                    <!-- current user is not the flat owner and no agent is assigned, then contact owner -->
+                    <% if annonce.user != current_user && annonce.agent_user_id.nil? %>
                       <div class="">
                         <%= link_to "", new_conversation_path(message: {to: annonce.user.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                      </div>
+                      <!-- one agent is assigned and this agent is not the current user, contact agent -->
+                    <% elsif annonce.agent_user_id != nil && annonce.agent_user_id.to_i != current_user.id %>
+                      <div class="">
+                        <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
                       </div>
                     <% end %>
                   </div>
@@ -74,7 +80,7 @@
                 <!-- if no agent is managing the flat -->
                 <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                   <!-- Check if agent already applied -->
-                  <% if annonce.candidatures.any? { |c| c.user_id = current_user.id} %>
+                  <% if annonce.candidatures.any? { |c| c.user_id == current_user.id} %>
                     <p class="mt-2 pb-0 text-center"><%= link_to "Déja postulé", candidature_agent_path, style:"font-weight: bold; color: green"  %></p>
                     <!--  <p class="mt-2 pb-0 text-center" style="font-weight: bold; color: green">Déja postulé</p> -->
                   <% else %>
@@ -184,9 +190,15 @@
                       <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                     <% end %>
                     <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
-                    <% if annonce.user != current_user  %>
+                    <!-- current user is not the flat owner and no agent is assigned, then contact owner -->
+                    <% if annonce.user != current_user && annonce.agent_user_id.nil? %>
                       <div class="">
                         <%= link_to "", new_conversation_path(message: {to: annonce.user.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                      </div>
+                      <!-- one agent is assigned and this agent is not the current user, contact agent -->
+                    <% elsif annonce.agent_user_id != nil && annonce.agent_user_id.to_i != current_user.id %>
+                      <div class="">
+                        <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
                       </div>
                     <% end %>
                   </div>

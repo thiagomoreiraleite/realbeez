@@ -166,6 +166,8 @@ class CandidaturesController < ApplicationController
   def reject_candidature
     authorize @candidature
     @candidature.statut = "rejeté"
+    @candidature.annonce.agent_user_id = nil
+    @candidature.annonce.save
     @candidature.save
     if params[:from] == "proprio"
       # Create a notification
