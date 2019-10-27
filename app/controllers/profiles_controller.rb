@@ -85,7 +85,7 @@ class ProfilesController < ApplicationController
       end
     else
       if params.key?(:search)
-        if params[:search][:distance] == ""
+        if params[:search][:distance] == "" || params[:search][:distance] == nil
           @distance = 30
         else
           @distance = params[:search][:distance].to_i
