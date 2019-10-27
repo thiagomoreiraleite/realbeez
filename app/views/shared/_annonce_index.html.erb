@@ -16,7 +16,7 @@
             <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
           </section>
           <section class="text-center mt-2" style="font-size:12px">
-            <%= f.select :distance,  [10, 20, 30, 50], html: { style:"border: solid"} %>
+            <%= f.select :distance,  [50, 30, 20, 10], html: { style:"border: solid"} %>
             <span class="my-0">km</span>
           </section>
         </div>
@@ -37,9 +37,9 @@
           <%= f.text_field :query, label: false, placeholder: "Rechercher", input_html: {}, style: "width: 8em; border-radius: 5px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8; " %>
         </section>
       <% end %>
-      <!-- =================================== -->
     </div>
     <div id="" class="row mt-4">
+      <!-- =========== if annonces found ============== -->
       <% if @annonces != []  %>
         <% @annonces.each do |annonce| %>
           <div class="col-sm-12 col-md-6 col-lg-4">
@@ -60,7 +60,7 @@
                     <% else %>
                       <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                     <% end %>
-                    <%= link_to "Details", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: underline" %>
+                    <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
                     <% if annonce.user != current_user  %>
                       <div class="">
                         <%= link_to "", new_conversation_path(message: {to: annonce.user.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
@@ -159,6 +159,7 @@
           ></div>
         </div>
       <% else %>
+        <!-- ============== if no annonce found ============= -->
         <div class="container">
           <h4 class="text-center mt-4 pb-5 mb-5" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce trouvée"</h4>
           <p class="mt-3 mb-4" style="color: rgb(150, 150, 150); width: 100%"><em>Nos annonces disponibles à Paris (<%= @annonces_no_result.count %>)</em></p>
@@ -182,7 +183,7 @@
                     <% else %>
                       <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
                     <% end %>
-                    <%= link_to "Details", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: underline" %>
+                    <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
                     <% if annonce.user != current_user  %>
                       <div class="">
                         <%= link_to "", new_conversation_path(message: {to: annonce.user.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
