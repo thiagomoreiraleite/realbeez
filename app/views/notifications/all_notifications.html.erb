@@ -6,7 +6,7 @@
         <thead>
           <tr>
             <th scope="col">Date</th>
-            <th scope="col">Heure</th>
+            <!-- <th scope="col">Heure</th> -->
             <th scope="col">Messages</th>
             <th scope="col" colspan="3"></th>
           </tr>
@@ -14,32 +14,23 @@
         <tbody>
           <% @notifications.each do |notification| %>
             <tr>
-              <td><%= notification.created_at.strftime("%d/%m/%Y") %></td>
-              <td><%= notification.created_at.strftime("%H:%M") %></td>
+              <td><%= notification.created_at.strftime("%e %b %y") %> - <%= notification.created_at.strftime("%H:%M")%></td>
               <% if notification.action == "candidature_create_proprio" %>
-                <td><%= User.find(notification.actor_id).prénom.capitalize %> demande vos services.</td>
-                <td><%= link_to '', candidature_agent_path, class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " demande vos services.", candidature_agent_path, class:"" %></td>
               <% elsif notification.action == "candidature_create_agent"  %>
-                <td><%= User.find(notification.actor_id).prénom.capitalize %> propose ses services.</td>
-                <td><%= link_to '', candidature_proprio_path, class:"fas fa-search" %></td>
-              <% elsif notification.action == "candidature_accept_proprio"  %>
-                <td><%= User.find(notification.actor_id).prénom.capitalize %> accepte vos services.</td>
-                <td><%= link_to '', candidature_agent_path, class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " propose ses services.", candidature_proprio_path, class:"" %></td>
+              <% elsif notification.action == "candidature_accept_proprio" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " accepte vos services", candidature_agent_path, class:"" %></td>
               <% elsif notification.action == "candidature_accept_agent"  %>
-                <td><%= User.find(notification.actor_id).prénom.capitalize %> accepte votre demande.</td>
-                <td><%= link_to '', candidature_proprio_path, class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accepte votre demande.', candidature_proprio_path, class:"" %></td>
               <% elsif notification.action == "candidature_reject_proprio"  %>
-                <td><%= User.find(notification.actor_id).prénom.capitalize %> rejète vos services.</td>
-                <td><%= link_to '', candidature_agent_path, class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète vos services.', candidature_agent_path, class:"" %></td>
               <% elsif notification.action == "candidature_reject_agent"  %>
-                <td><%= User.find(notification.actor_id).prénom.capitalize %> rejète votre demande.</td>
-                <td><%= link_to '', candidature_proprio_path, class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète votre demande.', candidature_proprio_path, class:"" %></td>
               <% elsif notification.action == "visit_agent" %>
-                <td><%=  User.find(notification.actor_id).prénom.capitalize %> a prévu une visite.</td>
-                <td><%= link_to '', meetings_path(visites: {from: 'proprio'}), class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a prévu une visite.', meetings_path(visites: {from: 'proprio'}), class:"" %></td>
               <% elsif notification.action == "rating_agent" %>
-                <td><%=  User.find(notification.actor_id).prénom.capitalize %> a publié un avis.</td>
-                <td><%= link_to '', profile_path(current_user), class:"fas fa-search" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a publié un avis.', profile_path(current_user), class:"" %></td>
               <% end %>
               <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
             </tr>
