@@ -9,5 +9,7 @@ flatpickr(".datepicker", {
 flatpickr(".datetimepicker", {
   altInput: true,
   enableTime: true,
-  time_24hr: true
+  time_24hr: true,
+  altInput: true,
+  altFormat: "Y-m-d H:i"
 });
