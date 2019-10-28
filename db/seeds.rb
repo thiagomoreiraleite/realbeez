@@ -390,6 +390,22 @@ Agent.create!(
   user_id: User.where("email = ? ", "lefebvre_arnaud@hotmail.com")[0].id
 )
 
+User.create!(
+  email: 'marina-ilic@hotmail.com',
+  password: '123456',
+  civilité: 'Madame',
+  nom: 'Ilic',
+  prénom: 'Marina',
+  adresse: '1 Rue de Patay, Paris 13e Arrondissement, Île-de-France, France',
+  ville: 'Paris',
+  statut: 'Agent'
+)
+
+Agent.create!(
+  statut: "Approuvé",
+  user_id: User.where("email = ? ", "marina-ilic@hotmail.com")[0].id
+)
+
 # =========================Annonces===========================================
 
 annonce = Annonce.create!(

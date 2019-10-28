@@ -3,7 +3,7 @@
 <div class="container center">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
-      <p class="p-0"style="font-weight: bold; color: #D8A727">Mon profile <%= link_to "",edit_user_registration_path, class:"fas fa-edit ml-2" %> </p>
+      <p class="p-0"style="font-weight: bold; color: #D8A727">Mon profile <%= link_to "",edit_user_registration_path, class:"fas fa-edit ml-2" %> <span style="color:#DA334A; font-weight: lighter; font-size: 14px"><em>(Veuillez remplir tous les champs liés à votre profil avant de continuer)</em></span></p>
     </div>
   </div>
 </div>
@@ -11,15 +11,16 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-8">
       <div class="row  border p-2" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+        <div class="col-12">
+          <p style="font-weight: bold"> Candidature de <%= current_user.prénom.capitalize %> <%= current_user.nom.capitalize  %></p>
+        </div>
         <div class="col-12 col-md-6 col-lg-6" >
-          <p> Prénom : <%= current_user.prénom.capitalize %> </p>
-          <p><i class="fas fa-phone-square mr-3"></i> <%= current_user.téléphone %></p>
           <p><i class="fas fa-map-marker-alt mr-3"></i> <%= current_user.adresse %></p>
+          <p><i class="fas fa-city mr-3"></i> <%= current_user.ville%></p>
         </div>
         <div class="col-12 col-md-6 col-lg-6">
-          <p> Nom : <%= current_user.nom.capitalize  %></p>
+          <p><i class="fas fa-phone-square mr-3"></i> <%= current_user.téléphone %></p>
           <p><i class="fas fa-envelope mr-3"></i> <%= current_user.email %></p>
-          <p><i class="fas fa-city mr-3"></i> <%= current_user.ville %></p>
         </div>
       </div>
     </div>
@@ -32,28 +33,29 @@
     </div>
   </div>
 </div>
-<div class="container center">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-10 offset-lg-2 ">
-      <p class="p-0"style="font-weight: bold; color: #D8A727">Informations complémentaires </p>
+<% if current_user.agent == nil %>
+  <div class="container center">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-10 offset-lg-2 ">
+        <p class="p-0"style="font-weight: bold; color: #D8A727">Informations complémentaires </p>
+      </div>
     </div>
   </div>
-</div>
-<div class="container center mb-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-8">
-      <div class="center border p-3" style="background-color: white; border-radius: 10px; ; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
-        <%= simple_form_for [@agent] do |f| %>
-          <% if @agent.errors.any? %>
-            <div class="errors-container">
-              <ul>
-                <% @agent.errors.full_messages.each do |message| %>
-                  <% if message == "User has already been taken" %>
-                    <p>Vous avez déja postulé</p>
-                  <% end %>
-                  <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
-                  <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
-                  <%= f.input :connaissance, collection:
+  <div class="container center mb-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-8">
+        <div class="center border p-3" style="background-color: white; border-radius: 10px; ; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+          <%= simple_form_for [@agent] do |f| %>
+            <% if @agent.errors.any? %>
+              <div class="errors-container">
+                <ul>
+                  <% @agent.errors.full_messages.each do |message| %>
+                    <% if message == "User has already been taken" %>
+                      <p>Vous avez déja postulé</p>
+                    <% end %>
+                    <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
+                    <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
+                    <%= f.input :connaissance, collection:
                         [
                           "Google",
                           "Facebook",
@@ -61,22 +63,22 @@
                           "Bouche à oreille",
                           "Autre"
                         ],label: "Comment avez-vous connue Realbeez?", as: :radio_buttons %>
-                  <%= f.input :experience, label: "Décrivez vos expériences" %>
-                  <%#= f.input :cv, label: "Merci de télépcharger votre CV" %>
-                  <%#= f.input :cv_cache, as: :hidden %>
-                  <%= f.submit "Postuler", class: "btn btn-yellow-mustard mb-5" %>
-                  <ul>
-                    <li>
-                      <%= message %>
-                    </li>
-                  </ul>
-                <% end %>
-              </ul>
-            </div>
-          <% else %>
-            <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
-            <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
-            <%= f.input :connaissance, collection:
+                    <%= f.input :experience, label: "Décrivez vos expériences" %>
+                    <%#= f.input :cv, label: "Merci de télépcharger votre CV" %>
+                    <%#= f.input :cv_cache, as: :hidden %>
+                    <%= f.submit "Postuler", class: "btn btn-yellow-mustard mb-5" %>
+                    <ul>
+                      <li>
+                        <%= message %>
+                      </li>
+                    </ul>
+                  <% end %>
+                </ul>
+              </div>
+            <% else %>
+              <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
+              <%= f.input :auto_entrepreneur, label: "Avez-vous le statut d'auto-entrepreneur / indépendant", collection: ["oui", "non"], as: :radio_buttons %>
+              <%= f.input :connaissance, collection:
               [
                 "Google",
                 "Facebook",
@@ -84,19 +86,19 @@
                 "Bouche à oreille",
                 "Autre"
               ],label: "Comment avez-vous connu Realbeez?", as: :radio_buttons %>
-            <%= f.input :experience, label: "Décrivez vos expériences" %>
-            <%#= f.input :cv, label: false  %>
-            <%#= f.input :cv_cache, as: :hidden %>
-            <% if current_user.agent == nil %>
+              <%= f.input :experience, label: "Décrivez vos expériences" %>
+              <p class="" style="color:#DA334A; font-weight: lighter; margin-top: -12px; font-size: 14px"><em>Votre description sera publié sur votre profil et visible par les propriétaires.</em></p>
+              <%#= f.input :cv, label: false  %>
+              <%#= f.input :cv_cache, as: :hidden %>
               <%= f.submit "Postuler", class: "btn btn-yellow-mustard" %>
               <%= link_to "Annuler", root_path, class:"btn btn-danger" %>
-            <% else %>
-              <p style="font-weight: bold; color:green">Déja postulé</p>
-              <%= link_to "Retour", root_path  %>
+              <p class="mt-2"><%= link_to "Retour", root_path  %></p>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <p class="text-center mt-3 mb-5" style="font-weight: bold; color:green">Déja postulé <span style="font-weight:lighter"><%= link_to "(modifier votre candidature)", edit_agent_path(current_user.agent) %></span></p>
+<% end %>

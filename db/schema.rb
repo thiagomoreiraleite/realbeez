@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_111255) do
+ActiveRecord::Schema.define(version: 2019_10_28_040931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "agents", force: :cascade do |t|
-    t.string "cv", default: "image/upload/v1565065662/profile_default_kttdt0.jpg"
     t.date "date_de_naissance"
     t.string "auto_entrepreneur"
     t.text "experience"
     t.string "statut"
-    t.string "connaissance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -70,9 +68,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_111255) do
   end
 
   create_table "candidatures", force: :cascade do |t|
-    t.integer "durée"
-    t.string "dispo_jours"
-    t.string "dispo_heures"
     t.string "statut"
     t.bigint "annonce_id"
     t.bigint "user_id"
@@ -234,8 +229,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_111255) do
     t.string "pseudo"
     t.string "adresse"
     t.string "ville"
-    t.string "dispo_jours"
-    t.string "dispo_heures"
     t.string "téléphone"
     t.string "photo", default: "image/upload/v1571116830/b8aajqve5rgod5m4zgyg.png"
     t.float "latitude"
