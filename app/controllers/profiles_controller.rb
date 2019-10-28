@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_profile, only: [:add_friend, :accept_friend, :decline_friend]
 
   def index
@@ -207,7 +207,9 @@ class ProfilesController < ApplicationController
   def show
     @profile = User.find(params[:id])
     authorize @profile
-    @annonces= Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).select{ |annonce| annonce.agent_user_id == nil}
+    if user_signed_in?
+      @annonces= Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).select{ |annonce| annonce.agent_user_id == nil}
+    end
     @profiles = @profile.friends
     @candidature = Candidature.new
     @meetings = policy_scope(Meeting.where("user_id = ?", @profile.id)).order(start_time: :desc)
