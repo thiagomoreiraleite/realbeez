@@ -61,6 +61,8 @@ class AgentsController < ApplicationController
   def decline_agent
     authorize @agent
     @agent.statut = "Rejeté"
+    @agent.user.statut = nil
+    @agent.user.save
     @agent.save
     redirect_to agents_path
   end

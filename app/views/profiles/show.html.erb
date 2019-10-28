@@ -23,6 +23,10 @@
             <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut Agent
               <% if @profile.agent.statut == "Approuvé" %>
                 <i class="fas fa-check-circle ml-1" style="color: green"></i>
+              <% elsif @profile.agent.statut == "Rejeté" %>
+                : Rejeté
+              <% else %>
+                : En cours de validation
               <% end %>
             </p>
             <% if @profile.id == current_user.id %>
