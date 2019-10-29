@@ -1,14 +1,16 @@
 <div class="container" >
   <div class="row justify-content-center" >
-    <div class="col-12 col-md-8 my-5" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 5px">
-      <%= link_to "",conversations_path, class:"fas fa-arrow-left mt-3", style:"font-size:30px" %>
-      <h3 class="text-center mt-3 mb-5">Votre conversation avec
-        <% @conversation.participants.each do |participant|%>
-          <% if participant != current_user %>
-            <%= participant.prénom %>
+    <div class="col-12 col-md-8 px-3" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 0px">
+      <div class="d-flex align-items-center my-5">
+        <%= link_to "",conversations_path, class:"fas fa-arrow-left mr-3", style:"font-size:24px" %>
+        <h4 class="text-center m-0">à
+          <% @conversation.participants.each do |participant|%>
+            <% if participant != current_user %>
+              <%= participant.prénom %>
+            <% end %>
           <% end %>
-        <% end %>
-      </h3>
+        </h4>
+      </div>
       <p class="" style="font-weight:bold; color: #D8A727">Objet : <%= @conversation.subject %></p>
       <div class="text-center mb-5">
         <!-- ===================================== -->
