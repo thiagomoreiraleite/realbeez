@@ -234,7 +234,7 @@
                     <% if order.state == "paid" %>
                       <p class="mb-1"><strong>Ordre de paiement n°<%= order.id %> : Reçu</strong><i class="fas fa-check ml-1" style="color: green"></i></p>
                     <% else %>
-                      <p class="mb-1"><strong>Ordre de paiement n° <%= order.id %> : En attente</strong><i class="fas fa-times ml-1" style="color: red"></i></p>
+                      <p class="mb-1"><strong>Ordre de paiement n° <%= order.id %> : <%= link_to "A PAYER", orders_path %></strong><i class="fas fa-times ml-1" style="color: red"></i></p>
                     <% end %>
                   <% end %>
                 </div>
