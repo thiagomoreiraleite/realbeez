@@ -35,7 +35,7 @@
           <% @conversation.receipts_for(current_user).order(created_at: :desc).each do |comment| %>
             <% if comment.message.sender_id == current_user.id %>
               <div class='d-flex justify-content-end'>
-                <div class="border border-light my-3 p-2" style="background-color: rgba(2, 90, 193, 0.8); color:white; border-radius: 30px 30px 2px 30px; width:80%">
+                <div class="border my-2 p-2" style="background-color: #F8F9FA; color:; border-radius: 30px 30px 2px 30px; width:80%">
                   <div class="m-0 text-center" style="font-weight:; font-size: 12px">
                     <!--        <%# if comment.message.sender.statut == "Agent"   %>
                       <%#= link_to comment.message.sender.prénom.capitalize, profile_path(comment.message.sender) %>
@@ -51,7 +51,7 @@
               </div>
             <% else %>
               <div class='d-flex justify-content-start'>
-                <div class="border my-3 p-2" style="background-color: #F8F9FA; border-radius: 30px 30px 30px 2px;width:80%">
+                <div class="border my-2 p-2" style="background-color: white; border-radius: 30px 30px 30px 2px;width:80%">
                   <div class="m-0 text-center" style="font-weight:; font-size: 12px">
                     <!--      <%# if comment.message.sender.statut == "Agent"   %>
                       <%= link_to comment.message.sender.prénom.capitalize, profile_path(comment.message.sender) %>

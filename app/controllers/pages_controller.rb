@@ -20,6 +20,4 @@ class PagesController < ApplicationController
     end
   end
 
-  def details_tarifs
-  end
 end
