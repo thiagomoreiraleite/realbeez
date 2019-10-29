@@ -2,23 +2,23 @@
 <div class="mb-5 text-center"><%= render "shared/info_agent" %></div>
 <div class="container center">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
+    <div class="col-12 col-md-10 offset-md-2">
       <p class="p-0"style="font-weight: bold; color: #D8A727">Mon profile <%= link_to "",edit_user_registration_path, class:"fas fa-edit ml-2" %> <span style="color:#DA334A; font-weight: lighter; font-size: 14px"><em>(Veuillez remplir tous les champs liés à votre profil avant de continuer)</em></span></p>
     </div>
   </div>
 </div>
 <div class="container center mb-5" >
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-8">
-      <div class="row  border p-2" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+    <div class="col-12 col-md-8">
+      <div class="row border p-2" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
         <div class="col-12">
           <p style="font-weight: bold"> Candidature de <%= current_user.prénom.capitalize %> <%= current_user.nom.capitalize  %></p>
         </div>
-        <div class="col-12 col-md-6 col-lg-6" >
+        <div class="col-12 col-md-6 " >
           <p><i class="fas fa-map-marker-alt mr-3"></i> <%= current_user.adresse %></p>
           <p><i class="fas fa-city mr-3"></i> <%= current_user.ville%></p>
         </div>
-        <div class="col-12 col-md-6 col-lg-6">
+        <div class="col-12 col-md-6">
           <p><i class="fas fa-phone-square mr-3"></i> <%= current_user.téléphone %></p>
           <p><i class="fas fa-envelope mr-3"></i> <%= current_user.email %></p>
         </div>
@@ -28,21 +28,21 @@
 </div>
 <div class="container center">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
+    <div class="col-12 col-md-10 offset-md-2">
       <%= render "shared/disponibilités" %>
     </div>
   </div>
 </div>
 <div class="container center">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-10 offset-lg-2 ">
+    <div class="col-12 col-md-10 offset-md-2 ">
       <p class="p-0"style="font-weight: bold; color: #D8A727">Informations complémentaires </p>
     </div>
   </div>
 </div>
 <div class="container center mb-5">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-8">
+    <div class="col-12 col-md-8">
       <div class="center border p-3" style="background-color: white; border-radius: 10px; ; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
         <%= simple_form_for [@agent] do |f| %>
           <% if @agent.errors.any? %>
