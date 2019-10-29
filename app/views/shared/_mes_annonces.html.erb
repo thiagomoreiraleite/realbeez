@@ -20,9 +20,20 @@
                 <div class="mt-0">
                   <p class='my-1', style="font-size: 14px">Nb de pièces: <%= annonce.pièces %></p>
                   <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %></p>
-                  <div class="d-flex px-0">
-                    <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
-                    <%= link_to "Détails", annonce_path(annonce), class: "my-0 ml-5", style:"font-size: 14px; text-decoration: none" %>
+                  <div class="d-flex px-0 justify-content-around">
+                    <!-- put phone of agent if agent is assigned -->
+                    <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                      <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                    <% else %>
+                      <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                    <% end %>
+                    <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                    <!-- send message -->
+                    <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                      <div class="">
+                        <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -138,9 +149,18 @@
                     <div class="mt-0">
                       <p class='my-1', style="font-size: 14px">Nb de pièces: <%= annonce.pièces %></p>
                       <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %></p>
-                      <div class="d-flex px-0">
-                        <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
-                        <%= link_to "Détails", annonce_path(annonce), class: "my-0 ml-5", style:"font-size: 14px; text-decoration: none" %>
+                      <div class="d-flex px-0 justify-content-around">
+                        <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                        <% else %>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                        <% end %>
+                        <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                        <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                          <div class="">
+                            <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                          </div>
+                        <% end %>
                       </div>
                     </div>
                   </div>
@@ -248,9 +268,18 @@
                     <div class="mt-0">
                       <p class='my-1', style="font-size: 14px">Nb de pièces: <%= annonce.pièces %></p>
                       <p style="font-size: 14px">Loyer mensuel: <%= annonce.loyer_mensuel %></p>
-                      <div class="d-flex px-0">
-                        <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
-                        <%= link_to "Détails", annonce_path(annonce), class: "my-0 ml-5", style:"font-size: 14px; text-decoration: none" %>
+                      <div class="d-flex px-0 justify-content-around">
+                        <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                        <% else %>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                        <% end %>
+                        <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                        <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                          <div class="">
+                            <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                          </div>
+                        <% end %>
                       </div>
                     </div>
                   </div>

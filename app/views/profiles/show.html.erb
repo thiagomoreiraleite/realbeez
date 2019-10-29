@@ -140,7 +140,7 @@
             <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Demander les services de <%= @profile.prénom.capitalize %> pour louer votre bien !</p>
             <% if @annonces == [] %>
               <div>
-                <p class="mb-5" style="width: 100%; color:#DA334A; font-style: italic; font-weight: bold">"Vous n'avez aucun bien à louer actuellement"</p>
+                <p class="mb-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez aucun bien à louer actuellement"</p>
                 <p style="font-weight: bold; color: #D8A727">Publier votre annonce et confier la location à <%= @profile.prénom.capitalize %></p>
                 <%= link_to "Publier une annonce", new_annonce_path, class: "btn btn-yellow-mustard mb-5 "  %>
               </div>
