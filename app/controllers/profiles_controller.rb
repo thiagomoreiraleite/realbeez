@@ -217,14 +217,16 @@ class ProfilesController < ApplicationController
     @availabilities = Availability.where("user_id = ?", @profile.id)
     @availability = Availability.where("user_id = ? && jours = ?", @profile.id, params[:jours])
     # RATINGS
-    unless @profile.agent.reviews ==[]
-      @sum_ratings = @profile.agent.reviews.inject(0) {|sum, i|  sum + i.rating }.to_f
-      @nb_ratings = @profile.agent.reviews.count.to_f
-      @average_ratings = (@sum_ratings/@nb_ratings)
-      @full_stars = @average_ratings.to_i
-      @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1
-      @empty_stars = 5 - @full_stars - @half_full_stars
-      @reviews = @profile.agent.reviews.order(created_at: :desc)
+    unless @profile.agent == [] || @profile.agent == nil
+      unless @profile.agent.reviews ==[] || @profile.agent == [] || @profile.agent == nil
+        @sum_ratings = @profile.agent.reviews.inject(0) {|sum, i|  sum + i.rating }.to_f
+        @nb_ratings = @profile.agent.reviews.count.to_f
+        @average_ratings = (@sum_ratings/@nb_ratings)
+        @full_stars = @average_ratings.to_i
+        @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1
+        @empty_stars = 5 - @full_stars - @half_full_stars
+        @reviews = @profile.agent.reviews.order(created_at: :desc)
+      end
     end
   end
 
