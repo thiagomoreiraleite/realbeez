@@ -458,7 +458,7 @@ Disponible immédiatement et pas de frais d’agence à payer.',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
-  price_cents: 50,
+  price_cents: 37500,
   user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571059774/yxuidwmii30pnbcneebc.jpg"
@@ -485,7 +485,7 @@ Charges: 40€ (eau froide, entretien chaudière + commun)',
   email: 'ly.somchit@gmail.com',
   téléphone: '0651402566',
   statut: "active",
-  price_cents: 50,
+  price_cents: 37500,
   user_id: User.where("email = ? ", "ly.somchit@gmail.com")[0].id
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571062159/sswpmxh5h4vhjibbluju.jpg"
@@ -517,7 +517,7 @@ Disponible immédiatement',
   email: 'shiwenly@gmail.com',
   téléphone: '0642808389',
   statut: "active",
-  price_cents: 50,
+  price_cents: 37500,
   user_id: User.where("email = ? ", "shiwenly@gmail.com")[0].id
 )
 annonce.remote_photo_url = "https://res.cloudinary.com/dvfwroq5k/image/upload/v1571059975/cfdwxqa087pdje7wyerp.jpg"

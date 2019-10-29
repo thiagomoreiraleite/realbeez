@@ -29,7 +29,7 @@
         <% end %>
         <!-- ============================================ -->
       </div>
-      <div class="mb-5">
+      <div class="mb-5" style=''>
         <div id='forumstart'></div>
         <% if @conversation.receipts_for(current_user) != [] %>
           <% @conversation.receipts_for(current_user).order(created_at: :desc).each do |comment| %>
@@ -43,7 +43,7 @@
                       <%= comment.message.sender.prénom.capitalize%>
                     <%# end %>
                     -  -->
-                    <%= comment.created_at.strftime("%e/%m") %> -<%= comment.created_at.strftime("%H:%M") %></div>
+                    <%= comment.created_at.strftime("%e/%m") %> - <%= comment.created_at.strftime("%H:%M") %></div>
                   <div class="text-left px-4">
                     <p  style=""><%= simple_format(comment.message.body) %></p>
                   </div>
@@ -59,7 +59,7 @@
                       <%= comment.message.sender.prénom.capitalize%>
                     <%# end %>
                     -  -->
-                    <%= comment.created_at.strftime("%e/%m") %> -<%= comment.created_at.strftime("%H:%M") %></div>
+                    <%= comment.created_at.strftime("%e/%m") %> - <%= comment.created_at.strftime("%H:%M") %></div>
                   <div class="text-left px-4">
                     <p  style=""><%= simple_format(comment.message.body) %></p>
                   </div>

@@ -4,10 +4,11 @@
     <div class="col">
       <h3>Récapitulatif</h3>
       <p>Paiement pour les services de <strong><%= User.find(@order.annonce.agent_user_id.to_i).prénom.capitalize %> <%= User.find(@order.annonce.agent_user_id.to_i).nom[0].titlecase+"." %></strong></p>
-      <p>Pour la relocation du <strong><%= @order.annonce.titre_annonce %></strong> (<%= @order.annonce.adresse %>)</p>
+      <p>Pour la location du <strong><%= @order.annonce.titre_annonce %></strong> (<%= @order.annonce.adresse %>)</p>
       <p>Montant à payer : <strong><%= humanized_money_with_symbol @order.amount %></strong>
       </%></p>
     <button id="pay" class="btn btn-transparent-bold mb-2">Payer</button>
+    <p class="" style="color:rgba(0, 0, 0, 0.5); font-size: 12px">Si le lien a expiré ou si vous n'êtes pas capable d'effectuer le paiement, cliquer sur <%= link_to "annuler", orders_path%> et reconfirmer la location du bien.</p>
     <!--  <p><em>Aucun frais ne sera débité avant que vous confirmiez que le bien soit effectivement loué</em></p> -->
     <!-- # Commented for the lecture, remove comments. -->
     <script src="https://js.stripe.com/v3/"></script>

@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
     @order.annonce.checkout_proprio = nil
     @order.annonce.save
     @order.destroy
-    redirect_to orders_path
+    redirect_to mes_annonces_path
   end
 
   private
