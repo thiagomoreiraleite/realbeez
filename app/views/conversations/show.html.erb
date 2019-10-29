@@ -1,7 +1,8 @@
 <div class="container" >
   <div class="row justify-content-center" >
     <div class="col-12 col-md-8 my-5" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 5px">
-      <h3 class="text-center my-5">Votre conversation avec
+      <%= link_to "",conversations_path, class:"fas fa-arrow-left mt-3", style:"font-size:30px" %>
+      <h3 class="text-center mt-3 mb-5">Votre conversation avec
         <% @conversation.participants.each do |participant|%>
           <% if participant != current_user %>
             <%= participant.prénom %>
@@ -69,7 +70,6 @@
             <h5 class="m-0">"There is no comments"</h5>
           </div>
         <% end %>
-        <%= link_to "Mes conversations", conversations_path %>
       </div>
     </div>
   </div>
