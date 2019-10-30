@@ -56,43 +56,49 @@
     </div>
     <!-- 2 - OTHER INFO -->
     <div class="col-sm-12 col-md-12 col-lg-8 pb-5" style="border-radius: 10px">
-      <div class="pb-2 border-bottom border-info"></div>
+      <div class="pb-2 border-bottom border-info">
+      </div>
       <% unless @profile.agent.nil? %>
         <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
-        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i> <%= @profile.agent.experience.nil? || @profile.agent.experience == "" ? "Aucune description" : simple_format(@profile.agent.experience) %></p>
+        <% if @profile.agent.experience.nil? || @profile.agent.experience == "" %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i>Aucune description</p>
+        <% else %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= simple_format(@profile.agent.experience) %></p>
+        <% end %>
+        <!--  <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%#= @profile.agent.experience.nil? || @profile.agent.experience == "" ? "Aucune description" : simple_format(@profile.agent.experience) %></p> -->
         <!-- show address only if profile the one of the user -->
         <% if user_signed_in? %>
           <% if @profile == current_user %>
-            <% if @profile.ville != nil || @profile.ville != "" %>
-              <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @profile.adresse %> à  <%= @profile.ville %></p>
+            <% if @profile.ville == nil || @profile.ville == "" %>
+              <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i>Aucune adresse renseignée</p>
             <% else %>
-              <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> Aucune adresse renseignée</p>
+              <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= @profile.adresse %> à  <%= @profile.ville %></p>
             <% end %>
-            <% if @profile.téléphone != nil || @profile.téléphone != "" %>
-              <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @profile.téléphone %></p>
+            <% if @profile.téléphone == nil || @profile.téléphone == "" %>
+              <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i>Aucun numéro de téléphone renseigné</p>
           <% else %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> Auncun numéro de téléphone renseigné</p>
+            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i><%= @profile.téléphone %></p>
         <% end %>
       <% end %>
     <% end %>
-    <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @profile.email %></p>
+    <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @profile.email %></p>
   <% else %>
     <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
     <% if user_signed_in? %>
       <% if @profile == current_user %>
-        <% if @profile.ville != nil || @profile.ville != "" %>
-          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> <%= @profile.adresse %> à  <%= @profile.ville %></p>
+        <% if @profile.ville == nil || @profile.ville == "" %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i>Aucune adresse renseignée</p>
         <% else %>
-          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i> Aucune adresse renseignée</p>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= @profile.adresse %> à <%= @profile.ville %></p>
         <% end %>
-        <% if @profile.téléphone != nil || @profile.téléphone != "" %>
-          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> <%= @profile.téléphone %></p>
+        <% if @profile.téléphone == nil || @profile.téléphone == "" %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i>Aucun numéro de téléphone renseigné</p>
       <% else %>
-        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i> Aucun numéro de téléphone renseigné</p>
+        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i></i><%= @profile.téléphone %></p>
     <% end %>
   <% end %>
 <% end %>
-<p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @profile.email %></p>
+<p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%=@profile.email %></p>
 <% end %>
 <!-- <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Mes connexions</p>
     <div class="col mr-0">
