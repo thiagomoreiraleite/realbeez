@@ -31,7 +31,7 @@ class AnnoncesController < ApplicationController
           end
         else
           @annonces = policy_scope(Annonce.near(params[:search][:query],@distance)).where("statut = ?", "active").page(params[:page]).per_page(9)
-          @annonces_no_result = policy_scope(Annonce.near("paris",@distance)).where("statut = ?", "active").page(params[:page]).per_page(9)
+          @annonces_no_result = policy_scope(Annonce.search_annonce("paris")).where("statut = ?", "active").page(params[:page]).per_page(9)
           @markers = @annonces_no_result.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
             {
               lat: annonce.latitude,
@@ -64,7 +64,7 @@ class AnnoncesController < ApplicationController
           end
         else
           @annonces = policy_scope(Annonce.search_annonce(params[:search_all][:query])).where("statut = ?", "active").page(params[:page]).per_page(9)
-          @annonces_no_result = policy_scope(Annonce.near("paris",30)).where("statut = ?", "active").page(params[:page]).per_page(9)
+          @annonces_no_result = policy_scope(Annonce.search_annonce("paris")).where("statut = ?", "active").page(params[:page]).per_page(9)
           @markers = @annonces_no_result.where.not(latitude: nil, longitude: nil).order(created_at: :desc).map do |annonce|
             {
               lat: annonce.latitude,

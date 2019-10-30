@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
             end
           else
             @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
-            @profiles_no_result = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near("paris",30)).page(params[:page]).per_page(10)
+            @profiles_no_result = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).search_agent("paris")).page(params[:page]).per_page(10)
             @markers = @profiles_no_result.where.not(latitude: nil, longitude: nil).map do |profile|
               {
                 lat: profile.latitude,
@@ -63,7 +63,7 @@ class ProfilesController < ApplicationController
             end
           else
             @profiles = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).search_agent(params[:search_all][:query])).page(params[:page]).per_page(10)
-            @profiles_no_result = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).near("paris",30)).page(params[:page]).per_page(10)
+            @profiles_no_result = policy_scope(Profile.where("statut = ? AND id != ?", "Agent", current_user).search_agent("paris")).page(params[:page]).per_page(10)
             @markers = @profiles_no_result.where.not(latitude: nil, longitude: nil).map do |profile|
               {
                 lat: profile.latitude,
@@ -111,7 +111,7 @@ class ProfilesController < ApplicationController
             end
           else
             @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
-            @profiles_no_result = policy_scope(Profile.where("statut = ?", "Agent").near("paris",30)).page(params[:page]).per_page(10)
+            @profiles_no_result = policy_scope(Profile.where("statut = ?", "Agent").search_agent("paris")).page(params[:page]).per_page(10)
             @markers = @profiles_no_result.where.not(latitude: nil, longitude: nil).map do |profile|
               {
                 lat: profile.latitude,
@@ -143,7 +143,7 @@ class ProfilesController < ApplicationController
             end
           else
             @profiles = policy_scope(Profile.where("statut = ?", "Agent").search_agent(params[:search_all][:query])).page(params[:page]).per_page(10)
-            @profiles_no_result = policy_scope(Profile.where("statut = ?", "Agent").near("paris",30)).page(params[:page]).per_page(10)
+            @profiles_no_result = policy_scope(Profile.where("statut = ?", "Agent").search_agent("paris")).page(params[:page]).per_page(10)
             @markers = @profiles_no_result.where.not(latitude: nil, longitude: nil).map do |profile|
               {
                 lat: profile.latitude,
