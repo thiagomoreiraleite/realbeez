@@ -21,6 +21,14 @@ const initAutocompleteProfile = () => {
   }
 };
 
+const initAutocompleteProfileVille = () => {
+  const addressInputProfileVille = document.getElementById('user_ville');
+  if (addressInputProfileVille) {
+    places({ container: addressInputProfileVille });
+  }
+};
+
 export { initAutocomplete };
 export { initAutocompleteAnnonce };
 export { initAutocompleteProfile };
+export { initAutocompleteProfileVille };

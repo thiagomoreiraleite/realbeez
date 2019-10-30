@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :availabilities, dependent: :destroy
   has_one :agent, dependent: :destroy
   mount_uploader :photo, PhotoUploader
-  validates :prénom, :nom, presence: true
+  validates :prénom, :nom, :ville, presence: true
   has_friendship
   geocoded_by :adresse
   after_validation :geocode, if: :will_save_change_to_adresse?

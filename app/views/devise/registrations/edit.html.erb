@@ -8,7 +8,7 @@
         <%= f.input :nom%>
         <%= f.input :prénom%>
         <%= f.input :adresse%>
-        <%= f.input :ville%>
+        <%= f.input :ville, required: true %>
         <%= f.input :téléphone%>
         <%= f.input :email, required: true, autofocus: true %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
