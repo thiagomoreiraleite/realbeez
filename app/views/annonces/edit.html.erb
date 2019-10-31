@@ -44,6 +44,7 @@
             ],label: "GES"  %>
           <%= f.input :description %>
           <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises) en €" %>
+          <%= f.input :charges, input_html: { min: '0', step: 'any' }  %>
           <%= f.input :ville %>
           <%= f.input :adresse %>
           <%= f.input :email, input_html: {value: current_user.email}  %>

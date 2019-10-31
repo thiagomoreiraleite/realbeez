@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_28_171906) do
+ActiveRecord::Schema.define(version: 2019_10_31_061415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_28_171906) do
     t.string "photo4", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
     t.integer "price_cents", default: 0, null: false
     t.integer "pièces"
+    t.integer "charges"
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 

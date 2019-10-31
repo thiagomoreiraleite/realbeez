@@ -252,6 +252,7 @@ class AnnoncesController < ApplicationController
       :ges,
       :description,
       :loyer_mensuel,
+      :charges,
       :adresse,
       :ville,
       :email,
