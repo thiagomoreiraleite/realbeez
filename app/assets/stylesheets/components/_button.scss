@@ -59,6 +59,25 @@ color: white;
 background-color:#D8A727;
 }
 
+.btn-transparent-bold-yellow {
+  border: 1px solid #fdd741;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  font-weight: bold;
+  transition: all .15s ease-in-out;
+  color: #fdd741;
+  i {
+    padding-right: 4px;
+  }
+}
+
+.btn-transparent-bold-yellow:hover {
+border: 1px solid transparent;
+color: white;
+background-color:#D8A727;
+}
+
 
 .btn-transparent {
   font-size: 14px;
