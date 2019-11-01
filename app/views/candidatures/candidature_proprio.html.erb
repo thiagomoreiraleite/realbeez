@@ -19,7 +19,8 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Reçue le <%= candidature.updated_at.strftime("%e %b %y") %></p>
                       <p class="card-text m-0"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
@@ -73,7 +74,8 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Reçue le <%= candidature.updated_at.strftime("%e %b %y") %></p>
                       <p class="card-text m-0"> Reçue de : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= candidature.statut %></p>
                     </div>
@@ -108,8 +110,9 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body pb-2">
                   <div>
-                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %>
+                    <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %>
                     </h5>
+                    <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Envoyée le<%= candidature.updated_at.strftime("%e %b %y") %></p>
                     <p class="card-text m-0"> Envoyée à : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                     <% if candidature.mandat != nil %>
@@ -162,7 +165,8 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Acceptée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
                     <p class="card-text m-0"> Géré par : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                     <% if candidature.mandat != nil %>
@@ -211,7 +215,8 @@
               <div class="col-md-8 d-flex flex-column justify-content-between">
                 <div class="card-body">
                   <div>
-                    <h5 class="card-title text-truncate"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                    <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Rejetée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
                     <p class="card-text"> Postulant : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom[0].titlecase+"." %></p>
                     <p class="card-text"> Statut : <%= candidature.statut %></p>
                   </div>

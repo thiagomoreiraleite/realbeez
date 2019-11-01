@@ -16,20 +16,20 @@ class CandidaturesController < ApplicationController
         @candidatures << candidature
       end
     end
-    @candidature_reçue = @candidatures.select{ |c| c.statut == "pending" }
-    @candidature_envoyé = @candidatures.select{ |c| c.statut == "request" }
-    @candidature_accepté = @candidatures.select{ |c| c.statut == "accepté" }
-    @candidature_rejeté = @candidatures.select{ |c| c.statut == "rejeté" || c.statut == "pourvu"}
+    @candidature_reçue = @candidatures.select{ |c| c.statut == "pending" }.sort_by{ |c| c.updated_at }
+    @candidature_envoyé = @candidatures.select{ |c| c.statut == "request" }.sort_by{ |c| c.updated_at }
+    @candidature_accepté = @candidatures.select{ |c| c.statut == "accepté" }.sort_by{ |c| c.updated_at }
+    @candidature_rejeté = @candidatures.select{ |c| c.statut == "rejeté" || c.statut == "pourvu"}.sort_by{ |c| c.updated_at }
   end
 
   # || @candidatures.select{ |c| c.statut == "pourvu" }
 
   def candidature_agent
     authorize @candidatures = policy_scope(Candidature).order(created_at: :desc)
-    @candidature_reçue = Candidature.where("statut = ? AND user_id = ?", "request", current_user)
-    @candidature_envoyé = Candidature.where("statut = ? AND user_id = ?", "pending", current_user)
-    @candidature_accepté = Candidature.where("statut = ? AND user_id = ?", "accepté", current_user)
-    @candidature_rejeté = Candidature.where("statut = ? AND user_id = ?", "rejeté", current_user)
+    @candidature_reçue = Candidature.where("statut = ? AND user_id = ?", "request", current_user).order(updated_at: :asc)
+    @candidature_envoyé = Candidature.where("statut = ? AND user_id = ?", "pending", current_user).order(updated_at: :asc)
+    @candidature_accepté = Candidature.where("statut = ? AND user_id = ?", "accepté", current_user).order(updated_at: :asc)
+    @candidature_rejeté = Candidature.where("statut = ? AND user_id = ?", "rejeté", current_user).order(updated_at: :asc)
   end
 
   #&& Candidature.where("statut = ? AND user_id = ?", "pourvu", current_user)
