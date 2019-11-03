@@ -12,6 +12,9 @@ class ReviewsController < ApplicationController
     if @review.save
       # Create a notification
       Notification.create(recipient: @agent.user, actor: current_user, action: "rating_agent", notifiable: @review)
+      # Send email
+      mail = ReviewMailer.with(review: @review).rating_agent
+      mail.deliver_now
       redirect_to profile_path(@agent.user)
     else
       flash[:alert] = "Vous avez déja publié un commentaire"

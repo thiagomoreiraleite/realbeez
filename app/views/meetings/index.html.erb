@@ -170,13 +170,13 @@
                 </thead>
                 <tbody>
                   <% @meetings_proprio.each do |meeting| %>
-                    <% unless meeting[0].nil? %>
-                      <% if meeting[0].start_time >= Time.now%>
+                    <% unless meeting.nil? %>
+                      <% if meeting.start_time >= Time.now%>
                         <tr>
-                          <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
-                          <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
-                          <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
-                          <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom[0].titlecase+"." %></td>
+                          <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
+                          <td><%= meeting.start_time.strftime("%l:%M") %></td>
+                          <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                          <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
                         </tr>
                       <% end %>
                     <% end %>
@@ -227,13 +227,13 @@
           
                       <tbody>
                         <% @meetings_proprio.each do |meeting| %>
-                          <% unless meeting[0].nil? %>
-                            <% if meeting[0].start_time >= Time.now %>
+                          <% unless meeting.nil? %>
+                            <% if meeting.start_time >= Time.now %>
                               <tr>
-                                <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
-                                <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
-                                <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
-                                <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom[0].titlecase+"." %></td>
+                                <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
+                                <td><%= meeting.start_time.strftime("%l:%M") %></td>
+                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                                <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
                               </tr>
                             <% end %>
                           <% end %>
@@ -268,13 +268,13 @@
           
                       <tbody>
                         <% @meetings_proprio.each do |meeting| %>
-                          <% unless meeting[0].nil? %>
-                            <% if meeting[0].start_time < Time.now%>
+                          <% unless meeting.nil? %>
+                            <% if meeting.start_time < Time.now%>
                               <tr>
-                                <td><%= meeting[0].start_time.strftime("%d/%m/%Y") %></td>
-                                <td><%= meeting[0].start_time.strftime("%l:%M") %></td>
-                                <td><%= meeting[0].annonce.adresse %> à <%= meeting[0].annonce.ville %></td>
-                                <td><%= meeting[0].user.prénom.capitalize %> <%= meeting[0].user.nom[0].titlecase+"." %></td>
+                                <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
+                                <td><%= meeting.start_time.strftime("%l:%M") %></td>
+                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                                <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
                               </tr>
                             <% end %>
                           <% end %>

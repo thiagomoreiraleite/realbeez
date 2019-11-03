@@ -1,779 +1,781 @@
-<!-- Disponibilities from profiles -->
-<% if params[:controller] =="profiles" %>
-  <% if @profile == current_user %>
-    <p style="font-weight: bold; color: #D8A727">Mes disponibilités pour effectuer les visites</p>
+<% if @availabilities != nil %>
+  <!-- Disponibilities from profiles -->
+  <% if params[:controller] =="profiles" %>
+    <% if @profile == current_user %>
+      <p style="font-weight: bold; color: #D8A727">Mes disponibilités pour effectuer les visites</p>
+    <% else %>
+      <p style="font-weight: bold; color: #D8A727">Disponibilités de <%= @profile.prénom.capitalize %> pour effectuer les visites</p>
+    <% end %>
+    <div class="container row" style="font-size: 14px">
+      <!-- 1ère colonne -->
+      <div class="col-3 col-lg-1 p-0 text-center" style="font-size:">
+        <div class="border p-1">
+          Heures
+        </div>
+        <div class="border p-1">
+          8h - 12h
+        </div>
+        <div class="border p-1">
+          12h - 14h
+        </div>
+        <div class="border p-1">
+          14h - 18h
+        </div>
+        <div class="border p-1 mb-5">
+          après 18h
+        </div>
+      </div>
+      <!-- Lundi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Lun
+          </div>
+          <div class="border p-1"  >
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px", id:"lundi_matin_delete" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green", id:"lundi_matin" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'lundi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'lundi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'lundi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- mardi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Mar
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mardi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mardi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mardi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mardi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- mercredi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Mer
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mercredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mercredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mercredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'mercredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- jeudi -->
+      <div class="col-3 col-lg-1 p-0 mb-5 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Jeu
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'jeudi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'jeudi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'jeudi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'jeudi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- vendredi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Ven
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'vendredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'vendredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'vendredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'vendredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- samedi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Sam
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'samedi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'samedi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'samedi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'samedi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- dimanche -->
+      <div class="col-3 col-lg-1 p-0 text-center mb-5">
+        <div>
+          <div class="border p-1" style="">
+            Dim
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'dimanche_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'dimanche_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'dimanche_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availability_path(@availability, {jours: 'dimanche_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+              <% end %>
+            <% else %>
+              <% if @profile.id == current_user.id %>
+                <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+              <% else %>
+                <i class="fas fa-times-circle" style="color: red"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% else %>
-    <p style="font-weight: bold; color: #D8A727">Disponibilités de <%= @profile.prénom.capitalize %> pour effectuer les visites</p>
-  <% end %>
-  <div class="container row" style="font-size: 14px">
-    <!-- 1ère colonne -->
-    <div class="col-3 col-lg-1 p-0 text-center" style="font-size:">
-      <div class="border p-1">
-        Heures
-      </div>
-      <div class="border p-1">
-        8h - 12h
-      </div>
-      <div class="border p-1">
-        12h - 14h
-      </div>
-      <div class="border p-1">
-        14h - 18h
-      </div>
-      <div class="border p-1 mb-5">
-        après 18h
-      </div>
-    </div>
-    <!-- Lundi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Lun
-        </div>
-        <div class="border p-1"  >
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
-              <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px", id:"lundi_matin_delete" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green", id:"lundi_matin" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
-            <% end %>
-          <% end %>
+    <!-- Disponibilité from Apply to be an agent -->
+    <p style="font-weight: bold; color: #D8A727">Mes disponibilités pour effectuer les visites</p>
+    <div class="container row" style="font-size: 14px">
+      <!-- 1ère colonne -->
+      <div class="col-3 col-lg-1 p-0 text-center" style="font-size:">
+        <div class="border p-1">
+          Heures
         </div>
         <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          8h - 12h
+        </div>
+        <div class="border p-1">
+          12h - 14h
+        </div>
+        <div class="border p-1">
+          14h - 18h
+        </div>
+        <div class="border p-1 mb-5">
+          apr. 18h
+        </div>
+      </div>
+      <!-- Lundi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1">
+            Lun
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
+              <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
+            <% else %>
+              <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
+            <% end %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'lundi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'lundi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "lundi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'lundi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- mardi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Mar
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+      <!-- mardi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Mar
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mardi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mardi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mardi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mardi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mardi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- mercredi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Mer
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+      <!-- mercredi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Mer
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mercredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mercredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mercredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "mercredi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'mercredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- jeudi -->
-    <div class="col-3 col-lg-1 p-0 mb-5 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Jeu
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+      <!-- jeudi -->
+      <div class="col-3 col-lg-1 p-0 mb-5 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Jeu
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'jeudi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'jeudi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'jeudi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "jeudi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'jeudi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- vendredi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Ven
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+      <!-- vendredi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Ven
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'vendredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'vendredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'vendredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "vendredi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'vendredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- samedi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Sam
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+      <!-- samedi -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Sam
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'samedi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'samedi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'samedi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "samedi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'samedi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- dimanche -->
-    <div class="col-3 col-lg-1 p-0 text-center mb-5">
-      <div>
-        <div class="border p-1" style="">
-          Dim
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+      <!-- dimanche -->
+      <div class="col-3 col-lg-1 p-0 text-center">
+        <div>
+          <div class="border p-1" style="">
+            Dim
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_matin"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'dimanche_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_midi"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'dimanche_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_aprèm"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'dimanche_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
+            <% else %>
               <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-            <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
             <% end %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == @profile.id && a.jours == "dimanche_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <% if @profile.id == current_user.id %>
+          </div>
+          <div class="border p-1">
+            <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_soir"} %>
+              <i class="fas fa-user-check" style="color: green"></i>
               <%= link_to "", availability_path(@availability, {jours: 'dimanche_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-            <% end %>
-          <% else %>
-            <% if @profile.id == current_user.id %>
-              <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% else %>
-              <i class="fas fa-times-circle" style="color: red"></i>
+              <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% else %>
-  <!-- Disponibilité from Apply to be an agent -->
-  <p style="font-weight: bold; color: #D8A727">Mes disponibilités pour effectuer les visites</p>
-  <div class="container row" style="font-size: 14px">
-    <!-- 1ère colonne -->
-    <div class="col-3 col-lg-1 p-0 text-center" style="font-size:">
-      <div class="border p-1">
-        Heures
-      </div>
-      <div class="border p-1">
-        8h - 12h
-      </div>
-      <div class="border p-1">
-        12h - 14h
-      </div>
-      <div class="border p-1">
-        14h - 18h
-      </div>
-      <div class="border p-1 mb-5">
-        apr. 18h
-      </div>
-    </div>
-    <!-- Lundi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1">
-          Lun
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'lundi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'lundi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'lundi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "lundi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'lundi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'lundi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <!-- mardi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Mar
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mardi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mardi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mardi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mardi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mardi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mardi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <!-- mercredi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Mer
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mercredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mercredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mercredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "mercredi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'mercredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'mercredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <!-- jeudi -->
-    <div class="col-3 col-lg-1 p-0 mb-5 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Jeu
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'jeudi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'jeudi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'jeudi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "jeudi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'jeudi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'jeudi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <!-- vendredi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Ven
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'vendredi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'vendredi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'vendredi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "vendredi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'vendredi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'vendredi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <!-- samedi -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Sam
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'samedi_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'samedi_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'samedi_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "samedi_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'samedi_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'samedi_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <!-- dimanche -->
-    <div class="col-3 col-lg-1 p-0 text-center">
-      <div>
-        <div class="border p-1" style="">
-          Dim
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_matin"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'dimanche_matin'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_matin'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_midi"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'dimanche_midi'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_midi'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_aprèm"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'dimanche_aprèm'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_aprèm'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-        <div class="border p-1">
-          <% if @availabilities.any?{|a| a.user_id == current_user.id && a.jours == "dimanche_soir"} %>
-            <i class="fas fa-user-check" style="color: green"></i>
-            <%= link_to "", availability_path(@availability, {jours: 'dimanche_soir'}), method: "delete", data: { confirm: 'Etes-vous sûr de vouloir supprimé cette disponibilité?' }, class: "fas fa-times", style: "color: red; font-size: 10px" %>
-          <% else %>
-            <%= link_to "", availabilities_path({jours: 'dimanche_soir'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir ajouter cette disponibilité?' }, class: "fas fa-plus-circle", style: "color: green" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <% end %>
 <% end %>

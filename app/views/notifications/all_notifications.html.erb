@@ -26,15 +26,15 @@
               <% elsif notification.action == "candidature_reject_proprio"  %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète vos services pour la location du bien situé à ' + notification.notifiable.annonce.ville + ".", candidature_agent_path, class:"" %></td>
               <% elsif notification.action == "candidature_reject_agent"  %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète votre demande pour la prise en charge de la location du bien situé à ' + notification.notifiable.annonce.ville + ".", candidature_proprio_path, class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète votre demande de prise en charge de la location du bien situé à ' + notification.notifiable.annonce.ville + ".", candidature_proprio_path, class:"" %></td>
               <% elsif notification.action == "visit_agent" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a prévu une visite de votre bien siuté à ' + notification.notifiable.annonce.ville + "." , meetings_path(visites: {from: 'proprio'}), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a prévu une visite de votre bien situé à ' + notification.notifiable.annonce.ville + "." , meetings_path(visites: {from: 'proprio'}), class:"" %></td>
               <% elsif notification.action == "rating_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a publié un avis.', profile_path(current_user), class:"" %></td>
               <% elsif notification.action == "candidature_become_agent_RB" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' postule pour devenir agent Realbeez.', profile_path(current_user), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' postule pour devenir agent Realbeez.', agents_path, class:"" %></td>
               <% elsif notification.action == "candidature_accept_agent_RB" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accèpte votre candidature, vous pouvez commencer à proposer vos services.', profile_path(notification.notifiable.user), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accèpte votre candidature, vous pouvez désormais proposer vos services aux propriétaires.', profile_path(notification.notifiable.user), class:"" %></td>
               <% elsif notification.action == "candidature_decline_agent_RB" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a rejeté votre candidature.', profile_path(notification.notifiable.user), class:"" %></td>
               <% end %>

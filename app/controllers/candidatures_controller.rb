@@ -74,6 +74,9 @@ class CandidaturesController < ApplicationController
       if @candidature.save
         # Create a notification
         Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_create_proprio", notifiable: @candidature)
+        # Send email
+        mail = CandidatureMailer.with(candidature: @candidature).candidature_create_proprio
+        mail.deliver_now
         redirect_to new_candidature_mandat_path(@candidature)
       else
         render :new
@@ -90,6 +93,9 @@ class CandidaturesController < ApplicationController
       if @candidature.save
         # Create a notification
         Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_create_agent", notifiable: @candidature)
+        # Send email
+        mail = CandidatureMailer.with(candidature: @candidature).candidature_create_agent
+        mail.deliver_now
         redirect_to new_candidature_mandat_path(@candidature)
       else
         render :new
@@ -148,9 +154,15 @@ class CandidaturesController < ApplicationController
     if params[:from] == "proprio"
       # Create a notification
       Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_accept_proprio", notifiable: @candidature)
+      # Send email
+      mail = CandidatureMailer.with(candidature: @candidature).candidature_accept_proprio
+      mail.deliver_now
     else
       # Create a notification
       Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_accept_agent", notifiable: @candidature)
+      # Send email
+      mail = CandidatureMailer.with(candidature: @candidature).candidature_accept_agent
+      mail.deliver_now
     end
     if @candidature.mandat != nil
       redirect_to edit_mandat_path(@candidature.mandat.id)
@@ -172,10 +184,16 @@ class CandidaturesController < ApplicationController
     if params[:from] == "proprio"
       # Create a notification
       Notification.create(recipient: @candidature.user, actor: current_user, action: "candidature_reject_proprio", notifiable: @candidature)
+      # Send email
+      mail = CandidatureMailer.with(candidature: @candidature).candidature_reject_proprio
+      mail.deliver_now
       redirect_to candidature_proprio_path
     else
       # Create a notification
       Notification.create(recipient: @candidature.annonce.user, actor: current_user, action: "candidature_reject_agent", notifiable: @candidature)
+      # Send email
+      mail = CandidatureMailer.with(candidature: @candidature).candidature_reject_agent
+      mail.deliver_now
       redirect_to candidature_agent_path
     end
   end

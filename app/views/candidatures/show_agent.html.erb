@@ -60,10 +60,10 @@
         </div>
       </div>
     </div>
-    <% if @candidature.annonce.statut == "pending" || @candidature.annonce.statut == "request" %>
+    <% if @candidature.statut == "pending" || @candidature.statut == "request" %>
       <div class="my-3 text-center">
         <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Accepter la gestion de ce bien </p>
-        <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir accepter la gestion de ce bien?' }, class: "btn btn-yellow-mustard" %>
+        <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'Vous acceptez la gestion de ce bien. Vous allez être redirigé vers le contrat de location' }, class: "btn btn-yellow-mustard" %>
         <%= link_to "Rejeter" , reject_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
       </div>
     <% else %>

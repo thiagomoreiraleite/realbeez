@@ -6,7 +6,12 @@ class MeetingsController < ApplicationController
   def index
     @meetings = policy_scope(Meeting).order(created_at: :desc)
     @meetings_agent = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
-    @meetings_proprio = current_user.annonces.map{|a| a.meetings}
+    @meetings_proprio = []
+    current_user.annonces.each do |annonce|
+      annonce.meetings.each do |meeting|
+        @meetings_proprio << meeting
+      end
+    end
   end
 
   # GET /meetings/1
@@ -36,7 +41,10 @@ class MeetingsController < ApplicationController
       if @meeting.save
         # Create a notification
         Notification.create(recipient: @meeting.annonce.user, actor: current_user, action: "visit_agent", notifiable: @meeting)
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
+        # Send email
+        mail = MeetingMailer.with(meeting: @meeting).visit_agent
+        mail.deliver_now
+        format.html { redirect_to @meeting, notice: 'La visite a été ajoutée.' }
         format.json { render :show, status: :created, location: @meeting }
       else
         format.html { render :new }
@@ -51,7 +59,7 @@ class MeetingsController < ApplicationController
     authorize @meeting
     respond_to do |format|
       if @meeting.update(meeting_params)
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
+        format.html { redirect_to @meeting, notice: 'La visite a été modifiée.' }
         format.json { render :show, status: :ok, location: @meeting }
       else
         format.html { render :edit }
@@ -72,7 +80,7 @@ class MeetingsController < ApplicationController
       notification.save
     end
     respond_to do |format|
-      format.html { redirect_to meetings_url, notice: 'Meeting was successfully destroyed.' }
+      format.html { redirect_to meetings_url, notice: 'La visite a été supprimée.' }
       format.json { head :no_content }
     end
   end

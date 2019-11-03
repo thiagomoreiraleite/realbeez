@@ -1081,7 +1081,6 @@ Les plus :
 - 2 emplacements parking à l’arrière du bâtiment
 - Porte d’entrée blindée
 - Cave pour stocker petit matériel
-………………………………………………………………………………
 Loyer 940 Euros + 40 Euros de charges mensuelles.
 Disponible fin Octobre 2019',
   loyer_mensuel: 715,

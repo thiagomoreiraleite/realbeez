@@ -109,6 +109,8 @@
     </div>
   <% else %>
     <p class="text-center mt-3 mb-2" style="font-weight: bold; color:green">Déja postulé </p>
-    <p class="text-center mt-0 mb-5" style="font-size: 14px" ><%= link_to "modifier ma candidature", edit_agent_path(current_user.agent), class: "fas fa-edit" %></p>
+    <% if current_user.agent.id != nil %>
+      <p class="text-center mt-0 mb-5" style="font-size: 14px" ><%= link_to "modifier ma candidature", edit_agent_path(current_user.agent), class: "fas fa-edit" %></p>
+    <% end %>
   <% end %>
 </div>

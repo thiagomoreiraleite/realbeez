@@ -37,9 +37,9 @@ class MandatsController < ApplicationController
     @candidature = Candidature.find(@mandat.candidature_id)
     if @mandat.update(mandat_params)
       if @candidature.annonce.user == current_user
-        redirect_to candidature_proprio_path
+        redirect_to annonce_path(@candidature.annonce)
       elsif @candidature.user == current_user
-        redirect_to candidature_agent_path
+        redirect_to annonce_path(@candidature.annonce)
       end
     else
       render :new
