@@ -21,18 +21,24 @@ json.array!  @notifications do |notification|
       json.type "a prévu une visite"
     elsif notification.action == "rating_agent"
       json.type "a publié un avis"
+    elsif notification.action == "candidature_become_agent_RB"
+      json.type "a postulé pour devenir agent"
+    elsif notification.action == "candidature_accept_agent_RB"
+      json.type "accepte votre candidature"
+    elsif notification.action == "candidature_decline_agent_RB"
+      json.type "rejète votre candidature"
     end
   end
 
   # URL
   if notification.action == "candidature_create_proprio"
-    json.url candidature_agent_path
+    json.url show_agent_path(notification.notifiable)
   elsif notification.action == "candidature_create_agent"
-    json.url candidature_proprio_path
+    json.url show_proprio_path(notification.notifiable)
   elsif notification.action == "candidature_accept_proprio"
-    json.url candidature_agent_path
+    json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "candidature_accept_agent"
-    json.url candidature_proprio_path
+    json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "candidature_reject_proprio"
     json.url candidature_agent_path
   elsif notification.action == "candidature_reject_agent"
@@ -41,5 +47,11 @@ json.array!  @notifications do |notification|
     json.url meetings_path(visites: {from: 'proprio'})
   elsif notification.action == "rating_agent"
     json.url profile_path(current_user)
+  elsif notification.action == "candidature_become_agent_RB"
+    json.url agents_path
+  elsif notification.action == "candidature_accept_agent_RB"
+    json.url profile_path(notification.notifiable.user)
+  elsif notification.action == "candidature_decline_agent_RB"
+    json.url profile_path(notification.notifiable.user)
   end
 end

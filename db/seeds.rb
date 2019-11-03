@@ -16,6 +16,16 @@ User.delete_all
 
 # =============================USER===============================
 User.create!(
+  email: 'contact@realbeez.com',
+  password: 'mulhouse68',
+  civilité: 'Monsieur',
+  nom: 'Administrateur',
+  prénom: 'Realbeez',
+  ville: 'Paris',
+  admin: true
+)
+
+User.create!(
   email: 'shiwenly@gmail.com',
   password: 'mulhouse68',
   civilité: 'Monsieur',

@@ -21,7 +21,10 @@ class AgentsController < ApplicationController
     authorize @agent
     @agent.user = current_user
     @agent.statut = "En cours de traitement"
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
     if @agent.save
+      # Create a notification
+      Notification.create(recipient: @admin, actor: current_user, action: "candidature_become_agent_RB", notifiable: @agent)
       redirect_to profile_path(current_user)
     else
       render :new
@@ -53,8 +56,11 @@ class AgentsController < ApplicationController
     authorize @agent
     @agent.statut = "Approuvé"
     @agent.user.statut = "Agent"
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
     @agent.save
     @agent.user.save
+    # Create a notification
+    Notification.create(recipient: @agent.user, actor: @admin, action: "candidature_accept_agent_RB", notifiable: @agent)
     redirect_to agents_path
   end
 
@@ -62,8 +68,11 @@ class AgentsController < ApplicationController
     authorize @agent
     @agent.statut = "Rejeté"
     @agent.user.statut = nil
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
     @agent.user.save
     @agent.save
+    # Create a notification
+    Notification.create(recipient: @agent.user, actor: @admin, action: "candidature_decline_agent_RB", notifiable: @agent)
     redirect_to agents_path
   end
 

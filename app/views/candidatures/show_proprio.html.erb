@@ -138,10 +138,14 @@
         <p><strong>Commentaire de <%= @candidature.user.prénom.capitalize %> : </strong></p>
         <p>"<%= @candidature.commentaire%>"</p>
       <% end %>
-      <div class="mt-4">
-        <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Vous confirmez accepter les services de cet agent. Le montant à payer en cas de location sera 375 euros TTC. Vous allez être redirigé vers le mandat de location.' }, class: "btn btn-yellow-mustard" %>
-        <%= link_to "Rejeter" , reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
-      </div>
+      <% if @candidature.annonce.statut == "pending" || @candidature.annonce.statut == "request" %>
+        <div class="mt-4">
+          <%= link_to "Accepter" , accept_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Vous confirmez accepter les services de cet agent. Le montant à payer en cas de location sera 375 euros TTC. Vous allez être redirigé vers le mandat de location.' }, class: "btn btn-yellow-mustard" %>
+          <%= link_to "Rejeter" , reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter la candidature?' }, class: "btn btn-danger" %>
+        </div>
+      <% else %>
+        <p class="my-3" style="color: green; font-weight: bold">Vous avez déja <%= @candidature.statut %> la candidature</p>
+      <% end %>
     </div>
   </div>
   <div class="col-12 col-md-8 offset-md-1 mt-2 pl-0">
