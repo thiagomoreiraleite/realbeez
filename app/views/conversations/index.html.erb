@@ -36,7 +36,7 @@
                       <% end %>
                     </td>
                     <td class="truncate fontweight-bold"><%= link_to conversation.subject.capitalize, conversation_path(conversation) %>
-                      <td><%= link_to '', conversation_path(conversation), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
+                      <td><%= link_to '', conversation_path(conversation, delete: {from: "reçu_envoyé"}), method: :delete, class:"fas fa-trash", data: {confirm: "Êtes-vous sûr de vouloir supprimer cette discussion?"}  %></td>
                     </tr>
                   <% else %>
                     <tr>

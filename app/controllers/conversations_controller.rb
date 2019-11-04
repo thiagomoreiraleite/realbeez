@@ -40,7 +40,11 @@ class ConversationsController < ApplicationController
   def create
     skip_authorization
     recipient = User.find(params[:user_id])
+    @sender = current_user
     receipt = current_user.send_message(recipient, params[:body], params[:subject])
+    # Send email
+    mail = ConversationMailer.with(conversation: receipt).create_conversation
+    mail.deliver_now
     redirect_to conversation_path(receipt.conversation)
   end
 
