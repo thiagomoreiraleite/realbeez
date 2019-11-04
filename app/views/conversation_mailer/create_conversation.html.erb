@@ -1,7 +1,7 @@
 <p>Bonjour <%= @recipient.prénom.capitalize %>,</p>
 <p><%= @sender.prénom.capitalize + " vous a envoyé le message ci-dessous : "%></p>
 <div style="font-style: italic; margin-top: 10px; margin-bottom: 10px; color: rgba(0, 0, 0, 0.5); ">
-  <p>Sujet : <%=  @conversation.message.subject %></p>
+  <p>Objet : <%=  @conversation.message.subject %></p>
   <p><%=  simple_format(@conversation.message.body) %></p>
 </div>
 <p>A très bientôt</p>
