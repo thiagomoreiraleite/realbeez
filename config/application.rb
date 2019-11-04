@@ -26,5 +26,8 @@ module Realbeez
 
     # for the Font SImply rounded
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    config.time_zone = "Paris"
+
   end
 end
