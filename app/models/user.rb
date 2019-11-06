@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  after_create :send_welcome_email
+  after_create :send_welcome_email, :set_geolocation
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -39,5 +39,15 @@ class User < ApplicationRecord
 
   def send_welcome_email
     UserMailer.with(user: self).welcome.deliver_now
+  end
+
+  def set_geolocation
+    @user = self
+    if @user.latitude == nil or @user.longitude == nil
+      results = Geocoder.search("#{@user.ville}")
+      @user.latitude = results.first.coordinates[0]
+      @user.longitude = results.first.coordinates[1]
+      @user.save
+    end
   end
 end
