@@ -1,0 +1,10 @@
+<p>Bonjour <%= @agent.user.prénom.capitalize %>,</p>
+<p>Vous venez de déposer une candidature afin de devenir consultant immobilier et nous vous en remercions.</p>
+<p>Afin de pouvoir exercer cette activité vous devez disposer du statut d'auto-entrepreneur. Cette inscription est  gratuite et ne prend pas plus de 30 à 45 minutes.</p>
+<p>Si vous n'avez pas encore effectuer les démarches, veuillez télécharger le guide ci-dessous.</p>
+<%= link_to "Devenir auto-entrepreneur", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1571109367/Devenir_auto-entrepreneur_xhr9av.pdf" %>
+<p>Lorsque votre inscription sera finalisée, veuillez télécharger sur votre profil le justificatif reçu de l'Insee précisant votre numéro Siret.</p>
+<p>Nous nous tenons à votre disposition en cas de besoin.</p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Mon profil", profile_url(@agent.user) %></p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_31_061415) do
+ActiveRecord::Schema.define(version: 2019_11_06_161134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_10_31_061415) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "connaissance"
+    t.string "justif_entrepreneur", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
     t.index ["user_id"], name: "index_agents_on_user_id"
   end
 

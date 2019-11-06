@@ -25,9 +25,12 @@ class AgentsController < ApplicationController
     if @agent.save
       # Create a notification
       Notification.create(recipient: @admin, actor: current_user, action: "candidature_become_agent_RB", notifiable: @agent)
-      # Send email
-      mail = AgentMailer.with(agent: @agent).candidature_become_agent_RB
-      mail.deliver_now
+      # Send email to Admin RB
+      mail_admin = AgentMailer.with(agent: @agent).candidature_become_agent_RB
+      mail_admin.deliver_now
+      # Send email confirmation with procedure to become auto-entrepreneur
+      mail_agent = AgentMailer.with(agent: @agent).confirmation_become_agent_RB
+      mail_agent.deliver_now
       redirect_to profile_path(current_user)
     else
       render :new

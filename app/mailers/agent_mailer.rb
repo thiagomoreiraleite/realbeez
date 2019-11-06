@@ -15,6 +15,15 @@ class AgentMailer < ApplicationMailer
     )
   end
 
+  def confirmation_become_agent_RB
+    @agent = params[:agent]
+
+    mail(
+      to:       @agent.user.email,
+      subject:  "Confirmation de la réception de votre candidature"
+    )
+  end
+
   def candidature_accept_agent_RB
     @agent = params[:agent]
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
