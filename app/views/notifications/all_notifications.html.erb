@@ -37,6 +37,8 @@
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accèpte votre candidature, vous pouvez désormais proposer vos services aux propriétaires.', profile_path(notification.notifiable.user), class:"" %></td>
               <% elsif notification.action == "candidature_decline_agent_RB" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a rejeté votre candidature.', profile_path(notification.notifiable.user), class:"" %></td>
+              <% elsif notification.action == "candidature_update_agent_RB" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a modifié son profil agent Realbeez.', agents_path, class:"" %></td>
               <% end %>
               <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
             </tr>

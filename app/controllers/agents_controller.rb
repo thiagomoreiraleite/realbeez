@@ -45,7 +45,13 @@ class AgentsController < ApplicationController
 
   def update
     authorize @agent
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
     if @agent.update(agent_params)
+      # Create a notification
+      Notification.create(recipient: @admin, actor: current_user, action: "candidature_update_agent_RB", notifiable: @agent)
+      # Send email to Admin RB
+      mail = AgentMailer.with(agent: @agent).candidature_update_agent_RB
+      mail.deliver_now
       redirect_to profile_path(current_user)
     else
       render :edit
@@ -92,7 +98,7 @@ class AgentsController < ApplicationController
 
   def agent_params
     params.require(:agent).permit(
-      :cv,
+      :justif_entrepreneur,
       :date_de_naissance,
       :auto_entrepreneur,
       :experience,

@@ -27,6 +27,8 @@ json.array!  @notifications do |notification|
       json.type "accepte votre candidature"
     elsif notification.action == "candidature_decline_agent_RB"
       json.type "rejète votre candidature"
+    elsif notification.action == "candidature_update_agent_RB"
+      json.type "a modifié son profil agent"
     end
   end
 
@@ -53,5 +55,7 @@ json.array!  @notifications do |notification|
     json.url profile_path(notification.notifiable.user)
   elsif notification.action == "candidature_decline_agent_RB"
     json.url profile_path(notification.notifiable.user)
+  elsif notification.action == "candidature_update_agent_RB"
+    json.url agents_path
   end
 end

@@ -24,6 +24,16 @@ class AgentMailer < ApplicationMailer
     )
   end
 
+  def candidature_update_agent_RB
+    @agent = params[:agent]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+
+    mail(
+      to:       @admin.email,
+      subject:  "#{@agent.user.prénom.capitalize} a modifié son profil agent"
+    )
+  end
+
   def candidature_accept_agent_RB
     @agent = params[:agent]
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
