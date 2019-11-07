@@ -27,7 +27,7 @@
                       <tr>
                         <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                         <td><%= meeting.start_time.strftime("%H:%M") %></td>
-                        <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                        <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
                         <td><%= link_to '', meeting, class:"fas fa-search" %></td>
                         <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
                         <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
@@ -83,7 +83,7 @@
                             <tr>
                               <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                               <td><%= meeting.start_time.strftime("%H:%M") %></td>
-                              <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                              <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
                               <td><%= link_to '', meeting, class:"fas fa-search" %></td>
                               <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
                               <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
@@ -123,7 +123,7 @@
                             <tr>
                               <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                               <td><%= meeting.start_time.strftime("%H:%M") %></td>
-                              <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                              <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
                               <td><%= link_to '', meeting, class:"fas fa-search" %></td>
                               <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
                               <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
@@ -175,7 +175,7 @@
                         <tr>
                           <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                           <td><%= meeting.start_time.strftime("%H:%M") %></td>
-                          <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                          <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
                           <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
                         </tr>
                       <% end %>
@@ -232,7 +232,7 @@
                               <tr>
                                 <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                                 <td><%= meeting.start_time.strftime("%H:%M") %></td>
-                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
                                 <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
                               </tr>
                             <% end %>
@@ -273,7 +273,7 @@
                               <tr>
                                 <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                                 <td><%= meeting.start_time.strftime("%H:%M") %></td>
-                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville %></td>
+                                <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
                                 <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
                               </tr>
                             <% end %>

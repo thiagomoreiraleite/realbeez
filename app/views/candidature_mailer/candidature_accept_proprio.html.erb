@@ -1,5 +1,5 @@
 <p>Bonjour <%= @candidature.user.prénom.capitalize %>,</p>
-<p><%= @candidature.annonce.user.prénom.capitalize + " accepte vos services et vous confie la location de son bien situé à  " + @candidature.annonce.ville + "."%></p>
+<p><%= @candidature.annonce.user.prénom.capitalize + " accepte vos services et vous confie la location de son bien situé à  " + @candidature.annonce.ville.capitalize + "."%></p>
 <p>A très bientôt</p>
 <p>Realbeez</p>
 <p><%= link_to "Voir annonce", annonce_url(@candidature.annonce) %></p>

@@ -11,7 +11,7 @@
               <span class="mb-4 ml-2"><%= link_to '', edit_meeting_path(@meeting), class:"fas fa-edit" %></span>
             </p>
             <p> <strong>Adresse : </strong> <%= @meeting.annonce.adresse %> </p>
-            <p> <strong>Ville : </strong><%= @meeting.annonce.ville %></p>
+            <p> <strong>Ville : </strong><%= @meeting.annonce.ville.capitalize %></p>
           </div>
           <div class="col-12 col-md-6 col-lg-6">
             <p style="color: white"> A</p>

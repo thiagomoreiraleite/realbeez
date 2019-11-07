@@ -16,19 +16,19 @@
             <tr>
               <td><%= notification.created_at.strftime("%e %b %y") %> - <%= notification.created_at.strftime("%H:%M")%></td>
               <% if notification.action == "candidature_create_proprio" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " demande vos services pour louer son bien situé à " + notification.notifiable.annonce.ville + ".", show_agent_path(notification.notifiable), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " demande vos services pour louer son bien situé à " + notification.notifiable.annonce.ville.capitalize + ".", show_agent_path(notification.notifiable), class:"" %></td>
               <% elsif notification.action == "candidature_create_agent"  %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " propose ses services pour louer votre bien situé à " + notification.notifiable.annonce.ville + ".", show_proprio_path(notification.notifiable), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " propose ses services pour louer votre bien situé à " + notification.notifiable.annonce.ville.capitalize + ".", show_proprio_path(notification.notifiable), class:"" %></td>
               <% elsif notification.action == "candidature_accept_proprio" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " accepte vos services et vous confie la location de son bien situé à " + notification.notifiable.annonce.ville + ".", annonce_path(notification.notifiable.annonce), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + " accepte vos services et vous confie la location de son bien situé à " + notification.notifiable.annonce.ville.capitalize + ".", annonce_path(notification.notifiable.annonce), class:"" %></td>
               <% elsif notification.action == "candidature_accept_agent"  %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accepte votre demande et prend en charge la location de votre bien situé à ' + notification.notifiable.annonce.ville + ".", annonce_path(notification.notifiable.annonce), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accepte votre demande et prend en charge la location de votre bien situé à ' + notification.notifiable.annonce.ville.capitalize + ".", annonce_path(notification.notifiable.annonce), class:"" %></td>
               <% elsif notification.action == "candidature_reject_proprio"  %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète vos services pour la location du bien situé à ' + notification.notifiable.annonce.ville + ".", candidature_agent_path, class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète vos services pour la location du bien situé à ' + notification.notifiable.annonce.ville.capitalize + ".", candidature_agent_path, class:"" %></td>
               <% elsif notification.action == "candidature_reject_agent"  %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète votre demande de prise en charge de la location du bien situé à ' + notification.notifiable.annonce.ville + ".", candidature_proprio_path, class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète votre demande de prise en charge de la location du bien situé à ' + notification.notifiable.annonce.ville.capitalize + ".", candidature_proprio_path, class:"" %></td>
               <% elsif notification.action == "visit_agent" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a prévu une visite de votre bien situé à ' + notification.notifiable.annonce.ville + "." , meetings_path(visites: {from: 'proprio'}), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a prévu une visite de votre bien situé à ' + notification.notifiable.annonce.ville.capitalize + "." , meetings_path(visites: {from: 'proprio'}), class:"" %></td>
               <% elsif notification.action == "rating_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a publié un avis.', profile_path(current_user), class:"" %></td>
               <% elsif notification.action == "candidature_become_agent_RB" %>

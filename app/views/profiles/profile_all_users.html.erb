@@ -52,7 +52,7 @@
                       <div class="card-body">
                         <div>
                           <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %></h5>
-                          <p class="card-text"><%= profile.ville %></p>
+                          <p class="card-text"><%= profile.ville.capitalize %></p>
                         </div>
                         <div class="mt-3">
                           <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent" %>
