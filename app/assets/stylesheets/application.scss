@@ -12,11 +12,12 @@
 @import "components/index";
 @import "pages/index";
 
-.picture-carousel {
+.picture-mobile {
    @media only screen and (max-width: 576px) {
      height: 30vh !important;
   }
 }
+
 
 // add a border around the distance in search bar
 // select#search_distance {

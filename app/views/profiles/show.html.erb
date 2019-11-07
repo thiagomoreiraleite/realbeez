@@ -32,7 +32,7 @@
             </p>
             <% if user_signed_in? %>
               <% if @profile.id == current_user.id %>
-                <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "modifier mon profil agent (statut d'auto-entrepreneur)", edit_agent_path(@profile.agent.id), class: "fas fa-edit" %>
+                <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "modifier mon profil agent (statut auto-entrepreneur)", edit_agent_path(@profile.agent.id), class: "fas fa-edit" %>
                   <%#= link_to "", agent_path(@profile.agent.id), method: :delete, class: "fas fa-trash" %>
                 </p>
               <% end %>

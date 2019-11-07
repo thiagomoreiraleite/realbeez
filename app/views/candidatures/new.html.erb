@@ -1,9 +1,14 @@
-<h3 class="text-center mt-5 mb-3">Postuler pour gérer ce bien</h3>
-<div class="mb-5 text-center"><%= render "shared/tasks_agent" %></div>
+<h3 class="text-center mt-5 mb-3">Postuler pour gérer ce bien </h3>
+<div class="mb-3 text-center"><%= render "shared/tasks_agent" %></div>
+<div class="d-flex align-items-center justify-content-center mb-5 picture-mobile" style="height: 60vh; background-size: cover; background-position: center; background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('<%= cl_image_path "https://res.cloudinary.com/dvfwroq5k/#{Annonce.find(params[:annonce_id]).photo.identifier}" %>')">
+  <div >
+    <p style="color:white; font-family: simply rounded; font-size: 26px" class="text-center mb-3 px-2"><%= Annonce.find(params[:annonce_id]).titre_annonce %></p>
+  </div>
+</div>
 <div class="container center">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-10 offset-lg-2">
-      <p class="p-0"style="font-weight: bold; color: #D8A727">Mon profile <%= link_to "",edit_user_registration_path, class:"fas fa-edit ml-2" %> </p>
+      <p class="p-0"style="font-weight: bold; color: #D8A727">Mon profile <%= link_to "",edit_user_registration_path, class:"fas fa-edit ml-2" %> <span style="color:#DA334A; font-weight: lighter; font-size: 14px"><em>(Veuillez remplir tous les champs liés à votre profil avant de continuer)</em></span></p>
     </div>
   </div>
 </div>
@@ -15,11 +20,20 @@
           <p style="font-weight: bold"> Candidature de <%= current_user.prénom.capitalize %> <%= current_user.nom.capitalize  %></p>
         </div>
         <div class="col-12 col-md-6" >
-          <p><i class="fas fa-map-marker-alt mr-3"></i> <%= current_user.adresse %></p>
+          <% if current_user.adresse == nil || current_user.adresse == "" %>
+            <p class=" mt-0 mb-3" ><i class="fas fa-map-marker-alt mr-3"></i><%= link_to "Aucune adresse", edit_user_registration_path(current_user)%></p>
+          <% else %>
+            <p class=" mt-0 mb-3" ><i class="fas fa-map-marker-alt mr-3"></i><%= current_user.adresse %></p>
+          <% end %>
           <p><i class="fas fa-city mr-3"></i> <%= current_user.ville%></p>
         </div>
         <div class="col-12 col-md-6">
-          <p><i class="fas fa-phone-square mr-3"></i> <%= current_user.téléphone %></p>
+          <% if current_user.téléphone == nil || current_user.téléphone == "" %>
+            <p class=" mt-0 mb-3" ><i class="fas fa-phone-square mr-3"></i><%= link_to "Aucun numéro de téléphone", edit_user_registration_path(current_user)%>
+            </p>
+          <% else %>
+            <p class=" mt-0 mb-3" ><i class="fas fa-phone-square mr-3"></i><%= current_user.téléphone %></p>
+          <% end %>
           <p><i class="fas fa-envelope mr-3"></i> <%= current_user.email %></p>
         </div>
       </div>
