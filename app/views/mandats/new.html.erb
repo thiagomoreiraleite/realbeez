@@ -9,7 +9,7 @@
             <% if @mandat.acceptation_proprio == true %>
               Acceptation propriétaire : validé
             <% else %>
-              <%= f.input :acceptation_proprio, label: "Le mandant : « lu et approuvé, mandat confié sans exclusivité" %>
+              <%= f.input :acceptation_proprio, label: "Le mandant : « lu et approuvé, mandat confié sans exclusivité »" %>
             <% end %>
             <!-- if current user is the agent -->
           <% elsif @candidature.user == current_user %>

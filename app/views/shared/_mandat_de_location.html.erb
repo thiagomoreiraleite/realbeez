@@ -32,15 +32,13 @@
         jour, mais pourra être révoqué à tout moment avec préavis de quinze jours.
       </p>
       <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA REMUNERATION</strong></h5>
-      <p>Lorsque la location aura été effectivement conclue, votre rémunération sera exigible. Celle-ci est fixée à la
-        somme de 375 €* toutes taxes comprises (TVA à 20%).</p>
-      <p style="font-size: 12px">*<em>soit la rémunération de l'agent de 250 €, 62.5 € de TVA, 11.13 € de frais de transaction et 51.37 € de frais de gestion de Realbeez</em></p>
+      <p>Lorsque la location aura été effectivement conclue, votre rémunération sera exigible. Celle-ci est fixée à la somme de 375 € toutes taxes comprises.</p>
       <!-- SIGNATURE -->
       <!-- SHOW PAGE -->
       <% if params[:action] == "show" %>
         <div class="row mt-5">
           <div class="border p-2 col-12 col-md-6 mt-3">
-            <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité</p>
+            <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité »</p>
             <% if @mandat.acceptation_proprio == true %>
               <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
             <% else %>
@@ -67,7 +65,7 @@
       <% elsif params[:action] == "edit" %>
         <div class="row mt-5">
           <div class="border p-2 col-12 col-md-6 mt-3">
-            <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité</p>
+            <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité »</p>
             <% if @mandat.acceptation_proprio == true %>
               <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
             <% else %>

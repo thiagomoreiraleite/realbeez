@@ -53,7 +53,11 @@
           </div>
         <% end %>
         <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i> <%= @candidature.user.email %></p>
-        <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i> <%= @candidature.user.téléphone %></p>
+        <% if @candidature.user.téléphone == nil || @candidature.user.téléphone == "" %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i>Aucun numéro de téléphone</p>
+        <% else %>
+          <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= @candidature.user.téléphone %></p>
+        <% end %>
       <% end %>
       <!-- <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Connexions</p>
   <div class="col mr-0">
