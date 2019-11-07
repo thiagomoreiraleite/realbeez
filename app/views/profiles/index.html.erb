@@ -79,7 +79,7 @@
                         <% end %>
                       </div>
                       <!-- =================================== -->
-                      <p class="card-text"><%= profile.ville.titlecase %></p>
+                      <p class="card-text"><%= profile.ville.split(",")[0].titlecase %></p>
                     </div>
                     <div class="mt-3">
                       <%# unless profile.friends.any? { |f| f == current_user } %>
@@ -147,7 +147,7 @@
                           <% end %>
                         </div>
                         <!-- =================================== -->
-                        <p class="card-text"><%= profile.ville %></p>
+                        <p class="card-text"><%= profile.ville.split(",")[0].capitalize %></p>
                       </div>
                       <div class="mt-3">
                         <%# unless profile.friends.any? { |f| f == current_user } %>
@@ -233,7 +233,7 @@
                           <% end %>
                         </div>
                         <!-- =================================== -->
-                        <p class="card-text"><%= profile.ville.titlecase %></p>
+                        <p class="card-text"><%= profile.ville.split(",")[0].capitalize %></p>
                       </div>
                       <div class="mt-3">
                         <%# unless profile.friends.any? { |f| f == current_user } %>
@@ -300,7 +300,7 @@
                             <% end %>
                           </div>
                           <!-- =================================== -->
-                          <p class="card-text"><%= profile.ville %></p>
+                          <p class="card-text"><%= profile.ville.split(",")[0].capitalize %></p>
                         </div>
                         <div class="mt-3">
                           <%# unless profile.friends.any? { |f| f == current_user } %>

@@ -9,15 +9,14 @@ class PagesController < ApplicationController
       else
         @annonces = Annonce.where("statut = ?", "active" ).near("#{ville}",30).limit(3)
       end
-      # if Profile.where("statut = ?", "Agent" ).near(current_user.adresse,100) == []
-      #   @profiles = Profile.where("statut = ?", "Agent").limit(4)
-      # else
-      #   @profiles = Profile.where("statut = ?", "Agent" ).near(current_user.adresse,100).limit(4)
-      # end
+      if Profile.where("statut = ?", "Agent" ).near("#{ville}",50) == []
+        @profiles = Profile.where("statut = ?", "Agent").limit(6)
+      else
+        @profiles = Profile.where("statut = ? AND id != ?", "Agent", current_user.id ).near("#{ville}",50).limit(6)
+      end
     else
       @annonces = Annonce.where("statut = ?", "active").order(created_at: :desc).limit(3)
-      # @profiles = Profile.where("statut = ?", "Agent").limit(4)
+      @profiles = Profile.where("statut = ?", "Agent").limit(6)
     end
   end
-
 end
