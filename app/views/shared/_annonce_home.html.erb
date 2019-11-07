@@ -9,7 +9,7 @@
             <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
             <div class="px-3">
               <div class="mt-2">
-                <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville %></p>
+                <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
                 <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
               </div>
               <div class="mt-0">
