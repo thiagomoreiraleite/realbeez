@@ -95,7 +95,7 @@
               </div>
             <% else %>
               <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
-              <%= f.input :auto_entrepreneur, label: "Avez-vous déjà le statut d'auto-entrepreneur / indépendant??", collection: ["oui (télécharger votre justificatif de l'Insee ci-dessous)", "non (vous allez recevoir un email avec les démarches à suivre)"], as: :radio_buttons %>
+              <%= f.input :auto_entrepreneur, label: "Avez-vous déjà le statut d'auto-entrepreneur / indépendant?", collection: ["oui (télécharger votre justificatif de l'Insee ci-dessous)", "non (vous allez recevoir un email avec les démarches à suivre)"], as: :radio_buttons %>
               <%= f.input :justif_entrepreneur, label: "Justificatif de l'Insee à télécharger" %>
               <%= f.input :justif_entrepreneur_cache, as: :hidden %>
               <%= f.input :connaissance, collection:
