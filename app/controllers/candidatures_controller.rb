@@ -113,7 +113,7 @@ class CandidaturesController < ApplicationController
   def update
     authorize @candidature
     @annonce = Candidature.find(params[:id]).annonce
-    if Candidature.update(candidature_params)
+    if @candidature.update(candidature_params)
       redirect_to candidature_agent_path
     else
       render :edit
