@@ -29,6 +29,14 @@ json.array!  @notifications do |notification|
       json.type "rejète votre candidature"
     elsif notification.action == "candidature_update_agent_RB"
       json.type "a modifié son profil agent"
+    elsif notification.action == "checkout_agent_notify_admin"
+      json.type "a loué un bien"
+    elsif notification.action == "checkout_agent_notify_proprio"
+      json.type "a loué votre bien"
+    elsif notification.action == "checkout_proprio_notify_admin"
+      json.type "confirme la location de son bien"
+    elsif notification.action == "checkout_proprio_notify_agent"
+      json.type "confirme la location de son bien"
     end
   end
 
@@ -57,5 +65,13 @@ json.array!  @notifications do |notification|
     json.url profile_path(notification.notifiable.user)
   elsif notification.action == "candidature_update_agent_RB"
     json.url agents_path
+  elsif notification.action == "checkout_agent_notify_admin"
+    json.url annonce_path(notification.notifiable.annonce)
+  elsif notification.action == "checkout_agent_notify_proprio"
+    json.url annonce_path(notification.notifiable.annonce)
+  elsif notification.action == "checkout_proprio_notify_admin"
+    json.url annonce_path(notification.notifiable.annonce)
+  elsif notification.action == "checkout_proprio_notify_agent"
+    json.url annonce_path(notification.notifiable.annonce)
   end
 end

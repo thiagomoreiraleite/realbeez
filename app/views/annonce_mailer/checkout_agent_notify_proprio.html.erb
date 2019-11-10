@@ -1,0 +1,7 @@
+<p>Bonjour <%= @annonce.user.prénom.capitalize %>,</p>
+<p><%= @agent.prénom.capitalize + " annonce avoir loué votre bien " + @annonce.titre_annonce%></p>
+<% if @annonce.checkout_proprio == nil %>
+  <p>Veuillez confirmer que la transaction est finalisée, <%= link_to "Cliquer ici", annonce_url(@annonce) %> pour accéder à votre annonce.</p>
+<% end %>
+<p>A très bientôt</p>
+<p>Realbeez</p>
