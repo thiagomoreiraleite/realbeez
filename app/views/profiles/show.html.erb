@@ -21,7 +21,7 @@
           </div>
           <p class="font-weight-bold text-center mt-2 mb-1"><%= @profile.prénom.capitalize %> <%= @profile.nom[0].titlecase+"." %></p>
           <% if @profile.agent != nil %>
-            <p class="text-center mt-0 mb-3" style="font-size: 14px" >Statut Agent
+            <p class="text-center mt-0 mb-3" style="" >Statut Agent
               <% if @profile.agent.statut == "Approuvé" %>
                 <i class="fas fa-check-circle ml-1" style="color: green"></i>
               <% elsif @profile.agent.statut == "Rejeté" %>
@@ -40,7 +40,7 @@
           <% else %>
             <% if user_signed_in? %>
               <% if @profile.id == current_user.id %>
-                <p class="text-center mt-0 mb-3" style="font-size: 14px" ><%= link_to "Devenir agent Realbeez", new_agent_path  %></p>
+                <p class="text-center mt-0 mb-3" style="" ><%= link_to "Devenir agent Realbeez", new_agent_path  %></p>
               <% end %>
             <% end %>
           <% end %>
@@ -64,12 +64,12 @@
         <% if @profile.agent.experience.nil? || @profile.agent.experience == "" %>
           <!-- if current user is profile user and there is no description, add a link to add it -->
           <% if @profile == current_user %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= link_to "Aucune description" , edit_agent_path(current_user.agent.id) %></p>
+            <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= link_to "Aucune description" , edit_agent_path(current_user.agent.id) %></p>
           <% else %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i>Aucune description</p>
+            <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i>Aucune description</p>
           <% end %>
         <% else %>
-          <div class="d-flex" style="font-size: 14px">
+          <div class="d-flex" style="">
             <p class=" mt-0 mb-3"  ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i></p>
             <p><%= simple_format(@profile.agent.experience) %></p>
           </div>
@@ -78,24 +78,24 @@
       <% if user_signed_in? %>
         <% if @profile == current_user %>
           <% if @profile.téléphone == nil || @profile.téléphone == "" %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= link_to "Aucun numéro de téléphone", edit_user_registration_path(current_user)%>
+            <p class=" mt-0 mb-3" style="" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= link_to "Aucun numéro de téléphone", edit_user_registration_path(current_user)%>
             </p>
           <% else %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= @profile.téléphone %></p>
+            <p class=" mt-0 mb-3" style="" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= @profile.téléphone %></p>
           <% end %>
           <% if @profile.adresse == nil || @profile.adresse == "" %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= link_to "Aucune adresse", edit_user_registration_path(current_user)%></p>
+            <p class=" mt-0 mb-3" style="" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= link_to "Aucune adresse", edit_user_registration_path(current_user)%></p>
           <% else %>
-            <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= @profile.adresse %></p>
+            <p class=" mt-0 mb-3" style="" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= @profile.adresse %></p>
           <% end %>
         <% end %>
       <% end %>
-      <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-city mr-3" style="color: #D8A727"></i><%= @profile.ville.capitalize %></p>
-      <p class=" mt-0 mb-3" style="font-size: 14px" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @profile.email %></p>
+      <p class=" mt-0 mb-3" style="" ><i class="fas fa-city mr-3" style="color: #D8A727"></i><%= @profile.ville.capitalize %></p>
+      <p class=" mt-0 mb-3" style="" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @profile.email %></p>
       <!-- ==================STAR RATINGS================= -->
       <% unless @profile.agent == nil || @profile.agent == [] %>
         <% unless @profile.agent.reviews == []%>
-          <div style="font-size: 14px">
+          <div style="">
             <% @full_stars.times do  %>
               <i class="fas fa-star" style="color:#D8A727"></i>
             <% end %>
@@ -110,7 +110,7 @@
           </div>
           <p class="mt-3"><%= render "shared/ratings" %></p>
         <% else %>
-          <div style="font-size: 14px">
+          <div style="">
             <% 5.times do  %>
               <i class="far fa-star mt-2" style="color:#D8A727"></i>
             <% end %>
@@ -120,7 +120,7 @@
       <% end %>
       <% if user_signed_in? %>
         <% unless @profile == current_user || @profile.agent == nil || @profile.agent == [] %>
-          <p class=" mt-0 my-3" style="font-size: 14px" ><%= link_to "Noter votre agent", new_agent_review_path(@profile.agent) %></p>
+          <p class=" mt-0 my-3" style="" ><%= link_to "Noter votre agent", new_agent_review_path(@profile.agent) %></p>
         <% end %>
       <% end %>
     </div>
