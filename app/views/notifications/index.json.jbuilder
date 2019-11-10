@@ -3,7 +3,7 @@ json.array!  @notifications do |notification|
   json.actor notification.actor.prénom
   json.action notification.action
 
-  # NORIFIABLE
+  # NOTIFIABLE
   json.notifiable do #notification.notifiable
     if notification.action == "candidature_create_proprio"
       json.type "demande vos services"
@@ -34,9 +34,9 @@ json.array!  @notifications do |notification|
     elsif notification.action == "checkout_agent_notify_proprio"
       json.type "a loué votre bien"
     elsif notification.action == "checkout_proprio_notify_admin"
-      json.type "confirme la location de son bien"
+      json.type "confirme avoir loué son bien"
     elsif notification.action == "checkout_proprio_notify_agent"
-      json.type "confirme la location de son bien"
+      json.type "confirme avoir loué son bien"
     end
   end
 
@@ -66,9 +66,9 @@ json.array!  @notifications do |notification|
   elsif notification.action == "candidature_update_agent_RB"
     json.url agents_path
   elsif notification.action == "checkout_agent_notify_admin"
-    json.url annonce_path(notification.notifiable.annonce)
+    json.url annonce_path(notification.notifiable)
   elsif notification.action == "checkout_agent_notify_proprio"
-    json.url annonce_path(notification.notifiable.annonce)
+    json.url annonce_path(notification.notifiable)
   elsif notification.action == "checkout_proprio_notify_admin"
     json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "checkout_proprio_notify_agent"
