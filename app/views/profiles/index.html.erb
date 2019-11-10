@@ -1,7 +1,7 @@
 <div class="container mb-5">
   <div class="search" id="buddies-index-searchbar">
     <div class="d-flex align-items-center justify-content-center mt-5 mb-4">
-      <h3 class="text-center" style="margin-bottom: 0px">Trouver un Agent Realbeez </h3>
+      <h3 class="text-center" style="margin-bottom: 0px">Trouvez un Agent Realbeez </h3>
       <p class="ml-3 my-0 " style="font-size:16px"><%= render "shared/info_proprio" %></p>
     </div>
     <div class="text-center mr-0" id="form-search">
@@ -9,7 +9,7 @@
       <nav class="navbar navbar-light justify-content-around">
         <%= form_for :search, defaults: { required: false }, url:profiles_path, method: "GET", html: { class: '' } do |f| %>
           <section style="position: relative; text-align:center;">
-            <%= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+            <%= f.text_field :query, label: false, placeholder: "Entrez votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
           </section>
           <section class="text-center mt-2" style="font-size:12px">
             <%= f.select :distance,  [50, 30, 20, 10], html: { style:"border: solid"} %>
