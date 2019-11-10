@@ -37,6 +37,8 @@ json.array!  @notifications do |notification|
       json.type "confirme avoir loué son bien"
     elsif notification.action == "checkout_proprio_notify_agent"
       json.type "confirme avoir loué son bien"
+    elsif notification.action == "new_registration"
+      json.type "s'est inscrit sur RB"
     end
   end
 
@@ -73,5 +75,7 @@ json.array!  @notifications do |notification|
     json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "checkout_proprio_notify_agent"
     json.url annonce_path(notification.notifiable.annonce)
+  elsif notification.action == "new_registration"
+    json.url profile_all_users_path
   end
 end

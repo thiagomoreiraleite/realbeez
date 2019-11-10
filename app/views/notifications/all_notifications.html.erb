@@ -47,6 +47,8 @@
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué.", annonce_path(notification.notifiable.annonce), class:"" %></td>
               <% elsif notification.action == "checkout_proprio_notify_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué par vos soins.", annonce_path(notification.notifiable.annonce), class:"" %></td>
+              <% elsif notification.action == "new_registration" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + "vient de s'inscrire sur RB", profile_all_users_path, class:"" %></td>
               <% end %>
               <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
             </tr>

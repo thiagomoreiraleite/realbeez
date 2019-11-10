@@ -10,4 +10,14 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Bienvenue chez Realbeez')
     # This will render a view in `app/views/user_mailer`!
   end
+
+  def new_registration
+    @user = params[:user]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+
+    mail(
+      to:       @admin.email,
+      subject:  "#{@user.prénom.capitalize} s'est inscrit sur Realbeez"
+    )
+  end
 end

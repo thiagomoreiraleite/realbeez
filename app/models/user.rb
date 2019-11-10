@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  after_create :send_welcome_email, :set_geolocation
+  after_create :send_welcome_email, :send_new_registration, :set_geolocation
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -39,6 +39,14 @@ class User < ApplicationRecord
 
   def send_welcome_email
     UserMailer.with(user: self).welcome.deliver_now
+  end
+
+  def send_new_registration
+    mail = UserMailer.with(user: self).new_registration
+    mail.deliver_now
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    # Create a notification
+    Notification.create(recipient: @admin, actor: self, action: "new_registration", notifiable: self)
   end
 
   def set_geolocation
