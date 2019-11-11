@@ -18,6 +18,11 @@
   }
 }
 
+.hide-on-large {
+  @media only screen and (min-width: 992px) {
+    display: none;
+  }
+}
 
 // add a border around the distance in search bar
 // select#search_distance {
