@@ -29,16 +29,16 @@
       </li>
       <% if user_signed_in? %>
         <!-- =============Messages================ -->
-        <div class="d-flex align-items-center px-2">
-          <li><%= link_to "", conversations_path, class:"fas fa-envelope", style:"color:white; font-size: 20px" %></li>
+        <div class="d-flex align-items-center p-2">
+          <li class="d-flex align-items-center"><%= link_to "", conversations_path, class:"fas fa-envelope", style:"color:white; font-size: 20px" %></li>
           <div id="message-count">
             <!--  class="border text-center mb-3" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1;" -->
           </div>
         </div>
         <!--============= NOTIFICATIONS================ -->
-        <div class="d-flex px-2 align-items-center">
+        <div class="d-flex p-2 align-items-center">
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle p-0" style="background-color: transparent; border-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle p-0 d-flex align-items-center" style="background-color: transparent; border-color: transparent;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-bell" style="font-size: 20px; "></i>
             </button>
             <div id="notification-start" class="dropdown-menu dropdown-menu-right" style="" aria-labelledby="dropdownMenuButton">
