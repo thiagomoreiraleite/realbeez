@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # Pages
   root to: 'pages#home'
   get '/tarifs', to: 'pages#details_tarifs', as: :details
+  get '/mentions_legales', to: 'pages#mentions_legales', as: :mentions_legales
 
   # Users
   devise_for :users
