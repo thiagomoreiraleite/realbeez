@@ -430,7 +430,7 @@ annonce = Annonce.create!(
 Appartement de type F5, au 1er étage d’un immeuble calme de 2 étages, se composant d’un séjour ouvert sur une cuisine équipée, 4 chambres, d’un WC et d’une salle de bain.
 Place de parking disponible dans la cour de l’immeuble.
 
-Disponible immédiatement, aucun frais d’agence.
+Disponible immédiatement, aucuns frais d’agence.
 
 Loyer 690 euros et 90 euros de provision pour charges (garant exigé)
 Téléphone : 06 66 77 40 00',

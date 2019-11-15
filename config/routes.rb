@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/tarifs', to: 'pages#details_tarifs', as: :details
   get '/mentions_legales', to: 'pages#mentions_legales', as: :mentions_legales
+  get '/nous_decouvrir', to: 'pages#nous_decouvrir', as: :nous_decouvrir
 
   # Users
   devise_for :users
