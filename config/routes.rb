@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/tarifs', to: 'pages#details_tarifs', as: :details
   get '/mentions_legales', to: 'pages#mentions_legales', as: :mentions_legales
   get '/nous_decouvrir', to: 'pages#nous_decouvrir', as: :nous_decouvrir
+  get '/fiches_pratiques', to: 'pages#fiches_pratiques', as: :fiches_pratiques
 
   # Users
   devise_for :users

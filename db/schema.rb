@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_014800) do
+ActiveRecord::Schema.define(version: 2019_11_26_205919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_014800) do
     t.string "adresse"
     t.string "ville"
     t.string "téléphone"
-    t.string "photo", default: "image/upload/v1573091063/default_profile.png"
+    t.string "photo", default: "image/upload/v1574801859/ztld1jfbvwxzxzea88fp.png"
     t.float "latitude"
     t.float "longitude"
     t.string "statut"
