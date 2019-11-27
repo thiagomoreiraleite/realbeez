@@ -1,0 +1,116 @@
+<div class="d-flex align-items-center justify-content-center" style="height: 60vh; background-size: cover; background-position: center; background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('<%= cl_image_path "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" %>')">
+  <div >
+    <h3 style="color: white; font-family: simply rounded; font-size: 26px" class="text-center px-2">Information utile sur le statut d’auto-entrepreneur</h3>
+  </div>
+</div>
+<div class="pb-5" style="background-color: white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2 text-justify px-4" style="line-height: 1.8em">
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Qu’est ce qu’une auto entreprise ?
+        </h5>
+        <p>
+          L’auto-entreprise est une entreprise individuelle qui relève du régime fiscal de la micro-entreprise et du régime micro-social pour le paiement des cotisations et contributions sociales. Ce régime simplifié a été créé pour faciliter les démarches de création et de gestion de votre activité, tout en vous permettant de bénéficier d’une protection sociale dédiée.
+        </p>
+        <p>
+          L’auto-entrepreneur peut exercer en tant qu’artisan, commerçant ou profession libérale, et ce, à titre principal (exclusivement auto-entrepreneur) ou complémentaire (en parallèle d’un statut de salarié, retraité, étudiant…).
+        </p>
+        <p>
+          Pour bénéficier du régime de la micro-entreprise, votre chiffre d’affaires annuel ne doit pas dépasser, pour une année civile complète, les plafond suivant : 70 000 € pour les prestations de services relevant de la catégorie des bénéfices industriels et commerciaux (BIC) ou des bénéfices non commerciaux (BNC) ;
+        </p>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Qui peut devenir auto-entrepreneur ?
+        </h5>
+        <p>
+          Toute personne physique peut, sous condition, devenir auto-entrepreneur :
+        </p>
+        <ul>
+          <li>  Être majeur (ou mineur émancipé par décision d’un juge des tutelles) ;</li>
+          <li>   Avoir une adresse postale en France ;</li>
+          <li>  Être de nationalité française ou ressortissant européen (ressortissant étranger hors Union Européenne sous conditions) ;</li>
+          <li>Ne pas être sous tutelle, ni sous curatelle ;</li>
+          <li>  Ne pas être condamné à une interdiction de gérer ou d’exercer.</li>
+        </ul>
+        <p>
+          L’auto-entrepreneuriat peut être exercé à titre principal ou à titre complémentaire. <br>
+          A titre principal, l’auto-entreprise constitue une activité à part entière.
+          A l’inverse, à titre complémentaire, l’auto-entreprise est une activité annexe en complément d’un autre statut :
+        </p>
+        <ul>
+          <li>Etudiant ;</li>
+          <li>Salarié (avec accord de l’employeur en cas de clause d’exclusivité, ou de spécificités incluses dans le contrat de travail) ;</li>
+          <li>Retraité ;</li>
+          <li>Dirigeant assimilé salarié (Président ou dirigeant de SAS, gérant minoritaire ou égalitaire de SARL…) ;
+          </li>
+          <li>Fonctionnaire (en fonction de votre statut, vous devez remplir certaines conditions).</li>
+        </ul>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Quels sont les avantages du statut d’auto-entrepreneur
+        </h5>
+        <p>La création en ligne de votre auto-entreprise est totalement gratuite et ne nécessite aucun apport de capital. Elle s’effectue en seulement quelques minutes depuis la rubrique « <%= link_to "Créer mon auto-entreprise" , "https://www.autoentrepreneur.urssaf.fr/portail/accueil.html", :target => "_blank"  %>  »,
+        </p>
+        <p>Une comptabilité allégée :  la comptabilité d’un auto-entrepreneur est réduite à la simple tenue quotidienne d’un registre des recettes et des achats.
+        </p>
+        <p>Simplifiée, elle n’intègre pas la TVA (<%= link_to "cf. franchise en base de TVA" , "https://www.autoentrepreneur.urssaf.fr/portail/accueil/lexique.html?lettre=F#franchise-en-base-de-tva", :target => "_blank"  %>) et ne fait pas l’objet d’un bilan annuel à présenter.</p>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">L’impôt sur le revenu
+        </h5>
+        <p>Vous avez la possibilité d’opter pour le versement libératoire de l’impôt sur le revenu lors de votre adhésion au statut auto-entrepreneur ou dans les 3 mois suivant votre début d’activité en adressant un courriel à votre Urssaf.
+        </p>
+        <p>Dans ce cas, l’impôt sur le revenu est payé en même temps que vos cotisations (au mois ou au trimestre) avec application d’un taux spécifique en fonction de votre activité :
+        </p>
+        <div class="border p-2 text-center border-info mb-4">
+          <p class="m-0">Activités de services relevant des bénéfices non commerciaux (BNC)</p>
+          <p class="m-0">Taux applicable : 2,2 %</p>
+        </div>
+        <p>Lors de votre déclaration d’impôt sur votre revenu annuel :
+        </p>
+        <ul>
+          <li>Si vous avez opté pour le versement libératoire : votre chiffre d’affaires ne sera pas pris en compte pour le calcul de l’impôt sur le revenu, mais uniquement pour établir le taux d’imposition de votre foyer fiscal.
+          </li>
+          <li>Si vous n’avez pas opté pour le versement libératoire : votre chiffre d’affaires sera intégré aux revenus de votre foyer fiscal pour le calcul de l’impôt.
+          </li>
+        </ul>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Un calcul des cotisations sociales et contributions sociales simplifiées
+        </h5>
+        <p>Le montant des cotisations et contributions sociales est calculé en appliquant au chiffre d’affaires mensuel ou trimestriel un taux qui varie en fonction de votre secteur d’activité.
+        </p>
+        <p>Ainsi, un auto-entrepreneur connaît à l’avance le montant de ses cotisations sociales à payer :
+        </p>
+        <div class="border p-2 text-center border-info mb-4">
+          <p class="m-0">Prestations de services (BIC et BNC) et professions libérales non réglementées (BNC)</p>
+          <p class="m-0">Taux applicable : 22 %</p>
+        </div>
+        <p> <strong>Important </strong>: Si vous ne réalisez pas de chiffre d’affaires, vous ne payez ni d’impôt sur le revenu ni de cotisations sociales.</p>
+        <p class="text-center"> 0 € encaissé = 0 € à payer</p>
+        <p class='mt-5'><strong>Exonération de début d’activité </strong>: Il s’agit une exonération partielle et progressive de l’ensemble des charges sociales sur 3 ans :
+        </p>
+        <ul>
+          <li>(1) Vous payez 25 % du taux global jusqu'à la fin du troisième trimestre civil qui suit celui au cours duquel intervient la date d'effet de création de l’activité ;
+          </li>
+          <li>(2) Vous payez 50 % du taux global pour les quatre trimestres civils qui suivent la période prévue au (1) ;
+          </li>
+          <li>(3) Vous payez 75 % du taux global pour les quatre trimestres civils suivant la période prévue au (2).
+          </li>
+        </ul>
+        <p class='mt-5'><strong>Qu'entend-on par cotisations sociales : </strong> Les cotisations sociales couvrent la maladie, la maternité, les indemnités journalières (excepté pour les professions libérales réglementées) les allocations familiales, l’invalidité décès, la retraite de base, la retraite complémentaire.
+          Le montant est calculé sur le chiffre d’affaires auquel on applique un taux.
+          Leur paiement permet de bénéficier de l’ouverture de droits aux prestations.</p>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Une franchise de TVA jusqu’à certains seuils de chiffre d’affaires
+        </h5>
+        <p>La franchise en base de TVA dispense l’auto-entrepreneur de la déclaration et du paiement de cette taxe. Ainsi, vous ne pouvez ni facturer la TVA à votre client, ni la récupérer sur vos achats de biens et de services liés à votre activité.
+        </p>
+        <p>La franchise en base de TVA est soumise à des seuils de chiffre d’affaires au-delà desquels votre auto-entreprise devient assujettie à la TVA :
+        </p>
+        <p>Pour la prestation de services :
+        </p>
+        <ul>
+          <li>Sur une année civile (du 1er janvier au 31 décembre) : 35 200 €
+          </li>
+          <li>Sur deux années fiscales consécutives si le chiffre d’affaires est compris entre 33 200 € et 35 200 €.
+          </li>
+        </ul>
+        <p class="font-italic">Par exemple, si votre chiffre d’affaires de l’année N est de 34 000 € et votre chiffre d’affaires de l’année N+1 est de 33 400 € vous êtes assujetti à la TVA au terme de ces deux années de dépassement du seuil de TVA.
+        </p>
+        <p class="pt-2 mt-5 border-top">Pour plus d'information concernant le statut d'auto-entrepreneur, veuillez <%= link_to "cliquer ici", "https://www.autoentrepreneur.urssaf.fr/portail/accueil/sinformer-sur-le-statut/lessentiel-du-statut.html", :target => "_blank" %>.</p>
+      </div>
+    </div>
+  </div>
+</div>

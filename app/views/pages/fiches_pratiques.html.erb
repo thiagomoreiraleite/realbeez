@@ -4,14 +4,27 @@
   </div>
 </div>
 <div class="container my-5">
-  <div class="row">
+  <div class="row mb-4">
     <div class="col-12 col-md-10 offset-md-1">
       <div class="card" style="border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
         <div class="card-body">
-          <h5 class="card-title">Le statut d’auto-entrepreneur </h5>
-          <p class="card-text" style="color: rgba(0, 0, 0, 0.5) ">L’auto-entreprise est une entreprise individuelle qui relève du régime fiscal de la micro-entreprise et du régime micro-social pour le paiement des cotisations et contributions sociales. Ce régime simplifié a été créé pour faciliter les démarches de création et de gestion de votre activité, tout en vous permettant de bénéficier d’une protection sociale dédiée.
+          <h5 class="card-title">Information utile sur le statut d’auto-entrepreneur
+          </h5>
+          <p class="card-text text-truncate font-weight-light" style="color: rgba(0, 0, 0, 0.5) ">L’auto-entreprise est une entreprise individuelle qui relève du régime fiscal de la micro-entreprise et du régime micro-social pour le paiement des cotisations et contributions sociales.
           </p>
-          <a href="#" class="btn btn-yellow-mustard stretched-link">Plus d'information</a>
+          <%= link_to "Plus d'information", statut_auto_entrepreneur_path,class: "btn btn-transparent stretched-link" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12 col-md-10 offset-md-1">
+      <div class="card" style="border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+        <div class="card-body">
+          <h5 class="card-title">Demander le statut d’auto-entrepreneur et devenez consultant immobilier</h5>
+          <p class="card-text text-truncate" style="color: rgba(0, 0, 0, 0.5) ">Suivez la procédure détaillée afin d’obtenir le statut d’auto-entrepreneur (inscription gratuite).
+          </p>
+          <%= link_to "Télécharger gratuitement", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1571109367/Devenir_auto-entrepreneur_xhr9av.pdf",class: "btn btn-transparent stretched-link" %>
         </div>
       </div>
     </div>
