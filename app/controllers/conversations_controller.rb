@@ -57,9 +57,19 @@ class ConversationsController < ApplicationController
     @conversation = current_user.mailbox.conversations.find(params[:id])
     if  params[:delete][:from] == "corbeille"
       @conversation.mark_as_deleted(current_user)
+      # if delete conversation need to mark all receipt as read to ensure that message_unread count is zero
+      @conversation.receipts.each do |receipt|
+        receipt.is_read = true
+        receipt.save
+      end
       redirect_to conversations_path
     elsif params[:delete][:from] == "reçu_envoyé"
       @conversation.move_to_trash(current_user)
+      # if delete conversation need to mark all receipt as read to ensure that message_unread count is zero
+      @conversation.receipts.each do |receipt|
+        receipt.is_read = true
+        receipt.save
+      end
       redirect_to conversations_path
     end
   end

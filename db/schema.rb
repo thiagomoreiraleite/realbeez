@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_205919) do
+ActiveRecord::Schema.define(version: 2019_11_28_144840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_205919) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "connaissance"
-    t.string "justif_entrepreneur", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
+    t.string "justif_entrepreneur", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
     t.index ["user_id"], name: "index_agents_on_user_id"
   end
 
@@ -45,16 +45,16 @@ ActiveRecord::Schema.define(version: 2019_11_26_205919) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "statut"
-    t.string "photo", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
-    t.string "photo1", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
+    t.string "photo", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
+    t.string "photo1", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
     t.float "latitude"
     t.float "longitude"
     t.string "agent_user_id"
     t.string "checkout_agent"
     t.string "checkout_proprio"
-    t.string "photo2", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
-    t.string "photo3", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
-    t.string "photo4", default: "image/upload/v1571117407/vkvocjjohixcui17sivw.png"
+    t.string "photo2", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
+    t.string "photo3", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
+    t.string "photo4", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
     t.integer "price_cents", default: 0, null: false
     t.integer "pièces"
     t.integer "charges"

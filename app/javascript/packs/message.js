@@ -9,6 +9,7 @@ const messageMethod = () => {
     .then((data) => {
       const messageCount = document.querySelector("#message-count")
       const countInput = `<div class="border text-center mb-3" style="font-size: 12px; border-radius:50%; background-color: red; height:20px; width:20px; color:white; font-weight: bold; z-index: 1;">${data.length}</div>`
+      console.log(data.length)
       if (data.length > 0) {
         messageCount.insertAdjacentHTML("beforeend", countInput);
       }
