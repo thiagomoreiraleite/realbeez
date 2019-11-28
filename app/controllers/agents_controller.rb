@@ -24,7 +24,7 @@ class AgentsController < ApplicationController
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
     if @agent.save
       # Create a notification
-      Notification.create(recipient: @admin, actor: current_user, action: "candidature_become_agent_RB", notifiable: @agent)
+      # Notification.create(recipient: @admin, actor: current_user, action: "candidature_become_agent_RB", notifiable: @agent)
       # Send email to Admin RB
       mail_admin = AgentMailer.with(agent: @agent).candidature_become_agent_RB
       mail_admin.deliver_now
@@ -48,7 +48,7 @@ class AgentsController < ApplicationController
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
     if @agent.update(agent_params)
       # Create a notification
-      Notification.create(recipient: @admin, actor: current_user, action: "candidature_update_agent_RB", notifiable: @agent)
+      # Notification.create(recipient: @admin, actor: current_user, action: "candidature_update_agent_RB", notifiable: @agent)
       # Send email to Admin RB
       mail = AgentMailer.with(agent: @agent).candidature_update_agent_RB
       mail.deliver_now

@@ -31,8 +31,8 @@
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a prévu une visite de votre bien situé à ' + notification.notifiable.annonce.ville.capitalize + "." , meetings_path(visites: {from: 'proprio'}), class:"" %></td>
               <% elsif notification.action == "rating_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a publié un avis.', profile_path(current_user), class:"" %></td>
-              <% elsif notification.action == "candidature_become_agent_RB" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' postule pour devenir agent Realbeez.', agents_path, class:"" %></td>
+                <!--  <#% elsif notification.action == "candidature_become_agent_RB" %>
+                <td><#%= link_to User.find(notification.actor_id).prénom.capitalize + ' postule pour devenir agent Realbeez.', agents_path, class:"" %></td> -->
               <% elsif notification.action == "candidature_accept_agent_RB" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' accèpte votre candidature, vous pouvez désormais proposer vos services aux propriétaires.', profile_path(notification.notifiable.user), class:"" %></td>
               <% elsif notification.action == "candidature_decline_agent_RB" %>
@@ -47,8 +47,8 @@
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué.", annonce_path(notification.notifiable.annonce), class:"" %></td>
               <% elsif notification.action == "checkout_proprio_notify_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué par vos soins.", annonce_path(notification.notifiable.annonce), class:"" %></td>
-              <% elsif notification.action == "new_registration" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + "vient de s'inscrire sur RB", profile_all_users_path, class:"" %></td>
+                <!--   <#% elsif notification.action == "new_registration" %>
+                <td><#%= link_to User.find(notification.actor_id).prénom.capitalize + " vient de s'inscrire sur RB", profile_all_users_path, class:"" %></td> -->
               <% end %>
               <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
             </tr>

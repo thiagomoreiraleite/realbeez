@@ -21,8 +21,8 @@ json.array!  @notifications do |notification|
       json.type "a prévu une visite"
     elsif notification.action == "rating_agent"
       json.type "a publié un avis"
-    elsif notification.action == "candidature_become_agent_RB"
-      json.type "a postulé pour devenir agent"
+    # elsif notification.action == "candidature_become_agent_RB"
+    #   json.type "a postulé pour devenir agent"
     elsif notification.action == "candidature_accept_agent_RB"
       json.type "accepte votre candidature"
     elsif notification.action == "candidature_decline_agent_RB"
@@ -37,8 +37,8 @@ json.array!  @notifications do |notification|
       json.type "confirme avoir loué son bien"
     elsif notification.action == "checkout_proprio_notify_agent"
       json.type "confirme avoir loué son bien"
-    elsif notification.action == "new_registration"
-      json.type "s'est inscrit sur RB"
+    # elsif notification.action == "new_registration"
+    #   json.type "s'est inscrit sur RB"
     end
   end
 
@@ -59,8 +59,8 @@ json.array!  @notifications do |notification|
     json.url meetings_path(visites: {from: 'proprio'})
   elsif notification.action == "rating_agent"
     json.url profile_path(current_user)
-  elsif notification.action == "candidature_become_agent_RB"
-    json.url agents_path
+  # elsif notification.action == "candidature_become_agent_RB"
+  #   json.url agents_path
   elsif notification.action == "candidature_accept_agent_RB"
     json.url profile_path(notification.notifiable.user)
   elsif notification.action == "candidature_decline_agent_RB"
@@ -75,7 +75,7 @@ json.array!  @notifications do |notification|
     json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "checkout_proprio_notify_agent"
     json.url annonce_path(notification.notifiable.annonce)
-  elsif notification.action == "new_registration"
-    json.url profile_all_users_path
+  # elsif notification.action == "new_registration"
+  #   json.url profile_all_users_path
   end
 end

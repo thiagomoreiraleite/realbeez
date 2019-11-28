@@ -44,9 +44,9 @@ class User < ApplicationRecord
   def send_new_registration
     mail = UserMailer.with(user: self).new_registration
     mail.deliver_now
-    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    # @admin = User.where("email = ?", "contact@realbeez.com")[0]
     # Create a notification
-    Notification.create(recipient: @admin, actor: self, action: "new_registration", notifiable: self)
+    # Notification.create(recipient: @admin, actor: self, action: "new_registration", notifiable: self)
   end
 
   def set_geolocation
