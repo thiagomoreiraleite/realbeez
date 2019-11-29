@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/nous_decouvrir', to: 'pages#nous_decouvrir', as: :nous_decouvrir
   get '/fiches_pratiques', to: 'pages#fiches_pratiques', as: :fiches_pratiques
   get '/statut_auto_entrepreneur', to: 'pages#statut_auto_entrepreneur', as: :statut_auto_entrepreneur
+  get '/reponse_contactez_nous', to: 'pages#reponse_contactez_nous', as: :reponse_contactez_nous
+  resources :pages, only: [:new, :create]
 
   # Users
   devise_for :users

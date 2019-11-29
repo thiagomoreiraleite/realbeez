@@ -1,0 +1,9 @@
+<p>Bonjour Boss,</p>
+<p><%= params[:conversation][:email] + " vous a envoyé le message ci-dessous : "%></p>
+<div style="font-style: italic; margin-top: 10px; margin-bottom: 10px; color: rgba(0, 0, 0, 0.5); ">
+  <p>Objet : <%= params[:conversation][:subject] %></p>
+  <p><%=  simple_format(params[:conversation][:body]) %></p>
+</div>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+</p>

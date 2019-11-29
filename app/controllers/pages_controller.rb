@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :details_tarifs, :mentions_legales, :nous_decouvrir, :fiches_pratiques, :statut_auto_entrepreneur]
+  skip_before_action :authenticate_user!, only: [:home, :details_tarifs, :mentions_legales, :nous_decouvrir, :fiches_pratiques, :statut_auto_entrepreneur, :new, :create, :reponse_contactez_nous]
 
   def home
     if user_signed_in? && current_user.ville != nil
@@ -18,5 +18,24 @@ class PagesController < ApplicationController
       @annonces = Annonce.where("statut = ?", "active").order(created_at: :desc).limit(3)
       @profiles = Profile.where("statut = ?", "Agent").limit(6)
     end
+  end
+
+  def new
+    skip_authorization
+    # @recipients = User.all - [current_user]
+    @recipients = []
+    # @conversation = params[:conversation_id]
+    @recipients << @recipient = User.find(params[:message][:to].to_i)
+  end
+
+  def create
+    skip_authorization
+    recipient = User.where("email = ?", "contact@realbeez.com")[0]
+    @sender = params[:email]
+    receipt = params
+    # Send email
+    mail = PageMailer.with(conversation: receipt).contactez_nous
+    mail.deliver_now
+    redirect_to reponse_contactez_nous_path
   end
 end

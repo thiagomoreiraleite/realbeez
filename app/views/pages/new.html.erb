@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 mb-5">
+      <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez-nous</h5>
+      <p class="mb-4">Vous pouvez aussi nous contacter par email à l'adresse suivante : contact@realbeez.com</p>
+      <%= form_for "", url: pages_path do |f| %>
+        <div class="form-group">
+          <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
+        </div>
+        <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right' %>
+      <% end %>
+    </div>
+  </div>
+</div>
