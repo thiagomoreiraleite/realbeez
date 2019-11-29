@@ -34,15 +34,15 @@ class AgentMailer < ApplicationMailer
     )
   end
 
-  def candidature_accept_agent_RB
-    @agent = params[:agent]
-    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+  # def candidature_accept_agent_RB
+  #   @agent = params[:agent]
+  #   @admin = User.where("email = ?", "contact@realbeez.com")[0]
 
-    mail(
-      to:       @agent.user.email,
-      subject:  "#{@admin.prénom.capitalize} accepte votre candidature"
-    )
-  end
+  #   mail(
+  #     to:       @agent.user.email,
+  #     subject:  "#{@admin.prénom.capitalize} accepte votre candidature"
+  #   )
+  # end
 
   def candidature_decline_agent_RB
     @agent = params[:agent]
