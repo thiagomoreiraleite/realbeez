@@ -1,0 +1,6 @@
+<p>Bonjour Boss,</p>
+<p>Il y a une nouvelle candidature.</p>
+<p><%= @candidature.annonce.user.prénom.capitalize %> <%= @candidature.annonce.user.nom.capitalize %> demande les services de <%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom.capitalize %></p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir candidature", candidature_all_url %></p>

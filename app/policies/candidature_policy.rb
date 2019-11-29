@@ -4,6 +4,10 @@ class CandidaturePolicy < ApplicationPolicy
     true
   end
 
+  def candidature_all?
+    true
+  end
+
   def candidature_agent?
     true
   end

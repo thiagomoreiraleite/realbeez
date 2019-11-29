@@ -6,8 +6,16 @@ class CandidaturesController < ApplicationController
     @annonces = current_user.annonces
   end
 
+  def candidature_all
+    authorize @candidatures = Candidature.all
+    @candidature_proprio = Candidature.where("statut = ?", "request").order(updated_at: :asc)
+    @candidature_agent = Candidature.where("statut = ?", "pending").order(updated_at: :asc)
+    @candidature_accepté = Candidature.where("statut = ?", "accepté").order(updated_at: :asc)
+    @candidature_rejeté = Candidature.where("statut = ?", "rejeté").order(updated_at: :asc)
+  end
+
   def candidature_proprio
-    authorize @candidatures = policy_scope( Candidature).order(created_at: :desc)
+    authorize @candidatures = policy_scope(Candidature).order(created_at: :desc)
     @annonces = current_user.annonces
 
     @candidatures = []
@@ -77,6 +85,9 @@ class CandidaturesController < ApplicationController
         # Send email
         mail = CandidatureMailer.with(candidature: @candidature).candidature_create_proprio
         mail.deliver_now
+        # Send email to Admin
+        mail_admin = CandidatureMailer.with(candidature: @candidature).candidature_create_proprio_notify_admin
+        mail_admin.deliver_now
         redirect_to new_candidature_mandat_path(@candidature)
       else
         render :new
@@ -96,6 +107,9 @@ class CandidaturesController < ApplicationController
         # Send email
         mail = CandidatureMailer.with(candidature: @candidature).candidature_create_agent
         mail.deliver_now
+        # Send email to Admin
+        mail_admin = CandidatureMailer.with(candidature: @candidature).candidature_create_agent_notify_admin
+        mail_admin.deliver_now
         redirect_to new_candidature_mandat_path(@candidature)
       else
         render :new

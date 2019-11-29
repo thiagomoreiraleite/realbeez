@@ -1,0 +1,272 @@
+<% if current_user.admin == true  %>
+  <div class="container">
+    <h3 class="text-center mt-5 mb-4">Toutes les Candidatures</h3>
+    <div class="profile-friends">
+      <div class="search navigations">
+        <h3 id="candidature_proprio" class="active" style="font-size: 16px">From Proprio</h3>
+        <h3 id="candidature_agent" style="font-size: 16px">From Agent</h3>
+        <h3 id="candidature_accepté" style="font-size: 16px">Acceptées</h3>
+        <h3 id="candidature_rejeté" style="font-size: 16px">Rejetées</h3>
+      </div>
+      <div id="friends-toPlace" class="row">
+        <% if @candidature_proprio != [] %>
+          <% @candidature_proprio.each do |candidature| %>
+            <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+              <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+                <div class="row no-gutters", style="border-radius: 30px">
+                  <div class="col-md-4">
+                    <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                  </div>
+                  <div class="col-md-8 d-flex flex-column justify-content-between">
+                    <div class="card-body pb-2">
+                      <div>
+                        <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %>
+                        </h5>
+                        <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Envoyée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
+                        <p class="card-text m-0"> Proprio : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.titlecase %></p>
+                        <p class="card-text m-0 mb-2"> Agent : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.titlecase %></p>
+                        <p class="card-text"> Statut : <%= candidature.statut %></p>
+                        <% if candidature.mandat != nil %>
+                          <div class="d-flex justify-content-between">
+                            <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-transparent" %>
+                            <div>
+                              <% if candidature.mandat.acceptation_proprio == true %>
+                                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+                              <% else %>
+                                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+                              <% end %>
+                              <% if candidature.mandat.acceptation_agent == true %>
+                                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+                              <% else %>
+                                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+                              <% end %>
+                            </div>
+                          </div>
+                        <% else %>
+                          <%= link_to 'Signer le mandat', new_candidature_mandat_path(candidature), class:"btn btn-transparent" %>
+                        <% end %>
+                        <%#= link_to "Voir mandat", mandat_path(candidature.mandat.id), method: :delete  %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h4 class="text-center" style="width: 100%;">"Aucune candidature envoyée"</h4>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <script>
+    const addClassSelected = (target) => {
+    // take parent class -> get children -> remove classes for all children
+    // console.log(target)
+    const children = target.parentElement.children;
+    const childAmount = target.parentElement.childElementCount;
+    for (let i=0; i<childAmount; i++) {
+      children[i].classList.remove("active");
+    }
+    // add class
+    target.classList.add("active");
+      };
+    
+       this.addEventListener("click", (e) => {
+    console.log(e)
+    const whereToShow = document.querySelector("#friends-toPlace");
+    const id = e.target.id;
+    console.log(id)
+    if (id === "candidature_proprio") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_proprio != [] %>
+      <% @candidature_proprio.each do |candidature| %>
+        <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+          <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+            <div class="row no-gutters", style="border-radius: 30px">
+              <div class="col-md-4">
+                <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+              </div>
+              <div class="col-md-8 d-flex flex-column justify-content-between">
+                <div class="card-body pb-2">
+                  <div>
+                    <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %>
+                    </h5>
+                    <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Envoyée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
+                    <p class="card-text m-0"> Proprio : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.titlecase %></p>
+                    <p class="card-text m-0 mb-2"> Agent : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.titlecase %></p>
+                    <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    <% if candidature.mandat != nil %>
+                      <div class="d-flex justify-content-between">
+                        <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-transparent" %>
+                        <div>
+                          <% if candidature.mandat.acceptation_proprio == true %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+                          <% else %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+                          <% end %>
+                          <% if candidature.mandat.acceptation_agent == true %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+                          <% else %>
+                            <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% else %>
+                      <%= link_to 'Signer le mandat', new_candidature_mandat_path(candidature), class:"btn btn-transparent" %>
+                    <% end %>
+                    <%#= link_to "Voir mandat", mandat_path(candidature.mandat.id), method: :delete  %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h4 class="text-center" style="width: 100%;">"Aucune candidature envoyée"</h4>
+    <% end %>
+      `);
+    }
+    else if (id === "candidature_agent") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_agent != [] %>
+        <% @candidature_agent.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body pb-2">
+                    <div>
+                      <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %>
+                      </h5>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Envoyée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
+                      <p class="card-text m-0"> Proprio : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.titlecase %></p>
+                      <p class="card-text m-0 mb-2"> Agent : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.titlecase %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                      <% if candidature.mandat != nil %>
+                        <div class="d-flex justify-content-between">
+                          <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-transparent" %>
+                          <div>
+                            <% if candidature.mandat.acceptation_proprio == true %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+                            <% else %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+                            <% end %>
+                            <% if candidature.mandat.acceptation_agent == true %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+                            <% else %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% else %>
+                        <%= link_to 'Signer le mandat', new_candidature_mandat_path(candidature), class:"btn btn-transparent" %>
+                      <% end %>
+                    </div>
+                  </div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature envoyée"</h4>
+      <% end %>
+      `);
+    }
+    else if (id === "candidature_accepté") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_accepté != [] %>
+        <% @candidature_accepté.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Acceptée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
+                      <p class="card-text m-0"> Proprio : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.titlecase %></p>
+                      <p class="card-text m-0 mb-2"> Agent : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.titlecase %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                      <% if candidature.mandat != nil %>
+                        <div class="d-flex justify-content-between">
+                          <%= link_to 'Voir mandat', mandat_path(candidature.mandat), class:"btn btn-transparent" %>
+                          <div>
+                            <% if candidature.mandat.acceptation_proprio == true %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+                            <% else %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+                            <% end %>
+                            <% if candidature.mandat.acceptation_agent == true %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+                            <% else %>
+                              <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+                            <% end %>
+                          </div>
+                        </div>
+                      <% else %>
+                        <%= link_to 'Signer le mandat', new_candidature_mandat_path(candidature), class:"btn btn-transparent" %>
+                      <% end %>
+                    </div>
+                  </div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature acceptée"</h4>
+      <% end %>
+        `);
+    }
+    else if (id === "candidature_rejeté") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @candidature_rejeté != [] %>
+        <% @candidature_rejeté.each do |candidature| %>
+          <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path candidature.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title text-truncate mb-0"><%= candidature.annonce.titre_annonce.titlecase %></h5>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Rejetée le <%= candidature.updated_at.strftime("%e %b %y") %></p>
+                      <p class="card-text m-0"> Proprio : <%= candidature.annonce.user.prénom.capitalize %> <%= candidature.annonce.user.nom.titlecase %></p>
+                      <p class="card-text m-0 mb-2"> Agent : <%= candidature.user.prénom.capitalize %> <%= candidature.user.nom.titlecase %></p>
+                      <p class="card-text"> Statut : <%= candidature.statut %></p>
+                    </div>
+                  </div class="">
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature rejetée"</h4>
+      <% end %>
+      `);
+    };
+      });
+  </script>
+<% else %>
+  <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez pas accès à cette page"</h4>
+<% end %>

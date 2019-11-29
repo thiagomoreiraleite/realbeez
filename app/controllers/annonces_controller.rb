@@ -234,6 +234,9 @@ class AnnoncesController < ApplicationController
       end
     end
     if @annonce.save
+      # Send email to Admin
+      mail_admin = AnnonceMailer.with(annonce: @annonce).create_new_annonce
+      mail_admin.deliver_now
       redirect_to @annonce
       # for multiple upload photo
       # create_pictures

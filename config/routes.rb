@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   post '/candidatures/:id/reject_candidature', to: 'candidatures#reject_candidature', as: :reject_candidature
   get '/candidatures/proprio', to: 'candidatures#candidature_proprio', as: :candidature_proprio
   get '/candidatures/agent', to: 'candidatures#candidature_agent', as: :candidature_agent
+  get '/candidatures/all', to: 'candidatures#candidature_all', as: :candidature_all
   get '/candidatures/:id/show_proprio', to: 'candidatures#show_proprio', as: :show_proprio
   get '/candidatures/:id/show_agent', to: 'candidatures#show_agent', as: :show_agent
 
