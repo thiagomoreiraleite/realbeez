@@ -10,15 +10,15 @@
           <div class="col-sm-12 offset-lg-0 col-md-6">
             <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
               <div class="row no-gutters", style="border-radius: 30px">
-                <div class="col-4">
-                  <p class="mb-0"><%= image_tag (cl_image_path profile.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3" %></p>
+                <div class="col-3">
+                  <p class="mb-0"><%= image_tag (cl_image_path profile.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3 avatar-mobile" %></p>
                 </div>
-                <div class="col-8 d-flex flex-column justify-content-between">
+                <div class="col-9 d-flex flex-column justify-content-between">
                   <div class="card-body ml-4">
                     <div>
-                      <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
+                      <h5 class="card-title mb-2"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
                       <!-- ==========RATING ============-->
-                      <div class="mb-2">
+                      <div class="mb-2 font-size-mobile">
                         <% unless profile.agent.reviews == [] %>
                           <%  @sum_ratings = profile.agent.reviews.inject(0) {|sum, i|  sum + i.rating }.to_f%>
                           <% @nb_ratings = profile.agent.reviews.count.to_f%>
@@ -27,7 +27,7 @@
                           <% @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1 %>
                           <% @empty_stars = 5 - @full_stars - @half_full_stars%>
                           <% @reviews = profile.agent.reviews.order(created_at: :desc)%>
-                          <div style="font-size: 14px">
+                          <div style="font-size: 14px" class="font-size-mobile">
                             <% @full_stars.times do  %>
                               <i class="fas fa-star" style="color:#D8A727"></i>
                             <% end %>
@@ -35,14 +35,14 @@
                               <i class="fas fa-star-half-alt" style="color:#D8A727"></i>
                             <% end %>
                             <% @empty_stars.times do  %>
-                              <i class="far fa-star mt-2" style="color:#D8A727"></i>
+                              <i class="far fa-star" style="color:#D8A727"></i>
                             <% end %>
                             <%= @average_ratings.round(1) %>
                             (<%= @nb_ratings.to_i %> avis)
                           </div>
                         <% else %>
                           <% 5.times do  %>
-                            <i class="far fa-star mt-2" style="color:#D8A727"></i>
+                            <i class="far fa-star" style="color:#D8A727"></i>
                           <% end %>
                           (0 avis)
                         <% end %>
@@ -74,19 +74,19 @@
             <div class="col-sm-12 offset-lg-0 col-md-6">
               <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
                 <div class="row no-gutters", style="border-radius: 30px">
-                  <div class="col-4">
-                    <p class="mb-0"><%= image_tag (cl_image_path profile.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3" %></p>
+                  <div class="col-3">
+                    <p class="mb-0"><%= image_tag (cl_image_path profile.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3 avatar-mobile" %></p>
                   </div>
-                  <div class="col-8 d-flex flex-column justify-content-between">
+                  <div class="col-9 d-flex flex-column justify-content-between">
                     <div class="card-body ml-4">
                       <div>
-                        <h5 class="card-title mb-0"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %>
+                        <h5 class="card-title mb-2"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %>
                           <span class="ml-2" style="z-index:2; position:relative">
                             <%= link_to "", new_conversation_path(message: {to: profile.id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
                           </span>
                         </h5>
                         <!-- ==========RATING ============-->
-                        <div class="mb-2">
+                        <div class="mb-2 font-size-mobile">
                           <% unless profile.agent.reviews == [] %>
                             <%  @sum_ratings = profile.agent.reviews.inject(0) {|sum, i|  sum + i.rating }%>
                             <% @nb_ratings = profile.agent.reviews.count.to_f%>
@@ -95,7 +95,7 @@
                             <% @half_full_stars = (@average_ratings - @full_stars) == 0 ? 0 : 1 %>
                             <% @empty_stars = 5 - @full_stars - @half_full_stars%>
                             <% @reviews = profile.agent.reviews.order(created_at: :desc)%>
-                            <div style="font-size: 14px">
+                            <div style="font-size: 14px" class="font-size-mobile">
                               <% @full_stars.times do  %>
                                 <i class="fas fa-star" style="color:#D8A727"></i>
                               <% end %>
@@ -103,14 +103,14 @@
                                 <i class="fas fa-star-half-alt" style="color:#D8A727"></i>
                               <% end %>
                               <% @empty_stars.times do  %>
-                                <i class="far fa-star mt-2" style="color:#D8A727"></i>
+                                <i class="far fa-star" style="color:#D8A727"></i>
                               <% end %>
                               <%= @average_ratings.round(1) %>
                               (<%= @nb_ratings.to_i %> avis)
                             </div>
                           <% else %>
                             <% 5.times do  %>
-                              <i class="far fa-star mt-2" style="color:#D8A727"></i>
+                              <i class="far fa-star" style="color:#D8A727"></i>
                             <% end %>
                             (0 avis)
                           <% end %>
