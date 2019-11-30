@@ -26,8 +26,14 @@
 
 .avatar-mobile {
     @media only screen and (max-width: 576px) {
-     height: 140px !important;
-     width: 140px !important;
+     height: 110px !important;
+     width: 110px !important;
+  }
+}
+
+.font-size-mobile {
+    @media only screen and (max-width: 576px) {
+     font-size: 11px !important;
   }
 }
 
