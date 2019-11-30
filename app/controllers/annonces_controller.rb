@@ -152,6 +152,20 @@ class AnnoncesController < ApplicationController
     authorize @annonces
   end
 
+  def annonces_all
+    @annonces = Annonce.all
+    @annonces_proprio_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
+    @annonces_proprio_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
+    @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
+      {
+        lat: annonce.latitude,
+        lng: annonce.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { annonce: annonce })
+      }
+    end
+    authorize @annonces
+  end
+
   def checkout_agent
     authorize @annonce
     @annonce.checkout_agent = "check"

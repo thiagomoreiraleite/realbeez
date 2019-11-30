@@ -12,6 +12,10 @@ class AnnoncePolicy < ApplicationPolicy
     true
   end
 
+  def annonces_all?
+    true
+  end
+
   def checkout_proprio?
     true
   end

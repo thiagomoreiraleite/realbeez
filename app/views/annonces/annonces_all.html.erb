@@ -1,0 +1,242 @@
+<% if current_user.admin == true  %>
+  <div class="container">
+    <!-- show annonces of current user -->
+    <h3 class="text-center mt-5 mb-5", style="">Toutes les annonces</h3>
+    <div class="profile-friends">
+      <div class="search navigations">
+        <h3 id="en_cours" class="active" style="font-size: 16px">En cours</h3>
+        <h3 id="loué" style="font-size: 16px">Loués</h3>
+      </div>
+      <div id="friends-toPlace" class="row">
+        <% if @annonces_proprio_en_cours != []  %>
+          <% @annonces_proprio_en_cours.each do |annonce| %>
+            <% unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+                  <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+                  <div class="px-3">
+                    <div class="mt-2">
+                      <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
+                      <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
+                    </div>
+                    <div class="mt-0">
+                      <p class='my-1', style="font-size: 14px">Nb de pièces  : <%= annonce.pièces %></p>
+                      <p style="font-size: 14px">Loyer mensuel  : <%= annonce.loyer_mensuel %></p>
+                      <% if annonce.agent_user_id != nil %>
+                        <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
+                      <% else %>
+                        <p style="font-size: 14px">Aucun agent assigné</p>
+                      <% end %>
+                      <div class="d-flex px-0 justify-content-around">
+                        <!-- put phone of agent if agent is assigned -->
+                        <% if annonce.agent_user_id != nil %>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                        <% else %>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                        <% end %>
+                        <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                        <!-- send message -->
+                        <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                          <div class="">
+                            <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- all links with gérer et valider -->
+                  <% if user_signed_in?  %>
+                    <!-- flat is rented and checked out by proprio -->
+                    <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
+                      Validation agent
+                      <% if annonce.checkout_agent == "check" %>
+                        <i class="fas fa-check" style="color: green"></i>
+                      <% else %>
+                        <i class="fas fa-times" style="color: red"></i>
+                      <% end %>
+                    </div>
+                    <div class="text-center mb-2" style="font-size: 12px; font-weight: bold">
+                      Validation propriétaire
+                      <% if annonce.checkout_proprio == "check" %>
+                        <i class="fas fa-check" style="color: green"></i>
+                      <% else %>
+                        <i class="fas fa-times" style="color: red"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h4 class="text-center mt-4" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce actuellement"</h4>
+        <% end %>
+      </div>
+    </div>
+    <script>
+      const addClassSelected = (target) => {
+      // take parent class -> get children -> remove classes for all children
+      // console.log(target)
+      const children = target.parentElement.children;
+      const childAmount = target.parentElement.childElementCount;
+      for (let i=0; i<childAmount; i++) {
+        children[i].classList.remove("active");
+      }
+      // add class
+      target.classList.add("active");
+      };
+      
+       this.addEventListener("click", (e) => {
+        console.log(e)
+        const whereToShow = document.querySelector("#friends-toPlace");
+        const id = e.target.id;
+        console.log(id)
+        if (id === "en_cours") {
+          addClassSelected(e.target);
+          whereToShow.innerHTML = "";
+          whereToShow.insertAdjacentHTML("beforeend", `
+            <% if @annonces_proprio_en_cours != []  %>
+              <% @annonces_proprio_en_cours.each do |annonce| %>
+                <% unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
+                  <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+                      <div class="px-3">
+                        <div class="mt-2">
+                          <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
+                          <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
+                        </div>
+                        <div class="mt-0">
+                          <p class='my-1', style="font-size: 14px">Nb de pièces : <%= annonce.pièces %></p>
+                          <p style="font-size: 14px">Loyer mensuel : <%= annonce.loyer_mensuel %></p>
+                          <% if annonce.agent_user_id != nil %>
+                            <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
+                          <% else %>
+                            <p style="font-size: 14px">Aucun agent assigné</p>
+                          <% end %>
+                          <div class="d-flex px-0 justify-content-around">
+                            <% if annonce.agent_user_id != nil %>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                            <% else %>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                            <% end %>
+                            <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                            <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                              <div class="">
+                                <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- all links with gérer et valider -->
+                      <% if user_signed_in?  %>
+                        <!-- flat is rented and checked out by proprio -->
+                        <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
+                          Validation agent
+                          <% if annonce.checkout_agent == "check" %>
+                            <i class="fas fa-check" style="color: green"></i>
+                          <% else %>
+                            <i class="fas fa-times" style="color: red"></i>
+                          <% end %>
+                        </div>
+                        <div class="text-center mb-2" style="font-size: 12px; font-weight: bold">
+                          Validation propriétaire
+                          <% if annonce.checkout_proprio == "check" %>
+                            <i class="fas fa-check" style="color: green"></i>
+                          <% else %>
+                            <i class="fas fa-times" style="color: red"></i>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% else %>
+              <h4 class="text-center mt-4" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce actuellement"</h4>
+            <% end %>
+          `);
+        }
+        else if (id === "loué") {
+          addClassSelected(e.target);
+          whereToShow.innerHTML = "";
+          whereToShow.insertAdjacentHTML("beforeend", `
+            <% if @annonces_proprio_loué != []  %>
+              <% @annonces_proprio_loué.each do |annonce| %>
+                <% if annonce.statut == "Loué"  %>
+                  <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="text-center" style="color: #D8A727">
+                      <% annonce.orders.each do |order| %>
+                        <% if order.state == "paid" %>
+                          <p class="mb-1"><strong>Ordre de paiement n°<%= order.id %> : Reçu</strong><i class="fas fa-check ml-1" style="color: green"></i></p>
+                        <% else %>
+                          <p class="mb-1"><strong>Ordre de paiement n° <%= order.id %> : <%= link_to "A PAYER", orders_path %></strong><i class="fas fa-times ml-1" style="color: red"></i></p>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+                      <div class="px-3">
+                        <div class="mt-2">
+                          <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
+                          <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
+                        </div>
+                        <div class="mt-0">
+                          <p class='my-1', style="font-size: 14px">Nb de pièces : <%= annonce.pièces %></p>
+                          <p style="font-size: 14px">Loyer mensuel : <%= annonce.loyer_mensuel %></p>
+                          <% if annonce.agent_user_id != nil %>
+                            <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
+                          <% else %>
+                            <p style="font-size: 14px">Aucun agent assigné</p>
+                          <% end %>
+                          <div class="d-flex px-0 justify-content-around">
+                            <% if annonce.agent_user_id != nil %>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                            <% else %>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                            <% end %>
+                            <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                            <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
+                              <div class="">
+                                <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- all links with gérer et valider -->
+                      <% if user_signed_in?  %>
+                        <!-- flat is rented and checked out by proprio -->
+                        <div class="text-center mt-2" style="font-size: 12px; font-weight: bold">
+                          Validation agent
+                          <% if annonce.checkout_agent == "check" %>
+                            <i class="fas fa-check" style="color: green"></i>
+                          <% else %>
+                            <i class="fas fa-times" style="color: red"></i>
+                          <% end %>
+                        </div>
+                        <div class="text-center mb-2" style="font-size: 12px; font-weight: bold">
+                          Validation propriétaire
+                          <% if annonce.checkout_proprio == "check" %>
+                            <i class="fas fa-check" style="color: green"></i>
+                          <% else %>
+                            <i class="fas fa-times" style="color: red"></i>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% else %>
+              <h4 class="text-center mt-4" style="width: 100%; color:#DA334A; font-style: italic;">"Aucune annonce actuellement"</h4>
+            <% end %>
+          `);
+        };
+      });
+    </script>
+  </div>
+<% else %>
+  <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez pas accès à cette page"</h4>
+<% end %>
