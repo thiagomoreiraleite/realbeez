@@ -89,8 +89,8 @@ class AgentsController < ApplicationController
     # Create a notification
     Notification.create(recipient: @agent.user, actor: @admin, action: "candidature_decline_agent_RB", notifiable: @agent)
     # Send email
-    mail = AgentMailer.with(agent: @agent).candidature_decline_agent_RB
-    mail.deliver_now
+    # mail = AgentMailer.with(agent: @agent).candidature_decline_agent_RB
+    # mail.deliver_now
     redirect_to agents_path
   end
 
