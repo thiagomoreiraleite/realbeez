@@ -102,7 +102,7 @@
                       <p class="card-text">Email : <%= agent.user.email %></p>
                       <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
                       <p><%= link_to "Voir justificatif de l'Insee", "https://res.cloudinary.com/dvfwroq5k/#{agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
-                      <p class="card-text">Expériences : <%= agent.experience %></p>
+                      <p class="card-text">Expériences : <%= simple_format(agent.experience) %></p>
                       <p class="card-text">Connu grâce à : <%= agent.connaissance %></p>
                       <p class="card-text">Statut : <%= agent.statut %></p>
                       <%#= image_tag (cl_image_path agent.cv) %>
@@ -156,7 +156,7 @@
                       <p class="card-text">Email : <%= agent.user.email %></p>
                       <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
                       <p><%= link_to "Voir justificatif de l'Insee", "https://res.cloudinary.com/dvfwroq5k/#{agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
-                      <p class="card-text">Expériences : <%= agent.experience %></p>
+                      <p class="card-text">Expériences : <%= simple_format(agent.experience) %></p>
                       <p class="card-text">Connu grâce à : <%= agent.connaissance %></p>
                       <p class="card-text">Statut : <%= agent.statut %></p>
                       <%#= image_tag (cl_image_path agent.cv) %>
@@ -208,7 +208,7 @@
                       <p class="card-text">Email : <%= agent.user.email %></p>
                       <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
                       <p><%= link_to "Voir justificatif de l'Insee", "https://res.cloudinary.com/dvfwroq5k/#{agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
-                      <p class="card-text">Expériences : <%= agent.experience %></p>
+                      <p class="card-text">Expériences : <%= simple_format(agent.experience) %></p>
                       <p class="card-text">Connu grâce à : <%= agent.connaissance %></p>
                       <p class="card-text">Statut : <%= agent.statut %></p>
                       <%#= image_tag (cl_image_path agent.cv) %>
