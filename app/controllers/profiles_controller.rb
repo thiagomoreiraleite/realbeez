@@ -3,10 +3,9 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:add_friend, :accept_friend, :decline_friend]
 
   def index
-    # ===================Search by address========================
     if params.key?(:search)
       if params[:search][:distance] == "" || params[:search][:distance] == nil
-        @distance = 50
+        @distance = 30
       else
         @distance = params[:search][:distance].to_i
       end
@@ -20,7 +19,7 @@ class ProfilesController < ApplicationController
           }
         end
       else
-        if policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]) != []
+        if policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)) != []
           @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]).per_page(10)
           @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
             {
@@ -41,7 +40,6 @@ class ProfilesController < ApplicationController
           end
         end
       end
-      # =======================Search by name =======================
     elsif params.key?(:search_all)
       if params[:search_all][:query].empty?
         @profiles = policy_scope(Profile.where("statut = ?", "Agent")).order(created_at: :desc).page(params[:page]).per_page(10)
@@ -53,7 +51,7 @@ class ProfilesController < ApplicationController
           }
         end
       else
-        if policy_scope(Profile.where("statut = ?", "Agent").search_agent(params[:search_all][:query])).page(params[:page]) != []
+        if policy_scope(Profile.where("statut = ?", "Agent").search_agent(params[:search_all][:query])) != []
           @profiles = policy_scope(Profile.where("statut = ?", "Agent").search_agent(params[:search_all][:query])).page(params[:page]).per_page(10)
           @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
             {
