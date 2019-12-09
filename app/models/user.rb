@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :send_welcome_email, :send_new_registration, :set_geolocation
+  # after_destroy :send_delete_account
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,6 +36,21 @@ class User < ApplicationRecord
     email
   end
 
+  # instead of deleting, indicate the user requested a delete & timestamp it
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
+
+  # ensure user account is active
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+
   private
 
   def send_welcome_email
@@ -48,6 +64,11 @@ class User < ApplicationRecord
     # Create a notification
     # Notification.create(recipient: @admin, actor: self, action: "new_registration", notifiable: self)
   end
+
+  # def send_delete_account
+  #   mail = UserMailer.delete_account
+  #   mail.deliver_now
+  # end
 
   def set_geolocation
     @user = self

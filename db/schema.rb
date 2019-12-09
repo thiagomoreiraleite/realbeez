@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_144840) do
+ActiveRecord::Schema.define(version: 2019_12_09_152643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_144840) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "connaissance"
-    t.string "justif_entrepreneur", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
+    t.string "justif_entrepreneur", default: "image/upload/v1575902902/default_annonce.png"
     t.index ["user_id"], name: "index_agents_on_user_id"
   end
 
@@ -45,16 +45,16 @@ ActiveRecord::Schema.define(version: 2019_11_28_144840) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "statut"
-    t.string "photo", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
-    t.string "photo1", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
+    t.string "photo", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "photo1", default: "image/upload/v1575902902/default_annonce.png"
     t.float "latitude"
     t.float "longitude"
     t.string "agent_user_id"
     t.string "checkout_agent"
     t.string "checkout_proprio"
-    t.string "photo2", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
-    t.string "photo3", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
-    t.string "photo4", default: "image/upload/v1574951778/muoulom033dq3xfv6tvj.png"
+    t.string "photo2", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "photo3", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "photo4", default: "image/upload/v1575902902/default_annonce.png"
     t.integer "price_cents", default: 0, null: false
     t.integer "pièces"
     t.integer "charges"
@@ -233,11 +233,12 @@ ActiveRecord::Schema.define(version: 2019_11_28_144840) do
     t.string "adresse"
     t.string "ville"
     t.string "téléphone"
-    t.string "photo", default: "image/upload/v1574801859/ztld1jfbvwxzxzea88fp.png"
+    t.string "photo", default: "image/upload/v1575902902/default_profile.png"
     t.float "latitude"
     t.float "longitude"
     t.string "statut"
     t.boolean "admin", default: false
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

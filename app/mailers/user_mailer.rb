@@ -16,8 +16,18 @@ class UserMailer < ApplicationMailer
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
 
     mail(
-      to:       @admin.email,
-      subject:  "#{@user.prénom.capitalize} s'est inscrit sur Realbeez"
+      to: @admin.email,
+      subject: "#{@user.prénom.capitalize} s'est inscrit sur Realbeez"
     )
   end
+
+  # def delete_account
+  #   @admin = User.where("email = ?", "contact@realbeez.com")[0]
+
+  #   mail(
+  #     to: @admin.email,
+  #     subject: "Un compte a été supprimé, check les photos par défaut"
+  #   )
+  # end
+
 end

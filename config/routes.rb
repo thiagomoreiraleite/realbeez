@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :pages, only: [:new, :create]
 
   # Users
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'users/registrations' }
   resources :profiles, only: [:index, :show]
   get '/all_users', to: 'profiles#profile_all_users', as: :profile_all_users
 
