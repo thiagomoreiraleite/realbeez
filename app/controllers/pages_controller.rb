@@ -10,13 +10,13 @@ class PagesController < ApplicationController
         @annonces = Annonce.where("statut = ?", "active" ).near("#{ville}",30).limit(3)
       end
       if Profile.where("statut = ?", "Agent" ).near("#{ville}",50) == []
-        @profiles = Profile.where("statut = ?", "Agent").limit(6)
+        @profiles = Profile.where("statut = ?", "Agent").limit(10)
       else
-        @profiles = Profile.where("statut = ? AND id != ?", "Agent", current_user.id ).near("#{ville}",50).limit(6)
+        @profiles = Profile.where("statut = ? AND id != ?", "Agent", current_user.id ).near("#{ville}",50).limit(10)
       end
     else
       @annonces = Annonce.where("statut = ?", "active").order(created_at: :desc).limit(3)
-      @profiles = Profile.where("statut = ?", "Agent").limit(6)
+      @profiles = Profile.where("statut = ?", "Agent").limit(10)
     end
   end
 
