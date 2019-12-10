@@ -15,7 +15,7 @@
       <div class="d-flex justify-content-center p-0 mb-0", style="border-radius: 5px">
         <div class="rounded p-5">
           <div class="text-center mb-3">
-            <%= image_tag (cl_image_path @candidature.user.photo), crop: :fill, style:"object-fit:cover; height: 25vh; width: 25vh", class: "rounded-circle center" %>
+            <%= image_tag (cl_image_path @candidature.user.photo), crop: :fill, style:"object-fit:cover; height: 30vh; width: 30vh", class: "rounded-circle center" %>
           </div>
           <p class="font-weight-bold text-center mt-2 mb-0"><%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom[0].titlecase+"." %></p>
           <p class="text-center mt-0 mb-3" style="font-size: 12px" ><%= @candidature.user.ville.capitalize %></p>
