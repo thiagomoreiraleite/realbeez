@@ -3,7 +3,7 @@
     <div class="col-12 col-md-4">
     </div>
     <div class="d-flex col-12 col-md-8 align-items-center">
-      <h3 class="" >Profil de <%= @profile.prénom.capitalize %> <%= @profile.nom[0].titlecase+"." %></h3>
+      <h3 class="" >Profil de <%= @profile.prénom.titlecase %> <%= @profile.nom[0].titlecase+"." %></h3>
       <% if user_signed_in? %>
         <% if @profile.id == current_user.id %>
           <%= link_to "", edit_user_registration_path(current_user), class: "ml-3 fas fa-edit"%>
@@ -19,7 +19,7 @@
           <div class="text-center mb-3">
             <%= image_tag (cl_image_path @profile.photo), crop: :fill, style:"object-fit:cover; height: 30vh; width: 30vh", class: "rounded-circle center" %>
           </div>
-          <p class="font-weight-bold text-center mt-2 mb-1"><%= @profile.prénom.capitalize %> <%= @profile.nom[0].titlecase+"." %></p>
+          <p class="font-weight-bold text-center mt-2 mb-1"><%= @profile.prénom.titlecase %> <%= @profile.nom[0].titlecase+"." %></p>
           <% if @profile.agent != nil %>
             <p class="text-center mt-0 mb-3" style="" >Statut Agent
               <% if @profile.agent.statut == "Approuvé" %>
@@ -133,11 +133,11 @@
         <div class="py-2" style="">
           <!-- Demander les services d'un concierge -->
           <div class="container border-bottom" style="text-align: center">
-            <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Demander les services de <%= @profile.prénom.capitalize %> pour louer votre bien !</p>
+            <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Demander les services de <%= @profile.prénom.titlecase %> pour louer votre bien !</p>
             <% if @annonces == [] %>
               <div>
                 <p class="mb-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez aucun bien à louer actuellement"</p>
-                <p style="font-weight: bold; color: #D8A727">Publier votre annonce et confier la location à <%= @profile.prénom.capitalize %></p>
+                <p style="font-weight: bold; color: #D8A727">Publier votre annonce et confier la location à <%= @profile.prénom.titlecase %></p>
                 <%= link_to "Publier une annonce", new_annonce_path, class: "btn btn-yellow-mustard mb-5 "  %>
               </div>
             <% else %>
