@@ -71,7 +71,7 @@
                         <p>Vous avez déja postulé</p>
                       <% end %>
                       <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
-                      <%= f.input :auto_entrepreneur, label: "Avez-vous déjà le statut d'auto-entrepreneur / indépendant?", collection: ["oui (télécharger votre justificatif de l'Insee ci-dessous)", "non (vous allez recevoir un email avec les démarches à suivre)"], as: :radio_buttons %>
+                      <%= f.input :auto_entrepreneur, label: "Avez-vous déjà le statut d'auto-entrepreneur / indépendant?", collection: ["oui (téléchargez votre justificatif de l'Insee ci-dessous)", "non (vous allez recevoir un email avec les démarches à suivre)"], as: :radio_buttons %>
                       <%= f.input :justif_entrepreneur, label: "Justificatif de l'Insee à télécharger" %>
                       <%= f.input :justif_entrepreneur_cache, as: :hidden %>
                       <%= f.input :connaissance, collection:
@@ -94,7 +94,7 @@
                 </div>
               <% else %>
                 <%= f.input :date_de_naissance, as: :string, input_html: { class: "col-12 col-md-5 datepicker"} %>
-                <%= f.input :auto_entrepreneur, label: "Avez-vous déjà le statut d'auto-entrepreneur / indépendant?", collection: ["oui (télécharger votre justificatif de l'Insee ci-dessous)", "non  (vous allez recevoir un email avec les démarches à suivre)"], as: :radio_buttons %>
+                <%= f.input :auto_entrepreneur, label: "Avez-vous déjà le statut d'auto-entrepreneur / indépendant?", collection: ["oui (téléchargez votre justificatif de l'Insee ci-dessous)", "non  (vous allez recevoir un email avec les démarches à suivre)"], as: :radio_buttons %>
                 <%= f.input :connaissance, collection:
               [
                 "Google",
@@ -103,6 +103,8 @@
                 "Bouche à oreille",
                 "Autre"
               ],label: "Comment avez-vous connu Realbeez?", as: :radio_buttons %>
+                <%= f.input :justif_entrepreneur, label: "Justificatif de l'Insee à télécharger" %>
+                <%= f.input :justif_entrepreneur_cache, as: :hidden %>
                 <%= f.input :experience, label: "Décrivez vos expériences" %>
                 <p class="" style="color:#DA334A; font-weight: lighter; margin-top: -12px; font-size: 14px"><em>Votre description sera publié sur votre profil et visible par les propriétaires.</em></p>
                 <%#= f.input :cv, label: false  %>
