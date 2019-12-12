@@ -143,6 +143,12 @@
               <div class="d-flex my-3">
                 <%= link_to "Contacter", new_conversation_path(message: {to: @annonce.user_id }), class: "btn btn-transparent mb-1 text-center" %>
               </div>
+              <p style="font-weight: bold">Téléchargez les photos pour publier votre annonce</p>
+              <div class="d-flex">
+                <p><%= link_to "Photo 1", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+                <p class="mx-2"><%= link_to "Photo 2", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo1.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+                <p><%= link_to "Photo 3", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo2.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+              </div>
             </div>
             <!-- when flat is rented need to checkout -->
             <div class="col-12 col-md-4 border d-flex align-items-center justify-content-around p-2" style="border-radius: 30px; ; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
