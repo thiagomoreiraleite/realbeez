@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get '/locataires_proprio', to: 'locataires#locataires_proprio', as: :locataires_proprio
   get '/locataires_agent', to: 'locataires#locataires_agent', as: :locataires_agent
   get '/locataires_all', to: 'locataires#locataires_all', as: :locataires_all
-
+  resources :locataires, only:[:edit, :destroy]
 
   # Meeting
   resources :meetings

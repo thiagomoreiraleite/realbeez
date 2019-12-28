@@ -1,6 +1,6 @@
 class LocatairesController < ApplicationController
 
-  before_action :set_locataire, only: [:show, :accept_locataire, :reject_locataire]
+  before_action :set_locataire, only: [:show, :edit, :update, :destroy, :accept_locataire, :reject_locataire]
 
   def show
     authorize @locataire
@@ -40,6 +40,26 @@ class LocatairesController < ApplicationController
         redirect_to locataires_locataire_path
       end
     end
+  end
+
+  def edit
+    authorize @locataire
+  end
+
+  def update
+    authorize @locataire
+    if @locataire.update(locataire_params)
+      redirect_to locataire_path(@locataire)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    authorize @locataire
+    @locataire.statut = "annulé"
+    @locataire.save
+    redirect_to locataires_locataire_path
   end
 
   def index
@@ -133,9 +153,9 @@ class LocatairesController < ApplicationController
 
   def locataires_locataire
     authorize @locataires = policy_scope(Locataire).order(created_at: :desc)
-    @locataires_locataire_en_cours = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "En cours", "Non").order(created_at: :asc)
-    @locataires_locataire_accepté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "Accepté", "Non").order(created_at: :asc)
-    @locataires_locataire_rejeté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "Rejeté", "Non").order(created_at: :asc)
+    @locataires_locataire_en_cours = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut != ? ", current_user.id, "En cours", "Non", "annulé").order(created_at: :asc)
+    @locataires_locataire_accepté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut != ?", current_user.id, "Accepté", "Non", "annulé").order(created_at: :asc)
+    @locataires_locataire_rejeté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut != ?", current_user.id, "Rejeté", "Non", "annulé").order(created_at: :asc)
   end
 
   def locataires_proprio
@@ -144,7 +164,9 @@ class LocatairesController < ApplicationController
     @locataires = []
     @annonces.each do |annonce|
       annonce.locataires.each do |locataire|
-        @locataires << locataire
+        if locataire.statut != "annulé"
+          @locataires << locataire
+        end
       end
     end
     @locataires_proprietaire_en_cours = @locataires.select{ |l| l.statut_proprietaire == "En cours" }.sort_by{ |l| l.updated_at }
@@ -158,7 +180,9 @@ class LocatairesController < ApplicationController
     @locataires = []
     @annonces.each do |annonce|
       annonce.locataires.each do |locataire|
-        @locataires << locataire
+        if locataire.statut != "annulé"
+          @locataires << locataire
+        end
       end
     end
     @locataires_agent_en_cours = @locataires.select{ |l| l.statut_proprietaire == "En cours" }.sort_by{ |l| l.updated_at }
@@ -187,9 +211,10 @@ class LocatairesController < ApplicationController
       :prenom,
       :adresse,
       :ville,
+      :tel,
       :email,
-      :id_rect,
-      :id_vers,
+      :id_recto,
+      :id_verso,
       :justif_dom,
       :fiche_paye_mois1,
       :fiche_paye_mois2,

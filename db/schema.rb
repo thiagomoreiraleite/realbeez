@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_192747) do
+ActiveRecord::Schema.define(version: 2019_12_28_162232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2019_12_25_192747) do
     t.string "fiche_paye_mois3_garant", default: "image/upload/v1575902902/default_annonce.png"
     t.string "contrat_garant", default: "image/upload/v1575902902/default_annonce.png"
     t.text "message"
-    t.string "statut_agent"
+    t.string "statut"
     t.string "statut_proprietaire"
     t.bigint "annonce_id"
     t.bigint "user_id"

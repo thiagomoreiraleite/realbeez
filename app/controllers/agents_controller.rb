@@ -66,11 +66,11 @@ class AgentsController < ApplicationController
     end
   end
 
-  def destroy
-    authorize @agent
-    @agent.destroy
-    redirect_to profile_path(current_user)
-  end
+  # def destroy
+  #   authorize @agent
+  #   @agent.destroy
+  #   redirect_to profile_path(current_user)
+  # end
 
   def accept_agent
     authorize @agent
