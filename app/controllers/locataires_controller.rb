@@ -17,6 +17,7 @@ class LocatairesController < ApplicationController
     @locataire.annonce = @annonce
     @locataire.user = current_user
     @locataire.statut_proprietaire = "En cours"
+    @locataire.statut = "active"
     if @locataire.save
       @admin = User.where("email = ?", "contact@realbeez.com")[0]
       # Create a notification
@@ -153,9 +154,9 @@ class LocatairesController < ApplicationController
 
   def locataires_locataire
     authorize @locataires = policy_scope(Locataire).order(created_at: :desc)
-    @locataires_locataire_en_cours = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "En cours", "Non").order(created_at: :asc)
-    @locataires_locataire_accepté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "Accepté", "Non").order(created_at: :asc)
-    @locataires_locataire_rejeté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "Rejeté", "Non").order(created_at: :asc)
+    @locataires_locataire_en_cours = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "En cours", "Non", "active").order(created_at: :asc)
+    @locataires_locataire_accepté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "Accepté", "Non", "active").order(created_at: :asc)
+    @locataires_locataire_rejeté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "Rejeté", "Non", "active").order(created_at: :asc)
   end
 
   def locataires_proprio
@@ -194,8 +195,8 @@ class LocatairesController < ApplicationController
     authorize @locataires = policy_scope(Locataire).order(created_at: :desc)
     @locataires_all = Locataire.all
     @locataires_admin_en_cours = @locataires_all.select{ |l| l.statut_proprietaire == "En cours" }.sort_by{ |l| l.updated_at }
-    @locataires_admin_accepté = @locataires_all.select{ |l| l.statut_proprietaire == "Accepté" }.sort_by{ |l| l.updated_at }
-    @locataires_admin_rejeté = @locataires_all.select{ |l| l.statut_proprietaire == "Rejeté" }.sort_by{ |l| l.updated_at }
+    @locataires_admin_accepté = @locataires_all.select{ |l| l.statut_proprietaire == "Accepté"}.sort_by{ |l| l.updated_at }
+    @locataires_admin_rejeté = @locataires_all.select{ |l| l.statut_proprietaire == "Rejeté"}.sort_by{ |l| l.updated_at }
   end
 
   private

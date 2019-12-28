@@ -64,7 +64,7 @@
       whereToShow.insertAdjacentHTML("beforeend", `
         <% if @locataires_admin_en_cours != [] %>
           <% @locataires_admin_en_cours.each do |locataire| %>
-            <% unless locataire.statut == "annulé" %>
+            <% unless locataire.statut == "annulé"  %>
               <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
                 <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
                   <div class="row no-gutters", style="border-radius: 30px">
@@ -98,7 +98,7 @@
       whereToShow.insertAdjacentHTML("beforeend", `
           <% if @locataires_admin_accepté != [] %>
             <% @locataires_admin_accepté.each do |locataire| %>
-              <% unless locataire.statut == "annulé" %>
+              <% unless locataire.statut == "annulé"  %>
                 <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
                   <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
                     <div class="row no-gutters", style="border-radius: 30px">
@@ -132,7 +132,7 @@
       whereToShow.insertAdjacentHTML("beforeend", `
         <% if @locataires_admin_rejeté != [] %>
           <% @locataires_admin_rejeté.each do |locataire| %>
-            <% unless locataire.statut == "annulé" %>
+            <% unless locataire.statut == "annulé"  %>
               <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
                 <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
                   <div class="row no-gutters", style="border-radius: 30px">
