@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_152643) do
+ActiveRecord::Schema.define(version: 2019_12_25_192747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,45 @@ ActiveRecord::Schema.define(version: 2019_12_09_152643) do
     t.integer "blocker_id"
     t.integer "status"
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
+  end
+
+  create_table "locataires", force: :cascade do |t|
+    t.string "nom"
+    t.string "prenom"
+    t.string "adresse"
+    t.string "ville"
+    t.string "tel"
+    t.string "email"
+    t.string "id_recto", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "id_verso", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "justif_dom", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "fiche_paye_mois1", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "fiche_paye_mois2", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "fiche_paye_mois3", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "contrat", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "nom_garant"
+    t.string "prenom_garant"
+    t.string "adresse_garant"
+    t.string "ville_garant"
+    t.string "tel_garant"
+    t.string "email_garant"
+    t.string "id_recto_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "id_verso_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "justif_dom_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "fiche_paye_mois1_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "fiche_paye_mois2_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "fiche_paye_mois3_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "contrat_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.text "message"
+    t.string "statut_agent"
+    t.string "statut_proprietaire"
+    t.bigint "annonce_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "agent"
+    t.index ["annonce_id"], name: "index_locataires_on_annonce_id"
+    t.index ["user_id"], name: "index_locataires_on_user_id"
   end
 
   create_table "mailboxer_conversation_opt_outs", id: :serial, force: :cascade do |t|
@@ -247,6 +286,8 @@ ActiveRecord::Schema.define(version: 2019_12_09_152643) do
   add_foreign_key "availabilities", "users"
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
+  add_foreign_key "locataires", "annonces"
+  add_foreign_key "locataires", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"

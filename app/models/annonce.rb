@@ -17,6 +17,7 @@ class Annonce < ApplicationRecord
   validates :pièces, numericality: { greater_than_or_equal_to: 0 }
   validates :loyer_mensuel, numericality: { greater_than_or_equal_to: 0 }
   has_many :mandats, through: :candidatures
+  has_many :locataires, dependent: :destroy
 
   # belongs_to :user
   # include PgSearch::Model
@@ -31,7 +32,7 @@ class Annonce < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_annonce,
-    against: [ :ville, :adresse, :titre_annonce, :type_de_bien, :description, :surface, :meublé, :loyer_mensuel],
+    against: [ :ville, :adresse, :titre_annonce, :type_de_bien, :description, :surface, :meublé, :loyer_mensuel, :id],
   using: {
     tsearch: { prefix: true }
   }

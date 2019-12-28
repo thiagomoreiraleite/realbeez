@@ -37,6 +37,18 @@ json.array!  @notifications do |notification|
       json.type "confirme avoir loué son bien"
     elsif notification.action == "checkout_proprio_notify_agent"
       json.type "confirme avoir loué son bien"
+    elsif notification.action == "create_locataire_notify_agent"
+      json.type "a déposé un dossier de location"
+    elsif notification.action == "create_locataire_notify_proprio"
+      json.type "a déposé un dossier de location"
+    elsif notification.action == "accept_locataire_notify_agent"
+      json.type "accepte un dossier de location"
+    elsif notification.action == "accept_locataire_notify_locataire"
+      json.type "accepte votre dossier de location"
+    elsif notification.action == "reject_locataire_notify_agent"
+      json.type "rejète un dossier de location"
+    elsif notification.action == "reject_locataire_notify_locataire"
+      json.type "rejète votre dossier de location"
     # elsif notification.action == "new_registration"
     #   json.type "s'est inscrit sur RB"
     end
@@ -75,6 +87,18 @@ json.array!  @notifications do |notification|
     json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "checkout_proprio_notify_agent"
     json.url annonce_path(notification.notifiable.annonce)
+  elsif notification.action == "create_locataire_notify_agent"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "create_locataire_notify_proprio"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "accept_locataire_notify_agent"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "accept_locataire_notify_locataire"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "reject_locataire_notify_agent"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "reject_locataire_notify_locataire"
+    json.url locataire_path(notification.notifiable)
   # elsif notification.action == "new_registration"
   #   json.url profile_all_users_path
   end

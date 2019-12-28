@@ -47,8 +47,8 @@
           <%= f.input :charges, input_html: { min: '0', step: 'any' }  %>
           <%= f.input :ville %>
           <%= f.input :adresse %>
-          <%= f.input :email, input_html: {value: current_user.email}  %>
-          <%= f.input :téléphone, input_html: {value: current_user.téléphone}  %>
+          <%= f.input :email %>
+          <%= f.input :téléphone %>
           <%= f.input :photo, label: "Photo principale" %>
           <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :photo1, label: "Photo 2" %>

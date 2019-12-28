@@ -59,24 +59,31 @@
           <!-- PROFILE DROPDOWN -->
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Profil", profile_path(current_user), class: "dropdown-item" %>
-            <%#= link_to "Mon réseau", my_friends_path, class: "dropdown-item" %>
+            <% if current_user.locataires != [] %>
+              <%= link_to "Mes dossiers de location", locataires_locataire_path, class: "dropdown-item" %>
+            <% end %>
+            <!-- PROPRIETAIRE -->
             <% if current_user.annonces !=  [] %>
               <div class="border-top">
                 <p class="text-center mt-2 mb-0" style="font-weight: bold; color: #D8A727">Propriétaire</p>
                 <%= link_to "Mes annonces", mes_annonces_path, class: "dropdown-item" %>
-                <%= link_to "Visites de mes agents", meetings_path(visites: {from: 'proprio'}), class: "dropdown-item" %>
                 <%= link_to "Candidatures d'agents", candidature_proprio_path, class: "dropdown-item" %>
+                <%= link_to "Visites de mes agents", meetings_path(visites: {from: 'proprio'}), class: "dropdown-item" %>
+                <%= link_to "Dossiers de location reçus", locataires_proprio_path, class: "dropdown-item" %>
                 <%= link_to "Mes paiements", orders_path, class: "dropdown-item" %>
               </div>
             <% end %>
+            <!-- AGENT -->
             <% if current_user.statut == "Agent" %>
               <div class="border-top">
                 <p class="text-center mt-2 mb-0" style="font-weight: bold; color: #D8A727">Agent Realbeez</p>
                 <%= link_to "Mes biens à gérer", biens_a_gerer_path, class: "dropdown-item" %>
-                <%= link_to "Mes visites", meetings_path, class: "dropdown-item" %>
                 <%= link_to "Mes candidatures", candidature_agent_path, class: "dropdown-item" %>
+                <%= link_to "Mes visites", meetings_path, class: "dropdown-item" %>
+                <%= link_to "Dossiers de location à gérer", locataires_agent_path, class: "dropdown-item" %>
               </div>
             <% end %>
+            <!-- ADMIN -->
             <% if current_user.admin == true %>
               <div class="border-top">
                 <p class="text-center mt-2 mb-0" style="font-weight: bold; color: #D8A727">Administrateur</p>
@@ -84,6 +91,7 @@
                 <%= link_to "Tous les utilisateurs", profile_all_users_path, class: "dropdown-item" %>
                 <%= link_to "Toutes les candidatures", candidature_all_path, class: "dropdown-item" %>
                 <%= link_to "Toutes les annonces", annonces_all_path, class: "dropdown-item" %>
+                <%= link_to "Tous les dossiers de location", locataires_all_path, class: "dropdown-item" %>
               </div>
             <% end %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

@@ -93,6 +93,8 @@
             <p><i class="fas fa-city mr-3"></i> <%= @annonce.ville.capitalize %></p>
           </div>
         </div>
+        <!-- Déposer un dossier de candidature -->
+        <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_path(@annonce), class: "fas fa-plus-circle mr-2", style: "color: green; font-size: 16px" %><%= link_to 'Déposer un dossier de location', new_annonce_locataire_path(@annonce)%></p>
         <div class="mt-3 p-2 col-sm-12 col-md-8 offset-md-2 text-center" style="; border-radius: 30px">
           <!-- if agent is assigned to the flat show agent info -->
           <% unless @annonce.agent_user_id.nil? %>

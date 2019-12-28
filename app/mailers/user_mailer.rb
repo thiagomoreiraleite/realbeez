@@ -11,15 +11,15 @@ class UserMailer < ApplicationMailer
     # This will render a view in `app/views/user_mailer`!
   end
 
-  def new_registration
-    @user = params[:user]
-    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+  # def new_registration
+  #   @user = params[:user]
+  #   @admin = User.where("email = ?", "contact@realbeez.com")[0]
 
-    mail(
-      to: @admin.email,
-      subject: "#{@user.prénom.capitalize} s'est inscrit sur Realbeez"
-    )
-  end
+  #   mail(
+  #     to: @admin.email,
+  #     subject: "#{@user.prénom.capitalize} s'est inscrit sur Realbeez"
+  #   )
+  # end
 
   # def delete_account
   #   @admin = User.where("email = ?", "contact@realbeez.com")[0]

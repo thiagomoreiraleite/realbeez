@@ -1,0 +1,5 @@
+<p>Bonjour <%= @locataire.prenom.capitalize %>,</p>
+<p>Nous avons le regret de vous informer que <%= @locataire.annonce.user.prénom.capitalize + " a rejeté votre dossier de location."%></p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir le dossier de location", locataire_url(@locataire) %></p>

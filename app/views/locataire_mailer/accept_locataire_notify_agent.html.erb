@@ -1,0 +1,6 @@
+<p>Bonjour <%= User.find(@locataire.annonce.agent_user_id.to_i).prénom.capitalize %>,</p>
+<p><%= @locataire.annonce.user.prénom.capitalize + " a accepté le dossier de location de " + @locataire.prenom.capitalize + "."%></p>
+<p>Il ne vous reste plus qu'à convenir d'un rendez-vous avec le locataire afin d'établir l'état des lieux d'entrée et la remise des clés.</p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir le dossier de location", locataire_url(@locataire) %></p>
