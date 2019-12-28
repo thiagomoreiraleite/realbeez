@@ -153,9 +153,9 @@ class LocatairesController < ApplicationController
 
   def locataires_locataire
     authorize @locataires = policy_scope(Locataire).order(created_at: :desc)
-    @locataires_locataire_en_cours = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut != ? ", current_user.id, "En cours", "Non", "annulé").order(created_at: :asc)
-    @locataires_locataire_accepté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut != ?", current_user.id, "Accepté", "Non", "annulé").order(created_at: :asc)
-    @locataires_locataire_rejeté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut != ?", current_user.id, "Rejeté", "Non", "annulé").order(created_at: :asc)
+    @locataires_locataire_en_cours = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "En cours", "Non").order(created_at: :asc)
+    @locataires_locataire_accepté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "Accepté", "Non").order(created_at: :asc)
+    @locataires_locataire_rejeté = Locataire.where("user_id = ? AND statut_proprietaire = ? AND agent = ?", current_user.id, "Rejeté", "Non").order(created_at: :asc)
   end
 
   def locataires_proprio

@@ -1,4 +1,4 @@
-<% if @locataire.statut != "annulé" %>
+<% unless @locataire.statut == "annulé" %>
   <% if current_user.admin == true || @locataire.user_id == current_user.id || @locataire.annonce.user_id == current_user.id || @locataire.annonce.agent_user_id.to_i == current_user.id %>
     <div class="d-flex align-items-center justify-content-center mb-5 picture-mobile" style="height: 60vh; background-size: cover; background-position: center; background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('<%= cl_image_path "https://res.cloudinary.com/dvfwroq5k/#{Locataire.find(params[:id].to_i).annonce.photo.identifier}" %>')">
       <div >
@@ -6,7 +6,7 @@
       </div>
     </div>
     <h3 class="text-center mt-5 mb-4">Dossier de location
-      <% if @locataire.user_id == current_user.id %>
+      <% if @locataire.user_id == current_user.id && @locataire.statut_proprietaire == "En cours"%>
         <span class="ml-3" style="font-size: 14px">
           <%= link_to '', edit_locataire_path(@locataire), class:"fas fa-edit" %> /
           <%= link_to '', locataire_path(@locataire), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer ce dossier de location?'}, class:"fas fa-trash"  %>
