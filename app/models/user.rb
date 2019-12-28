@@ -58,13 +58,13 @@ class User < ApplicationRecord
     UserMailer.with(user: self).welcome.deliver_now
   end
 
-  # def send_new_registration
-  # mail = UserMailer.with(user: self).new_registration
-  # mail.deliver_now
-  # @admin = User.where("email = ?", "contact@realbeez.com")[0]
-  # Create a notification
-  # Notification.create(recipient: @admin, actor: self, action: "new_registration", notifiable: self)
-  # end
+  def send_new_registration
+    mail = UserMailer.with(user: self).new_registration
+    mail.deliver_now
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    # Create a notification
+    # Notification.create(recipient: @admin, actor: self, action: "new_registration", notifiable: self)
+  end
 
   # def send_delete_account
   #   mail = UserMailer.delete_account
