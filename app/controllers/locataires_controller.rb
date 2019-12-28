@@ -50,6 +50,22 @@ class LocatairesController < ApplicationController
   def update
     authorize @locataire
     if @locataire.update(locataire_params)
+      @admin = User.where("email = ?", "contact@realbeez.com")[0]
+      # Create a notification
+      if @locataire.agent == "Non" && @locataire.annonce.agent_user_id != nil
+        Notification.create(recipient: User.find(@locataire.annonce.agent_user_id.to_i), actor: current_user, action: "update_locataire_notify_agent", notifiable: @locataire)
+        # Send email to Agent
+        mail_agent = LocataireMailer.with(locataire: @locataire).update_locataire_notify_agent
+        mail_agent.deliver_now
+      end
+      # Notification.create(recipient: @admin, actor: current_user, action: "create_locataire_notify_admin", notifiable: @locataire)
+      Notification.create(recipient: @locataire.annonce.user, actor: current_user, action: "update_locataire_notify_proprio", notifiable: @locataire)
+      # Send email to Admin
+      mail_admin = LocataireMailer.with(locataire: @locataire).update_locataire_notify_admin
+      mail_admin.deliver_now
+      # Send email to prorio
+      mail_proprio = LocataireMailer.with(locataire: @locataire).update_locataire_notify_proprio
+      mail_proprio.deliver_now
       redirect_to locataire_path(@locataire)
     else
       render :edit
@@ -60,6 +76,22 @@ class LocatairesController < ApplicationController
     authorize @locataire
     @locataire.statut = "annulé"
     @locataire.save
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    # Create a notification
+    if @locataire.agent == "Non" && @locataire.annonce.agent_user_id != nil
+      Notification.create(recipient: User.find(@locataire.annonce.agent_user_id.to_i), actor: current_user, action: "destroy_locataire_notify_agent", notifiable: @locataire)
+      # Send email to Agent
+      mail_agent = LocataireMailer.with(locataire: @locataire).destroy_locataire_notify_agent
+      mail_agent.deliver_now
+    end
+    # Notification.create(recipient: @admin, actor: current_user, action: "create_locataire_notify_admin", notifiable: @locataire)
+    Notification.create(recipient: @locataire.annonce.user, actor: current_user, action: "destroy_locataire_notify_proprio", notifiable: @locataire)
+    # Send email to Admin
+    mail_admin = LocataireMailer.with(locataire: @locataire).destroy_locataire_notify_admin
+    mail_admin.deliver_now
+    # Send email to prorio
+    mail_proprio = LocataireMailer.with(locataire: @locataire).destroy_locataire_notify_proprio
+    mail_proprio.deliver_now
     redirect_to locataires_locataire_path
   end
 
@@ -194,7 +226,7 @@ class LocatairesController < ApplicationController
   def locataires_all
     authorize @locataires = policy_scope(Locataire).order(created_at: :desc)
     @locataires_all = Locataire.all
-    @locataires_admin_en_cours = @locataires_all.select{ |l| l.statut_proprietaire == "En cours" }.sort_by{ |l| l.updated_at }
+    @locataires_admin_en_cours = @locataires_all.select{ |l| l.statut_proprietaire == "En cours"}.sort_by{ |l| l.updated_at }
     @locataires_admin_accepté = @locataires_all.select{ |l| l.statut_proprietaire == "Accepté"}.sort_by{ |l| l.updated_at }
     @locataires_admin_rejeté = @locataires_all.select{ |l| l.statut_proprietaire == "Rejeté"}.sort_by{ |l| l.updated_at }
   end

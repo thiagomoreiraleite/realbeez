@@ -1,0 +1,5 @@
+<p>Bonjour <%= @locataire.annonce.user.prénom.capitalize %>,</p>
+<p><%= @locataire.user.prénom.capitalize + " a mis à jour son dossier de location pour votre bien " + @locataire.annonce.titre_annonce.capitalize + "."%></p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir le dossier de location", locataire_url(@locataire) %></p>

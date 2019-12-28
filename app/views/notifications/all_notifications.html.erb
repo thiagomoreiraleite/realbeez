@@ -59,6 +59,14 @@
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète votre dossier de location pour le bien ' + notification.notifiable.annonce.titre_annonce, locataire_path(notification.notifiable), class:"" %></td>
               <% elsif notification.action == "reject_locataire_notify_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' rejète le dossier de location pour le bien ' + notification.notifiable.annonce.titre_annonce, locataire_path(notification.notifiable), class:"" %></td>
+              <% elsif notification.action == "update_locataire_notify_agent" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a mis à jour son dossier de location pour le bien ' + notification.notifiable.annonce.titre_annonce, locataire_path(notification.notifiable), class:"" %></td>
+              <% elsif notification.action == "update_locataire_notify_proprio" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a mis à jour un dossier de location pour votre bien ' + notification.notifiable.annonce.titre_annonce, locataire_path(notification.notifiable), class:"" %></td>
+              <% elsif notification.action == "destroy_locataire_notify_agent" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a supprimé son dossier de location pour le bien ' + notification.notifiable.annonce.titre_annonce, locataires_agent_path, class:"" %></td>
+              <% elsif notification.action == "destroy_locataire_notify_proprio" %>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a supprimé son dossier de location pour votre bien ' + notification.notifiable.annonce.titre_annonce, locataires_proprio_path, class:"" %></td>
                 <!--   <#% elsif notification.action == "new_registration" %>
                 <td><#%= link_to User.find(notification.actor_id).prénom.capitalize + " vient de s'inscrire sur RB", profile_all_users_path, class:"" %></td> -->
               <% end %>

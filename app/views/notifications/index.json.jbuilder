@@ -49,6 +49,14 @@ json.array!  @notifications do |notification|
       json.type "rejète un dossier de location"
     elsif notification.action == "reject_locataire_notify_locataire"
       json.type "rejète votre dossier de location"
+    elsif notification.action == "update_locataire_notify_agent"
+      json.type "a mis à jour son dossier de location"
+    elsif notification.action == "update_locataire_notify_proprio"
+      json.type "a mis à jour son dossier de location"
+    elsif notification.action == "destroy_locataire_notify_agent"
+      json.type "a supprimé son dossier de location"
+    elsif notification.action == "destroy_locataire_notify_proprio"
+      json.type "a supprimé son dossier de location"
     # elsif notification.action == "new_registration"
     #   json.type "s'est inscrit sur RB"
     end
@@ -99,6 +107,14 @@ json.array!  @notifications do |notification|
     json.url locataire_path(notification.notifiable)
   elsif notification.action == "reject_locataire_notify_locataire"
     json.url locataire_path(notification.notifiable)
+  elsif notification.action == "update_locataire_notify_agent"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "update_locataire_notify_proprio"
+    json.url locataire_path(notification.notifiable)
+  elsif notification.action == "destroy_locataire_notify_agent"
+    json.url locataires_agent_path
+  elsif notification.action == "destroy_locataire_notify_proprio"
+    json.url locataires_proprio_path
   # elsif notification.action == "new_registration"
   #   json.url profile_all_users_path
   end

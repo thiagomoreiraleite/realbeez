@@ -1,0 +1,5 @@
+<p>Bonjour <%= User.find(@locataire.annonce.agent_user_id.to_i).prénom.capitalize %>,</p>
+<p><%= @locataire.user.prénom.capitalize + " a supprimé son dossier de location pour le bien " + @locataire.annonce.titre_annonce.capitalize + "."%></p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir les dossiers de location", locataires_agent_url %></p>

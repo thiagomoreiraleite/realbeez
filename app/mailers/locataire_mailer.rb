@@ -83,4 +83,56 @@ class LocataireMailer < ApplicationMailer
     )
   end
 
+  def update_locataire_notify_agent
+    @locataire = params[:locataire]
+    mail(
+      to:       User.find(@locataire.annonce.agent_user_id.to_i).email,
+      subject:  "#{@locataire.prenom.capitalize} #{@locataire.nom.capitalize} a mis à jour son dossier de location"
+    )
+  end
+
+  def update_locataire_notify_proprio
+    @locataire = params[:locataire]
+    mail(
+      to:       @locataire.annonce.user.email,
+      subject:  "#{@locataire.prenom.capitalize} #{@locataire.nom.capitalize} a mis à jour son dossier de location"
+    )
+  end
+
+  def update_locataire_notify_admin
+    @locataire = params[:locataire]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+
+    mail(
+      to:       @admin.email,
+      subject:  "#{@locataire.prenom.capitalize} #{@locataire.nom.capitalize} a mis à jour son dossier de location"
+    )
+  end
+
+  def destroy_locataire_notify_agent
+    @locataire = params[:locataire]
+    mail(
+      to:       User.find(@locataire.annonce.agent_user_id.to_i).email,
+      subject:  "#{@locataire.prenom.capitalize} #{@locataire.nom.capitalize} a supprimé son dossier de location"
+    )
+  end
+
+  def destroy_locataire_notify_proprio
+    @locataire = params[:locataire]
+    mail(
+      to:       @locataire.annonce.user.email,
+      subject:  "#{@locataire.prenom.capitalize} #{@locataire.nom.capitalize} a supprimé son dossier de location"
+    )
+  end
+
+  def destroy_locataire_notify_admin
+    @locataire = params[:locataire]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+
+    mail(
+      to:       @admin.email,
+      subject:  "#{@locataire.prenom.capitalize} #{@locataire.nom.capitalize} a supprimé son dossier de location"
+    )
+  end
+
 end
