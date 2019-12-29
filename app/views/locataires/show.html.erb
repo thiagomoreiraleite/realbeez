@@ -104,8 +104,8 @@
           <!-- Proprio to give his decision : approve or reject -->
           <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">Reservé au propriétaire : Accepte ou Refuse le dossier de location</p>
           <% if @locataire.annonce.user_id == current_user.id %>
-            <%= link_to "Accepter" , accept_locataire_path(@locataire), method: :post, data: { confirm: "Etes-vous sûr d'accepter le dossier de candidature?" }, class: "btn btn-yellow-mustard" %>
-            <%= link_to "Rejeter", reject_locataire_path(@locataire), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter le dossier de candidature?'}, class: "btn btn-danger" %>
+            <%= link_to "Accepter" , accept_locataire_path(@locataire), method: :post, data: { confirm: "Etes-vous sûr d'accepter le dossier de location?" }, class: "btn btn-yellow-mustard" %>
+            <%= link_to "Rejeter", reject_locataire_path(@locataire), method: :post, data: { confirm: 'Etes-vous sûr de vouloir rejeter le dossier de location?'}, class: "btn btn-danger" %>
           <% end %>
           <p class="mb-5 mt-3"><strong>Statut</strong> : <%= @locataire.statut_proprietaire == nil || @locataire.statut_proprietaire == "" ? "En cours" : @locataire.statut_proprietaire %></p>
         </div>
