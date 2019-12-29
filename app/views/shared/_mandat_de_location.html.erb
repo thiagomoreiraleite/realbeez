@@ -1,4 +1,4 @@
-<% if current_user.admin == true || @mandat.user_id == current_user.id || @mandat.candidature.user_id == current_user.id %>
+<% if current_user.admin == true || @candidature.user_id == current_user.id || @candidature.annonce.user_id == current_user.id %>
   <div class="container my-5" >
     <div class="row" >
       <div class="col-12 col-md-8 offset-md-2 p-5 border" style="background-color: white; border-radius: 10px">
