@@ -51,6 +51,9 @@
                     <div class="card-body ml-4">
                       <div>
                         <h5 class="card-title"><%= profile.prénom.titlecase %> <%= profile.nom.titlecase %></h5>
+                        <% if profile.deleted_at != nil %>
+                          <p style="color:red" class="p-0 m-0">USER DELETED</p>
+                        <% end %>
                         <p class="card-text"><%= profile.ville.split(",")[0].titlecase %></p>
                       </div>
                       <div class="mt-3">
