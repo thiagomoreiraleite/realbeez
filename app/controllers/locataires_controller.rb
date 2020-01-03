@@ -40,6 +40,8 @@ class LocatairesController < ApplicationController
       else
         redirect_to locataires_locataire_path
       end
+    else
+      render :new
     end
   end
 
