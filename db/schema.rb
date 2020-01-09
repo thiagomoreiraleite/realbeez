@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_28_162232) do
+ActiveRecord::Schema.define(version: 2020_01_09_173814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,16 @@ ActiveRecord::Schema.define(version: 2019_12_28_162232) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "parrains", force: :cascade do |t|
+    t.string "prenom"
+    t.string "nom"
+    t.string "email"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_parrains_on_user_id"
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string "photo"
     t.bigint "annonce_id"
@@ -278,6 +288,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_162232) do
     t.string "statut"
     t.boolean "admin", default: false
     t.datetime "deleted_at"
+    t.string "parrain"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -295,6 +306,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_162232) do
   add_foreign_key "mandats", "users"
   add_foreign_key "orders", "annonces"
   add_foreign_key "orders", "users"
+  add_foreign_key "parrains", "users"
   add_foreign_key "pictures", "annonces"
   add_foreign_key "reviews", "agents"
   add_foreign_key "reviews", "users"

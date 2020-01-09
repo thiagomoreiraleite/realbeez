@@ -59,6 +59,7 @@
           <!-- PROFILE DROPDOWN -->
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Profil", profile_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Parrainage", new_parrain_path, class: "dropdown-item" %>
             <% if current_user.locataires != [] %>
               <%= link_to "Mes dossiers de location", locataires_locataire_path, class: "dropdown-item" %>
             <% end %>

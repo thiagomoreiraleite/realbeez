@@ -1,0 +1,8 @@
+<p>Bonjour <%= @parrain.prenom.capitalize %>,</p>
+<p><%= @parrain.user.prénom.capitalize %> <%= @parrain.user.nom.capitalize %> vous recommande la plateforme Realbeez pour louer votre bien immobilier à moindre coût (soit 375 €) et aucuns frais à la charge du locataire pour assurer une relocation rapide.</p>
+<p>Il n'y a aucun coût caché, c'est garantit !</p>
+<p>Inscivez-vous en utilisant le lien suivant : <%= link_to "https://www.realbeez.com/users/sign_up?referred_by=#{@parrain.user.id}" , "https://www.realbeez.com/users/sign_up?referred_by=#{@parrain.user.id}", target: :_blank %>.</p>
+<p>Pour plus d'information rendez-vous sur : <%= link_to "https://www.realbeez.com/", "https://www.realbeez.com/", target: :_blank  %>.</p>
+<p>Retrouvez le guide de l'utilisateur au lien suivant : <%= link_to "https://www.realbeez.com/fiches_pratiques", "https://www.realbeez.com/fiches_pratiques", target: :_blank%>.</p>
+<p>A très bientôt,</p>
+<p>Realbeez</p>

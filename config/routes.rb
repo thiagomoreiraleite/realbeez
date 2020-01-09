@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get '/reponse_contactez_nous', to: 'pages#reponse_contactez_nous', as: :reponse_contactez_nous
   resources :pages, only: [:new, :create]
 
+  # Parrains
+  resources :parrains, only: [:new, :create]
+  get '/confirmation_parrainage', to: 'parrains#confirmation_parrainage', as: :confirmation_parrainage
+
   # Users
   devise_for :users, :controllers => { :registrations => 'users/registrations' }
   resources :profiles, only: [:index, :show]
