@@ -112,7 +112,8 @@
       <!-- =========== No agent found ========== -->
     <% else %>
       <div class="container">
-        <h4 class="text-center mt-4 pb-5 mb-5" style="width: 100%; color:#DA334A; font-style: italic;">"Aucun agent trouvé"</h4>
+        <h4 class="text-center mt-4" style="width: 100%; color:#DA334A; font-style: italic;">"Aucun agent trouvé"</h4>
+        <p class="mb-5 pb-5 text-center" style="width: 100%; font-style: italic; font-weight: lighter">Contactez-nous par email (contact@realbeez.com) et dites-nous dans quelle ville vous avez besoin d'un agent Realbeez.</p>
         <% if @profiles_no_result != nil %>
           <p class="mt-3 mb-4" style="color: rgb(150, 150, 150); width: 100%"><em>Nos agents disponibles à Paris (<%= @profiles_no_result.count %>)</em></p>
         <% end %>
