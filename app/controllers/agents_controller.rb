@@ -6,14 +6,14 @@ class AgentsController < ApplicationController
     @agent_candidature_reçue = @agents.select{ |c| c.statut == "En cours de traitement" }
     @agent_candidature_approuvé = @agents.select{ |c| c.statut == "Approuvé" }
     @agent_candidature_rejeté = @agents.select{ |c| c.statut == "Rejeté" }
-    @agent_paris = Profile.where("statut = ?", "Agent").near("paris", 50).map{ |agent| agent}.count
-    @agent_lyon = Profile.where("statut = ?", "Agent").near("lyon", 50).map{ |agent| agent}.count
-    @agent_marseille = Profile.where("statut = ?", "Agent").near("marseille", 50).map{ |agent| agent}.count
-    @agent_toulouse = Profile.where("statut = ?", "Agent").near("toulouse", 50).map{ |agent| agent}.count
-    @agent_lille = Profile.where("statut = ?", "Agent").near("lille", 50).map{ |agent| agent}.count
-    @agent_bordeaux = Profile.where("statut = ?", "Agent").near("bordeaux", 50).map{ |agent| agent}.count
-    @agent_strasbourg = Profile.where("statut = ?", "Agent").near("strasbourg", 50).map{ |agent| agent}.count
-    @agent_mulhouse = Profile.where("statut = ?", "Agent").near("mulhouse", 50).map{ |agent| agent}.count
+    # @agent_paris = Profile.where("statut = ?", "Agent").near("paris", 50).map{ |agent| agent}.count
+    # @agent_lyon = Profile.where("statut = ?", "Agent").near("lyon", 50).map{ |agent| agent}.count
+    # @agent_marseille = Profile.where("statut = ?", "Agent").near("marseille", 50).map{ |agent| agent}.count
+    # @agent_toulouse = Profile.where("statut = ?", "Agent").near("toulouse", 50).map{ |agent| agent}.count
+    # @agent_lille = Profile.where("statut = ?", "Agent").near("lille", 50).map{ |agent| agent}.count
+    # @agent_bordeaux = Profile.where("statut = ?", "Agent").near("bordeaux", 50).map{ |agent| agent}.count
+    # @agent_strasbourg = Profile.where("statut = ?", "Agent").near("strasbourg", 50).map{ |agent| agent}.count
+    # @agent_mulhouse = Profile.where("statut = ?", "Agent").near("mulhouse", 50).map{ |agent| agent}.count
     @agent_france = Profile.where("statut = ?", "Agent").map{ |agent| agent}.count
   end
 
