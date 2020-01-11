@@ -123,6 +123,23 @@
           <p class=" mt-0 my-3" style="" ><%= link_to "Noter votre agent", new_agent_review_path(@profile.agent) %></p>
         <% end %>
       <% end %>
+      <% if user_signed_in?%>
+        <% if current_user.admin == true %>
+          <% unless @profile.agent.nil? %>
+            <div class="border p-2" style="border-radius: 10px">
+              <p class="text-center" style="font-weight: bold; color: #D8A727">FOR ADMIN</p>
+              <p class="card-text my-1">Adresse : <%= @profile.agent.user.adresse %></p>
+              <p class="card-text my-1">Ville : <%= @profile.agent.user.ville.capitalize %></p>
+              <p class="card-text my-1">Long : <%= @profile.agent.user.longitude %> / Lat : <%= @profile.agent.user.latitude %></p>
+              <p class="card-text my-1">Date de naissance : <%= @profile.agent.date_de_naissance %></p>
+              <p class="card-text my-1">Tel : <%= @profile.agent.user.téléphone %></p>
+              <p class="card-text my-1">Connu grâce à : <%= @profile.agent.connaissance %></p>
+              <p class="card-text my-1">Auto-entrepreneur : <%= @profile.agent.auto_entrepreneur %></p>
+              <p class="card-text my-1"><%= link_to "Voir justificatif de l'Insee", "https://res.cloudinary.com/dvfwroq5k/#{@profile.agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
