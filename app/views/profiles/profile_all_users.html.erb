@@ -52,6 +52,9 @@
       </div>
       <!-- Mapbox map -->
       <div class="mt-5">
+        <div class="mb-5 d-flex justify-content-around">
+          <%= will_paginate @profiles_no_result, :page_links => true %>
+        </div>
         <div
           id="map"
           style="width: 100%;

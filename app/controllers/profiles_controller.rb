@@ -88,7 +88,7 @@ class ProfilesController < ApplicationController
   def profile_all_users
     if params.key?(:search_profile)
       if params[:search_profile][:query].empty?
-        authorize @profiles = Profile.all.order(created_at: :desc)
+        authorize @profiles = Profile.all.order(created_at: :desc).page(params[:page]).per_page(40)
         @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
           {
             lat: profile.latitude,
@@ -97,7 +97,7 @@ class ProfilesController < ApplicationController
           }
         end
       else
-        authorize @profiles = Profile.search_profile(params[:search_profile][:query])
+        authorize @profiles = Profile.search_profile(params[:search_profile][:query]).page(params[:page]).per_page(40)
         @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
           {
             lat: profile.latitude,
@@ -107,7 +107,7 @@ class ProfilesController < ApplicationController
         end
       end
     else
-      authorize @profiles = Profile.all.order(created_at: :desc)
+      authorize @profiles = Profile.all.order(created_at: :desc).page(params[:page]).per_page(40)
       @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
         {
           lat: profile.latitude,
