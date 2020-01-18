@@ -191,3 +191,18 @@
     <% end %>
   <% end %>
 </div>
+<% if user_signed_in? %>
+  <% if current_user.admin == true %>
+    <!-- Mapbox map -->
+    <p class="text-center mt-5" style="font-weight: bold; color: #D8A727">FOR ADMIN</p>
+    <div class="container mt-5 mb-5">
+      <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  <% end %>
+<% end %>

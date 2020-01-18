@@ -126,6 +126,15 @@ class ProfilesController < ApplicationController
   def show
     @profile = User.find(params[:id])
     authorize @profile
+    @profiles = []
+    @profiles << @profile
+    @markers = @profiles.map do |profile|
+      {
+        lat: profile.latitude,
+        lng: profile.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
+      }
+    end
     if user_signed_in?
       @annonces= Annonce.where("statut = ? AND user_id = ?", "active", current_user.id).select{ |annonce| annonce.agent_user_id == nil}
     end
