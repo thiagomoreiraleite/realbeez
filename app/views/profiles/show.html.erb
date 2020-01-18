@@ -192,9 +192,8 @@
   <% end %>
 </div>
 <% if user_signed_in? %>
-  <% if current_user.admin == true %>
+  <% if current_user.admin == true || @profile == current_user %>
     <!-- Mapbox map -->
-    <p class="text-center mt-5" style="font-weight: bold; color: #D8A727">FOR ADMIN</p>
     <div class="container mt-5 mb-5">
       <div
     id="map"
