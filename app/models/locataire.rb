@@ -1,6 +1,8 @@
 class Locataire < ApplicationRecord
   belongs_to :annonce
   belongs_to :user
+  has_many :locataire_supplementaires, inverse_of: :locataire, autosave: true
+  accepts_nested_attributes_for :locataire_supplementaires, allow_destroy: true
 
   mount_uploader :id_recto, PhotoUploader
   mount_uploader :id_verso, PhotoUploader

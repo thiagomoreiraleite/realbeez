@@ -14,6 +14,8 @@ import 'plugins/init_flatpickr'
 import { notificationMethod } from './notification';
 import { messageMethod } from './message';
 import { initStarRating } from '../plugins/init_star_rating';
+import { ajouterLocataire } from './locataire';
+import { supprimerLocataire } from './locataire';
 
 initMapbox();
 initAutocomplete();
@@ -23,6 +25,8 @@ initAutocompleteProfileVille();
 notificationMethod();
 messageMethod();
 initStarRating();
+ajouterLocataire();
+supprimerLocataire();
 
 // Auto refresh every 10 seconds
 // document.addEventListener("DOMContentLoaded", () => {

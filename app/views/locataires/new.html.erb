@@ -6,15 +6,12 @@
         <%= simple_form_for [@annonce, @locataire] do |f| %>
           <p class="mt-4 border-top" style="color: #D8A727; font-weight: bold"></p>
           <%= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
-          <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL</p>
+          <p class="mt-4 border-top pt-3 mb-0" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL </p>
+          <p><span style="color: #646464; font-size: 12px; font-style: italic">(Téléchargez tous vos documents aux formats : jpg, png, ou pdf)</span></p>
           <%= f.input :prenom, label: "Prénom"%>
-          <!-- input_html: {value: current_user.prénom.capitalize}   -->
           <%= f.input :nom, label: "Nom" %>
-          <!-- , input_html: {value: current_user.nom.capitalize}   -->
           <%= f.input :adresse, label: "Adresse" %>
-          <!-- , input_html: {value: current_user.adresse}    -->
           <%= f.input :ville, label: "Ville" %>
-          <!-- , input_html: {value: current_user.ville}    -->
           <%= f.input :tel, label: "Téléphone" %>
           <%= f.input :email %>
           <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport</p>
@@ -35,6 +32,19 @@
           <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
           <%= f.input :contrat, label: false %>
           <%= f.input :contrat_cache, as: :hidden %>
+          <!-- Ajouter un colocataire -->
+          <div id="ajouter_form"></div>
+          <div class="d-flex mt-4">
+            <p id="ajouter_locataire" style="color:#167FFB" class="mb-0"><i class="fas fa-plus-circle mr-1" style="color: green"></i>Ajouter locataire</p>
+            <p class="mx-1 mb-0">/</p>
+            <p id="supprimer_locataire" style="color:#167FFB" class="mb-0"><i class="fas fa-times-circle mr-1" style="color: red"></i>Supprimer colocataire</p>
+          </div>
+          <!-- COLOCATAIRE -->
+          <!--     <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">COLOCATAIRE</p>
+          <%#= f.simple_fields_for :locataire_supplementaires do |p| %>
+            <%#= p.input :prenom, label: "Prénom"%>
+            <%#= p.input :nom, label: "Nom" %>
+          <%# end %> -->
           <!-- Information du garant -->
           <p class="mt-5 border-top pt-3" style="color: #D8A727; font-weight: bold">LE GARANT (caution solidaire)</p>
           <%= f.input :prenom_garant, label: "Prénom" %>
@@ -43,7 +53,7 @@
           <%= f.input :ville_garant, label: "Ville"  %>
           <%= f.input :tel_garant, label: "Téléphone"  %>
           <%= f.input :email_garant  %>
-          <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport</p>
+          <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport </p>
           <%= f.input :id_recto_garant, label: false %>
           <%= f.input :id_recto_garant_cache, as: :hidden %>
           <%= f.input :id_verso_garant, label: false %>

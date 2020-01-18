@@ -6,15 +6,12 @@
         <%= simple_form_for [@annonce, @locataire] do |f| %>
           <p class="mt-4 border-top" style="color: #D8A727; font-weight: bold"></p>
           <%= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
-          <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL</p>
+          <p class="mt-4 border-top pt-3 mb-0" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL</p>
+          <p><span style="color: #646464; font-size: 12px; font-style: italic">(Téléchargez tous vos documents aux formats : jpg, png, ou pdf)</span></p>
           <%= f.input :prenom, label: "Prénom"%>
-          <!-- input_html: {value: current_user.prénom.capitalize}   -->
           <%= f.input :nom, label: "Nom" %>
-          <!-- , input_html: {value: current_user.nom.capitalize}   -->
           <%= f.input :adresse, label: "Adresse" %>
-          <!-- , input_html: {value: current_user.adresse}    -->
           <%= f.input :ville, label: "Ville" %>
-          <!-- , input_html: {value: current_user.ville}    -->
           <%= f.input :tel, label: "Téléphone" %>
           <%= f.input :email %>
           <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport</p>
@@ -35,6 +32,36 @@
           <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
           <%= f.input :contrat, label: false %>
           <%= f.input :contrat_cache, as: :hidden %>
+          <!-- COLOCATAIRE -->
+          <% if @locataire.locataire_supplementaires != [] %>
+            <%= f.simple_fields_for :locataire_supplementaires do |p| %>
+              <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">COLOCATAIRE</p>
+              <%= p.input :prenom, label: "Prénom"%>
+              <%= p.input :nom, label: "Nom" %>
+              <%= p.input :adresse, label: "Adresse" %>
+              <%= p.input :ville, label: "Ville" %>
+              <%= p.input :tel, label: "Téléphone" %>
+              <%= p.input :email %>
+              <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport</p>
+              <%= p.input :id_recto, label: false %>
+              <%= p.input :id_recto_cache, as: :hidden %>
+              <%= p.input :id_verso, label: false %>
+              <%= p.input :id_verso_cache, as: :hidden %>
+              <p class="mt-4" style="color: #D8A727">Justificatif de domicile</p>
+              <%= p.input :justif_dom, label: false %>
+              <%= p.input :justif_dom_cache, as: :hidden %>
+              <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
+              <%= p.input :fiche_paye_mois1, label: false %>
+              <%= p.input :fiche_paye_mois1_cache, as: :hidden %>
+              <%= p.input :fiche_paye_mois2, label: false %>
+              <%= p.input :fiche_paye_mois2_cache, as: :hidden %>
+              <%= p.input :fiche_paye_mois3, label: false %>
+              <%= p.input :fiche_paye_mois3_cache, as: :hidden %>
+              <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
+              <%= p.input :contrat, label: false %>
+              <%= p.input :contrat_cache, as: :hidden %>
+            <% end %>
+          <% end %>
           <!-- Information du garant -->
           <p class="mt-5 border-top pt-3" style="color: #D8A727; font-weight: bold">LE GARANT (caution solidaire)</p>
           <%= f.input :prenom_garant, label: "Prénom" %>

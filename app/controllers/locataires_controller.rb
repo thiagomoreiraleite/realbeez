@@ -1,5 +1,4 @@
 class LocatairesController < ApplicationController
-
   before_action :set_locataire, only: [:show, :edit, :update, :destroy, :accept_locataire, :reject_locataire]
 
   def show
@@ -9,6 +8,8 @@ class LocatairesController < ApplicationController
   def new
     authorize @locataire = Locataire.new
     @annonce = Annonce.find(params[:annonce_id])
+    # nested model locataire_supplementaire
+    @locataire.locataire_supplementaires.build
   end
 
   def create
@@ -51,7 +52,7 @@ class LocatairesController < ApplicationController
 
   def update
     authorize @locataire
-    if @locataire.update(locataire_params)
+    if @locataire.update_attributes(locataire_params)
       @admin = User.where("email = ?", "contact@realbeez.com")[0]
       # Create a notification
       if @locataire.agent == "Non" && @locataire.annonce.agent_user_id != nil
@@ -268,7 +269,8 @@ class LocatairesController < ApplicationController
       :fiche_paye_mois2_garant,
       :fiche_paye_mois3_garant,
       :contrat_garant,
-      :message
+      :message,
+      locataire_supplementaires_attributes: [:id, :locataire_id, :nom, :prenom, :adresse, :ville, :tel, :email, :id_recto, :id_verso, :justif_dom, :fiche_paye_mois1, :fiche_paye_mois2, :fiche_paye_mois3, :contrat]
     )
   end
 

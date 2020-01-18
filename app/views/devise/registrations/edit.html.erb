@@ -25,7 +25,8 @@
                     hint: "Nous avons besoin de votre mot de passe actuel pour confirmer vos modifications",
                     required: true,
                     input_html: { autocomplete: "current-password" }, label: "Votre mot de passe actuel" %>
-        <%= f.input :photo %>
+        <p class="mt-4" style="color: #D8A727">Téléchargez votre photo <span style="color: #646464; font-size: 12px; font-style: italic">(Formats acceptés : jpg ou png)</span></p>
+        <%= f.input :photo, label: false %>
         <%= f.input :photo_cache, as: :hidden %>
       </div>
       <div class="form-actions">
