@@ -31,10 +31,15 @@
                           <span style="color:red; font-size: 14px" class="p-0 m-0">(USER DELETED)</span>
                         <% end %>
                       </h5>
-                      <p class="card-text mb-0"><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= profile.adresse %></p>
-                      <p class="card-text mb-0"><i class="fas fa-city mr-3" style="color: #D8A727"></i><%= profile.ville.split(",")[0].titlecase %></p>
-                      <p class="pt-0 card-text">Statut :
-                        <% if profile.statut.nil? %>
+                      <div class="d-flex mb-0">
+                        <p class="card-text mb-0"><i class="fas fa-map-marker-alt mr-4" style="color: #D8A727"></i></p>
+                        <p class="mb-0"><%= profile.adresse %></p>
+                      </div>
+                      <div class="d-flex mb-1">
+                        <p class="card-text mb-1"><i class="fas fa-city mr-3" style="color: #D8A727"></i></p>
+                        <p class="mb-1"><%= profile.ville.split(",")[0].titlecase %></p>
+                      </div>
+                      <p class="pt-0 card-text"><i class="fas fa-user-circle  mr-3" style="color: #D8A727"></i><% if profile.statut.nil? %>
                           User
                         <% else %>
                           <%= profile.statut %><i class="fas fa-check-circle ml-1" style="color: green"></i>
