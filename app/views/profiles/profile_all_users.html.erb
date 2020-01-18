@@ -31,6 +31,7 @@
                           <span style="color:red; font-size: 14px" class="p-0 m-0">(USER DELETED)</span>
                         <% end %>
                       </h5>
+                      <p class="card-text mb-0"><%= profile.adresse %></p>
                       <p class="card-text mb-0"><%= profile.ville.split(",")[0].titlecase %></p>
                       <p class="pt-0 card-text">Statut :
                         <% if profile.statut.nil? %>
