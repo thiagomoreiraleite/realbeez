@@ -3,8 +3,8 @@ const ajouterDocument = () => {
   const documentForm = document.querySelector("#document_form");
   let counter = 0;
   dossier.addEventListener("click", (event) => {
-    console.log(event)
-    counter += 1;
+    counter  =  Number((event.timeStamp).toFixed(0));
+    console.log(counter)
     documentForm.insertAdjacentHTML('beforeend',
       `
       <div>
