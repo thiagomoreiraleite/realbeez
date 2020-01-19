@@ -16,6 +16,8 @@ import { messageMethod } from './message';
 import { initStarRating } from '../plugins/init_star_rating';
 import { ajouterLocataire } from './locataire';
 import { supprimerLocataire } from './locataire';
+import { ajouterDocument } from './document';
+import { supprimerDocument } from './document';
 
 initMapbox();
 initAutocomplete();
@@ -27,6 +29,8 @@ messageMethod();
 initStarRating();
 ajouterLocataire();
 supprimerLocataire();
+ajouterDocument();
+supprimerDocument();
 
 // Auto refresh every 10 seconds
 // document.addEventListener("DOMContentLoaded", () => {

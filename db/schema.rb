@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_150318) do
+ActiveRecord::Schema.define(version: 2020_01_19_035538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 2020_01_18_150318) do
     t.text "commentaire"
     t.index ["annonce_id"], name: "index_candidatures_on_annonce_id"
     t.index ["user_id"], name: "index_candidatures_on_user_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "titre"
+    t.string "piece_jointe", default: "image/upload/v1575902902/default_annonce.png"
+    t.bigint "locataire_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locataire_id"], name: "index_documents_on_locataire_id"
   end
 
   create_table "friendships", id: :serial, force: :cascade do |t|
@@ -317,6 +326,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_150318) do
   add_foreign_key "availabilities", "users"
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
+  add_foreign_key "documents", "locataires"
   add_foreign_key "locataire_supplementaires", "locataires"
   add_foreign_key "locataires", "annonces"
   add_foreign_key "locataires", "users"

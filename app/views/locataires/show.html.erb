@@ -103,6 +103,12 @@
           <p class="mt-3 mb-2"><strong>Contrat de travail</strong> : </p>
           <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{@locataire.contrat_garant.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
           <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@locataire.contrat_garant.filename}", :target => "_blank",class: "btn btn-transparent" %>
+          <!-- AUTRES DOCUMENTS -->
+          <% if @locataire.documents != [] %>
+            <p class="mt-3 border-top pt-3"><strong>Autres documents</strong> : </p>
+            <p class="mt-3" style="font-size:16px"><%= render "locataires/documents" %></p>
+          <% end %>
+          <!-- MESSAGE -->
           <p class="mt-3 border-top pt-3"><strong>Message</strong> : <%= @locataire.message == nil || @locataire.message == "" ? "Aucun" : @locataire.message  %></p>
           <!-- Agent to validate that documents are complete -->
           <!--   <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">Reservé à l'agent : Valider que le dossier de location est complet</p>

@@ -1,0 +1,7 @@
+<% @locataire.documents.each do |document| %>
+  <div class="mb-2">
+    <%= document.titre %>
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{document.piece_jointe.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{document.piece_jointe.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  </div>
+<% end %>
