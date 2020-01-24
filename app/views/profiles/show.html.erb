@@ -95,7 +95,7 @@
       <% if user_signed_in? %>
         <% if @profile == current_user %>
           <% unless @profile.agent.nil? || @profile.agent == []%>
-            <p class="card-text my-1"><i class="fas fa-user-circle  mr-3" style="color: #D8A727"></i><%= link_to "Voir mon justificatif d'auto-entrepreneur", "https://res.cloudinary.com/dvfwroq5k/#{@profile.agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
+            <p class="card-text mb-2"><i class="fas fa-user-circle  mr-3" style="color: #D8A727"></i><%= link_to "Voir mon justificatif d'auto-entrepreneur", "https://res.cloudinary.com/dvfwroq5k/#{@profile.agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
           <% end %>
         <% end %>
       <% end %>
