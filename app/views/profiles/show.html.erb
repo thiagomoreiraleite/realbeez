@@ -92,6 +92,13 @@
       <% end %>
       <p class=" mt-0 mb-3" style="" ><i class="fas fa-city mr-3" style="color: #D8A727"></i><%= @profile.ville.capitalize %></p>
       <p class=" mt-0 mb-3" style="" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @profile.email %></p>
+      <% if user_signed_in? %>
+        <% if @profile == current_user %>
+          <% unless @profile.agent.nil? || @profile.agent == []%>
+            <p class="card-text my-1"><i class="fas fa-user-circle  mr-3" style="color: #D8A727"></i><%= link_to "Voir mon justificatif d'auto-entrepreneur", "https://res.cloudinary.com/dvfwroq5k/#{@profile.agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
+          <% end %>
+        <% end %>
+      <% end %>
       <!-- ==================STAR RATINGS================= -->
       <% unless @profile.agent == nil || @profile.agent == [] %>
         <% unless @profile.agent.reviews == []%>
