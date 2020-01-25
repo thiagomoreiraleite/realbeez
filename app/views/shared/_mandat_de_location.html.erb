@@ -13,7 +13,7 @@
         <p><strong>Adresse</strong> : 90 avenue de Choisy, 75013 Paris</p>
         <p><strong>Représenté par</strong> : <%= @candidature.user.prénom.capitalize %> <%= @candidature.user.nom.capitalize %></p>
         <p><strong>RCS </strong>: 880 147 822</p>
-        <p><strong>Carte professionnelle</strong> : En cours</p>
+        <p><strong>Carte professionnelle</strong> : CPI 7501 2020 000 044 172</p>
         <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA SITUATION ET DESIGNATION DU BIEN</strong></h5>
         <p><strong>Adresse</strong> : <%= @candidature.annonce.adresse %></p>
         <p><strong>Description</strong> : <%= @candidature.annonce.titre_annonce %> <%= link_to "voir détail de l'annonce", annonce_path(@candidature.annonce) , target: :_blank %> </p>
