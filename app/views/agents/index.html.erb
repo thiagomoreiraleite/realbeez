@@ -11,6 +11,8 @@
     <p class = "m-0">Mulhouse / Colmar : <%= @agent_mulhouse %></p>
     <p class = "m-0">Bordeaux : <%= @agent_bordeaux %></p> -->
     <p>Dans toute la France : <%= @agent_france %></p>
+    <p>dont justificatif manquant : <%= @agent_approved_no_justif_count %></p>
+    <%= @user_statut_agent %>
     <p class = "m-0">Candidature(s) reçue(s) : <%= @agent_candidature_reçue.count %></p>
     <div class="profile-friends">
       <div class="search navigations">
