@@ -21,11 +21,11 @@
       <li class="nav-item">
         <%= link_to "Tarifs", details_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
+      <li class="nav-item ">
+        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"" %>
       </li>
       <li class="nav-item d-flex align-items-center">
-        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold-yellow" %>
+        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold-yellow" %>
       </li>
       <% if user_signed_in? %>
         <!-- =============Messages================ -->

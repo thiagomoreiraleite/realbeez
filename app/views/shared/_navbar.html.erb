@@ -22,10 +22,10 @@
         <%= link_to "Tarifs", details_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link" %>
+        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link"%>
       </li>
       <li class="nav-item d-flex align-items-center">
-        <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link", class:"btn btn-transparent-bold" %>
+        <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link", class:"btn btn-transparent-bold" %>
       </li>
       <% if user_signed_in? %>
         <!-- =============Messages================ -->
