@@ -4,6 +4,22 @@
   </div>
 </div>
 <div class="container my-5">
+  <% if user_signed_in? %>
+    <% if current_user.statut == "Agent" || current_user.admin == true  %>
+      <div class="row mb-4">
+        <div class="col-12 col-md-10 offset-md-1">
+          <div class="card" style="border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+            <div class="card-body">
+              <h5 class="card-title">Le guide du consultant en immobilier <span style="font-size: 12px">(version du 29/12/2019)</span></h5>
+              <p class="card-text text-truncate" style="color: rgba(0, 0, 0, 0.5) ">Retrouvez la procédure détaillée des activités du consultant en immobilier Realbeez.
+              </p>
+              <%= link_to "Télécharger gratuitement", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1578322079/Guide_de_l_agent_Realbeez_version_29122019_shzz6t.pdf",class: "btn btn-transparent stretched-link" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
   <div class="row mb-4">
     <div class="col-12 col-md-10 offset-md-1">
       <div class="card" style="border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
@@ -41,20 +57,17 @@
       </div>
     </div>
   </div>
-  <% if user_signed_in? %>
-    <% if current_user.statut == "Agent" || current_user.admin == true  %>
-      <div class="row mb-4">
-        <div class="col-12 col-md-10 offset-md-1">
-          <div class="card" style="border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
-            <div class="card-body">
-              <h5 class="card-title">Le guide du consultant en immobilier <span style="font-size: 12px">(version du 29/12/2019)</span></h5>
-              <p class="card-text text-truncate" style="color: rgba(0, 0, 0, 0.5) ">Retrouvez la procédure détaillée des activités du consultant en immobilier Realbeez.
-              </p>
-              <%= link_to "Télécharger gratuitement", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1578322079/Guide_de_l_agent_Realbeez_version_29122019_shzz6t.pdf",class: "btn btn-transparent stretched-link" %>
-            </div>
-          </div>
+  <div class="row mb-4">
+    <div class="col-12 col-md-10 offset-md-1">
+      <div class="card" style="border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+        <div class="card-body">
+          <h5 class="card-title">Modèles de contrats de location</h5>
+          <p class="card-text text-truncate" style="color: rgba(0, 0, 0, 0.5) ">Téléchargez gratuitement nos modèles de contrats de location conforme à la loi Alur.
+          </p>
+          <%= link_to "Location vide", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1580301673/Contrat_de_location_non-meublé_h9sbnl.pdf",class: "btn btn-transparent" %>
+          <%= link_to "Location meublé", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1580301675/Contrat_de_location_meublé_zazuus.pdf",class: "btn btn-transparent" %>
         </div>
       </div>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 </div>
