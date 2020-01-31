@@ -129,6 +129,7 @@
           <% unless @profile.agent.nil? %>
             <div class="border p-2" style="border-radius: 10px">
               <p class="text-center" style="font-weight: bold; color: #D8A727">FOR ADMIN</p>
+              <p class="card-text my-1">Expérience : <%= @profile.agent.experience %></p>
               <p class="card-text my-1">Email : <%= @profile.agent.user.email %></p>
               <p class="card-text my-1">Adresse : <%= @profile.agent.user.adresse %></p>
               <p class="card-text my-1">Ville : <%= @profile.agent.user.ville.capitalize %></p>
