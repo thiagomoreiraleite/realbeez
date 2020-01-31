@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create, :confirmation_contact]
+
   def new
     authorize @contact = Contact.new
   end
