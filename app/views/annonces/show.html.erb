@@ -121,18 +121,18 @@
     </div>
     <div class="mt-4 mb-2">
       <% if user_signed_in?  %>
-        <!-- if no agent is managing the flat -->
-        <% if @annonce.agent_user_id.nil? && current_user.statut == "Agent" && @annonce.user != current_user %>
-          <!-- Check if agent already applied -->
-          <% if @annonce.candidatures.any? { |c| c.user_id == current_user.id} %>
-            <p class="mt-2 pb-0 text-center"><%= link_to "Candidature en cours", candidature_agent_path, style:"font-weight: bold; color: green"  %></p>
-          <% else %>
+        <!-- GERER CE BIEN FEATURES REMOVED if no agent is managing the flat -->
+        <!--   <%# if @annonce.agent_user_id.nil? && current_user.statut == "Agent" && @annonce.user != current_user %> -->
+        <!-- Check if agent already applied -->
+        <!--        <%# if @annonce.candidatures.any? { |c| c.user_id == current_user.id} %>
+            <p class="mt-2 pb-0 text-center"><%#= link_to "Candidature en cours", candidature_agent_path, style:"font-weight: bold; color: green"  %></p>
+          <%# else %>
             <div class="text-center my-2" >
-              <%= link_to "Gérer ce bien", new_annonce_candidature_path(@annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
+              <%#= link_to "Gérer ce bien", new_annonce_candidature_path(@annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
             </div>
-          <% end %>
-          <!-- if agent assigned and the agent is the current user -->
-        <% elsif @annonce.agent_user_id != nil && @annonce.agent_user_id == current_user.id.to_s %>
+          <%# end %> -->
+        <!-- if agent assigned and the agent is the current user -->
+        <% if @annonce.agent_user_id != nil && @annonce.agent_user_id == current_user.id.to_s %>
           <!-- Coordonnées du propriétaire visible que pour l'agent -->
           <div class="row p-2 mt-5">
             <div class="col-12 col-md-8">

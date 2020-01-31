@@ -86,18 +86,19 @@
               <!-- all links with gérer et valider -->
               <% if user_signed_in?  %>
                 <!-- if no agent is managing the flat -->
-                <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
-                  <!-- Check if agent already applied -->
-                  <% if annonce.candidatures.any? { |c| c.user_id == current_user.id} %>
-                    <p class="mt-2 pb-0 text-center"><%= link_to "Déja postulé", candidature_agent_path, style:"font-weight: bold; color: green"  %></p>
-                    <!--  <p class="mt-2 pb-0 text-center" style="font-weight: bold; color: green">Déja postulé</p> -->
-                  <% else %>
+                <!--   <%# if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %> -->
+                <!-- REMOVE THE FEATURES GERE CE BIEN -->
+                <!-- Check if agent already applied -->
+                <!--      <%# if annonce.candidatures.any? { |c| c.user_id == current_user.id} %>
+                    <p class="mt-2 pb-0 text-center"><%#= link_to "Déja postulé", candidature_agent_path, style:"font-weight: bold; color: green"  %></p>
+                     <p class="mt-2 pb-0 text-center" style="font-weight: bold; color: green">Déja postulé</p>
+                  <%# else %>
                     <div class="text-center my-2" >
-                      <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
+                      <%#= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
                     </div>
-                  <% end %>
-                  <!-- if agent assigned and the agent is the current user -->
-                <% elsif annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
+                  <%# end %> -->
+                <!-- if agent assigned and the agent is the current user -->
+                <% if annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
                   <!-- when flat is rented need to checkout -->
                   <% if annonce.checkout_agent != "check" %>
                     <div class="text-center my-2 " style="">
@@ -230,18 +231,18 @@
                 <!-- all links with gérer et valider -->
                 <% if user_signed_in?  %>
                   <!-- if no agent is managing the flat -->
-                  <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
-                    <!-- Check if agent already applied -->
-                    <% if annonce.candidatures.any? { |c| c.user_id = current_user.id} %>
-                      <p class="mt-2 pb-0 text-center"><%= link_to "Déja postulé", candidature_agent_path, style:"font-weight: bold; color: green"  %></p>
-                      <!--  <p class="mt-2 pb-0 text-center" style="font-weight: bold; color: green">Déja postulé</p> -->
-                    <% else %>
+                  <%# if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
+                  <!-- Check if agent already applied -->
+                  <!--  <%# if annonce.candidatures.any? { |c| c.user_id = current_user.id} %>
+                      <p class="mt-2 pb-0 text-center"><%#= link_to "Déja postulé", candidature_agent_path, style:"font-weight: bold; color: green"  %></p> -->
+                  <!--  <p class="mt-2 pb-0 text-center" style="font-weight: bold; color: green">Déja postulé</p> -->
+                  <!--     <%# else %>
                       <div class="text-center my-2" >
-                        <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
+                        <%#= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
                       </div>
-                    <% end %>
-                    <!-- if agent assigned and the agent is the current user -->
-                  <% elsif annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
+                    <%# end %> -->
+                  <!-- if agent assigned and the agent is the current user -->
+                  <% if annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
                     <!-- when flat is rented need to checkout -->
                     <% if annonce.checkout_agent != "check" %>
                       <div class="text-center my-2 " style="">

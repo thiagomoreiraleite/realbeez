@@ -41,12 +41,12 @@
             <!-- all links with gérer et valider -->
             <% if user_signed_in?  %>
               <!-- if no agent is managing the flat -->
-              <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
+              <!--   <%# if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
                 <div class="text-center my-2" >
-                  <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
-                </div>
-                <!-- if agent assigned and the agent is the current user -->
-              <% elsif annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
+                  <%#= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
+                </div> -->
+              <!-- if agent assigned and the agent is the current user -->
+              <% if annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
                 <!-- when flat is rented need to checkout -->
                 <% if annonce.checkout_agent != "check" %>
                   <div class="text-center my-2 " style="">
@@ -168,17 +168,10 @@
                       <% end %>
                     </div>
                   </div>
-  
                   <!-- all links with gérer et valider -->
                   <% if user_signed_in?  %>
-                    <!-- if no agent is managing the flat -->
-                    <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
-                      <div class="text-center my-2" >
-                        <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
-  
-                      </div>
-                     <!-- if agent assigned and the agent is the current user -->
-                    <% elsif annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
+                    <!-- if agent assigned and the agent is the current user -->
+                    <% if annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
                      <!-- when flat is rented need to checkout -->
                       <% if annonce.checkout_agent != "check" %>
                         <div class="text-center my-2 " style="">
@@ -284,14 +277,8 @@
                   </div>
                   <!-- all links with gérer et valider -->
                   <% if user_signed_in?  %>
-                    <!-- if no agent is managing the flat -->
-                    <% if annonce.agent_user_id.nil? && current_user.statut == "Agent" && annonce.user != current_user %>
-                      <div class="text-center my-2" >
-                        <%= link_to "Gérer ce bien", new_annonce_candidature_path(annonce), class: "btn btn-transparent", style:"font-size: 14px" %>
-  
-                      </div>
-                     <!-- if agent assigned and the agent is the current user -->
-                    <% elsif annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
+                    <!-- if agent assigned and the agent is the current user -->
+                    <% if annonce.agent_user_id != nil && annonce.agent_user_id == current_user.id.to_s %>
                      <!-- when flat is rented need to checkout -->
                       <% if annonce.checkout_agent != "check" %>
                         <div class="text-center my-2 " style="">

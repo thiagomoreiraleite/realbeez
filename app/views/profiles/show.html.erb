@@ -44,13 +44,14 @@
               <% end %>
             <% end %>
           <% end %>
-          <% if user_signed_in? %>
-            <% if @profile != current_user %>
+          <!-- TO CONTACT AGENT REMOVED -->
+          <!--   <#% if user_signed_in? %>
+            <#% if @profile != current_user %>
               <div class="d-flex justify-content-around">
-                <%= link_to "Contacter", new_conversation_path(message: {to: @profile.id }), class: "btn btn-transparent mb-1 text-center" %>
+                <%#= link_to "Contacter", new_conversation_path(message: {to: @profile.id }), class: "btn btn-transparent mb-1 text-center" %>
               </div>
-            <% end %>
-          <% end %>
+            <#% end %>
+          <#% end %> -->
         </div>
       </div>
     </div>
@@ -59,29 +60,29 @@
       <div class="pb-2 border-bottom border-info">
       </div>
       <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
-      <!-- if current user is an agent add experience description-->
-      <% unless @profile.agent.nil? %>
-        <% if @profile.agent.experience.nil? || @profile.agent.experience == "" %>
-          <!-- if current user is profile user and there is no description, add a link to add it -->
-          <% if @profile == current_user %>
-            <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= link_to "Aucune description" , edit_agent_path(current_user.agent.id) %></p>
-          <% else %>
-            <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i>Aucune description</p>
-          <% end %>
-        <% else %>
-          <div class="d-flex" style="">
-            <p class=" mt-0 mb-3"  ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i></p>
-            <p><%= simple_format(@profile.agent.experience) %></p>
-          </div>
-        <% end %>
-      <% end %>
+      <!-- ONLY VISIBLE FOR CURRENT USER -->
       <% if user_signed_in? %>
         <% if @profile == current_user %>
+          <% unless @profile.agent.nil? %>
+            <% if @profile.agent.experience.nil? || @profile.agent.experience == "" %>
+              <!-- if current user is profile user and there is no description, add a link to add it -->
+              <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= link_to "Aucune description" , edit_agent_path(current_user.agent.id) %></p>
+            <% else %>
+              <div class="d-flex" style="">
+                <p class=" mt-0 mb-3"  ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i></p>
+                <p><%= simple_format(@profile.agent.experience) %></p>
+              </div>
+            <% end %>
+          <% end %>
           <% if @profile.téléphone == nil || @profile.téléphone == "" %>
             <p class=" mt-0 mb-3" style="" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= link_to "Aucun numéro de téléphone", edit_user_registration_path(current_user)%>
             </p>
           <% else %>
             <p class=" mt-0 mb-3" style="" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= @profile.téléphone %></p>
+          <% end %>
+          <p class=" mt-0 mb-3" style="" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @profile.email %></p>
+          <% unless @profile.agent.nil? || @profile.agent == []%>
+            <p class="card-text mb-3"><i class="fas fa-file-pdf mr-3" style="color: #D8A727"></i><%= link_to "Voir mon justificatif d'auto-entrepreneur", "https://res.cloudinary.com/dvfwroq5k/#{@profile.agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
           <% end %>
           <% if @profile.adresse == nil || @profile.adresse == "" %>
             <p class=" mt-0 mb-3" style="" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= link_to "Aucune adresse", edit_user_registration_path(current_user)%></p>
@@ -91,14 +92,6 @@
         <% end %>
       <% end %>
       <p class=" mt-0 mb-3" style="" ><i class="fas fa-city mr-3" style="color: #D8A727"></i><%= @profile.ville.capitalize %></p>
-      <p class=" mt-0 mb-3" style="" ><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @profile.email %></p>
-      <% if user_signed_in? %>
-        <% if @profile == current_user %>
-          <% unless @profile.agent.nil? || @profile.agent == []%>
-            <p class="card-text mb-3"><i class="fas fa-file-pdf mr-3" style="color: #D8A727"></i><%= link_to "Voir mon justificatif d'auto-entrepreneur", "https://res.cloudinary.com/dvfwroq5k/#{@profile.agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
-          <% end %>
-        <% end %>
-      <% end %>
       <!-- ==================STAR RATINGS================= -->
       <% unless @profile.agent == nil || @profile.agent == [] %>
         <% unless @profile.agent.reviews == []%>
@@ -130,11 +123,13 @@
           <p class=" mt-0 my-3" style="" ><%= link_to "Noter votre agent", new_agent_review_path(@profile.agent) %></p>
         <% end %>
       <% end %>
+      <!-- VISIBLE ONLY FOR ADMIN -->
       <% if user_signed_in?%>
         <% if current_user.admin == true %>
           <% unless @profile.agent.nil? %>
             <div class="border p-2" style="border-radius: 10px">
               <p class="text-center" style="font-weight: bold; color: #D8A727">FOR ADMIN</p>
+              <p class="card-text my-1">Email : <%= @profile.agent.user.email %></p>
               <p class="card-text my-1">Adresse : <%= @profile.agent.user.adresse %></p>
               <p class="card-text my-1">Ville : <%= @profile.agent.user.ville.capitalize %></p>
               <p class="card-text my-1">Long : <%= @profile.agent.user.longitude %> / Lat : <%= @profile.agent.user.latitude %></p>
@@ -153,32 +148,32 @@
 <% unless @profile.agent.nil?%>
   <% if @profile.agent.statut == "Approuvé" %>
     <div style="background-color: #FFFFFF; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
-      <% if user_signed_in? && params[:id].to_i != current_user.id%>
-        <div class="py-2" style="">
-          <!-- Demander les services d'un concierge -->
-          <div class="container border-bottom" style="text-align: center">
+      <%# if user_signed_in? && params[:id].to_i != current_user.id%>
+      <!-- <div class="py-2" style=""> -->
+      <!-- Demander les services d'un concierge REMOVED-->
+      <!-- <div class="container border-bottom" style="text-align: center">
             <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Demander les services de <%= @profile.prénom.titlecase %> pour louer votre bien !</p>
-            <% if @annonces == [] %>
+            <%# if @annonces == [] %>
               <div>
                 <p class="mb-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez aucun bien à louer actuellement"</p>
                 <p style="font-weight: bold; color: #D8A727">Publier votre annonce et confier la location à <%= @profile.prénom.titlecase %></p>
-                <%= link_to "Publier une annonce", new_annonce_path, class: "btn btn-yellow-mustard mb-5 "  %>
+                <%#= link_to "Publier une annonce", new_annonce_path, class: "btn btn-yellow-mustard mb-5 "  %>
               </div>
-            <% else %>
+            <%# else %>
               <div class="row justify-content-center">
                 <div class="col-12 col-md-6 col-md-offset-3">
-                  <%= simple_form_for @candidature do |f| %>
-                    <%= f.input :annonce_id, label: "Choisir votre bien à louer", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id, label_html: { style: "font-weight: bold; color: #D8A727"} %>
-                    <%= f.hidden_field :user_id, value: @profile.id %>
-                    <%= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent? Vous allez être redirigé vers le mandat de location.' }, class: "btn btn-yellow-mustard mt-4 ", id:"" %>
-                  <% end %>
-                  <p class="mb-5 mt-2" style="font-style: italic"><%= link_to "Votre annonce n'est pas encore publiée?", new_annonce_path("", {from: 'profile_page'}) %></p>
+                  <%#= simple_form_for @candidature do |f| %>
+                    <%#= f.input :annonce_id, label: "Choisir votre bien à louer", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id, label_html: { style: "font-weight: bold; color: #D8A727"} %>
+                    <%#= f.hidden_field :user_id, value: @profile.id %>
+                    <%#= f.submit "Valider", data: { confirm: 'Etes-vous sûr de vouloir demander les services de cet agent? Vous allez être redirigé vers le mandat de location.' }, class: "btn btn-yellow-mustard mt-4 ", id:"" %>
+                  <#% end %>
+                  <p class="mb-5 mt-2" style="font-style: italic"><%#= link_to "Votre annonce n'est pas encore publiée?", new_annonce_path("", {from: 'profile_page'}) %></p>
                 </div>
               </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+            <#% end %>
+          </div> -->
+      <!-- </div> -->
+      <%# end %>
       <!-- Tableau de bord -->
       <% if user_signed_in? %>
         <div class="container justify-content-center">
