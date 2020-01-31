@@ -24,6 +24,12 @@
   }
 }
 
+.hide-on-small {
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+}
+
 .avatar-mobile {
     @media only screen and (max-width: 992px) {
      height: 110px !important;

@@ -102,4 +102,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  # Contact
+  resources :contacts, only: [:new, :create]
+  get '/confirmation_contact', to: 'contacts#confirmation_contact', as: :confirmation_contact
+
 end

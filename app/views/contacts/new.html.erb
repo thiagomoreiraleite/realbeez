@@ -1,0 +1,60 @@
+<!-- LAPTOP VERSION -->
+<div class="hide-on-small">
+  <div class="container d-flex align-items-center justify-content-center" style="height: 680px">
+    <div class="border" style="border-radius: 5px; background-color: white; padding: 30px 30px">
+      <h1 style="color: #D8A727; font-family: Simply Rounded; font-size: 26px; letter-spacing: 1px">Louez votre bien immobilier</h1>
+      <h1 class="mb-4" style="color: #D8A727; font-family: Simply Rounded; font-size: 26px; letter-spacing: 1px"> rapidement pour <strong>375 €</strong></h1>
+      <p class="mb-2" style="color: rgb(100, 100, 100); font-size: 16px; font-weight: bold">Un forfait fixe sans aucune contrainte :</p>
+      <ul class="mb-4">
+        <li class="" style="color: rgb(100, 100, 100)">payable au succès</li>
+        <li class="" style="color: rgb(100, 100, 100)">gratuit pour les locataires</li>
+        <li class="" style="color: rgb(100, 100, 100)">un mandat non-exclusif</li>
+      </ul>
+      <p class="mb-2">Laissez-nous vos coordonnées et on vous rappelle.</p>
+      <%= simple_form_for [@contact] do |f| %>
+        <div class="d-flex">
+          <%= f.input :prenom, label: false, placeholder: "Prénom" %>
+          <%= f.input :nom, label: false, placeholder: "Nom" %>
+        </div>
+        <div class="d-flex">
+          <%= f.input :ville, label: false, placeholder: "Ville" %>
+          <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
+        </div>
+        <%= f.input :email, label: false, placeholder: "Email" %>
+        <div class="d-flex justify-content-end">
+          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- MOBILE VERSION -->
+<div class="hide-on-large">
+  <div class="d-flex align-items-center justify-content-center" style="">
+    <div class="" style=" background-color: #F8F9FA; padding: 30px 30px">
+      <h1 style="color: #D8A727; font-family: Simply Rounded; font-size: 26px; letter-spacing: 1px">Louez votre bien immobilier</h1>
+      <h1 class="mb-4" style="color: #D8A727; font-family: Simply Rounded; font-size: 26px; letter-spacing: 1px"> rapidement pour <strong>375 €</strong></h1>
+      <p class="mb-2" style="color: rgb(100, 100, 100); font-size: 16px; font-weight: bold">Un forfait fixe sans aucune contrainte :</p>
+      <ul class="mb-4">
+        <li class="" style="color: rgb(100, 100, 100)">payable au succès</li>
+        <li class="" style="color: rgb(100, 100, 100)">gratuit pour les locataires</li>
+        <li class="" style="color: rgb(100, 100, 100)">un mandat non-exclusif</li>
+      </ul>
+      <p class="mb-2">Laissez-nous vos coordonnées et on vous rappelle.</p>
+      <%= simple_form_for [@contact] do |f| %>
+        <div class="d-flex">
+          <%= f.input :prenom, label: false, placeholder: "Prénom" %>
+          <%= f.input :nom, label: false, placeholder: "Nom" %>
+        </div>
+        <div class="d-flex">
+          <%= f.input :ville, label: false, placeholder: "Ville" %>
+          <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
+        </div>
+        <%= f.input :email, label: false, placeholder: "Email" %>
+        <div class="d-flex justify-content-end">
+          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
