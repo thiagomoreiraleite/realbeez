@@ -51,46 +51,46 @@
     <%= link_to "Publier une annonce", new_annonce_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold-white" %>
   </div>
   <div class="d-flex align-items-center justify-content-center" style="height: 200px">
-    <h3 style="color: white; font-family: simply rounded; font-size: 26px" class="text-center px-2">Louez votre bien immobilier rapidement pour <strong>375 €</h3>
+    <h3 style="color: white; font-family: simply rounded; font-size: 26px" class="text-center px-2">Louez votre bien immobilier rapidement pour <strong>375 €</strong></h3>
+  </div>
+</div>
+<div class="hide-on-large">
+  <div class="d-flex align-items-center justify-content-center py-5 px-3" style="width: 100%; background-color: white">
+    <div class="" style="background-color: white">
+      <p class="mb-2" style="color: rgb(100, 100, 100); font-size: 16px; font-weight: bold">Un forfait fixe sans aucune contrainte :</p>
+      <ul class="mb-4">
+        <li class="" style="color: rgb(100, 100, 100)">payable au succès</li>
+        <li class="" style="color: rgb(100, 100, 100)">gratuit pour les locataires</li>
+        <li class="" style="color: rgb(100, 100, 100)">un mandat non-exclusif</li>
+      </ul>
+      <p class="mb-2">Laissez-nous vos coordonnées et on vous rappelle.</p>
+      <%= simple_form_for [@contact] do |f| %>
+        <div class="d-flex">
+          <%= f.input :prenom, label: false, placeholder: "Prénom" %>
+          <%= f.input :nom, label: false, placeholder: "Nom" %>
+        </div>
+        <div class="d-flex">
+          <%= f.input :ville, label: false, placeholder: "Ville" %>
+          <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
+        </div>
+        <%= f.input :email, label: false, placeholder: "Email" %>
+        <div class="d-flex justify-content-end">
+          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="hide-on-large">
-    <div class="d-flex align-items-center justify-content-center py-5 px-3" style="width: 100%; background-color: white">
-      <div class="" style="background-color: white">
-        <p class="mb-2" style="color: rgb(100, 100, 100); font-size: 16px; font-weight: bold">Un forfait fixe sans aucune contrainte :</p>
-        <ul class="mb-4">
-          <li class="" style="color: rgb(100, 100, 100)">payable au succès</li>
-          <li class="" style="color: rgb(100, 100, 100)">gratuit pour les locataires</li>
-          <li class="" style="color: rgb(100, 100, 100)">un mandat non-exclusif</li>
-        </ul>
-        <p class="mb-2">Laissez-nous vos coordonnées et on vous rappelle.</p>
-        <%= simple_form_for [@contact] do |f| %>
-          <div class="d-flex">
-            <%= f.input :prenom, label: false, placeholder: "Prénom" %>
-            <%= f.input :nom, label: false, placeholder: "Nom" %>
-          </div>
-          <div class="d-flex">
-            <%= f.input :ville, label: false, placeholder: "Ville" %>
-            <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
-          </div>
-          <%= f.input :email, label: false, placeholder: "Email" %>
-          <div class="d-flex justify-content-end">
-            <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <!-- BACKGROUND AS VIDEO -->
-  <!-- <div class="" style="">
+</div>
+<!-- BACKGROUND AS VIDEO -->
+<!-- <div class="" style="">
   <div class="home-video-wrapper d-flex justify-content-around align-items-center" style="height: 100vh">
     <%#= video_tag "video.mp4", autoplay: :autoplay, loop: :loop, mute: :mute, class: "home_video", style:"width: 100vw; height: 100vh; position: absolute; object-fit: cover; top: 0; z-index: -2" %>
     <div class="" style="">
       <div>
         <h3 class="px-2" style="color: white; font-weight:bold">Et si le meilleur agent immobilier était votre voisin de quartier...</h3>
         <p class="px-2" style="color: white">Trouver un agent <strong>Realbeez</strong> près de chez vous et (re)louer rapidement votre bien immobilier.</p> -->
-  <!-- Search_bar -->
-  <!--    <nav class="navbar navbar-light justify-content-around">
+<!-- Search_bar -->
+<!--    <nav class="navbar navbar-light justify-content-around">
           <%#= form_for :search, defaults: { required: false }, url:profiles_path, method: "GET", html: { class: '' } do |f| %>
             <section style=" text-align:center;">
               <%#= f.text_field :query, label: false, placeholder: "Entrer votre adresse", input_html: {value: ""}, style: "width: 19em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8" %>
@@ -104,7 +104,7 @@
     </div>
   </div>
 </div> -->
-  <%= render "shared/choisir_realbeez" %>
-  <%= render "shared/fonctionnement" %>
-  <%= render "shared/agent_home" %>
-  <%#= render "shared/annonce_home" %>
+<%= render "shared/choisir_realbeez" %>
+<%= render "shared/fonctionnement" %>
+<%= render "shared/agent_home" %>
+<%#= render "shared/annonce_home" %>
