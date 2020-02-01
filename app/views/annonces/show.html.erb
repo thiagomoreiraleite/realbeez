@@ -30,7 +30,7 @@
     </div>
     <div class=" p-3", style="box-shadow: 0 0 5px rgba(0,0,0,0.1)">
       <!-- si le current_user a publié l'annonce -->
-      <% if current_user == @annonce.user %>
+      <% if current_user == @annonce.user || @annonce.agent_user_id == current_user.id.to_s || current_user.admin == true  %>
         <h4 class="mr-3 mt-3 mb-0", style=""><%= @annonce.titre_annonce %> - <%= @annonce.loyer_mensuel %> € / mois
           <% if @annonce.charges != nil %>
             <span style="font-size: 16px">(dont <%= @annonce.charges %> € de charges)</span>

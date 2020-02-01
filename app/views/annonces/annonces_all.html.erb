@@ -22,6 +22,7 @@
                     <div class="mt-0">
                       <p class='my-1', style="font-size: 14px">Nb de pièces  : <%= annonce.pièces %></p>
                       <p style="font-size: 14px">Loyer mensuel  : <%= annonce.loyer_mensuel %></p>
+                      <p style="font-size: 14px">Proprio : <%= link_to User.find(annonce.user_id).prénom.capitalize, profile_path(User.find(annonce.user_id)) %> <%= link_to User.find(annonce.user_id).nom.capitalize, profile_path(User.find(annonce.user_id)) %></p>
                       <% if annonce.agent_user_id != nil %>
                         <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
                       <% else %>

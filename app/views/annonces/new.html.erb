@@ -4,7 +4,16 @@
     <div class="col-12 col-md-6 col-lg-6">
       <div class="center">
         <%= simple_form_for [@annonce] do |f| %>
-          <%= f.input :titre_annonce, label: "Titre de l'annonce" %>
+          <div class="mt-4 text-justify">
+            <%= f.input :agent, label: "Vous êtes un agent et publiez une annonce pour le compte d'un propriétaire", collection: ["Oui", "Non"], as: :radio_buttons %>
+          </div>
+          <div class="border-top border-bottom py-3 my-3">
+            <p>Si vous avez choisi "Oui", veuillez renseigner les informations concernant le propriétaire :</p>
+            <%= f.input :prenom_proprio, label: false, placeholder:"Prénom du propriétaire"%>
+            <%= f.input :nom_proprio, label: false, placeholder:"Nom du propriétaire"%>
+            <%= f.input :email_proprio, label: false, placeholder:"Email du propriétaire"%>
+          </div>
+          <%= f.input :titre_annonce, label: "Titre de l'annonce"%>
           <%= f.input :type_de_bien, collection:
             [
               "Appartement",

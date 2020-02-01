@@ -236,7 +236,17 @@ class AnnoncesController < ApplicationController
 
   def create
     @annonce = Annonce.new(annonce_params)
-    @annonce.user = current_user
+    @email_proprietaire = User.where("email = ?", @annonce.email_proprio)[0]
+    if @annonce.agent == "Oui"
+      @annonce.agent_user_id = current_user.id
+      if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
+        @annonce.user = current_user
+      else
+        @annonce.user = @email_proprietaire
+      end
+    else
+      @annonce.user = current_user
+    end
     @annonce.statut = "active"
     @annonce.price_cents = 37500
     authorize @annonce
@@ -283,6 +293,10 @@ class AnnoncesController < ApplicationController
 
   def annonce_params
     params.require(:annonce).permit(
+      :agent,
+      :nom_proprio,
+      :prenom_proprio,
+      :email_proprio,
       :titre_annonce,
       :type_de_bien,
       :meublé,
