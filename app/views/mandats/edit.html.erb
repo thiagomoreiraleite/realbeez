@@ -5,14 +5,14 @@
       <div class="center">
         <%= simple_form_for [@mandat] do |f| %>
           <!-- if current user is the proprio -->
-          <% if @candidature.annonce.user == current_user %>
+          <% if @annonce.user == current_user %>
             <% if @mandat.acceptation_proprio == true %>
               Acceptation propriétaire : validé
             <% else %>
               <%= f.input :acceptation_proprio, label: "Le mandant : « lu et approuvé, mandat confié sans exclusivité »" %>
             <% end %>
             <!-- if current user is the agent -->
-          <% elsif @candidature.user == current_user %>
+          <% elsif @annonce.agent_user_id == current_user.id.to_s %>
             <% if @mandat.acceptation_agent == true %>
               Acceptation agent : validé
             <% else %>
@@ -20,11 +20,11 @@
             <% end %>
           <% end %>
           <%= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
-          <% if @mandat.user == current_user %>
-            <%= link_to 'Annuler', reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'En annulant, vous confirmez rejeter cette candidature.'}, class:"btn btn-danger mb-5" %>
-          <% else %>
-            <%= link_to 'Annuler', reject_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'En annulant, vous confirmez rejeter cette candidature.'}, class:"btn btn-danger mb-5" %>
-          <% end %>
+          <!--   <%# if @mandat.user == current_user %>
+            <%#= link_to 'Annuler', reject_candidature_path(@candidature, {from: 'proprio'}), method: :post, data: { confirm: 'En annulant, vous confirmez rejeter cette candidature.'}, class:"btn btn-danger mb-5" %>
+          <%# else %>
+            <%#= link_to 'Annuler', reject_candidature_path(@candidature, {from: 'agent'}), method: :post, data: { confirm: 'En annulant, vous confirmez rejeter cette candidature.'}, class:"btn btn-danger mb-5" %>
+          <%# end %> -->
         <% end %>
       </div>
     </div>

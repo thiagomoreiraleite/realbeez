@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :candidatures, only: [:new, :create]
     # Locataires
     resources :locataires, only:[:new, :create]
+    # Mandats
+    resources :mandats, only: [:new, :create]
   end
   get '/mes_annonces', to: 'annonces#mes_annonces', as: :mes_annonces
   get '/annonces_all', to: 'annonces#annonces_all', as: :annonces_all
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
   get '/locataires_agent', to: 'locataires#locataires_agent', as: :locataires_agent
   get '/locataires_all', to: 'locataires#locataires_all', as: :locataires_all
   resources :locataires, only:[:edit, :destroy]
+  resources :mandats, only: [:show, :edit, :update]
 
   # Meeting
   resources :meetings
@@ -52,12 +55,6 @@ Rails.application.routes.draw do
   get '/candidatures/all', to: 'candidatures#candidature_all', as: :candidature_all
   get '/candidatures/:id/show_proprio', to: 'candidatures#show_proprio', as: :show_proprio
   get '/candidatures/:id/show_agent', to: 'candidatures#show_agent', as: :show_agent
-
-  # Mandat de gestion
-  resources :candidatures do
-    resources :mandats, only: [:new, :create]
-  end
-  resources :mandats, only: [:show, :edit, :update]
 
   # Friends
   get '/my_friends', to: 'profiles#my_friends', as: :my_friends

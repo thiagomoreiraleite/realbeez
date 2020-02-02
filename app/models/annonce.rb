@@ -1,8 +1,9 @@
 class Annonce < ApplicationRecord
   belongs_to :user
   # has_many :pictures, dependent: :destroy
-  has_many :candidatures
-  has_many :meetings
+  has_many :candidatures, dependent: :destroy
+  has_one :mandat, dependent: :destroy
+  has_many :meetings, dependent: :destroy
   validates :titre_annonce, :surface, :description, :loyer_mensuel, :ville, :pièces, :charges, :adresse, :email, :agent, presence: true
   mount_uploader :photo, PhotoUploader
   mount_uploader :photo1, PhotoUploader

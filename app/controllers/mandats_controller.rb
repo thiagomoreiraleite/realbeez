@@ -3,25 +3,21 @@ class MandatsController < ApplicationController
 
   def show
     authorize @mandat
-    @candidature = @mandat.candidature
+    @annonce = @mandat.annonce
   end
 
   def new
     authorize @mandat = Mandat.new
-    @candidature = Candidature.find(params[:candidature_id])
+    @annonce = Annonce.find(params[:annonce_id])
   end
 
   def create
     authorize @mandat = Mandat.new(mandat_params)
-    @candidature = Candidature.find(params[:candidature_id])
-    @mandat.user = @candidature.annonce.user
-    @mandat.candidature = @candidature
+    @annonce = Annonce.find(params[:annonce_id])
+    @mandat.user = @annonce.user
+    @mandat.annonce = @annonce
     if @mandat.save
-      if @candidature.annonce.user == current_user
-        redirect_to candidature_proprio_path
-      elsif @candidature.user == current_user
-        redirect_to candidature_agent_path
-      end
+      redirect_to annonce_path(@annonce)
     else
       render :new
     end
@@ -29,18 +25,14 @@ class MandatsController < ApplicationController
 
   def edit
     authorize @mandat
-    @candidature = Candidature.find(@mandat.candidature_id)
+    @annonce = Annonce.find(@mandat.annonce_id)
   end
 
   def update
     authorize @mandat
-    @candidature = Candidature.find(@mandat.candidature_id)
+    @annonce = Annonce.find(@mandat.annonce_id)
     if @mandat.update(mandat_params)
-      if @candidature.annonce.user == current_user
-        redirect_to annonce_path(@candidature.annonce)
-      elsif @candidature.user == current_user
-        redirect_to annonce_path(@candidature.annonce)
-      end
+      redirect_to annonce_path(@annonce)
     else
       render :new
     end

@@ -1,4 +1,4 @@
 class Mandat < ApplicationRecord
-  belongs_to :candidature
+  belongs_to :annonce
   belongs_to :user
 end

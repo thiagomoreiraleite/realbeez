@@ -1,5 +1,31 @@
 <div class="container">
   <h3 class="text-center mt-5 mb-4">Détails de l'annonce</h3>
+  <!-- Mandat -->
+  <div class="mb-5 d-flex justify-content-center">
+    <% if @annonce.user == current_user || @annonce.agent_user_id == current_user.id.to_s || current_user.admin == true %>
+      <% if @annonce.agent_user_id != nil %>
+        <% if @annonce.mandat != nil %>
+          <div class="">
+            <p><%= link_to 'Voir mandat', mandat_path(@annonce.mandat), class:"btn btn-transparent" %></p>
+            <div>
+              <% if @annonce.mandat.acceptation_proprio == true %>
+                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-check" style="color: green"></i></p>
+              <% else %>
+                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature bailleur <i class="fas fa-times" style="color: red"></i></p>
+              <% end %>
+              <% if @annonce.mandat.acceptation_agent == true %>
+                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-check" style="color: green"></i></p>
+              <% else %>
+                <p class="my-0" style="font-size: 12px; color: #D8A727">Signature agent <i class="fas fa-times" style="color: red"></i></p>
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to 'Signer le mandat', new_annonce_mandat_path(@annonce), class:"btn btn-transparent" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
   <% if policy(@annonce).show? %>
     <!-- Carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
