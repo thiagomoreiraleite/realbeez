@@ -260,6 +260,25 @@
               <% end %>
             <% end %>
           </div>
+          <!-- FO ADMIN -->
+        <% elsif @annonce.agent_user_id != nil && current_user.admin = true %>
+          <div class="col-12 col-md-8">
+            <p style="font-weight: bold">Récuperer les clés du bien à louer auprès du propriétaire ci-dessous :</p>
+            <p>Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.titlecase %></p>
+            <p>Adresse du bien à louer : <%= @annonce.adresse %></p>
+            <p><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.user.email %></p>
+            <p><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
+            <!-- send a messge -->
+            <div class="d-flex my-3">
+              <%= link_to "Contacter", new_conversation_path(message: {to: @annonce.user_id }), class: "btn btn-transparent mb-1 text-center" %>
+            </div>
+            <p style="font-weight: bold">Téléchargez les photos pour publier votre annonce</p>
+            <div class="d-flex">
+              <p><%= link_to "Photo 1", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+              <p class="mx-2"><%= link_to "Photo 2", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo1.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+              <p><%= link_to "Photo 3", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo2.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+            </div>
+          </div>
         <% end %>
       <% end %>
       <%#= link_to "Louer ce bien", "", class: "btn btn-success"  %>
