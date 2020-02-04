@@ -1,0 +1,73 @@
+<div class="d-flex align-items-center justify-content-center" style="height: 60vh; background-size: cover; background-position: center; background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('<%= cl_image_path "https://images.unsplash.com/photo-1564939558297-fc396f18e5c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80" %>')">
+  <div >
+    <h3 style="color: white; font-family: simply rounded; font-size: 26px" class="text-center px-2">Quelles sont les charges déductibles des revenus fonciers ?</h3>
+  </div>
+</div>
+<div class="pb-5" style="background-color: white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2 text-justify px-4" style="line-height: 1.8em">
+        <p style="font-size: 12px">Publié le 04/04/2020</p>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Les revenus fonciers
+        </h5>
+        <p>
+          Les revenus fonciers sont principalement issus de la location d’immeubles vous appartenant ou appartenant à des membres de votre foyer fiscal (époux, partenaire de PACS, personnes rattachées et enfants à charge).
+        </p>
+        <p>
+          En tant qu’investisseur locatif vous devez déclarer les revenus tirés de la location de vos biens immobiliers. Le revenu foncier à déclarer est un revenu net, c’est-à-dire la différence entre le montant du revenu brut et le total des charges de la propriété.
+        </p>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Régime micro-foncier
+        </h5>
+        <p>
+          Si vous avez perçu des revenus provenant de la location de locaux non meublés, vous relevez de plein droit du régime micro-foncier à condition de remplir simultanément les deux conditions suivantes :
+        </p>
+        <ul>
+          <li>Le montant annuel des revenus fonciers bruts (loyers en principal et recettes accessoires) perçus par votre foyer fiscal n’excède pas 15 000 €, charges non comprises, quelle que soit la durée de la location au cours de l’année</li>
+          <li>Les revenus fonciers proviennent uniquement de la location non meublée de propriétés urbaines ou rurales ordinaires (<%= link_to "voir cas d’exclusions" , "https://bofip.impots.gouv.fr/bofip/3973-PGP", target: :blank %>)</li>
+        </ul>
+        <p>Si vous remplissez ces conditions, vous n’avez pas à remplir de déclaration de revenus fonciers n°2044.</p>
+        <p>Vous devez simplement indiquer le montant de vos loyers perçus dans votre déclaration des revenus et une déduction forfaitaire de 30 % sera ensuite automatiquement appliquée par l’administration pour déterminer votre revenu imposable dans la catégorie des revenus fonciers.</p>
+        <p>Vous pouvez renoncer à ce régime et opter pour le régime réel de détermination de vos revenus fonciers.</p>
+        <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Régime réel – les charges déductibles des revenus fonciers
+        </h5>
+        <p>Si vous n’entrez pas dans le champ d’application du régime du micro-foncier ou décidez d’opter pour l’application du régime réel d’imposition, le revenu foncier imposable à l’impôt sur le revenu est égal, chaque année, à la différence entre le montant des revenus bruts fonciers et le total des frais et des charges effectivement supportés au cours de l’année.</p>
+        <p>Les charges déductibles pour la détermination du revenu net sont les suivantes :</p>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Frais d’administration et de gestion</p>
+        <p>Ils comprennent les frais de rémunération des gardes et concierges, les frais de rémunération, honoraire et commission versés à un tiers pour la gestion des immeubles, les frais de procédure et les autres frais de gestion. </p>
+        <p>Cela comprend notamment <%= link_to "les commissions versées par un propriétaire à une agence de location", root_path %> (recherche d'un locataire et rédaction des contrats de location notamment).</p>
+        <p> Ces frais sont déductibles pour leur montant réel, lorsque ces dépenses sont effectivement supportées par le propriétaire (<%= link_to "sauf exception" , "https://bofip.impots.gouv.fr/bofip/5804-PGP", target: :blank %>).</p>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Dépenses de travaux</p>
+        <p>Il conviendra de distinguer 3 catégories de travaux, soit les dépenses de réparation et d'entretien, les dépenses d'amélioration et les dépenses de (re)construction et d'agrandissement.</p>
+        <ul>
+          <li>
+            <p><strong>Les dépenses de réparation et d'entretien</strong> s'entendent de celles qui correspondent à des travaux ayant pour objet de maintenir ou de remettre un immeuble en bon état et d'en permettre un usage normal.
+              <br>
+              Ces dépenses sont <span style="color: green">admises en déduction</span> pour la détermination du revenu net des propriétés urbaines ou rurales (<%= link_to "sauf cas particuliers" , "https://bofip.impots.gouv.fr/bofip/4050-PGP", target: :blank %>).</p>
+          </li>
+          <li>
+            <p><strong>Les dépenses d'amélioration</strong> s'entendent, de manière générale, de celles qui ont pour objet d'apporter à un immeuble un équipement ou un élément de confort nouveau ou mieux adapté aux conditions modernes de vie, sans modifier cependant la structure de cet immeuble.
+              <br>
+              Ces dépenses d'amélioration effectuées sur les immeubles donnés en location sont en principe des dépenses d'investissement <span style="color: red">non déductibles</span> (<%= link_to "sauf exceptions" , "https://bofip.impots.gouv.fr/bofip/4050-PGP", target: :blank %>).</p>
+          </li>
+          <li>
+            <p><strong>Les dépenses de construction, reconstruction ou d'agrandissement</strong> s'entendent notamment de celles qui ont pour effet d'apporter une modification importante au gros-œuvre de locaux existants.
+              <br>
+              Les dépenses d'investissement correspondant à des travaux de construction, reconstruction ou d'agrandissement d'un immeuble <span style="color: red">ne sont pas, en principe, admises en déduction</span> du revenu brut foncier (<%= link_to "sauf exceptions" , "https://bofip.impots.gouv.fr/bofip/4050-PGP", target: :blank %>).</p>
+          </li>
+        </ul>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Charges locatives</p>
+        <p>La situation du bailleur au regard des charges locatives est en principe, d’une année sur l’autre, globalement neutre. Les charges supportées par le bailleur sont généralement remboursées la même année ou l'année suivante par le locataire.</p>
+        <p>Toutefois, les bailleurs qui ont supporté des dépenses pour le compte de leur locataire et dont ils n'ont pu obtenir le remboursement au 31 décembre de l'année du départ du locataire, peuvent les déduire pour la détermination de leurs revenus fonciers.</p>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Impôts</p>
+        <p>Les propriétaires peuvent déduire de leurs revenus fonciers la taxe foncière et certaines taxes annexes à la taxe foncière (<%= link_to "voir liste exhaustive" , "https://bofip.impots.gouv.fr/bofip/5806-PGP", target: :blank %>).</p>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Primes d’assurance </p>
+        <p>L’ensemble des primes d’assurance se rapportant à un immeuble dont les revenus sont imposés dans la catégorie des revenus fonciers, selon le régime réel d’imposition, sont déductibles pour leur montant réel et justifié.</p>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Déduction des provisions pour charges de copropriété </p>
+        <p>Les provisions pour charges de copropriété sont déductibles immédiatement l’année de leur versement au syndic. Elles font l’objet l’année suivante, une fois la ventilation des charges définitivement arrêtée, d’une régularisation.</p>
+        <p class="mt-5" style="font-weight: bold; color: #D8A727">Intérêts et frais d'emprunt </p>
+        <p>Les propriétaires peuvent déduire de leur revenu net foncier les intérêts des emprunts contractés pour la conservation, l'acquisition, la (re)construction, l’agrandissement, la réparation ou l'amélioration des immeubles donnés en location.</p>
+        <p class="mt-5" style="font-style: italic; font-size: 12px">Cet article est un document simplifié. Il ne peut se substituer aux textes législatifs et réglementaires ainsi qu’aux instructions applicables en la matière. Pour une documentation complète <%= link_to "cliquer ici", "https://bofip.impots.gouv.fr/bofip/4138-PGP"%>.</p>
+      </div>
+    </div>
+  </div>
+</div>
