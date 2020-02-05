@@ -45,4 +45,4 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 gem 'has_friendship'
 gem 'letter_opener', group: :development
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'cookies_eu'

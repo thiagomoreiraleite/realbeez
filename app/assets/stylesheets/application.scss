@@ -11,6 +11,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "cookies_eu";
 
 .picture-mobile {
    @media only screen and (max-width: 576px) {
@@ -51,3 +52,4 @@
 
 
 
+@import 'cookies_eu';
