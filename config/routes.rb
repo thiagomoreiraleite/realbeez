@@ -106,7 +106,7 @@ Rails.application.routes.draw do
 
   # Errors
   %w( 404 422 500 ).each do |code|
-    get code, controller: :application, action: :error, code: code
+    get code, controller: :errors, action: :error, code: code
   end
   # get '/404', to: 'errors#not_found'
   # get '/422', to: 'errors#unacceptable'
