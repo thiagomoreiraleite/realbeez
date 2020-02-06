@@ -105,7 +105,10 @@ Rails.application.routes.draw do
   get '/confirmation_contact', to: 'contacts#confirmation_contact', as: :confirmation_contact
 
   # Errors
-  get '/404', to: 'errors#not_found'
-  get '/422', to: 'errors#unacceptable'
-  get '/500', to: 'errors#server_errors'
+  %w( 404 422 500 ).each do |code|
+    get code, controller: :application, action: :error, code: code
+  end
+  # get '/404', to: 'errors#not_found'
+  # get '/422', to: 'errors#unacceptable'
+  # get '/500', to: 'errors#server_errors'
 end
