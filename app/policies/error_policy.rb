@@ -8,7 +8,7 @@ class ErrorPolicy < ApplicationPolicy
     true
   end
 
-  def server_errors?
+  def server_error?
     true
   end
 
