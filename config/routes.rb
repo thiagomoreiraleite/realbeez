@@ -104,9 +104,9 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   get '/confirmation_contact', to: 'contacts#confirmation_contact', as: :confirmation_contact
 
-  # Errors
+  # config/routes.rb
   %w( 404 422 500 ).each do |code|
-    get code, controller: :errors, action: :error, code: code
+    get code, controller: :application, action: :error, code: code
   end
   # get '/404', to: 'errors#not_found'
   # get '/422', to: 'errors#unacceptable'
