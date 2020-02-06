@@ -24,17 +24,11 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-  def error
-    render status_code.to_s, status: (params[:code] || 500)
-  end
-
   private
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
-
-
 
 
 end
