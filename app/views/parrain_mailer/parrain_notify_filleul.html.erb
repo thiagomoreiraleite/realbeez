@@ -1,6 +1,12 @@
 <p>Bonjour <%= @parrain.prenom.capitalize %>,</p>
-<p><%= @parrain.user.prénom.capitalize %> <%= @parrain.user.nom.capitalize %> vous recommande la plateforme Realbeez pour louer votre bien immobilier à moindre coût (soit 375 €) et afin d'assurer une mise en location rapide aucuns frais ne sont supportés par les locataires.</p>
-<p>Notre mandat de location est <strong>sans exclusivité</strong>, donc essayez nos services sans aucune contrainte.</p>
+<p><%= @parrain.user.prénom.capitalize %> <%= @parrain.user.nom.capitalize %> vous recommande la plateforme Realbeez pour trouver un locataire pour votre bien immobilier.</p>
+<p>Les avantages de l'offre Realbeez sont les suivants :</p>
+<ul>
+  <li class="mb-1">Un forfait fixe à <span style="color: #D8A727"><strong>375 € </strong></span> HT (TVA non applicable) peu importe la superficie de votre bien ;</li>
+  <li class="mb-1">Aucuns frais à la charge du locataire afin d'assurer une mise en location rapide ;</li>
+  <li class="mb-1">Vous ne payez que si on vous trouve un locataire ;</li>
+  <li class="mb-1">Notre mandat de location est <strong> sans exclusivité.</strong></li>
+</ul>
 <p>Il n'y a aucun coût caché, c'est garanti !</p>
 <p>Inscivez-vous en utilisant le lien suivant : <%= link_to "https://www.realbeez.com/users/sign_up?referred_by=#{@parrain.user.id}" , "https://www.realbeez.com/users/sign_up?referred_by=#{@parrain.user.id}", target: :_blank %>.</p>
 <p>Pour plus d'information rendez-vous sur : <%= link_to "https://www.realbeez.com/", "https://www.realbeez.com/", target: :_blank  %>.</p>

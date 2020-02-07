@@ -5,7 +5,7 @@ class ParrainMailer < ApplicationMailer
 
     mail(
       to:       @parrain.email,
-      subject:  "#{@parrain.user.prénom.titlecase} #{@parrain.user.nom.titlecase} vous recommande les services de Realbeez pour louer votre bien immobilier à moindre cout (375 €)"
+      subject:  "#{@parrain.user.prénom.titlecase} #{@parrain.user.nom.titlecase} vous recommande les services de Realbeez pour trouver un locataire pour votre bien immobilier"
     )
   end
 end
