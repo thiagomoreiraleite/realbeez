@@ -41,7 +41,7 @@
     </div>
     <!-- FOOTER -->
     <footer>
-      <div class="pt-3"  style="background-color: #F4F4F4; left: 0; bottom: 0; width: 100%; ">
+      <div class="pt-3 pt-5"  style="background-color: #F4F4F4; left: 0; bottom: 0; width: 100%; padding-bottom: 100px ">
         <div class="container">
           <div class="row">
             <div class="col-6 mb-3">
@@ -54,19 +54,19 @@
                   <p class="mb-0 p-0" style="color:#D8A727; font-size: 20px; font-family: Simply Rounded">beez</p>
                 </div>
               <% end %>
-              <div>
+              <div class="mt-2 mb-1">
                 <a href="https://www.instagram.com/realbeez_official" style="color: black; opacity: 0.6; font-size: 14px" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
               </div>
-              <div>
+              <div class="mb-1">
                 <a href="https://www.facebook.com/realbeez.official" style="color: black; opacity: 0.6; font-size: 14px" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
               </div>
-              <div>
+              <div class="mb-1">
                 <a href="https://www.linkedin.com/company/realbeez" style="color: black; opacity: 0.6; font-size: 14px" target="_blank"><i class="fab fa-linkedin"></i> Linkedin</a>
               </div>
-              <div>
+              <div class="mb-1">
                 <a href="https://wa.me/33642808389" style="color: black; opacity: 0.6; font-size: 14px" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a>
               </div>
-              <div>
+              <div class="mb-1">
                 <a href="https://lin.ee/lAqnmGl" style="color: black; opacity: 0.6; font-size: 14px" target="_blank"><i class="fab fa-line"></i> Line</a>
               </div>
             </div>
@@ -75,33 +75,49 @@
               <!-- TODO: -->
               <!-- <a href="" style="color:#F4F4F4; font-size: 20px">p</a>
               </div> -->
+              <!-- Offre de parrainage -->
+              <% if user_signed_in? %>
+                <div class="mb-1">
+                  <%= link_to "Parrainage", new_parrain_path, style:"color: black; opacity: 0.6; font-size: 14px", class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold" %>
+                </div>
+              <% else %>
+                <div class="mb-1">
+                  <%= link_to "Parrainage", recommandation_path, style:"color: black; opacity: 0.6; font-size: 14px", class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold" %>
+                </div>
+              <% end %>
               <!-- Form laptop version -->
-              <div class="hide-on-small">
+              <!--  <div class="hide-on-small">
                 <li class="nav-item d-flex align-items-center my-2">
-                  <%= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold" %>
+                  <%#= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold" %>
                 </li>
-              </div>
+              </div> -->
               <!-- For Mobile version -->
-              <div class="hide-on-large ">
+              <!-- <div class="hide-on-large ">
                 <li class="nav-item d-flex align-items-center my-2">
-                  <%= link_to "Devenir agent", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold" %>
+                  <%#= link_to "Devenir agent", new_agent_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold" %>
                 </li>
+              </div> -->
+              <div class="mt-2 mb-1">
+                <%= link_to "Louer mon bien", new_contact_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
               </div>
-              <div>
+              <div class="mb-1">
+                <%= link_to "Devenir agent Realbeez", new_agent_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
+              </div>
+              <div class="mb-1">
                 <%= link_to "Nos fiches pratiques", fiches_pratiques_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
               </div>
-              <div>
+              <div class="mb-1">
                 <%= link_to "Nous découvrir", nous_decouvrir_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
               </div>
               <!-- <div> -->
               <!-- TODO: -->
               <%#= link_to "Nos fiches pratiques", fiches_pratiques_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
               <!-- </div>  -->
-              <div>
+              <div class="mb-1">
                 <!-- TODO: -->
                 <%= link_to "Mentions légales", mentions_legales_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
               </div>
-              <div>
+              <div class="mb-1">
                 <!-- TODO: -->
                 <!-- <a href="" style="color: black; opacity: 0.6; font-size: 14px">Contact Us</a> -->
                 <%= link_to "Contactez-nous", new_page_path(message: {to: User.where("email = ?", "contact@realbeez.com")[0] }), style:"color: black; opacity: 0.6; font-size: 14px" %>

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get '/statut_auto_entrepreneur', to: 'pages#statut_auto_entrepreneur', as: :statut_auto_entrepreneur
   get '/charges_deductibles', to: 'pages#charges_deductibles', as: :charges_deductibles
   get '/reponse_contactez_nous', to: 'pages#reponse_contactez_nous', as: :reponse_contactez_nous
+  get '/recommandation', to: 'pages#recommandation', as: :recommandation
   resources :pages, only: [:new, :create]
+
 
   # Parrains
   resources :parrains, only: [:new, :create]
