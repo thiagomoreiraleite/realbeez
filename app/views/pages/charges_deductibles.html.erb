@@ -30,7 +30,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2 text-justify px-4" style="line-height: 1.8em">
-        <p style="font-size: 12px">Publié le 04/04/2020</p>
+        <p style="font-size: 12px">Publié le 04/02/2020</p>
         <h5 class="text-center mt-3 my-5 pt-3" style="color: #D8A727">Les revenus fonciers
         </h5>
         <p>
@@ -58,9 +58,27 @@
         <p class="mt-5" style="font-weight: bold; color: #D8A727">Frais d’administration et de gestion</p>
         <p>Ils comprennent les frais de rémunération des gardes et concierges, les frais de rémunération, honoraire et commission versés à un tiers pour la gestion des immeubles, les frais de procédure et les autres frais de gestion. </p>
         <p>Cela comprend notamment <%= link_to "les commissions versées par un propriétaire à une agence de location", root_path %> (recherche d'un locataire et rédaction des contrats de location notamment).</p>
+        <div class="border p-3 my-4" style="box-shadow: 1px 1px 5px rgba(0,0,0,0.1)">
+          <h1 class="mb-4 mt-3 text-left" style="color: #D8A727; font-family: Simply Rounded; font-size: 24px; letter-spacing: 1px">Trouvez rapidement un locataire pour votre bien immobilier</h1>
+          <p class="mb-2" style="color: rgb(100, 100, 100); font-size: 16px; font-weight: bold">Un forfait fixe à <span style="font-size: 18px; color: #D8A727">375 €</span> sans aucune contrainte !</p>
+          <ul class="mb-4">
+            <li class="" style="color: rgb(100, 100, 100)">payable uniquement au succès</li>
+            <li class="" style="color: rgb(100, 100, 100)">gratuit pour les locataires</li>
+            <li class="" style="color: rgb(100, 100, 100)">un mandat non-exclusif</li>
+          </ul>
+          <div class="d-flex justify-content-center">
+            <%= link_to "Louer mon bien", root_path, class:"btn-transparent-bold"  %>
+          </div>
+        </div>
         <p> Ces frais sont déductibles pour leur montant réel, lorsque ces dépenses sont effectivement supportées par le propriétaire (<%= link_to "sauf exception" , "https://bofip.impots.gouv.fr/bofip/5804-PGP", target: :blank %>).</p>
         <p class="mt-5" style="font-weight: bold; color: #D8A727">Dépenses de travaux</p>
         <p>Il conviendra de distinguer 3 catégories de travaux, soit les dépenses de réparation et d'entretien, les dépenses d'amélioration et les dépenses de (re)construction et d'agrandissement.</p>
+        <div class="hide-on-small my-4">
+          <%= cl_image_tag "https://images.unsplash.com/photo-1540103711724-ebf833bde8d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80", class: "rounded-top", style: "height:400px; object-position: center center; object-fit: cover; width: 100%"%>
+        </div>
+        <div class="hide-on-large my-4">
+          <%= cl_image_tag "https://images.unsplash.com/photo-1540103711724-ebf833bde8d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1510&q=80", class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+        </div>
         <ul>
           <li>
             <p><strong>Les dépenses de réparation et d'entretien</strong> s'entendent de celles qui correspondent à des travaux ayant pour objet de maintenir ou de remettre un immeuble en bon état et d'en permettre un usage normal.
