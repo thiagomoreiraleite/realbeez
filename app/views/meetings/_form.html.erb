@@ -1,13 +1,22 @@
-<%= simple_form_for(@meeting) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div class="form-inputs">
-    <%= f.input :name, label: "Titre" %>
-    <%= f.input :start_time, as: :string, input_html: { class: "datetimepicker"}, label: "Date et heure" %>
-    <%= f.input :annonce_id, label: "Choisir l'annonce:", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id%>
-  </div>
-  <div class="form-actions">
-    <%#= f.button :submit %>
-    <%= f.submit "Ajouter une visite", class: "btn btn-yellow-mustard mb-3"%>
-  </div>
-<% end %>
+<div class="mt-5">
+  <%= simple_form_for(@meeting) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <div class="form-inputs">
+      <p class="mt-5" style="color: #D8A727; font-weight: bold">Information concernant le rendez-vous</p>
+      <%= f.input :start_time, as: :string, input_html: { class: "datetimepicker"}, label: "Date et heure" %>
+      <%= f.input :annonce_id, label: "Choisir l'annonce:", include_blank: false, collection: @annonces,label_method: :titre_annonce, value_method: :id%>
+      <p class="mt-4" style="color: #D8A727; font-weight: bold">Information concernant le visiteur</p>
+      <%= f.input :nom_prospect, label: false, placeholder: "Prénom" %>
+      <%= f.input :prenom_prospect, label: false, placeholder: "Nom" %>
+      <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
+      <%= f.input :email, label: false, placeholder: "Téléphone" %>
+      <p class="mt-4" style="color: #D8A727; font-weight: bold">Ajouter un commentaire</p>
+      <%= f.input :name, label: false %>
+    </div>
+    <div class="form-actions">
+      <%#= f.button :submit %>
+      <%= f.submit "Ajouter une visite", class: "btn btn-yellow-mustard mb-3 mt-4"%>
+    </div>
+  <% end %>
+</div>

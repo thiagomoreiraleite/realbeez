@@ -126,7 +126,7 @@ class AnnoncesController < ApplicationController
 
   def mes_annonces
     @annonces = current_user.annonces
-    @annonces_proprio_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
+    @annonces_proprio_en_cours = @annonces.select{ |annonce| annonce.statut == "active"}
     @annonces_proprio_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
       {
@@ -140,7 +140,7 @@ class AnnoncesController < ApplicationController
 
   def biens_a_gerer
     @annonces = Annonce.where("agent_user_id = ?", current_user.id.to_s)
-    @annonces_agent_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
+    @annonces_agent_en_cours = @annonces.select{ |annonce| annonce.statut == "active"}
     @annonces_agent_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
       {

@@ -1,37 +1,53 @@
 <div class="container mb-5">
-  <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Détails de la visite</p>
+  <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Détails de la visite
+    <% if current_user == @meeting.user %>
+      <span class="mb-4 ml-2" style="font-size: 12px"><%= link_to '', edit_meeting_path(@meeting), class:"fas fa-edit" %> / </span>
+      <span style="font-size: 12px"><%= link_to '', @meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></span>
+    <% end %>
+  </p>
   <div class="container center mb-5" >
     <div class="row justify-content-center">
-      <div class="col-12 col-md-6 col-lg-8">
-        <div class="row  border p-2" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
-          <div class="col-12 col-md-6 col-lg-6" >
-            <p style="font-size: 18px">
-              <strong>Titre :</strong>
-              <%= @meeting.name.titlecase %>
-              <span class="mb-4 ml-2"><%= link_to '', edit_meeting_path(@meeting), class:"fas fa-edit" %></span>
-            </p>
-            <p> <strong>Adresse : </strong> <%= @meeting.annonce.adresse %> </p>
-            <p> <strong>Ville : </strong><%= @meeting.annonce.ville.capitalize %></p>
-          </div>
-          <div class="col-12 col-md-6 col-lg-6">
-            <p style="color: white"> A</p>
-            <p>
-              <strong>Date : </strong>
-              <%= @meeting.start_time.strftime("%d/%m/%Y") %>
-            </p>
-            <p>
-              <strong>Heure : </strong>
-              <%= @meeting.start_time.strftime("%H:%M")%>
-            </p>
-          </div>
+      <div class="col-12 col-md-6 col-lg-8 p-0">
+        <div class="border px-3 py-4" style="background-color: white; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+          <p style="color:"><strong>En charge de la visite : </strong><%= @meeting.user.prénom.capitalize %> <%= @meeting.user.nom.capitalize %></p>
+          <!-- Détail de la visite -->
+          <p class="mb-1">
+            <strong>Date : </strong>
+            <%= @meeting.start_time.strftime("%d/%m/%Y") %>
+          </p>
+          <p class="mb-1">
+            <strong>Heure : </strong>
+            <%= @meeting.start_time.strftime("%H:%M")%>
+          </p>
+          <p class="mb-1"><strong>Adresse : </strong> <%= @meeting.annonce.adresse %> </p>
+          <p class="mb-1"><strong>Ville : </strong><%= @meeting.annonce.ville.capitalize %></p>
+          <!-- Information sur le prospect -->
+          <p class="mt-4" style="color: #D8A727; font-weight: bold">Information concernant le visiteur</p>
+          <p class="mb-1"><strong>Prénom : </strong><%= @meeting.prenom_prospect %></p>
+          <p class="mb-1"><strong>Nom : </strong><%= @meeting.nom_prospect %></p>
+          <p class="mb-1"><strong>Téléphone : </strong><%= @meeting.telephone %></p>
+          <p class="mb-1"><strong>Email : </strong><%= @meeting.email %></p>
+          <% if @meeting.name != "" %>
+            <p class="mt-4 mb-1" style="color: #D8A727; font-weight: bold">Commentaire</p>
+            <p><%= @meeting.name.capitalize %></p>
+          <% end %>
         </div>
-        <div class="mb-2 mt-1"><%= link_to 'Retour', meetings_path %></div>
+        <% if current_user == @meeting.annonce.user %>
+          <div class="mb-2 mt-4"><%= link_to 'Retour', meetings_path(visites: {from: 'proprio'}) %></div>
+        <% else %>
+          <div class="mb-2 mt-3"><%= link_to 'Retour', meetings_path %></div>
+        <% end %>
       </div>
     </div>
   </div>
   <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Détails de l'annonce</p>
-  <%= cl_image_tag @meeting.annonce.photo, class: "rounded-top", style: "height:70vh; object-position: center center; object-fit: cover; width: 100%"%>
-  <div class="border p-3", style="box-shadow: 0 0 5px rgba(0,0,0,0.1)">
+  <div class="hide-on-small">
+    <%= cl_image_tag @meeting.annonce.photo, class: "rounded-top", style: "height:70vh; object-position: center center; object-fit: cover; width: 100%"%>
+  </div>
+  <div class="hide-on-large">
+    <%= cl_image_tag @meeting.annonce.photo, class: "rounded-top", style: "height:30vh; object-position: center center; object-fit: cover; width: 100%"%>
+  </div>
+  <div class="border p-3", style="box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
     <h4 class="mr-3 mt-3 mb-0", style=""><%= @meeting.annonce.titre_annonce %> - <%= @meeting.annonce.loyer_mensuel %> euros / mois</h4>
     <p class="mt-4">Description : <%= @meeting.annonce.description %></p>
     <div class="row">

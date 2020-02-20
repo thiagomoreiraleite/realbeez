@@ -3,7 +3,7 @@
   <% if  params[:visites].nil? %>
     <div class="container">
       <p id="notice"><%= notice %></p>
-      <h3 class="text-center mt-5 mb-4">Mon calendrier de visites</h3>
+      <h3 class="text-center mt-5 mb-4">Mes visites</h3>
       <div class="profile-friends">
         <div class="search navigations">
           <h3 id="meeting_future" class="active" style="font-size: 16px">Mes visites prévues</h3>
@@ -18,7 +18,7 @@
                     <th scope="col">Date</th>
                     <th scope="col">Heure</th>
                     <th scope="col">Adresse</th>
-                    <th scope="col" colspan="3"></th>
+                    <th scope="col">Détails</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -28,9 +28,11 @@
                         <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                         <td><%= meeting.start_time.strftime("%H:%M") %></td>
                         <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
-                        <td><%= link_to '', meeting, class:"fas fa-search" %></td>
-                        <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
-                        <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
+                        <td>
+                          <%= link_to '', meeting, class:"fas fa-search" %>
+                          <!--  <%#= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %>
+                          <%#= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %> -->
+                        </td>
                       </tr>
                     <% end %>
                   <% end %>
@@ -73,7 +75,7 @@
                           <th scope="col">Date</th>
                           <th scope="col">Heure</th>
                           <th scope="col">Adresse</th>
-                          <th scope="col" colspan="3"></th>
+                          <th scope="col">Détails</th>
                         </tr>
                       </thead>
           
@@ -84,9 +86,11 @@
                               <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                               <td><%= meeting.start_time.strftime("%H:%M") %></td>
                               <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
-                              <td><%= link_to '', meeting, class:"fas fa-search" %></td>
-                              <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
-                              <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
+                              <td>
+                                <%= link_to '', meeting, class:"fas fa-search" %>
+                                <%#= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %>
+                                <%#= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %>
+                              </td>
                             </tr>
                           <% end %>
                         <% end %>
@@ -113,7 +117,7 @@
                           <th scope="col">Date</th>
                           <th scope="col">Heure</th>
                           <th scope="col">Adresse</th>
-                          <th scope="col" colspan="3"></th>
+                          <th scope="col">Détails</th>
                         </tr>
                       </thead>
           
@@ -124,9 +128,11 @@
                               <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                               <td><%= meeting.start_time.strftime("%H:%M") %></td>
                               <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
-                              <td><%= link_to '', meeting, class:"fas fa-search" %></td>
-                              <td><%= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %></td>
-                              <td><%= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %></td>
+                              <td>
+                                <%= link_to '', meeting, class:"fas fa-search" %>
+                                <%#= link_to '', edit_meeting_path(meeting), class:"fas fa-edit" %>
+                                <%#= link_to '', meeting, method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette visite?'}, class:"fas fa-trash"  %>
+                              </td>
                             </tr>
                           <% end %>
                         <% end %>
@@ -142,14 +148,14 @@
               };
             });
         </script>
-        <p class="mt-5"><%= link_to 'Ajouter une visite', new_meeting_path,style:'font-size: 16px' %></p>
+        <p class="mt-5 pb-3"><%= link_to 'Ajouter une visite', new_meeting_path, style: 'font-size: 16px' %></p>
       </div>
     </div>
     <!-- For Landlords -->
   <% elsif params[:visites][:from] == "proprio" %>
     <div class="container">
       <p id="notice"><%= notice %></p>
-      <h3 class="text-center mt-5 mb-4">Calendrier de visites de mes agents</h3>
+      <h3 class="text-center mt-5 mb-4">Mon calendrier de visites</h3>
       <div class="profile-friends">
         <div class="search navigations">
           <h3 id="meeting_future" class="active" style="font-size: 16px">Visites prévues</h3>
@@ -164,8 +170,7 @@
                     <th scope="col">Date</th>
                     <th scope="col">Heure</th>
                     <th scope="col">Adresse</th>
-                    <th scope="col">Agent</th>
-                    <th scope="col" colspan="3"></th>
+                    <th scope="col">Détails</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -176,7 +181,9 @@
                           <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                           <td><%= meeting.start_time.strftime("%H:%M") %></td>
                           <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
-                          <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
+                          <td>
+                            <%= link_to '', meeting, class:"fas fa-search" %>
+                          </td>
                         </tr>
                       <% end %>
                     <% end %>
@@ -220,8 +227,7 @@
                           <th scope="col">Date</th>
                           <th scope="col">Heure</th>
                           <th scope="col">Adresse</th>
-                          <th scope="col">Agent</th>
-                          <th scope="col" colspan="3"></th>
+                          <th scope="col">Détails</th>
                         </tr>
                       </thead>
           
@@ -233,7 +239,9 @@
                                 <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                                 <td><%= meeting.start_time.strftime("%H:%M") %></td>
                                 <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
-                                <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
+                                <td>
+                                  <%= link_to '', meeting, class:"fas fa-search" %>
+                                </td>
                               </tr>
                             <% end %>
                           <% end %>
@@ -261,8 +269,7 @@
                           <th scope="col">Date</th>
                           <th scope="col">Heure</th>
                           <th scope="col">Adresse</th>
-                          <th scope="col">Agent</th>
-                          <th scope="col" colspan="3"></th>
+                          <th scope="col">Détails</th>
                         </tr>
                       </thead>
           
@@ -274,7 +281,9 @@
                                 <td><%= meeting.start_time.strftime("%d/%m/%Y") %></td>
                                 <td><%= meeting.start_time.strftime("%H:%M") %></td>
                                 <td><%= meeting.annonce.adresse %> à <%= meeting.annonce.ville.capitalize %></td>
-                                <td><%= meeting.user.prénom.capitalize %> <%= meeting.user.nom.titlecase+"." %></td>
+                                <td>
+                                  <%= link_to '', meeting, class:"fas fa-search" %>
+                                </td>
                               </tr>
                             <% end %>
                           <% end %>
@@ -291,6 +300,9 @@
               };
             });
         </script>
+        <div class="">
+          <p class="mt-5 pb-3"><%= link_to 'Ajouter une visite', new_meeting_path, style: 'font-size: 16px'%></p>
+        </div>
         <%#= link_to 'Ajouter une visite', new_meeting_path %>
       </div>
     </div>

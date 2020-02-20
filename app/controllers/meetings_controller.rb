@@ -5,7 +5,13 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     @meetings = policy_scope(Meeting).order(created_at: :desc)
-    @meetings_agent = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
+    @meetings_current_user_all = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
+    @meetings_agent = []
+    @meetings_current_user_all.each do |meeting|
+      if meeting.user != meeting.annonce.user
+        @meetings_agent << meeting
+      end
+    end
     @meetings_proprio = []
     current_user.annonces.each do |annonce|
       annonce.meetings.each do |meeting|
@@ -23,7 +29,15 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     authorize @meeting = Meeting.new
-    @annonces = Annonce.where("agent_user_id = ? AND statut = ?", current_user.id.to_s, "active")
+    @annonces_agent = Annonce.where("agent_user_id = ? AND statut = ?", current_user.id.to_s, "active")
+    @annonces_proprio = Annonce.where("user_id = ? AND statut = ?", current_user, "active")
+    @annonces = []
+    @annonces_agent.each do |annonce|
+      @annonces << annonce
+    end
+    @annonces_proprio.each do |annonce|
+      @annonces << annonce
+    end
   end
 
   # GET /meetings/1/edit
@@ -39,11 +53,13 @@ class MeetingsController < ApplicationController
     @meeting.annonce_id = params[:meeting][:annonce_id]
     respond_to do |format|
       if @meeting.save
-        # Create a notification
-        Notification.create(recipient: @meeting.annonce.user, actor: current_user, action: "visit_agent", notifiable: @meeting)
-        # Send email
-        mail = MeetingMailer.with(meeting: @meeting).visit_agent
-        mail.deliver_now
+        if @meeting.annonce.user != @meeting.user
+          # Create a notification
+          Notification.create(recipient: @meeting.annonce.user, actor: current_user, action: "visit_agent", notifiable: @meeting)
+          # Send email
+          mail = MeetingMailer.with(meeting: @meeting).visit_agent
+          mail.deliver_now
+        end
         format.html { redirect_to @meeting, notice: 'La visite a été ajoutée.' }
         format.json { render :show, status: :created, location: @meeting }
       else
@@ -79,9 +95,16 @@ class MeetingsController < ApplicationController
       notification.destroy
       notification.save
     end
-    respond_to do |format|
-      format.html { redirect_to meetings_url, notice: 'La visite a été supprimée.' }
-      format.json { head :no_content }
+    if @meeting.annonce.user == @meeting.user
+      respond_to do |format|
+        format.html { redirect_to meetings_url(visites: {from: 'proprio'}), notice: 'La visite a été supprimée.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to meetings_url, notice: 'La visite a été supprimée.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -93,6 +116,6 @@ class MeetingsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def meeting_params
-    params.require(:meeting).permit(:name, :start_time, :end_time)
+    params.require(:meeting).permit(:name, :start_time, :end_time, :nom_prospect, :prenom_prospect, :email, :telephone)
   end
 end
