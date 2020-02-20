@@ -6,7 +6,7 @@
         <% if @annonces != [] || @annonces_proprio != []  %>
           <%= render 'form', meeting: @meeting %>
         <% else %>
-          <h4 class="my-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez aucun bien en gestion actuellement"</h4>
+          <h4 class="my-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez aucun bien à louer actuellement"</h4>
         <% end %>
         <%= link_to 'Annuler', root_path %>
       </div>
