@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_034118) do
+ActiveRecord::Schema.define(version: 2020_02_20_065213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_02_20_034118) do
     t.integer "price_cents", default: 0, null: false
     t.integer "pièces"
     t.integer "charges"
-    t.string "agent"
+    t.string "agent", default: "Non"
     t.string "nom_proprio"
     t.string "prenom_proprio"
     t.string "email_proprio"
