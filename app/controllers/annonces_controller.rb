@@ -276,17 +276,14 @@ class AnnoncesController < ApplicationController
   def update
     authorize @annonce
     @email_proprietaire = User.where("email = ?", params[:annonce][:email_proprio])[0]
-    if params[:annonce][:agent] == "Oui"
-      @annonce.agent_user_id = current_user.id
-      if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
-        @annonce.user = current_user
-      else
-        @annonce.user = @email_proprietaire
-      end
-    else
+    # if params[:annonce][:agent] == "Oui"
+    # @annonce.agent_user_id = current_user.id
+    if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
       @annonce.user = current_user
-      @annonce.agent_user_id = nil
+    else
+      @annonce.user = @email_proprietaire
     end
+    # end
     if @annonce.update(annonce_params)
       redirect_to @annonce
     else
