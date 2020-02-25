@@ -1,0 +1,65 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn-transparent-bold" data-toggle="modal" data-target="#exampleModalLong" >
+  <i class="fas fa-info-circle mr-1"></i>VOIR AUTRE(S) LOCATAIRE(S)
+</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Autre(s) locataire(s)</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-left" style="line-height: 1.8em">
+        <!-- LES COLOCATAIRES -->
+        <% Locataire.find(@locataire_candidature.locataire_id).locataire_supplementaires.each do |locataire| %>
+          <p class="mt-2 border-bottom pt-3" style="color: #D8A727; font-weight: bold">COLOCATAIRE</p>
+          <p><strong>Prénom</strong> : <%= locataire.prenom %> </p>
+          <p><strong>Nom</strong> : <%= locataire.nom %></p>
+          <p><strong>Adresse</strong> : <%= locataire.adresse %></p>
+          <p><strong>Ville</strong> : <%= locataire.ville %></p>
+          <p><strong>Téléphone</strong> : <%= locataire.tel %></p>
+          <p><strong>Email</strong> : <%= locataire.email %></p>
+          <p class="mb-2"><strong>Carte d'identité / Passeport : </strong></p>
+          <div class="d-flex align-items-center">
+            Recto :
+            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.id_recto.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+            <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.id_recto.filename}", :target => "_blank",class: "btn btn-transparent" %>
+          </div>
+          <div class="d-flex align-items-center">
+            Verso :
+            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.id_verso.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+            <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.id_verso.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+          </div>
+          <p class="mt-3 mb-2"><strong>Justificatif de domicile</strong> : </p>
+          <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.justif_dom.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+          <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.justif_dom.filename}", :target => "_blank",class: "btn btn-transparent" %>
+          <p class="mb-2 mt-3"><strong>3 dernières fiches de paye </strong> : </p>
+          <div class="d-flex align-items-center">
+            Mois m-1 :
+            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.fiche_paye_mois1.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+            <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.fiche_paye_mois1.filename}", :target => "_blank",class: "btn btn-transparent" %>
+          </div>
+          <div class="d-flex align-items-center">
+            Mois m-2 :
+            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.fiche_paye_mois2.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+            <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.fiche_paye_mois2.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+          </div>
+          <div class="d-flex align-items-center">
+            Mois m-3 :
+            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.fiche_paye_mois3.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+            <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.fiche_paye_mois3.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+          </div>
+          <p class="mt-3 mb-2"><strong>Contrat de travail</strong> : </p>
+          <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{locataire.contrat.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+          <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{locataire.contrat.filename}", :target => "_blank",class: "btn btn-transparent" %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

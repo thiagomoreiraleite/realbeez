@@ -1,0 +1,102 @@
+<div class="d-flex align-items-center justify-content-center mb-5 picture-mobile" style="height: 60vh; background-size: cover; background-position: center; background-image:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('<%= cl_image_path "https://res.cloudinary.com/dvfwroq5k/#{LocataireCandidature.find(params[:id].to_i).annonce.photo.identifier}" %>')">
+  <div >
+    <p style="color:white; font-family: simply rounded; font-size: 26px" class="text-center mb-3 px-2"><%= LocataireCandidature.find(params[:id].to_i).annonce.titre_annonce %></p>
+  </div>
+</div>
+<h3 class="text-center mt-5 mb-5">Modifiez votre dossier de location</h3>
+<div class="container center">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-8">
+      <div class="center">
+        <%= simple_form_for [@annonce, @locataire_candidature] do |f| %>
+          <!-- Les dossiers de location de l'utilisateur -->
+          <% if @locataire_dossiers != [] %>
+            <div class="mb-4">
+              <% if current_user.statut == "Agent" %>
+                <p class="mt-4 border-top" style="color: #D8A727; font-weight: bold"></p>
+                <%= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
+              <% end %>
+            </div>
+            <!-- Choisissez le dossier de location -->
+            <p class="mb-3">Choisissez le dossier de location à déposer <span style="font-size: 12px; font-style: italic; color: red">(Voir tous vos dossiers au bas de la page)</span></p>
+            <%= f.input :locataire_email, label: false, collection: @dossier_location, include_blank: false%>
+            <div class="mb-4">
+              <p class="mt-2 pt-3" style="color:">Complément d'information (optionnel)</p>
+              <%= f.input :message, label: false %>
+            </div>
+            <%= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
+            <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
+          <% else %>
+            <h4 class="text-center mt-2" style="width: 100%; color:#DA334A; font-style: italic;">"Aucun dossier de location créé"</h4>
+            <div class="text-center mt-4 mb-5 pb-5 d-flex justify-content-center">
+              <%= link_to "Gérer mes dossiers de location", locataires_locataire_path, class: "nav-link nav-white", style:"", class:"btn btn-transparent-bold" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center  mt-4 mb-5">
+    <div class="col-12 col-md-8 col-lg-8">
+      <div class="border-top">
+        <div class="mt-3 mb-2">
+          <%= link_to "Gérer mes dossiers location", locataires_locataire_path() , class: "nav-link nav-white", style:"", class:"" %>
+        </div>
+        <!-- Laptop version -->
+        <div class="hide-on-small" style="font-size: 12px">
+          <table class="table table-hover" style="background-color: white">
+            <thead>
+              <tr>
+                <th scope="col">Référence</th>
+                <th scope="col">Créé le</th>
+                <th scope="col">Locataire principal</th>
+                <th scope="col">Email</th>
+                <th scope="col">Détails</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @locataire_dossiers.each do |locataire| %>
+                <tr>
+                  <td>ID-<%= locataire.id %></td>
+                  <td><%= locataire.created_at.strftime("%d/%m/%Y") %></td>
+                  <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                  <td><%= locataire.email%></td>
+                  <td>
+                    <%= link_to '', locataire, class:"fas fa-search" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+        </div>
+        <!-- Mobile version -->
+        <div class="hide-on-large" style="font-size: 12px">
+          <table class="table table-hover" style="background-color: white">
+            <thead>
+              <tr>
+                <th scope="col">Réf</th>
+                <th scope="col">Locataire principal</th>
+                <th scope="col">Détails</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @locataire_dossiers.each do |locataire| %>
+                <tr>
+                  <td>ID-<%= locataire.id %></td>
+                  <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                  <td>
+                    <%= link_to '', locataire, class:"fas fa-search" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

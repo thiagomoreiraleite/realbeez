@@ -96,21 +96,21 @@ json.array!  @notifications do |notification|
   elsif notification.action == "checkout_proprio_notify_agent"
     json.url annonce_path(notification.notifiable.annonce)
   elsif notification.action == "create_locataire_notify_agent"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "create_locataire_notify_proprio"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "accept_locataire_notify_agent"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "accept_locataire_notify_locataire"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "reject_locataire_notify_agent"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "reject_locataire_notify_locataire"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "update_locataire_notify_agent"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "update_locataire_notify_proprio"
-    json.url locataire_path(notification.notifiable)
+    json.url locataire_candidature_path(notification.notifiable)
   elsif notification.action == "destroy_locataire_notify_agent"
     json.url locataires_agent_path
   elsif notification.action == "destroy_locataire_notify_proprio"

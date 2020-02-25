@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_130615) do
+ActiveRecord::Schema.define(version: 2020_02_23_053054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,21 @@ ActiveRecord::Schema.define(version: 2020_02_20_130615) do
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
   end
 
+  create_table "locataire_candidatures", force: :cascade do |t|
+    t.string "agent", default: "Non"
+    t.text "message"
+    t.string "statut"
+    t.string "statut_proprietaire"
+    t.string "locataire_email"
+    t.bigint "user_id"
+    t.bigint "annonce_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "locataire_id"
+    t.index ["annonce_id"], name: "index_locataire_candidatures_on_annonce_id"
+    t.index ["user_id"], name: "index_locataire_candidatures_on_user_id"
+  end
+
   create_table "locataire_supplementaires", force: :cascade do |t|
     t.string "nom"
     t.string "prenom"
@@ -166,12 +181,10 @@ ActiveRecord::Schema.define(version: 2020_02_20_130615) do
     t.text "message"
     t.string "statut"
     t.string "statut_proprietaire"
-    t.bigint "annonce_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "agent", default: "Non"
-    t.index ["annonce_id"], name: "index_locataires_on_annonce_id"
     t.index ["user_id"], name: "index_locataires_on_user_id"
   end
 
@@ -346,8 +359,9 @@ ActiveRecord::Schema.define(version: 2020_02_20_130615) do
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
   add_foreign_key "documents", "locataires"
+  add_foreign_key "locataire_candidatures", "annonces"
+  add_foreign_key "locataire_candidatures", "users"
   add_foreign_key "locataire_supplementaires", "locataires"
-  add_foreign_key "locataires", "annonces"
   add_foreign_key "locataires", "users"
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"

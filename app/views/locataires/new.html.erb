@@ -1,29 +1,42 @@
-<h3 class="text-center mt-5 mb-5">Déposer un dossier de location</h3>
+<h3 class="text-center mt-5 mb-5">Créer un dossier de location</h3>
 <div class="container center">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-6">
       <div class="center">
-        <%= simple_form_for [@annonce, @locataire] do |f| %>
-          <% if current_user.statut == "Agent" %>
+        <%= simple_form_for [@locataire] do |f| %>
+          <!--  <%# if current_user.statut == "Agent" %>
             <p class="mt-4 border-top" style="color: #D8A727; font-weight: bold"></p>
-            <%= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
-          <% end %>
+            <%#= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
+          <%# end %> -->
           <p class="mt-4 border-top pt-3 mb-0" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL </p>
           <p><span style="color: red; font-size: 12px; font-style: italic">(Téléchargez tous vos documents aux formats : jpg, png, ou pdf)</span></p>
-          <%= f.input :prenom, label: "Prénom"%>
-          <%= f.input :nom, label: "Nom" %>
-          <%= f.input :adresse, label: "Adresse" %>
-          <%= f.input :ville, label: "Ville" %>
-          <%= f.input :tel, label: "Téléphone" %>
-          <%= f.input :email %>
+          <% if current_user.statut != "Agent" %>
+            <%= f.input :prenom, label: "Prénom", input_html: {value: current_user.prénom}%>
+            <%= f.input :nom, label: "Nom", input_html: {value: current_user.nom} %>
+            <%= f.input :adresse, label: "Adresse", input_html: {value: current_user.adresse} %>
+            <%= f.input :ville, label: "Ville", input_html: {value: current_user.ville} %>
+            <%= f.input :tel, label: "Téléphone", input_html: {value: current_user.téléphone} %>
+            <%= f.input :email, input_html: {value: current_user.email} %>
+          <% else %>
+            <%= f.input :prenom, label: "Prénom"%>
+            <%= f.input :nom, label: "Nom" %>
+            <%= f.input :adresse, label: "Adresse" %>
+            <%= f.input :ville, label: "Ville" %>
+            <%= f.input :tel, label: "Téléphone" %>
+            <%= f.input :email %>
+          <% end %>
           <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport</p>
           <%= f.input :id_recto, label: false %>
           <%= f.input :id_recto_cache, as: :hidden %>
           <%= f.input :id_verso, label: false %>
           <%= f.input :id_verso_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">Justificatif de domicile</p>
-          <%= f.input :justif_dom, label: false %>
-          <%= f.input :justif_dom_cache, as: :hidden %>
+          <% if current_user.photo.identifier == "image/upload/v1579358933/default_profile.png" %>
+            <%= f.input :justif_dom, label: false %>
+            <%= f.input :justif_dom_cache, as: :hidden %>
+          <% else %>
+            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.photo.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+          <% end %>
           <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
           <%= f.input :fiche_paye_mois1, label: false %>
           <%= f.input :fiche_paye_mois1_cache, as: :hidden %>

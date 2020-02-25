@@ -1,5 +1,71 @@
 <div class="container">
-  <h3 class="text-center mt-5 mb-4">Dossiers de location à gérer</h3>
+  <h3 class="text-center mt-5 mb-5">Mes dossiers de location</h3>
+  <!-- Liste de mes dossiers de location -->
+  <% if current_user.locataires == [] %>
+    <div class="text-center mb-4 d-flex justify-content-center">
+      <%= link_to "Créer un dossier de location", new_locataire_path, class: "nav-link nav-white", style:"", class:"btn btn-transparent-bold" %>
+    </div>
+  <% else %>
+    <!-- Table with all dossier de location -->
+    <% if @locataire_dossier != [] %>
+      <div class="text-center mt-2 mb-4 d-flex justify-content-center">
+        <%= link_to "Créer un dossier de location", new_locataire_path, class: "nav-link nav-white", style:"", class:"btn btn-transparent-bold" %>
+      </div>
+      <!-- Mobile version -->
+      <div class="hide-on-large" style="font-size: 12px">
+        <table class="table table-hover" style="background-color: white">
+          <thead>
+            <tr>
+              <th scope="col">Réf</th>
+              <th scope="col">Locataire principal</th>
+              <th scope="col">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @locataire_dossiers.each do |locataire| %>
+              <tr>
+                <td>ID-<%= locataire.id %></td>
+                <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                <td>
+                  <%= link_to '', locataire, class:"fas fa-search" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+      </div>
+      <!-- Laptop version -->
+      <div class="hide-on-small" style="font-size: 12px">
+        <table class="table table-hover" style="background-color: white">
+          <thead>
+            <tr>
+              <th scope="col">Référence</th>
+              <th scope="col">Créé le</th>
+              <th scope="col">Locataire principal</th>
+              <th scope="col">Email</th>
+              <th scope="col">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @locataire_dossiers.each do |locataire| %>
+              <tr>
+                <td>ID-<%= locataire.id %></td>
+                <td><%= locataire.created_at.strftime("%d/%m/%Y") %></td>
+                <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                <td><%= locataire.email%></td>
+                <td>
+                  <%= link_to '', locataire, class:"fas fa-search" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    <% end %>
+    <!--  -->
+  <% end %>
   <div class="profile-friends">
     <div class="search navigations" style="font-size: 16px">
       <h3 id="dossier_en_cours" class="active" style="font-size: 16px">En cours</h3>
@@ -8,8 +74,8 @@
     </div>
     <div id="friends-toPlace" class="row">
       <!--  -->
-      <% if @locataires_agent_en_cours != [] %>
-        <% @locataires_agent_en_cours.each do |locataire| %>
+      <% if @locataires_locataire_en_cours != [] %>
+        <% @locataires_locataire_en_cours.each do |locataire| %>
           <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
             <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
               <div class="row no-gutters", style="border-radius: 30px">
@@ -20,7 +86,7 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate mb-0"><%= locataire.annonce.titre_annonce.titlecase %></h5>
-                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Reçu le <%= locataire.updated_at.strftime("%e %b %y") %></p>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Envoyé le <%= locataire.updated_at.strftime("%e %b %y") %></p>
                       <p class="card-text m-0"> Envoyé à : <%= locataire.annonce.user.prénom.capitalize %> <%= locataire.annonce.user.nom[0].titlecase+"." %></p>
                       <p class="card-text"> Statut : <%= locataire.statut_proprietaire == nil || locataire.statut_proprietaire == "" ? "En cours" : locataire.statut_proprietaire %></p>
                     </div>
@@ -32,7 +98,7 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"Aucune candidature reçue"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location déposé"</h4>
       <% end %>
     </div>
   </div>
@@ -59,8 +125,8 @@
     addClassSelected(e.target);
     whereToShow.innerHTML = "";
     whereToShow.insertAdjacentHTML("beforeend", `
-      <% if @locataires_agent_en_cours != [] %>
-        <% @locataires_agent_en_cours.each do |locataire| %>
+      <% if @locataires_locataire_en_cours != [] %>
+        <% @locataires_locataire_en_cours.each do |locataire| %>
           <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
             <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
               <div class="row no-gutters", style="border-radius: 30px">
@@ -71,11 +137,11 @@
                   <div class="card-body">
                     <div>
                       <h5 class="card-title text-truncate mb-0"><%= locataire.annonce.titre_annonce.titlecase %></h5>
-                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Reçu le <%= locataire.updated_at.strftime("%e %b %y") %></p>
+                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Envoyé le <%= locataire.updated_at.strftime("%e %b %y") %></p>
                       <p class="card-text m-0"> Envoyé à : <%= locataire.annonce.user.prénom.capitalize %> <%= locataire.annonce.user.nom[0].titlecase+"." %></p>
-                        <p class="card-text"> Statut : <%= locataire.statut_proprietaire == nil || locataire.statut_proprietaire == "" ? "En cours" : locataire.statut_proprietaire %></p>
-                      </div>
-                      <%= link_to "Voir dossier", locataire_candidature_path(locataire), class: "btn btn-link px-0" %>
+                      <p class="card-text"> Statut : <%= locataire.statut_proprietaire == nil || locataire.statut_proprietaire == "" ? "En cours" : locataire.statut_proprietaire %></p>
+                    </div>
+                    <%= link_to "Voir dossier", locataire_candidature_path(locataire), class: "btn btn-link px-0" %>
                   </div>
                 </div>
               </div>
@@ -83,7 +149,7 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location déposé"</h4>
       <% end %>
       `);
     }
@@ -91,8 +157,8 @@
     addClassSelected(e.target);
     whereToShow.innerHTML = "";
     whereToShow.insertAdjacentHTML("beforeend", `
-        <% if @locataires_agent_accepté != [] %>
-          <% @locataires_agent_accepté.each do |locataire| %>
+        <% if @locataires_locataire_accepté != [] %>
+          <% @locataires_locataire_accepté.each do |locataire| %>
             <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
               <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
                 <div class="row no-gutters", style="border-radius: 30px">
@@ -115,7 +181,7 @@
             </div>
           <% end %>
         <% else %>
-          <h4 class="text-center" style="width: 100%;">"Aucun dossier de location"</h4>
+          <h4 class="text-center" style="width: 100%;">"Aucun dossier de location accepté"</h4>
         <% end %>
       `);
     }
@@ -123,31 +189,31 @@
     addClassSelected(e.target);
     whereToShow.innerHTML = "";
     whereToShow.insertAdjacentHTML("beforeend", `
-      <% if @locataires_agent_rejeté != [] %>
-        <% @locataires_agent_rejeté.each do |locataire| %>
+      <% if @locataires_locataire_rejeté != [] %>
+        <% @locataires_locataire_rejeté.each do |locataire| %>
           <div class="offset-sm-2 col-sm-8 offset-lg-0 col-lg-6">
             <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
               <div class="row no-gutters", style="border-radius: 30px">
-                <div class="col-md-4">
-                  <p class="mb-0"><%= image_tag (cl_image_path locataire.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
-                </div>
-                <div class="col-md-8 d-flex flex-column justify-content-between">
-                  <div class="card-body">
-                    <div>
-                      <h5 class="card-title text-truncate mb-0"><%= locataire.annonce.titre_annonce.titlecase %></h5>
-                      <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Rejeté le <%= locataire.updated_at.strftime("%e %b %y") %></p>
-                      <p class="card-text m-0"> Envoyé à : <%= locataire.annonce.user.prénom.capitalize %> <%= locataire.annonce.user.nom[0].titlecase+"." %></p>
-                      <p class="card-text"> Statut : <%= locataire.statut_proprietaire == nil || locataire.statut_proprietaire == "" ? "En cours" : locataire.statut_proprietaire %></p>
-                    </div>
-                    <%= link_to "Voir dossier", locataire_candidature_path(locataire), class: "btn btn-link px-0" %>
+                  <div class="col-md-4">
+                    <p class="mb-0"><%= image_tag (cl_image_path locataire.annonce.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded center p-3" %></p>
                   </div>
-                </div>
+                  <div class="col-md-8 d-flex flex-column justify-content-between">
+                    <div class="card-body">
+                      <div>
+                        <h5 class="card-title text-truncate mb-0"><%= locataire.annonce.titre_annonce.titlecase %></h5>
+                        <p class="mt-0 mb-1" style="font-size: 12px; color: rgba(0, 0, 0, 0.5)">Rejeté le <%= locataire.updated_at.strftime("%e %b %y") %></p>
+                        <p class="card-text m-0"> Envoyé à : <%= locataire.annonce.user.prénom.capitalize %> <%= locataire.annonce.user.nom[0].titlecase+"." %></p>
+                        <p class="card-text"> Statut : <%= locataire.statut_proprietaire == nil || locataire.statut_proprietaire == "" ? "En cours" : locataire.statut_proprietaire %></p>
+                      </div>
+                      <%= link_to "Voir dossier", locataire_candidature_path(locataire), class: "btn btn-link px-0" %>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location rejeté"</h4>
       <% end %>
       `);
     };

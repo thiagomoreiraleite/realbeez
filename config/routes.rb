@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/recommandation', to: 'pages#recommandation', as: :recommandation
   resources :pages, only: [:new, :create]
 
-
   # Parrains
   resources :parrains, only: [:new, :create]
   get '/confirmation_parrainage', to: 'parrains#confirmation_parrainage', as: :confirmation_parrainage
@@ -26,25 +25,35 @@ Rails.application.routes.draw do
   resources :annonces do
     # Candidatures
     resources :candidatures, only: [:new, :create]
-    # Locataires
-    resources :locataires, only:[:new, :create]
     # Mandats
     resources :mandats, only: [:new, :create]
+    # Locataires candidataure
+    resources :locataire_candidatures, only:[:new, :create]
   end
   get '/mes_annonces', to: 'annonces#mes_annonces', as: :mes_annonces
   get '/annonces_all', to: 'annonces#annonces_all', as: :annonces_all
   get '/biens_a_gerer', to: 'annonces#biens_a_gerer', as: :biens_a_gerer
   get '/annonces/:id/checkout_agent', to: 'annonces#checkout_agent', as: :checkout_agent
   get '/annonces/:id/checkout_proprio', to: 'annonces#checkout_proprio', as: :checkout_proprio
-  resources :locataires, only: [:show, :edit, :update, :index]
-  post '/locataires/:id/accept_locataire', to: 'locataires#accept_locataire', as: :accept_locataire
-  post '/locataires/:id/reject_locataire', to: 'locataires#reject_locataire', as: :reject_locataire
-  get '/locataires_locataire', to: 'locataires#locataires_locataire', as: :locataires_locataire
-  get '/locataires_proprio', to: 'locataires#locataires_proprio', as: :locataires_proprio
-  get '/locataires_agent', to: 'locataires#locataires_agent', as: :locataires_agent
-  get '/locataires_all', to: 'locataires#locataires_all', as: :locataires_all
-  resources :locataires, only:[:edit, :destroy]
   resources :mandats, only: [:show, :edit, :update]
+
+  # Locataire candidature
+  resources :locataire_candidatures, only:[:edit, :update, :destroy, :show]
+  post '/locataires/:id/accept_locataire', to: 'locataire_candidatures#accept_locataire', as: :accept_locataire
+  post '/locataires/:id/reject_locataire', to: 'locataire_candidatures#reject_locataire', as: :reject_locataire
+  get '/locataires_locataire', to: 'locataire_candidatures#locataires_locataire', as: :locataires_locataire
+  get '/locataires_proprio', to: 'locataire_candidatures#locataires_proprio', as: :locataires_proprio
+  get '/locataires_agent', to: 'locataire_candidatures#locataires_agent', as: :locataires_agent
+  get '/locataires_all', to: 'locataire_candidatures#locataires_all', as: :locataires_all
+
+  # Locataires
+  resources :locataires, only:[:new, :create, :edit, :update, :destroy, :show, :index]
+  # post '/locataires/:id/accept_locataire', to: 'locataires#accept_locataire', as: :accept_locataire
+  # post '/locataires/:id/reject_locataire', to: 'locataires#reject_locataire', as: :reject_locataire
+  # get '/locataires_locataire', to: 'locataires#locataires_locataire', as: :locataires_locataire
+  # get '/locataires_proprio', to: 'locataires#locataires_proprio', as: :locataires_proprio
+  # get '/locataires_agent', to: 'locataires#locataires_agent', as: :locataires_agent
+  # get '/locataires_all', to: 'locataires#locataires_all', as: :locataires_all
 
   # Meeting
   resources :meetings

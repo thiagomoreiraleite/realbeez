@@ -1,0 +1,94 @@
+<!-- Information locataire if user is not an agent -->
+<!-- LOCATAIRE PRINCIPAL -->
+<div class="mt-2 mb-4 border p-3 pb-4" style="background-color: white; border-radius: 5px; box-shadow: 1px 1px 5px rgba(0,0,0,0.1)">
+  <p class="mt-5" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL</p>
+  <p><strong>Prénom</strong> : <%= current_user.locataires.last.prenom %></p>
+  <p><strong>Nom</strong> : <%= current_user.locataires.last.nom %></p>
+  <p><strong>Adresse</strong> : <%= current_user.locataires.last.adresse %></p>
+  <p><strong>Ville</strong> : <%= current_user.locataires.last.ville %></p>
+  <p><strong>Téléphone</strong> : <%= current_user.locataires.last.tel %></p>
+  <p><strong>Email</strong> : <%= current_user.locataires.last.email %></p>
+  <p class="mb-2"><strong>Carte d'identité / Passeport : </strong></p>
+  <div class="d-flex align-items-center">
+    Recto :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.id_recto.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.id_recto.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  </div>
+  <div class="d-flex align-items-center">
+    Verso :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.id_verso.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.id_verso.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+  </div>
+  <p class="mt-3 mb-2"><strong>Justificatif de domicile</strong> : </p>
+  <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.justif_dom.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+  <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.justif_dom.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  <p class="mb-2 mt-3"><strong>3 dernières fiches de paye </strong> : </p>
+  <div class="d-flex align-items-center">
+    Mois m-1 :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.fiche_paye_mois1.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.fiche_paye_mois1.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  </div>
+  <div class="d-flex align-items-center">
+    Mois m-2 :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.fiche_paye_mois2.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.fiche_paye_mois2.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+  </div>
+  <div class="d-flex align-items-center">
+    Mois m-3 :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.fiche_paye_mois3.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.fiche_paye_mois3.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+  </div>
+  <p class="mt-3 mb-2"><strong>Contrat de travail</strong> : </p>
+  <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.contrat.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+  <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.contrat.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  <!-- COLOCATAIRES -->
+  <% if current_user.locataires.last.locataire_supplementaires != [] %>
+    <p class="mt-4" style="font-size:16px"><%= render "locataires/colocataire" %></p>
+  <% end %>
+  <!-- LE GARANT -->
+  <p class="mt-5 border-top pt-3" style="color: #D8A727; font-weight: bold">LE GARANT (caution solidaire)</p>
+  <p><strong>Prénom</strong> : <%= current_user.locataires.last.prenom_garant %></p>
+  <p><strong>Nom</strong> : <%= current_user.locataires.last.nom_garant %></p>
+  <p><strong>Adresse</strong> : <%= current_user.locataires.last.adresse_garant %></p>
+  <p><strong>Ville</strong> : <%= current_user.locataires.last.ville_garant %></p>
+  <p><strong>Téléphone</strong> : <%= current_user.locataires.last.tel_garant %></p>
+  <p><strong>Email</strong> : <%= current_user.locataires.last.email_garant %></p>
+  <p class="mb-2"><strong>Carte d'identité / Passeport</strong> : </p>
+  <div class="d-flex align-items-center">
+    Recto :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.id_recto_garant.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.id_recto_garant.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  </div>
+  <div class="d-flex align-items-center">
+    Verso :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.id_verso_garant.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.id_verso_garant.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+  </div>
+  <p class="mt-3 mb-2"><strong>Justificatif de domicile</strong> : </p>
+  <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.justif_dom_garant.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+  <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.justif_dom_garant.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  <p class="mb-2 mt-3"><strong>3 dernières fiches de paye</strong> : </p>
+  <div class="d-flex align-items-center">
+    Mois m-1 :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.fiche_paye_mois1_garant.filename}", :target => "_blank",class: "btn btn-transparent mx-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.fiche_paye_mois1_garant.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  </div>
+  <div class="d-flex align-items-center">
+    Mois m-2 :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.fiche_paye_mois2_garant.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.fiche_paye_mois2_garant.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+  </div>
+  <div class="d-flex align-items-center">
+    Mois m-3 :
+    <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.fiche_paye_mois3_garant.filename}", :target => "_blank",class: "btn btn-transparent mx-2 mt-2" %>
+    <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.fiche_paye_mois3_garant.filename}", :target => "_blank",class: "btn btn-transparent mt-2" %>
+  </div>
+  <p class="mt-3 mb-2"><strong>Contrat de travail</strong> : </p>
+  <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.locataires.last.contrat_garant.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
+  <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{current_user.locataires.last.contrat_garant.filename}", :target => "_blank",class: "btn btn-transparent" %>
+  <!-- AUTRES DOCUMENTS -->
+  <% if current_user.locataires.last.documents != [] %>
+    <p class="mt-3 border-top pt-3"><strong>Autres documents</strong> : </p>
+    <p class="t-3" style="font-size:16px"><%= render "locataires/documents" %></p>
+  <% end %>
+</div>

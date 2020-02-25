@@ -73,9 +73,9 @@
             <%= link_to "Profil", profile_path(current_user), class: "dropdown-item" %>
             <%= link_to "Parrainage", new_parrain_path, class: "dropdown-item" %>
             <%= link_to "Publier une annonce", new_annonce_path, class: "dropdown-item" %>
-            <% if current_user.locataires != [] %>
-              <%= link_to "Mes dossiers de location", locataires_locataire_path, class: "dropdown-item" %>
-            <% end %>
+            <%# if current_user.locataire != [] %>
+            <%= link_to "Mes dossiers de location", locataires_locataire_path, class: "dropdown-item" %>
+            <%# end %>
             <!-- PROPRIETAIRE -->
             <% if current_user.annonces !=  [] %>
               <div class="border-top">

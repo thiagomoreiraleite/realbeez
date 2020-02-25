@@ -52,5 +52,6 @@ const supprimerLocataire = () => {
   });
 }
 
+
 export { ajouterLocataire }
 export { supprimerLocataire }

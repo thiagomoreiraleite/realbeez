@@ -18,7 +18,7 @@ class Annonce < ApplicationRecord
   validates :pièces, numericality: { greater_than_or_equal_to: 0 }
   validates :loyer_mensuel, numericality: { greater_than_or_equal_to: 0 }
   has_many :mandats, through: :candidatures
-  has_many :locataires, dependent: :destroy
+  has_many :locataire_candidatures, dependent: :destroy
 
   # belongs_to :user
   # include PgSearch::Model

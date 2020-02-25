@@ -1,0 +1,5 @@
+<p>Bonjour Boss,</p>
+<p><%= @locataire_candidature.annonce.user.prénom.capitalize + " " + @locataire_candidature.annonce.user.nom.capitalize + " a accepté le dossier de location de " + Locataire.find(@locataire_candidature.locataire_id).prenom.capitalize + " " + Locataire.find(@locataire_candidature.locataire_id).nom.capitalize  + "."%></p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir le dossier de location", locataire_candidature_url(@locataire_candidature) %></p>
