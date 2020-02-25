@@ -1,5 +1,71 @@
 <div class="container">
-  <h3 class="text-center mt-5 mb-4">Dossiers de location à gérer</h3>
+  <h3 class="text-center mt-5 mb-5">Dossiers de location à gérer</h3>
+  <!-- Liste de mes dossiers de location -->
+  <% if current_user.locataires == [] %>
+    <div class="text-center mb-4 d-flex justify-content-center">
+      <%= link_to "Créer un dossier de location", new_locataire_path, class: "nav-link nav-white", style:"", class:"btn btn-transparent-bold" %>
+    </div>
+  <% else %>
+    <!-- Table with all dossier de location -->
+    <% if @locataire_dossier != [] %>
+      <div class="text-center mt-2 mb-4 d-flex justify-content-center">
+        <%= link_to "Créer un dossier de location", new_locataire_path, class: "nav-link nav-white", style:"", class:"btn btn-transparent-bold" %>
+      </div>
+      <!-- Mobile version -->
+      <div class="hide-on-large" style="font-size: 12px">
+        <table class="table table-hover" style="background-color: white">
+          <thead>
+            <tr>
+              <th scope="col">Réf</th>
+              <th scope="col">Locataire principal</th>
+              <th scope="col">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @locataire_dossiers.each do |locataire| %>
+              <tr>
+                <td>ID-<%= locataire.id %></td>
+                <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                <td>
+                  <%= link_to '', locataire, class:"fas fa-search" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+      </div>
+      <!-- Laptop version -->
+      <div class="hide-on-small" style="font-size: 12px">
+        <table class="table table-hover" style="background-color: white">
+          <thead>
+            <tr>
+              <th scope="col">Référence</th>
+              <th scope="col">Créé le</th>
+              <th scope="col">Locataire principal</th>
+              <th scope="col">Email</th>
+              <th scope="col">Détails</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @locataire_dossiers.each do |locataire| %>
+              <tr>
+                <td>ID-<%= locataire.id %></td>
+                <td><%= locataire.created_at.strftime("%d/%m/%Y") %></td>
+                <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                <td><%= locataire.email%></td>
+                <td>
+                  <%= link_to '', locataire, class:"fas fa-search" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+      </div>
+    <% end %>
+    <!--  -->
+  <% end %>
   <div class="profile-friends">
     <div class="search navigations" style="font-size: 16px">
       <h3 id="dossier_en_cours" class="active" style="font-size: 16px">En cours</h3>
@@ -32,7 +98,7 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"Aucune candidature reçue"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location déposé"</h4>
       <% end %>
     </div>
   </div>
@@ -83,7 +149,7 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location déposé"</h4>
       <% end %>
       `);
     }
@@ -115,7 +181,7 @@
             </div>
           <% end %>
         <% else %>
-          <h4 class="text-center" style="width: 100%;">"Aucun dossier de location"</h4>
+          <h4 class="text-center" style="width: 100%;">"Aucun dossier de location accepté"</h4>
         <% end %>
       `);
     }
@@ -147,7 +213,7 @@
           </div>
         <% end %>
       <% else %>
-        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location"</h4>
+        <h4 class="text-center" style="width: 100%;">"Aucun dossier de location rejeté"</h4>
       <% end %>
       `);
     };

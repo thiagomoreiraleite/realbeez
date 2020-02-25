@@ -95,7 +95,10 @@
           <% if @profile.adresse == nil || @profile.adresse == "" %>
             <p class=" mt-0 mb-3" style="" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= link_to "Aucune adresse", edit_user_registration_path(current_user)%></p>
           <% else %>
-            <p class=" mt-0 mb-3" style="" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= @profile.adresse %></p>
+            <div class="d-flex">
+              <p class=" mt-0 mb-3" style="" ><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i></p>
+              <p><%= @profile.adresse %></p>
+            </div>
           <% end %>
         <% end %>
       <% end %>

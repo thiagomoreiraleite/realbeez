@@ -12,7 +12,7 @@
           <!-- Les dossiers de location de l'utilisateur -->
           <% if @locataire_dossiers != [] %>
             <div class="mb-4">
-              <% if current_user.statut == "Agent" %>
+              <% if current_user.statut == "Agent" && Annonce.find(params[:annonce_id]).agent_user_id == current_user.id.to_s %>
                 <p class="mt-4 border-top" style="color: #D8A727; font-weight: bold"></p>
                 <%= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
               <% end %>

@@ -16,12 +16,11 @@
         <!-- LES COLOCATAIRES -->
         <% Locataire.find(@locataire_candidature.locataire_id).locataire_supplementaires.each do |locataire| %>
           <p class="mt-2 border-bottom pt-3" style="color: #D8A727; font-weight: bold">COLOCATAIRE</p>
-          <p><strong>Prénom</strong> : <%= locataire.prenom %> </p>
-          <p><strong>Nom</strong> : <%= locataire.nom %></p>
-          <p><strong>Adresse</strong> : <%= locataire.adresse %></p>
-          <p><strong>Ville</strong> : <%= locataire.ville %></p>
-          <p><strong>Téléphone</strong> : <%= locataire.tel %></p>
-          <p><strong>Email</strong> : <%= locataire.email %></p>
+          <p><i class="fas fa-user mr-3" style="color: #D8A727"></i><%= locataire.prenom %> <%= locataire.nom %> </p>
+          <p><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= locataire.adresse %></p>
+          <p><i class="fas fa-city mr-3" style="color: #D8A727"></i><%= locataire.ville %></p>
+          <p><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= locataire.tel %></p>
+          <p><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= locataire.email %></p>
           <p class="mb-2"><strong>Carte d'identité / Passeport : </strong></p>
           <div class="d-flex align-items-center">
             Recto :
