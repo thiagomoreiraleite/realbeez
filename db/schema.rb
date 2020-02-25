@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_23_053054) do
+ActiveRecord::Schema.define(version: 2020_02_25_070310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_053054) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "connaissance"
-    t.string "justif_entrepreneur", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "justif_entrepreneur", default: "image/upload/v1582613499/default_annonce.png"
     t.index ["user_id"], name: "index_agents_on_user_id"
   end
 
@@ -45,16 +45,16 @@ ActiveRecord::Schema.define(version: 2020_02_23_053054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "statut"
-    t.string "photo", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "photo1", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "photo", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "photo1", default: "image/upload/v1582613499/default_annonce.png"
     t.float "latitude"
     t.float "longitude"
     t.string "agent_user_id"
     t.string "checkout_agent"
     t.string "checkout_proprio"
-    t.string "photo2", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "photo3", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "photo4", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "photo2", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "photo3", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "photo4", default: "image/upload/v1582613499/default_annonce.png"
     t.integer "price_cents", default: 0, null: false
     t.integer "pièces"
     t.integer "charges"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2020_02_23_053054) do
 
   create_table "documents", force: :cascade do |t|
     t.string "titre"
-    t.string "piece_jointe", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "piece_jointe", default: "image/upload/v1582613499/default_annonce.png"
     t.bigint "locataire_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -141,13 +141,13 @@ ActiveRecord::Schema.define(version: 2020_02_23_053054) do
     t.string "ville"
     t.string "tel"
     t.string "email"
-    t.string "id_recto", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "id_verso", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "justif_dom", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois1", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois2", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois3", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "contrat", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "id_recto", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "id_verso", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "justif_dom", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois1", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois2", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois3", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "contrat", default: "image/upload/v1582613499/default_annonce.png"
     t.index ["locataire_id"], name: "index_locataire_supplementaires_on_locataire_id"
   end
 
@@ -158,25 +158,25 @@ ActiveRecord::Schema.define(version: 2020_02_23_053054) do
     t.string "ville"
     t.string "tel"
     t.string "email"
-    t.string "id_recto", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "id_verso", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "justif_dom", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois1", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois2", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois3", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "contrat", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "id_recto", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "id_verso", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "justif_dom", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois1", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois2", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois3", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "contrat", default: "image/upload/v1582613499/default_annonce.png"
     t.string "nom_garant"
     t.string "prenom_garant"
     t.string "adresse_garant"
     t.string "ville_garant"
     t.string "tel_garant"
     t.string "email_garant"
-    t.string "id_recto_garant", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "id_verso_garant", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "justif_dom_garant", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois1_garant", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois2_garant", default: "image/upload/v1575902902/default_annonce.png"
-    t.string "fiche_paye_mois3_garant", default: "image/upload/v1575902902/default_annonce.png"
+    t.string "id_recto_garant", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "id_verso_garant", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "justif_dom_garant", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois1_garant", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois2_garant", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "fiche_paye_mois3_garant", default: "image/upload/v1582613499/default_annonce.png"
     t.string "contrat_garant", default: "image/upload/v1575902902/default_annonce.png"
     t.text "message"
     t.string "statut"
