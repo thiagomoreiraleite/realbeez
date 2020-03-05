@@ -173,7 +173,20 @@
                         <p class="card-text m-0"> Envoyé à : <%= locataire.annonce.user.prénom.capitalize %> <%= locataire.annonce.user.nom[0].titlecase+"." %></p>
                         <p class="card-text"> Statut : <%= locataire.statut_proprietaire == nil || locataire.statut_proprietaire == "" ? "En cours" : locataire.statut_proprietaire %></p>
                       </div>
-                      <%= link_to "Voir dossier", locataire_candidature_path(locataire), class: "btn btn-link px-0" %>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <%= link_to "Voir dossier", locataire_candidature_path(locataire), class: "btn btn-link px-0" %>
+                        <% if locataire.statut_proprietaire == "Accepté" %>
+                          <div class="text-center">
+                            <% if locataire.contrat == nil %>
+                              <% if current_user == locataire.annonce.user || locataire.annonce.agent_user_id == current_user.id.to_s%>
+                                <%= link_to "Créer contrat de bail", locataire_candidature_contrats_path(locataire), method: :post, class:"btn btn-transparent"  %>
+                              <% end %>
+                            <% else %>
+                              <%= link_to "Voir contrat de bail", contrat_path(locataire.contrat), class:"btn btn-transparent"  %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>

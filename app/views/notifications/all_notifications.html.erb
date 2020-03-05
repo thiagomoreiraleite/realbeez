@@ -69,6 +69,15 @@
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a supprimé son dossier de location pour votre bien ' + notification.notifiable.annonce.titre_annonce, locataires_proprio_path, class:"" %></td>
                 <!--   <#% elsif notification.action == "new_registration" %>
                 <td><#%= link_to User.find(notification.actor_id).prénom.capitalize + " vient de s'inscrire sur RB", profile_all_users_path, class:"" %></td> -->
+              <% elsif notification.action == "create_bail_notify_agent" %>
+                <td><%= link_to 'Dossier de location créé par ' +
+                User.find(notification.actor_id).prénom.capitalize, contrat_path(notification.notifiable_id), class:"" %></td>
+              <% elsif notification.action == "create_bail_notify_locataire" %>
+                <td><%= link_to 'Dossier de location créé par ' +
+                User.find(notification.actor_id).prénom.capitalize, contrat_path(notification.notifiable_id), class:"" %></td>
+              <% elsif notification.action == "create_bail_notify_proprio" %>
+                <td><%= link_to 'Dossier de location créé par ' +
+                User.find(notification.actor_id).prénom.capitalize, contrat_path(notification.notifiable_id), class:"" %></td>
               <% end %>
               <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
             </tr>

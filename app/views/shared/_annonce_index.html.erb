@@ -228,12 +228,12 @@
                     <!-- Déposer un dossier de candidature -->
                     <% if user_signed_in? %>
                       <% if annonce.user_id != current_user.id %>
-                        <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_path(annonce), class: "fas fa-plus-circle mr-2", style: "color: green; font-size: 16px" %><%= link_to 'Déposer un dossier de location', new_annonce_locataire_path(annonce)%></p>
+                        <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_candidature_path(annonce), class: "fas fa-plus-circle mr-2", style: "color: green; font-size: 16px" %><%= link_to 'Déposer un dossier de location', new_annonce_locataire_candidature_path(annonce)%></p>
                       <% else %>
-                        <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_path(annonce), class: "fas fa-plus-circle mr-2", style: "color: white; font-size: 16px" %></p>
+                        <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_candidature_path(annonce), class: "fas fa-plus-circle mr-2", style: "color: white; font-size: 16px" %></p>
                       <% end %>
                     <% else %>
-                      <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_path(annonce), class: "fas fa-plus-circle mr-2", style: "color: green; font-size: 16px" %><%= link_to 'Déposer un dossier de location', new_annonce_locataire_path(annonce)%></p>
+                      <p style="font-size: 14px"><%= link_to "", new_annonce_locataire_candidature_path(annonce), class: "fas fa-plus-circle mr-2", style: "color: green; font-size: 16px" %><%= link_to 'Déposer un dossier de location', new_annonce_locataire_candidature_path(annonce)%></p>
                     <% end %>
                   </div>
                 </div>

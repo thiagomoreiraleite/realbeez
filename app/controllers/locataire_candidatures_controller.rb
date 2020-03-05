@@ -201,10 +201,40 @@ class LocataireCandidaturesController < ApplicationController
 
   def locataires_locataire
     authorize @locataires = policy_scope(LocataireCandidature).order(created_at: :desc)
-    @locataires_locataire_en_cours = LocataireCandidature.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "En cours", "Non", "active").order(created_at: :asc)
-    @locataires_locataire_accepté = LocataireCandidature.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "Accepté", "Non", "active").order(created_at: :asc)
-    @locataires_locataire_rejeté = LocataireCandidature.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "Rejeté", "Non", "active").order(created_at: :asc)
+    @locataires_locataire_en_cours = []
+    @locataires_locataire_accepté = []
+    @locataires_locataire_rejeté = []
+    # EN COURS dossier déposé par locataire
+    @dossier_en_cours = LocataireCandidature.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "En cours", "Non", "active").order(created_at: :asc)
+    @dossier_en_cours.each do |dossier|
+      @locataires_locataire_en_cours << dossier
+    end
+    # ACCEPTE dossier déposé par locataire
+    @dossier_accepté = LocataireCandidature.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "Accepté", "Non", "active").order(created_at: :asc)
+    @dossier_accepté.each do |dossier|
+      @locataires_locataire_accepté << dossier
+    end
+    # REJETE dossier déposé par locataire
+    @dossier_rejeté = LocataireCandidature.where("user_id = ? AND statut_proprietaire = ? AND agent = ? AND statut = ?", current_user.id, "Rejeté", "Non", "active").order(created_at: :asc)
+    @dossier_rejeté.each do |dossier|
+      @locataires_locataire_rejeté << dossier
+    end
+    # Dossier de candidature à déposer
     @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", current_user.id, "active")
+    # Dossier de location déposé par agent
+    @dossier_agent = LocataireCandidature.where("agent = ? AND statut = ?", "Oui", "active").order(created_at: :asc)
+    @dossier_agent_locataire = @dossier_agent.select{ |l| l.locataire_email.split.last == current_user.email }
+    @dossier_agent_locataire.each do |dossier|
+      if dossier.statut_proprietaire == "En cours"
+        @locataires_locataire_en_cours << dossier
+      end
+      if dossier.statut_proprietaire == "Accepté"
+        @locataires_locataire_accepté << dossier
+      end
+      if dossier.statut_proprietaire == "Rejeté"
+        @locataires_locataire_rejeté << dossier
+      end
+    end
   end
 
   def locataires_proprio

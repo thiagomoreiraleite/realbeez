@@ -57,6 +57,12 @@ json.array!  @notifications do |notification|
       json.type "a supprimé son dossier de location"
     elsif notification.action == "destroy_locataire_notify_proprio"
       json.type "a supprimé son dossier de location"
+    elsif notification.action == "create_bail_notify_agent"
+      json.type "a créé un dossier de location"
+    elsif notification.action == "create_bail_notify_locataire"
+      json.type "a créé un dossier de location"
+    elsif notification.action == "create_bail_notify_proprio"
+      json.type "a créé un dossier de location"
     # elsif notification.action == "new_registration"
     #   json.type "s'est inscrit sur RB"
     end
@@ -115,6 +121,12 @@ json.array!  @notifications do |notification|
     json.url locataires_agent_path
   elsif notification.action == "destroy_locataire_notify_proprio"
     json.url locataires_proprio_path
+  elsif notification.action == "create_bail_notify_agent"
+    json.url contrat_path(notification.notifiable)
+  elsif notification.action == "create_bail_notify_locataire"
+    json.url contrat_path(notification.notifiable)
+  elsif notification.action == "create_bail_notify_proprio"
+    json.url contrat_path(notification.notifiable)
   # elsif notification.action == "new_registration"
   #   json.url profile_all_users_path
   end

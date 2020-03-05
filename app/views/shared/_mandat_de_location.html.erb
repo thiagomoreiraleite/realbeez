@@ -1,137 +1,145 @@
-<% if current_user.admin == true || @annonce.agent_user_id == current_user.id.to_s || @annonce.user_id == current_user.id %>
-  <div class="container my-5" >
-    <div class="row" >
-      <div class="col-12 col-md-8 offset-md-2 p-5 border" style="background-color: white; border-radius: 10px">
-        <h3 class="text-center"><strong>MANDAT DE LOCATION (sans exclusivité)</strong></h3>
-        <p class="text-justify">Le mandat est obligatoire (article 6 loi n° 70-9 du 2 janvier 1970 et article 72 décret n° 72-678 du 20 juillet 1972) ENTRE LES SOUSSIGNÉS, ci-après dénommés «LE MANDANT » et «LE MANDATAIRE»</p>
-        <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LE MANDANT</strong></h5>
-        <p class="mb-2"><strong>Prénom et nom</strong> : <%= @annonce.user.civilité %> <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.capitalize %></p>
-        <p class="mb-1"> </p>
-        <p class="mb-1">
-          <% if @annonce.user == current_user %>
-            <% if @annonce.user.adresse == nil || @annonce.user.adresse == ""  %>
-              <p class="mb-0"><strong>Adresse </strong>: <%= link_to "à renseigner", edit_user_registration_path(@annonce.user), target: :_blank%></p>
+<div style="color: black">
+  <% if current_user.admin == true || @annonce.agent_user_id == current_user.id.to_s || @annonce.user_id == current_user.id %>
+    <div class="container" >
+      <div class="hide-on-small mt-5 pt-5">
+      </div>
+      <div class="row" >
+        <div class="col-12 col-lg-10 offset-lg-1 p-5" style="background-color: white; border-radius: 5px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2)">
+          <div class="border mb-5 p-4">
+            <h3 class="text-center"><strong>MANDAT DE LOCATION (sans exclusivité)</strong></h3>
+            <p class="text-justify">Le mandat est obligatoire (article 6 loi n° 70-9 du 2 janvier 1970 et article 72 décret n° 72-678 du 20 juillet 1972) ENTRE LES SOUSSIGNÉS, ci-après dénommés «LE MANDANT » et «LE MANDATAIRE»</p>
+          </div>
+          <h5 class="mt-5 mb-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LE MANDANT</strong></h5>
+          <p class="mb-2"><strong>Prénom et nom</strong> : <%= @annonce.user.civilité %> <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.capitalize %></p>
+          <p class="mb-1"> </p>
+          <p class="mb-1">
+            <% if @annonce.user == current_user %>
+              <% if @annonce.user.adresse == nil || @annonce.user.adresse == ""  %>
+                <p class="mb-0"><strong>Adresse </strong>: <%= link_to "à renseigner", edit_user_registration_path(@annonce.user), target: :_blank%></p>
+              <% else %>
+                <p class="mb-0"><strong>Adresse </strong>: <%= @annonce.user.adresse %></p>
+              <% end %>
             <% else %>
-              <p class="mb-0"><strong>Adresse </strong>: <%= @annonce.user.adresse %></p>
+              <% if @annonce.user.adresse == nil || @annonce.user.adresse == ""%>
+                <p class="mb-0"><strong>Adresse </strong>: non renseigné</p>
+              <% else %>
+                <p class="mb-0"><strong>Adresse </strong>: <%= @annonce.user.adresse %></p>
+              <% end %>
             <% end %>
-          <% else %>
-            <% if @annonce.user.adresse == nil || @annonce.user.adresse == ""%>
-              <p class="mb-0"><strong>Adresse </strong>: non renseigné</p>
-            <% else %>
-              <p class="mb-0"><strong>Adresse </strong>: <%= @annonce.user.adresse %></p>
-            <% end %>
+            <p><strong>Ville </strong>: <%= @annonce.user.ville %></p>
+          </p>
+          <p>Ci-après désigné(e) le mandant.</p>
+          <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LE MANDATAIRE</strong></h5>
+          <p class="mb-2"><strong>La société </strong>: Realbeez</p>
+          <p class="mb-1"><strong>Forme </strong>: Société par actions simplifiée</p>
+          <p class="mb-1"><strong>Au capital de </strong>: 1000 euros</p>
+          <p class="mb-1"><strong>Adresse du siège social</strong> : 90 avenue de Choisy, 75013 Paris</p>
+          <p class="mb-1"><strong>Immatriculée sous le n° </strong>: 880 147 822</p>
+          <p class="mb-1"><strong>Au Registre du Commerce et des Sociétés de </strong>: Paris</p>
+          <p><strong>Carte professionnelle</strong> : CPI 7501 2020 000 044 172</p>
+          <p><strong>Représenté par</strong> : <%= User.find(@annonce.agent_user_id.to_i).prénom.capitalize %> <%= User.find(@annonce.agent_user_id.to_i).nom.capitalize %></p>
+          <p>Ci-après désigné(e) le mandataire.</p>
+          <p class="text-justify">Le mandant et le mandataire ont convenu et arrêté ce qui suit : par les présentes, le mandant charge le mandataire de louer les locaux désignés ci-après dont il est propriétaire et le mandataire accepte cette mission.</p>
+          <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA SITUATION ET DESIGNATION DU BIEN</strong></h5>
+          <p><strong>Adresse</strong> : <%= @annonce.adresse %></p>
+          <p><strong>Description</strong> : <%= @annonce.titre_annonce %> <%= link_to "voir détail de l'annonce", annonce_path(@annonce) , target: :_blank %> </p>
+          <p class="text-justify"><strong>Loyer</strong> : Le loyer initial mensuel sera de <%= @annonce.loyer_mensuel %> € charges comprises, dont <%= @annonce.charges == nil ? 0 : @annonce.charges %> € de charges mensuelles, payable tous les premiers du mois.</p>
+          <p class="text-justify"><strong>Charges</strong> : L’ensemble des charges d’entretien courant, ainsi que les consommations d’eau, d’électricité,
+            de gaz et de fuel (pour le chauffage) seront pris en charge par le locataire.</p>
+          <p class="text-justify"><strong>Cautionnement</strong> : Le dépôt de garantie directement réglé au propriétaire sera de <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %> €.</p>
+          <p class="text-justify"><strong>Jouissance</strong> : Les biens à louer sont libres de toute location, occupation. La prise de possession des lieux
+            sera subordonnée au paiement des sommes précitées et à la signature du contrat de location par le
+            preneur.</p>
+          <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>CONDITIONS GÉNÉRALES DU MANDAT</strong></h5>
+          <p class="text-justify">Le présent mandat est consenti et accepté aux conditions figurant ci-avant ainsi qu’aux conditions générales suivantes :</p>
+          <p class="my-4" style="color: #D8A727"><strong>POUVOIRS DU MANDATAIRE</strong></p>
+          <p class="text-justify">Afin que le mandataire puisse accomplir sa mission, le mandant lui donne les pouvoirs suivants :</p>
+          <ol class="text-justify">
+            <li class="mb-1">Proposer, présenter, visiter et faire visiter les locaux à toute personne qu’il jugera utile.</li>
+            <li class="mb-1">Faire toute publicité qu’il jugera utile (commerciale, petites annonces…), les frais y afférents restant à la charge exclusive
+              du mandataire. Il peut notamment diffuser des
+              informations concernant les biens sur des sites Internet.</li>
+            <li class="mb-1">Apposer un panneau sur l’immeuble.</li>
+            <li class="mb-1">Communiquer éventuellement le dossier de l’opération à tout confrère qu’il jugera susceptible de concourir à la location.</li>
+            <li class="mb-1">Réclamer et faire établir (avec l'accord préalable du mandant), si nécessaire, toutes pièces utiles auprès de toutes personnes privées ou publiques, notamment le constat d’huissier dans les cas prévus par la loi et, selon le bail, soit le dossier de diagnostic technique prévu par l’article 3-1 de la loi du 6 juillet 1989, soit les diagnostics et certificats prévus par les articles L.1334-7 du code de la santé publique, L.125-5 du code de l’environnement et L.134-3 du code de la construction et de l’habitation.</li>
+            <li class="mb-1">Rédiger le contrat de location aux prix, charges et conditions convenus aux présentes. Établir les documents annexes (état
+              des lieux contradictoire…) et recueillir la signature du locataire.</li>
+          </ol class="text-justify">
+          <p class="my-4" style="color: #D8A727"><strong>OBLIGATIONS DU MANDATAIRE</strong></p>
+          <p>En contrepartie des pouvoirs qui lui sont accordés, le mandataire devra :</p>
+          <ol>
+            <li class="mb-1">Entreprendre, d’une façon générale, toutes les démarches nécessaires pour mener à bien la mission qui lui est confiée ce jour.</li>
+            <li class="mb-1">Informer le mandant de tous les éléments nouveaux pouvant modifier les conditions de location, notamment en matière de prix ou de législation.</li>
+            <li class="mb-1">Informer le mandant de l’accomplissement du présent mandat dans les 8 jours au plus qui suivront la signature du contrat par le locataire.</li>
+          </ol>
+          <p class="my-4" style="color: #D8A727"><strong>OBLIGATIONS DU MANDANT</strong></p>
+          <p>De son côté, le mandant devra :</p>
+          <ol>
+            <li class="mb-1">Laisser le mandataire visiter les lieux de façon permanente, ou respecter les horaires de visite si les locaux sont encore occupés.</li>
+            <li class="mb-1">Fournir au mandataire toutes justifications relatives à la propriété des locaux à louer, ainsi que tous les documents nécessaires à la rédaction du contrat de location et à sa conformité réglementaire.</li>
+            <li class="mb-1">Signaler immédiatement au mandataire toutes modifications juridiques ou matérielles pouvant modifier les conditions de location.</li>
+          </ol>
+          <p class="my-4" style="color: #D8A727"><strong>DURÉE DU MANDAT</strong></p>
+          <p class="text-justify">Le présent mandat est consenti sans exclusivité pour une période de 6 mois à compter de ce jour, mais pourra être révoqué à tout moment avec un préavis de quinze jours.</p>
+          <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA REMUNERATION</strong></h5>
+          <p>Lorsque la location aura été effectivement conclue, la rémunération du mandataire sera exigible. Celle-ci est fixée à la somme de 375 € hors taxes (TVA non applicable - article 293 B du CGI).</p>
+          <!-- SIGNATURE -->
+          <!-- SHOW PAGE -->
+          <% if params[:action] == "show" %>
+            <div class="row mt-5">
+              <div class="border p-2 col-12 col-md-6 mt-3">
+                <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité »</p>
+                <% if @mandat.acceptation_proprio == true %>
+                  <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
+                <% else %>
+                  <p>Signature électronique du bailleur <i class="fas fa-times" style="color: red"></i></p>
+                  <% if @annonce.user == current_user %>
+                    <%= link_to "Signer", edit_mandat_path(@mandat)  %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="border p-2 col-12 col-md-6 mt-3">
+                <p>Le mandataire : « lu et approuvé, bon pour mandat accepté »</p>
+                <% if @mandat.acceptation_agent == true %>
+                  <p>Signature électronique de l'agent <i class="fas fa-check" style="color: green"></i></p>
+                <% else %>
+                  <p>Signature électronique de l'agent <i class="fas fa-times" style="color: red"></i></p>
+                  <% if User.find(@annonce.agent_user_id.to_i) == current_user %>
+                    <%= link_to "Signer", edit_mandat_path(@mandat)  %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="container p-0 mx-0 mt-3"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
+            </div>
+            <!-- EDIT PAGE -->
+          <% elsif params[:action] == "edit" %>
+            <div class="row mt-5">
+              <div class="border p-2 col-12 col-md-6 mt-3">
+                <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité »</p>
+                <% if @mandat.acceptation_proprio == true %>
+                  <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
+                <% else %>
+                  <p>Signature électronique du bailleur <i class="fas fa-times" style="color: red"></i></p>
+                <% end %>
+              </div>
+              <div class="border p-2 col-12 col-md-6 mt-3">
+                <p>Le mandataire : « lu et approuvé, bon pour mandat accepté »</p>
+                <% if @mandat.acceptation_agent == true %>
+                  <p>Signature électronique de l'agent <i class="fas fa-check" style="color: green"></i></p>
+                <% else %>
+                  <p>Signature électronique de l'agent <i class="fas fa-times" style="color: red"></i></p>
+                <% end %>
+              </div>
+              <div class="container p-0 mx-0 mt-3"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
+            </div>
           <% end %>
-          <p><strong>Ville </strong>: <%= @annonce.user.ville %></p>
-        </p>
-        <p>Ci-après désigné(e) le mandant.</p>
-        <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LE MANDATAIRE</strong></h5>
-        <p class="mb-2"><strong>La société </strong>: Realbeez</p>
-        <p class="mb-1"><strong>Forme </strong>: Société par actions simplifiée</p>
-        <p class="mb-1"><strong>Au capital de </strong>: 1000 euros</p>
-        <p class="mb-1"><strong>Adresse du siège social</strong> : 90 avenue de Choisy, 75013 Paris</p>
-        <p class="mb-1"><strong>Immatriculée sous le n° </strong>: 880 147 822</p>
-        <p class="mb-1"><strong>Au Registre du Commerce et des Sociétés de </strong>: Paris</p>
-        <p><strong>Carte professionnelle</strong> : CPI 7501 2020 000 044 172</p>
-        <p><strong>Représenté par</strong> : <%= User.find(@annonce.agent_user_id.to_i).prénom.capitalize %> <%= User.find(@annonce.agent_user_id.to_i).nom.capitalize %></p>
-        <p>Ci-après désigné(e) le mandataire.</p>
-        <p class="text-justify">Le mandant et le mandataire ont convenu et arrêté ce qui suit : par les présentes, le mandant charge le mandataire de louer les locaux désignés ci-après dont il est propriétaire et le mandataire accepte cette mission.</p>
-        <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA SITUATION ET DESIGNATION DU BIEN</strong></h5>
-        <p><strong>Adresse</strong> : <%= @annonce.adresse %></p>
-        <p><strong>Description</strong> : <%= @annonce.titre_annonce %> <%= link_to "voir détail de l'annonce", annonce_path(@annonce) , target: :_blank %> </p>
-        <p class="text-justify"><strong>Loyer</strong> : Le loyer initial mensuel sera de <%= @annonce.loyer_mensuel %> € charges comprises, dont <%= @annonce.charges == nil ? 0 : @annonce.charges %> € de charges mensuelles, payable tous les premiers du mois.</p>
-        <p class="text-justify"><strong>Charges</strong> : L’ensemble des charges d’entretien courant, ainsi que les consommations d’eau, d’électricité,
-          de gaz et de fuel (pour le chauffage) seront pris en charge par le locataire.</p>
-        <p class="text-justify"><strong>Cautionnement</strong> : Le dépôt de garantie directement réglé au propriétaire sera de <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %> €.</p>
-        <p class="text-justify"><strong>Jouissance</strong> : Les biens à louer sont libres de toute location, occupation. La prise de possession des lieux
-          sera subordonnée au paiement des sommes précitées et à la signature du contrat de location par le
-          preneur.</p>
-        <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>CONDITIONS GÉNÉRALES DU MANDAT</strong></h5>
-        <p class="text-justify">Le présent mandat est consenti et accepté aux conditions figurant ci-avant ainsi qu’aux conditions générales suivantes :</p>
-        <p class="my-4" style="color: #D8A727"><strong>POUVOIRS DU MANDATAIRE</strong></p>
-        <p class="text-justify">Afin que le mandataire puisse accomplir sa mission, le mandant lui donne les pouvoirs suivants :</p>
-        <ol class="text-justify">
-          <li class="mb-1">Proposer, présenter, visiter et faire visiter les locaux à toute personne qu’il jugera utile.</li>
-          <li class="mb-1">Faire toute publicité qu’il jugera utile (commerciale, petites annonces…), les frais y afférents restant à la charge exclusive
-            du mandataire. Il peut notamment diffuser des
-            informations concernant les biens sur des sites Internet.</li>
-          <li class="mb-1">Apposer un panneau sur l’immeuble.</li>
-          <li class="mb-1">Communiquer éventuellement le dossier de l’opération à tout confrère qu’il jugera susceptible de concourir à la location.</li>
-          <li class="mb-1">Réclamer et faire établir (avec l'accord préalable du mandant), si nécessaire, toutes pièces utiles auprès de toutes personnes privées ou publiques, notamment le constat d’huissier dans les cas prévus par la loi et, selon le bail, soit le dossier de diagnostic technique prévu par l’article 3-1 de la loi du 6 juillet 1989, soit les diagnostics et certificats prévus par les articles L.1334-7 du code de la santé publique, L.125-5 du code de l’environnement et L.134-3 du code de la construction et de l’habitation.</li>
-          <li class="mb-1">Rédiger le contrat de location aux prix, charges et conditions convenus aux présentes. Établir les documents annexes (état
-            des lieux contradictoire…) et recueillir la signature du locataire.</li>
-        </ol class="text-justify">
-        <p class="my-4" style="color: #D8A727"><strong>OBLIGATIONS DU MANDATAIRE</strong></p>
-        <p>En contrepartie des pouvoirs qui lui sont accordés, le mandataire devra :</p>
-        <ol>
-          <li class="mb-1">Entreprendre, d’une façon générale, toutes les démarches nécessaires pour mener à bien la mission qui lui est confiée ce jour.</li>
-          <li class="mb-1">Informer le mandant de tous les éléments nouveaux pouvant modifier les conditions de location, notamment en matière de prix ou de législation.</li>
-          <li class="mb-1">Informer le mandant de l’accomplissement du présent mandat dans les 8 jours au plus qui suivront la signature du contrat par le locataire.</li>
-        </ol>
-        <p class="my-4" style="color: #D8A727"><strong>OBLIGATIONS DU MANDANT</strong></p>
-        <p>De son côté, le mandant devra :</p>
-        <ol>
-          <li class="mb-1">Laisser le mandataire visiter les lieux de façon permanente, ou respecter les horaires de visite si les locaux sont encore occupés.</li>
-          <li class="mb-1">Fournir au mandataire toutes justifications relatives à la propriété des locaux à louer, ainsi que tous les documents nécessaires à la rédaction du contrat de location et à sa conformité réglementaire.</li>
-          <li class="mb-1">Signaler immédiatement au mandataire toutes modifications juridiques ou matérielles pouvant modifier les conditions de location.</li>
-        </ol>
-        <p class="my-4" style="color: #D8A727"><strong>DURÉE DU MANDAT</strong></p>
-        <p class="text-justify">Le présent mandat est consenti sans exclusivité pour une période de 6 mois à compter de ce jour, mais pourra être révoqué à tout moment avec un préavis de quinze jours.</p>
-        <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA REMUNERATION</strong></h5>
-        <p>Lorsque la location aura été effectivement conclue, la rémunération du mandataire sera exigible. Celle-ci est fixée à la somme de 375 € hors taxes (TVA non applicable - article 293 B du CGI).</p>
-        <!-- SIGNATURE -->
-        <!-- SHOW PAGE -->
-        <% if params[:action] == "show" %>
-          <div class="row mt-5">
-            <div class="border p-2 col-12 col-md-6 mt-3">
-              <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité »</p>
-              <% if @mandat.acceptation_proprio == true %>
-                <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
-              <% else %>
-                <p>Signature électronique du bailleur <i class="fas fa-times" style="color: red"></i></p>
-                <% if @annonce.user == current_user %>
-                  <%= link_to "Signer", edit_mandat_path(@mandat)  %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="border p-2 col-12 col-md-6 mt-3">
-              <p>Le mandataire : « lu et approuvé, bon pour mandat accepté »</p>
-              <% if @mandat.acceptation_agent == true %>
-                <p>Signature électronique de l'agent <i class="fas fa-check" style="color: green"></i></p>
-              <% else %>
-                <p>Signature électronique de l'agent <i class="fas fa-times" style="color: red"></i></p>
-                <% if User.find(@annonce.agent_user_id.to_i) == current_user %>
-                  <%= link_to "Signer", edit_mandat_path(@mandat)  %>
-                <% end %>
-              <% end %>
-            </div>
-            <div class="container p-0 mx-0 mt-3"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
-          </div>
-          <!-- EDIT PAGE -->
-        <% elsif params[:action] == "edit" %>
-          <div class="row mt-5">
-            <div class="border p-2 col-12 col-md-6 mt-3">
-              <p>Le mandant : « lu et approuvé, mandat confié sans exclusivité »</p>
-              <% if @mandat.acceptation_proprio == true %>
-                <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
-              <% else %>
-                <p>Signature électronique du bailleur <i class="fas fa-times" style="color: red"></i></p>
-              <% end %>
-            </div>
-            <div class="border p-2 col-12 col-md-6 mt-3">
-              <p>Le mandataire : « lu et approuvé, bon pour mandat accepté »</p>
-              <% if @mandat.acceptation_agent == true %>
-                <p>Signature électronique de l'agent <i class="fas fa-check" style="color: green"></i></p>
-              <% else %>
-                <p>Signature électronique de l'agent <i class="fas fa-times" style="color: red"></i></p>
-              <% end %>
-            </div>
-            <div class="container p-0 mx-0 mt-3"><%= link_to 'Retour', 'javascript:history.go(-1);' %></div>
-          </div>
-        <% end %>
-        <!-- closing of the border -->
+          <!-- closing of the border -->
+        </div>
+      </div>
+      <div class="hide-on-small mb-5">
       </div>
     </div>
-  </div>
-<% else %>
-  <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez pas accès à cette page"</h4>
-<% end %>
+  <% else %>
+    <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez pas accès à cette page"</h4>
+  <% end %>
+</div>

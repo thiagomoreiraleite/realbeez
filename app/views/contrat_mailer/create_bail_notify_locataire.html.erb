@@ -1,0 +1,6 @@
+<p>Bonjour <%= Locataire.find(@contrat.locataire_candidature.locataire_id).prenom.capitalize%>,</p>
+<p><%= @contrat.user.prénom.capitalize + " " + @contrat.user.nom.capitalize + " a préparé le contrat de location pour le bien " + @contrat.locataire_candidature.annonce.titre_annonce %>.</p>
+<p>Veuillez vous rendre au lien ci-dessous afin de signer le contrat éléctroniquement.</p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Signer le contrat de location", contrat_url(@contrat) %></p>

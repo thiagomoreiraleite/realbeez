@@ -1,0 +1,12 @@
+<!-- Créer contrat de location -->
+<% if @locataire_candidature.statut_proprietaire == "Accepté" %>
+  <div class="text-center">
+    <% if @locataire_candidature.contrat == nil %>
+      <% if current_user == @locataire_candidature.annonce.user || @locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+        <%= link_to "Créer contrat de location", locataire_candidature_contrats_path(@locataire_candidature), method: :post, class:"btn btn-transparent-bold"  %>
+      <% end %>
+    <% else %>
+      <%= link_to "Voir contrat de location", contrat_path(@locataire_candidature.contrat), class:"btn btn-transparent-bold"  %>
+    <% end %>
+  </div>
+<% end %>

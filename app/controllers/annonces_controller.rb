@@ -172,7 +172,7 @@ class AnnoncesController < ApplicationController
     @annonce.save
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
     # Create a notification
-    Notification.create(recipient: @admin, actor: current_user, action: "checkout_agent_notify_admin", notifiable: @annonce)
+    # Notification.create(recipient: @admin, actor: current_user, action: "checkout_agent_notify_admin", notifiable: @annonce)
     Notification.create(recipient: @annonce.user, actor: current_user, action: "checkout_agent_notify_proprio", notifiable: @annonce)
     # Send email to Admin
     mail_admin = AnnonceMailer.with(annonce: @annonce).checkout_agent_notify_admin
@@ -284,6 +284,7 @@ class AnnoncesController < ApplicationController
       @annonce.user = @email_proprietaire
     end
     # end
+    raise
     if @annonce.update(annonce_params)
       redirect_to @annonce
     else

@@ -1,0 +1,45 @@
+<!-- ---------------------------------------------- -->
+<div class="ml-3" style="">
+  <%= f.input :societe_civile, collection: ["Oui", "Non"], as: :radio_buttons, label: "" %>
+</div>
+<!-- --------------------------------------------- -->
+<div class="ml-3" style="">
+  <%= f.input :mandataire, collection: [['Oui', true], ['Non', false]], as: :radio_buttons, label: "" %>
+</div>
+<!-- ---------------------------------------------- -->
+<div class="col-12 col-lg-6">
+  <%= f.input :nom_mandataire, label: false %>
+</div>
+<!--  -->
+<% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+  <%= link_to @contrat.equipement_technologique, edit_contrat_path(@contrat), class:"text-decoration-none" %>
+<% else %>
+  @contrat.equipement_technologique
+<% end %>
+<!-- EDIT BUTTON -->
+<!-- ---------------------------------------- -->
+<% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+  <span class="ml-1" style="font-size: 12px">
+    <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
+  </span>
+<% end %>
+<!-- ----------------------------------------- -->
+<!-- ----------------------------------------- -->
+<% if @contrat.autre_partie_commune.include? "laverie"%>
+  ✓
+<% else %>
+  □
+<% end %>
+<!--  -->
+<!-- ---------------------------------------- -->
+<%= @contrat.decret_evolution_loyer ? "✓" : "□" %>
+Oui
+<%= @contrat.decret_evolution_loyer == false ? "✓" : "□" %>
+Non
+<% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+  <span class="ml-1" style="font-size: 12px">
+    <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
+  </span>
+<% end %>
+<!-- ------------------------------------------ -->
+<%= @contrat.duree_contrat  == "3 ans" ? "✓" : "□" %>

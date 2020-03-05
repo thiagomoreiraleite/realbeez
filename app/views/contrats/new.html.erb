@@ -1,0 +1,7 @@
+<div class="text-center">
+  <h4 class="my-5" style="width: 100%; color:#DA334A; font-style: italic">"Votre contrat a déjà été créé"</h4>
+  <%= simple_form_for [@locataire_candidature, @contrat] do |f| %>
+    <%#= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
+    <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
+  <% end %>
+</div>

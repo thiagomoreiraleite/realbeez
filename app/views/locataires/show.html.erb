@@ -36,7 +36,7 @@
             <p><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= @locataire.tel %></p>
             <p><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @locataire.email %></p>
             <div class="row border-top pt-4">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-lg-6">
                 <p class="mb-2"><strong>Carte d'identité / Passeport : </strong></p>
                 <div class="d-flex align-items-center">
                   Recto :
@@ -55,7 +55,7 @@
                 <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{@locataire.contrat.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
                 <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@locataire.contrat.filename}", :target => "_blank",class: "btn btn-transparent" %>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-lg-6">
                 <div class="hide-on-small">
                   <p class="mb-2"><strong>3 dernières fiches de paye </strong> : </p>
                 </div>
@@ -98,7 +98,7 @@
             <p><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= @locataire.tel_garant %></p>
             <p><i class="fas fa-envelope mr-3" style="color: #D8A727"></i><%= @locataire.email_garant %></p>
             <div class="row border-top pt-4">
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-lg-6">
                 <p class="mb-2"><strong>Carte d'identité / Passeport : </strong></p>
                 <div class="d-flex align-items-center">
                   Recto :
@@ -117,7 +117,7 @@
                 <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{@locataire.contrat_garant.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
                 <%= link_to "Télécharger", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@locataire.contrat_garant.filename}", :target => "_blank",class: "btn btn-transparent" %>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
+              <div class="col-12 col-lg-6">
                 <div class="hide-on-small">
                   <p class="mb-2"><strong>3 dernières fiches de paye </strong> : </p>
                 </div>

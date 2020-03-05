@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :locataires, dependent: :destroy
   has_many :locataire_candidatures, dependent: :destroy
   has_many :parrains
+  has_one :contrat
   acts_as_messageable
 
   include PgSearch::Model

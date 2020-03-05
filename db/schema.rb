@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_070310) do
+ActiveRecord::Schema.define(version: 2020_03_02_025215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,95 @@ ActiveRecord::Schema.define(version: 2020_02_25_070310) do
     t.boolean "actualite"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contrats", force: :cascade do |t|
+    t.bigint "locataire_candidature_id"
+    t.bigint "user_id"
+    t.string "qualite_bailleur"
+    t.string "nom_bailleur"
+    t.string "denomination_bailleur"
+    t.string "adresse_bailleur"
+    t.string "email_bailleur"
+    t.boolean "mandataire"
+    t.string "nom_mandataire"
+    t.string "denomination_mandataire"
+    t.string "adresse_mandataire"
+    t.string "activite_mandataire"
+    t.string "carte_pro"
+    t.text "nom_locataire", default: [], array: true
+    t.string "adresse_logement"
+    t.string "type_habitat_immeuble"
+    t.string "type_habitat"
+    t.string "periode_construction"
+    t.integer "surface"
+    t.integer "nb_piece"
+    t.text "autre_partie_logement", default: [], array: true
+    t.string "equipement"
+    t.string "chauffage"
+    t.string "eau_chaude"
+    t.string "destination_locaux"
+    t.boolean "cave"
+    t.string "cave_detail"
+    t.boolean "parking"
+    t.string "parking_detail"
+    t.boolean "garage"
+    t.string "garage_detail"
+    t.boolean "autre_partie_privative"
+    t.string "autre_partie_privative_detail"
+    t.text "partie_commune", default: [], array: true
+    t.string "autre_partie_commune"
+    t.string "equipement_technologique"
+    t.string "date_prise_effet"
+    t.string "duree_contrat"
+    t.string "nb_duree_reduite"
+    t.string "justif_duree_reduite"
+    t.integer "loyer_mensuel"
+    t.boolean "decret_evolution_loyer"
+    t.boolean "loyer_reference"
+    t.string "montant_loyer_reference"
+    t.string "montant_loyer_majore"
+    t.text "justif_complement_loyer"
+    t.text "loyer_dernier_locataire"
+    t.string "date_revision_loyer"
+    t.string "reference_irl"
+    t.string "modalite_paiement_charges"
+    t.string "provision_charges"
+    t.string "modalite_revision_forfait"
+    t.string "contribution_economie_charge"
+    t.string "justif_contribution_travaux"
+    t.boolean "colocation_assurance"
+    t.string "montant_annuel_assurance"
+    t.string "montant_mensuel_assurance"
+    t.string "perdiodicite_paiement"
+    t.string "paiement_echoir_echu"
+    t.string "date_periode_paiement"
+    t.string "lieu_paiement"
+    t.integer "loyer_hors_charges"
+    t.integer "charge_recuperable"
+    t.string "contribution_partage_economie_charges"
+    t.string "colocation_assurance_recuperable"
+    t.string "hausse_baisse_loyer"
+    t.string "modalite_hausse_annuelle"
+    t.text "travaux_amelioration"
+    t.text "travaux_majoration_loyer"
+    t.text "travaux_diminution_loyer"
+    t.integer "depot_garantie"
+    t.integer "honoraires_visite_bail"
+    t.integer "honoraires_etat_lieux"
+    t.string "honoraires_autres"
+    t.text "autre_condition"
+    t.string "date_signature"
+    t.string "lieu_signature"
+    t.boolean "signature_bailleur"
+    t.boolean "signature_locataire"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "garant"
+    t.string "societe_civile"
+    t.string "autre_autre_partie_logement"
+    t.index ["locataire_candidature_id"], name: "index_contrats_on_locataire_candidature_id"
+    t.index ["user_id"], name: "index_contrats_on_user_id"
   end
 
   create_table "documents", force: :cascade do |t|

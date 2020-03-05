@@ -31,12 +31,8 @@
           <%= f.input :id_verso, label: false %>
           <%= f.input :id_verso_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">Justificatif de domicile</p>
-          <% if current_user.photo.identifier == "image/upload/v1579358933/default_profile.png" %>
-            <%= f.input :justif_dom, label: false %>
-            <%= f.input :justif_dom_cache, as: :hidden %>
-          <% else %>
-            <%= link_to "Ouvrir", "https://res.cloudinary.com/dvfwroq5k/image/upload/#{current_user.photo.filename}", :target => "_blank",class: "btn btn-transparent mr-1" %>
-          <% end %>
+          <%= f.input :justif_dom, label: false %>
+          <%= f.input :justif_dom_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
           <%= f.input :fiche_paye_mois1, label: false %>
           <%= f.input :fiche_paye_mois1_cache, as: :hidden %>

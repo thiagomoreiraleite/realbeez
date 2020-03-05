@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     # Create a notification
     @admin = User.where("email = ?", "contact@realbeez.com")[0]
     @recipient = User.find(annonce.agent_user_id)
-    Notification.create(recipient: @admin, actor: current_user, action: "checkout_proprio_notify_admin", notifiable: order)
+    # Notification.create(recipient: @admin, actor: current_user, action: "checkout_proprio_notify_admin", notifiable: order)
     Notification.create(recipient: @recipient, actor: current_user, action: "checkout_proprio_notify_agent", notifiable: order)
     # Send email to Admin
     mail_admin = OrderMailer.with(order: order).checkout_proprio_notify_admin
