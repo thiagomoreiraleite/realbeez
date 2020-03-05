@@ -103,7 +103,7 @@ class ContratsController < ApplicationController
     @contrat.honoraires_etat_lieux = 60
     @contrat.honoraires_autres = "n/a"
     @contrat.autre_condition = "n/a"
-    @contrat.date_signature = @contrat.created_at.strftime("%d/%m/%Y")
+    @contrat.date_signature = Date.today.strftime("%d/%m/%Y")
     @contrat.lieu_signature = @locataire_candidature.annonce.ville
     @contrat.signature_bailleur
     @contrat.signature_locataire
