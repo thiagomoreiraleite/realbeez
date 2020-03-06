@@ -44,9 +44,9 @@
               <% elsif notification.action == "checkout_agent_notify_proprio" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a loué votre bien ' + notification.notifiable.titre_annonce, annonce_path(notification.notifiable), class:"" %></td>
               <% elsif notification.action == "checkout_proprio_notify_admin" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué.", annonce_path(notification.notifiable.annonce), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué", annonce_path(notification.notifiable.annonce), class:"" %></td>
               <% elsif notification.action == "checkout_proprio_notify_agent" %>
-                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué par vos soins.", annonce_path(notification.notifiable.annonce), class:"" %></td>
+                <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' confirme que son bien ' + notification.notifiable.annonce.titre_annonce + " a été loué par vos soins", annonce_path(notification.notifiable.annonce), class:"" %></td>
               <% elsif notification.action == "create_locataire_notify_agent" %>
                 <td><%= link_to User.find(notification.actor_id).prénom.capitalize + ' a déposé un dossier de location pour le bien ' + notification.notifiable.annonce.titre_annonce, locataire_candidature_path(notification.notifiable), class:"" %></td>
               <% elsif notification.action == "create_locataire_notify_proprio" %>
@@ -79,15 +79,23 @@
                 <td><%= link_to 'Dossier de location créé par ' +
                 User.find(notification.actor_id).prénom.capitalize, contrat_path(notification.notifiable_id), class:"" %></td>
               <% end %>
-              <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
-            </tr>
+            <% elsif notification.action == "create_mandat_notify_proprio" %>
+              <td><%= link_to 'Mandat de location créé par ' +
+                User.find(notification.actor_id).prénom.capitalize, annonce_path(notification.notifiable.annonce), class:"" %></td>
+            <% end %>
+          <% elsif notification.action == "create_annonce_notify_proprio" %>
+            <td><%= link_to 'Votre annonce a été publié par ' +
+                User.find(notification.actor_id).prénom.capitalize, annonce_path(notification.notifiable), class:"" %></td>
           <% end %>
-        </tbody>
-      </table>
-      <br>
-    </div>
-  <% else %>
-    <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucune notification actuellement"</h4>
-  <% end %>
-  <p class="mb-5"><%= link_to "Retour", root_path, style:"font-size: 16px" %></p>
+          <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
+<% else %>
+  <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucune notification actuellement"</h4>
+<% end %>
+<p class="mb-5"><%= link_to "Retour", root_path, style:"font-size: 16px" %></p>
 </div>

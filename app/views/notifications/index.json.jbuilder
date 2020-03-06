@@ -63,6 +63,10 @@ json.array!  @notifications do |notification|
       json.type "a créé un dossier de location"
     elsif notification.action == "create_bail_notify_proprio"
       json.type "a créé un dossier de location"
+    elsif notification.action == "create_mandat_notify_proprio"
+      json.type "a préparé le mandat de location"
+    elsif notification.action == "create_annonce_notify_proprio"
+      json.type "a publié votre annonce"
     # elsif notification.action == "new_registration"
     #   json.type "s'est inscrit sur RB"
     end
@@ -127,6 +131,10 @@ json.array!  @notifications do |notification|
     json.url contrat_path(notification.notifiable)
   elsif notification.action == "create_bail_notify_proprio"
     json.url contrat_path(notification.notifiable)
+  elsif notification.action == "create_mandat_notify_proprio"
+    json.url annonce_path(notification.notifiable.annonce)
+  elsif notification.action == "create_mandat_notify_proprio"
+    json.url annonce_path(notification.notifiable)
   # elsif notification.action == "new_registration"
   #   json.url profile_all_users_path
   end

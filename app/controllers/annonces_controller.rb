@@ -261,9 +261,21 @@ class AnnoncesController < ApplicationController
       # Send email to Admin
       mail_admin = AnnonceMailer.with(annonce: @annonce).create_new_annonce
       mail_admin.deliver_now
-      redirect_to @annonce
       # for multiple upload photo
       # create_pictures
+      if @annonce.email_proprio != "" && @annonce.agent == "Oui"
+        # NOTIFICATION
+        # Send to proprio if registered
+        @proprio_array = User.where("email = ? ", @annonce.email_proprio)
+        @proprio_user = User.where("email = ? ", @annonce.email_proprio)[0]
+        if @proprio_array != []
+          Notification.create(recipient: @proprio_user, actor: current_user, action: "create_annonce_notify_proprio", notifiable: @annonce)
+        end
+        # Send email to proprio
+        mail_agent = AnnonceMailer.with(annonce: @annonce).create_annonce_notify_proprio
+        mail_agent.deliver_now
+      end
+      redirect_to annonce_path(@annonce)
     else
       render :new
     end
@@ -284,7 +296,6 @@ class AnnoncesController < ApplicationController
       @annonce.user = @email_proprietaire
     end
     # end
-    raise
     if @annonce.update(annonce_params)
       redirect_to @annonce
     else

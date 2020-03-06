@@ -7,7 +7,13 @@
       <% if @annonce.user == User.find(@annonce.agent_user_id.to_i) %>
         <% if user_signed_in? %>
           <% if current_user == User.find(@annonce.agent_user_id.to_i)%>
-            <p class="text-center" style="width: 100%; color: #DA334A; font-style: italic;">"Aucun propriétaire n'a pu être identifié.
+            <p class="text-center" style="width: 100%; color: green; font-style: italic;">"Aucun propriétaire n'a pu être identifié car celui n'a pas encore créé son compte.
+              <br>
+              Un email lui a été envoyé automatiquement afin qu'il fasse le nécessaire.
+              <br>
+              Après la création du compte, veuillez soumettre à nouveau le formulaire en cliquant sur le bouton ci-dessous :
+              <br>
+              <%= link_to "Rafraichir", edit_annonce_path(@annonce), class:"btn btn-transparent my-3" %>
               <br>
               Veuillez vous assurer que l'adresse email du propriétaire soit bien correcte et la modifier si besoin.
               <br>

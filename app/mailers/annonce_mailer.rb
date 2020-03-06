@@ -53,4 +53,13 @@ class AnnonceMailer < ApplicationMailer
       subject:  "#{@annonce.user.prénom.capitalize} vient de publier une annonce"
     )
   end
+
+  def create_annonce_notify_proprio
+    @annonce = params[:annonce]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    mail(
+      to:       @annonce.email_proprio,
+      subject:  "Votre agent vient de publier votre annonce"
+    )
+  end
 end

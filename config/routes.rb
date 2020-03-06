@@ -49,6 +49,8 @@ Rails.application.routes.draw do
   get '/locataires_proprio', to: 'locataire_candidatures#locataires_proprio', as: :locataires_proprio
   get '/locataires_agent', to: 'locataire_candidatures#locataires_agent', as: :locataires_agent
   get '/locataires_all', to: 'locataire_candidatures#locataires_all', as: :locataires_all
+  get '/confirmation_locataire_candidature', to: 'locataire_candidatures#confirmation_locataire_candidature', as: :confirmation_locataire_candidature
+  get '/confirmation_depot_dossier', to: 'locataire_candidatures#confirmation_depot_dossier', as: :confirmation_depot_dossier
   # Contrat de bail
   resources :contrats, only: [:show, :edit, :update]
 

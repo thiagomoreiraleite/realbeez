@@ -20,7 +20,11 @@
             </h3>
             <p class="mb-0 ">Soumis au titre Ier de la loi du 6 juillet 1989 tendant à améliorer les rapports locatifs et portant</p>
             <p class="">modification de la loi n° 86-1290 du 23 décembre 1986</p>
-            <h5 class="mb-0"><strong>LOCAUX VIDES A USAGE D’HABITATION</strong></h5>
+            <% if @contrat.locataire_candidature.annonce.meublé == "Non meublé" || @contrat.locataire_candidature.annonce.meublé == "" %>
+              <h5 class="mb-0"><strong>LOCAUX VIDES A USAGE D’HABITATION</strong></h5>
+            <% elsif @contrat.locataire_candidature.annonce.meublé == "Meublé" %>
+              <h5 class="mb-0"><strong>LOCAUX MEUBLES A USAGE D'HABITATION</strong></h5>
+            <% end %>
           </div>
           <div class="" style="font-size: 12px">
             <p class=""><strong>Champ du contrat type </strong>: le présent contrat type de location est applicable aux locations et aux colocations de logement nu et qui constitue la résidence principale du preneur, à l’exception :</p>

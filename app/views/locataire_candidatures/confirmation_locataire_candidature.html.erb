@@ -1,0 +1,20 @@
+<div class="pb-5" style="">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 offset-md-2 text-justify px-4" style="line-height: 1.8em">
+        <h5 class="text-center mt-3 my-5 pt-5" style="color: #D8A727">Confirmation de l'acceptation du dossier de location</h5>
+        <p>Cher <%= LocataireCandidature.find(params[:id].to_i).annonce.user.prénom %>,</p>
+        <p class="mb-1">Vous avez accepté le dossier de location de <%= Locataire.find(LocataireCandidature.find(params[:id].to_i).locataire_id).prenom %> <%= Locataire.find(LocataireCandidature.find(params[:id].to_i).locataire_id).nom %>.</p>
+        <% if LocataireCandidature.find(params[:id].to_i).annonce.agent_user_id == nil %>
+          <p class="">Vous pouvez dès à présent créer votre contrat de location, l'actualiser si des informations sont manquantes et le signer en cliquant sur le lien ci-dessous.</p>
+        <% else %>
+          <p class="mb-1">Votre agent va préparer votre contrat de location et il ne vous restera plus qu'à le signer éléctroniquement.</p>
+          <p class="">Vous serez averti par la reception d'une notification et d'un email.</p>
+        <% end %>
+        <p class="mb-1">A très bientôt,</p>
+        <p>Votre équipe Realbeez</p>
+        <%= link_to "Mon contrat de bail", locataire_candidature_path(params[:id].to_i) %>
+      </div>
+    </div>
+  </div>
+</div>

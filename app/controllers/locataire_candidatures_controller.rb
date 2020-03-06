@@ -1,5 +1,5 @@
 class LocataireCandidaturesController < ApplicationController
-  before_action :set_locataire_candidature, only: [:show, :edit, :update, :destroy, :accept_locataire, :reject_locataire]
+  before_action :set_locataire_candidature, only: [:show, :edit, :update, :destroy, :accept_locataire, :reject_locataire, :confirmation_locataire_candidature, :confirmation_depot_dossier]
 
   def show
     authorize @locataire_candidature
@@ -46,11 +46,12 @@ class LocataireCandidaturesController < ApplicationController
       # Send email to prorio
       mail_proprio = LocataireCandidatureMailer.with(locataire: @locataire_candidature).create_locataire_notify_proprio
       mail_proprio.deliver_now
-      if @locataire_candidature.agent == "Oui"
-        redirect_to locataires_agent_path
-      else
-        redirect_to locataires_locataire_path
-      end
+      # if @locataire_candidature.agent == "Oui"
+      #   redirect_to locataires_agent_path
+      # else
+      #   redirect_to locataires_locataire_path
+      # end
+      redirect_to confirmation_depot_dossier_path(id: @locataire_candidature.id)
     else
       render :new
     end
@@ -167,7 +168,8 @@ class LocataireCandidaturesController < ApplicationController
       mail_admin = LocataireCandidatureMailer.with(locataire: @locataire_candidature).accept_locataire_notify_admin
       mail_admin.deliver_now
       # redirect
-      redirect_to locataire_candidature_path(@locataire_candidature)
+      # redirect_to locataire_candidature_path(@locataire_candidature)
+      redirect_to confirmation_locataire_candidature_path(id: @locataire_candidature.id)
     end
   end
 
@@ -276,6 +278,14 @@ class LocataireCandidaturesController < ApplicationController
     @locataires_admin_en_cours = @locataires_all.select{ |l| l.statut_proprietaire == "En cours"}.sort_by{ |l| l.updated_at }
     @locataires_admin_accepté = @locataires_all.select{ |l| l.statut_proprietaire == "Accepté"}.sort_by{ |l| l.updated_at }
     @locataires_admin_rejeté = @locataires_all.select{ |l| l.statut_proprietaire == "Rejeté"}.sort_by{ |l| l.updated_at }
+  end
+
+  def confirmation_locataire_candidature
+    authorize @locataire_candidature
+  end
+
+  def confirmation_depot_dossier
+    authorize @locataire_candidature
   end
 
   private

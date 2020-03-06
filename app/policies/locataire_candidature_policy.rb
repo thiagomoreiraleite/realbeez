@@ -40,6 +40,14 @@ class LocataireCandidaturePolicy < ApplicationPolicy
     true
   end
 
+  def confirmation_locataire_candidature?
+    true
+  end
+
+  def confirmation_depot_dossier?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.all

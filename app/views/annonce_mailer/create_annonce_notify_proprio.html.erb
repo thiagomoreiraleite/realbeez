@@ -1,0 +1,7 @@
+<p>Bonjour <%= @annonce.prenom_proprio.capitalize%>,</p>
+<p class="mb-1">Votre agent a publié une annonce pour la mise en location de votre bien.</p>
+<p class="mb-1">Connectez-vous ou créez un compte afin de voir votre annonce et la modifier si nécessaire.</p>
+<p>Votre email de connection à utiliser : <%= @annonce.email_proprio %> </p>
+<p>A très bientôt</p>
+<p>Realbeez</p>
+<p><%= link_to "Voir votre annonce", annonce_url(@annonce) %></p>
