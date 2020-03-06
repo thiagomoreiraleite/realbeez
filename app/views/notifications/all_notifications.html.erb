@@ -78,24 +78,22 @@
               <% elsif notification.action == "create_bail_notify_proprio" %>
                 <td><%= link_to 'Dossier de location créé par ' +
                 User.find(notification.actor_id).prénom.capitalize, contrat_path(notification.notifiable_id), class:"" %></td>
-              <% end %>
-            <% elsif notification.action == "create_mandat_notify_proprio" %>
-              <td><%= link_to 'Mandat de location créé par ' +
+              <% elsif notification.action == "create_mandat_notify_proprio" %>
+                <td><%= link_to 'Mandat de location créé par ' +
                 User.find(notification.actor_id).prénom.capitalize, annonce_path(notification.notifiable.annonce), class:"" %></td>
-            <% end %>
-          <% elsif notification.action == "create_annonce_notify_proprio" %>
-            <td><%= link_to 'Votre annonce a été publié par ' +
+              <% elsif notification.action == "create_annonce_notify_proprio" %>
+                <td><%= link_to 'Votre annonce a été publié par ' +
                 User.find(notification.actor_id).prénom.capitalize, annonce_path(notification.notifiable), class:"" %></td>
+              <% end %>
+              <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
+            </tr>
           <% end %>
-          <td><%= link_to '', notification, method: :delete, class:"fas fa-trash"  %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <br>
-</div>
-<% else %>
-  <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucune notification actuellement"</h4>
-<% end %>
-<p class="mb-5"><%= link_to "Retour", root_path, style:"font-size: 16px" %></p>
+        </tbody>
+      </table>
+      <br>
+    </div>
+  <% else %>
+    <h4 class="text-center my-5" style="width: 100%; color:#DA334A; font-style: italic">"Aucune notification actuellement"</h4>
+  <% end %>
+  <p class="mb-5"><%= link_to "Retour", root_path, style:"font-size: 16px" %></p>
 </div>
