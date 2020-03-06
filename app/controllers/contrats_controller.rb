@@ -130,8 +130,8 @@ class ContratsController < ApplicationController
           @proprio_user = @contrat.locataire_candidature.annonce.user
           Notification.create(recipient: @proprio_user, actor: current_user, action: "create_bail_notify_proprio", notifiable: @contrat)
           # Send email to proprio if agent created contrat
-          mail_agent = ContratMailer.with(contrat: @contrat).create_bail_notify_proprio
-          mail_agent.deliver_now
+          mail_proprio = ContratMailer.with(contrat: @contrat).create_bail_notify_proprio
+          mail_proprio.deliver_now
         end
       end
 

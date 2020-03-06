@@ -1,4 +1,4 @@
-<% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+<% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user%>
   <div id="" class="container" style="color:black;">
     <div class="hide-on-small mt-5 pt-5">
     </div>
@@ -445,7 +445,7 @@
             </div>
           </div>
           <div class="mt-4">
-            <% if @contrat.user == current_user %>
+            <% if @contrat.locataire_candidature.annonce.user == current_user %>
               <%= f.input :signature_bailleur, label: "Le bailleur : « lu et approuvé »" %>
             <% end %>
             <% if Locataire.find(@contrat.locataire_candidature.locataire_id).email == current_user.email %>
@@ -516,4 +516,6 @@
       </div>
     </div>
   </div>
+<% else %>
+  <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez pas accès à cette page"</h4>
 <% end %>

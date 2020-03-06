@@ -12,7 +12,7 @@
         <div class="col-sm-12 col-lg-10 offset-lg-1 px-5" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 5px">
           <div class="text-center border py-3 my-5 px-3" style="">
             <h3 class=""><strong>Contrat de location</strong>
-              <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+              <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
                 <span class="ml-3" style="font-size: 14px">
                   <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
                 </span>
@@ -55,7 +55,7 @@
           <h5 class="mt-5 my-4"><strong>I. Désignation des parties</strong></h5>
           <p class="">Le présent contrat est conclu entre les soussignés :</p>
           <p class="">Qualité du bailleur :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.qualite_bailleur, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -64,7 +64,7 @@
             <% end %>
           </p>
           <p class="mt-4 "><strong>Nom et prénom du bailleur : </strong>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.nom_bailleur, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -73,7 +73,7 @@
             <% end %>
           </p>
           <p class="mb-1">Dénomination (si personne morale) :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.denomination_bailleur, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -86,14 +86,14 @@
             Oui
             <%= @contrat.societe_civile == "Non" ? "✓" : "□" %>
             Non
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
           </p>
           <p class="">Adresse :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.adresse_bailleur, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -102,7 +102,7 @@
             <% end %>
           </p>
           <p class="">Adresse email (facultatif) :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.email_bailleur, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -114,13 +114,13 @@
           <p class="">Le cas échéant, représenté par un mandataire :
             <%= @contrat.mandataire ? "✓" : "□" %> Oui
             <%= @contrat.mandataire == false ? "✓" : "□" %> Non
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
             <p class="">Nom et prénom du mandataire :
-              <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+              <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
                 <span class="" style="">
                   <%= link_to @contrat.nom_mandataire, edit_contrat_path(@contrat), class:"text-decoration-none" %>
                 </span>
@@ -129,7 +129,7 @@
               <% end %></p>
           </p>
           <p class="">Dénomination (si personne morale) :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.denomination_mandataire, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -138,7 +138,7 @@
             <% end %>
           </p>
           <p class="">Adresse :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.adresse_mandataire, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -147,7 +147,7 @@
             <% end %>
           </p>
           <p class="">Activité exercée :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.activite_mandataire, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -156,7 +156,7 @@
             <% end %>
           </p>
           <p class="mb-0">N° et lieu de délivrance de la carte professionnelle* :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="" style="">
                 <%= link_to @contrat.carte_pro, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               </span>
@@ -167,7 +167,7 @@
           <p class="" style="font-size: 12px">*Mention obligatoire s’appliquant aux professionnels exerçant une activité mentionnée à l’article 1er de la loi n° 70-9 du 2 janvier 1970 réglementant les conditions d’exercice des activités relatives à certaines opérations portant sur les immeubles et les fonds de commerce.</p>
           <p class="">Le cas échéant, nom et adresse du garant :
             <% if @contrat.garant != nil %>
-              <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+              <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
                 <%= link_to @contrat.garant, edit_contrat_path(@contrat), class:"text-decoration-none" %>
               <% else %>
                 <%= @contrat.garant %>
@@ -175,7 +175,7 @@
             <% else %>
               <%= link_to "Aucun garant", edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% end %>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -201,7 +201,7 @@
           <div class="dclr"></div>
           <div id="id2_1"> -->
           <p class="mt-4 mb-1"><strong>Nom et prénom du ou des locataires</strong>, adresse email (facultatif)] : </p>
-          <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+          <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
             <!--  <span class="ml-3 mt-0" style=""> -->
             <% @contrat.nom_locataire.each do |locataire| %>
               <p class="mb-1"><%= link_to locataire, edit_contrat_path(@contrat), class:"text-decoration-none" %></p>
@@ -221,7 +221,7 @@
           <p class=""><strong>A. Consistance du logement</strong></p>
           <p class="">Adresse du logement [exemples : adresse / bâtiment / étage / porte etc.] :</p>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.adresse_logement, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.adresse_logement %>
@@ -230,7 +230,7 @@
           <p class="">Type d’habitat, Immeuble :
             <%= @contrat.type_habitat_immeuble == "collectif" ? "✓" : "□" %> collectif
             <%= @contrat.type_habitat_immeuble == "individuel" ? "✓" : "□" %> individuel
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -238,7 +238,7 @@
             <span class="mx-3">/</span>
             <%= @contrat.type_habitat == "mono propriété" ? "✓" : "□" %> mono propriété
             <%= @contrat.type_habitat == "copropriété" ? "✓" : "□" %> copropriété
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -250,14 +250,14 @@
             <%= @contrat.periode_construction  == "de 1975 à 1989" ? "✓" : "□" %> de 1975 à 1989
             <%= @contrat.periode_construction  == "de 1989 à 2005" ? "✓" : "□" %> de 1989 à 2005
             <%= @contrat.periode_construction  == "ddepuis 2005 " ? "✓" : "□" %> depuis 2005
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
           </p>
           <p class="">- surface habitable :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.surface, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.surface %>
@@ -265,7 +265,7 @@
             m2
           </p>
           <p class="">- nombre de pièces principales :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.nb_piece, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.nb_piece %>
@@ -308,7 +308,7 @@
               □
             <% end %>
             jardin
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -321,19 +321,19 @@
               □
             <% end %>
             Autres :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.autre_autre_partie_logement, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.autre_autre_partie_logement %>
             <% end %>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
           </p>
           <p class="">Éléments d’équipements du logement : cuisine équipée, détail des installations sanitaires ... :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.equipement, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%=  @contrat.equipement %>
@@ -342,7 +342,7 @@
           <p class="mb-0">Modalité de production de chauffage :
             <%= @contrat.chauffage  == "individuel" ? "✓" : "□" %> individuel
             <%= @contrat.chauffage  == "collectif" ? "✓" : "□" %> collectif*
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -352,7 +352,7 @@
           <p class="mb-0" >Modalité de production d’eau chaude sanitaire :
             <%= @contrat.eau_chaude  == "individuel" ? "✓" : "□" %> individuel
             <%= @contrat.eau_chaude  == "collectif" ? "✓" : "□" %> collectif*
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -362,7 +362,7 @@
           <p class=""><strong>B. Destination des locaux</strong> :
             <%= @contrat.destination_locaux  == "usage d'habitation" ? "✓" : "□" %> usage d’habitation
             <%= @contrat.destination_locaux  == "usage mixte professionnel et d'habitation" ? "✓" : "□" %> usage mixte professionnel et d’habitation
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -371,30 +371,30 @@
           <p class=""><strong>C. Désignation des locaux et équipements accessoires de l’immeuble à usage privatif du locataire : </strong></p>
           <p class="">
             <%= @contrat.cave ? "✓" : "□" %> cave n°
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.cave_detail, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.cave_detail %>
             <% end %>
             <span class=ml-3><%= @contrat.parking ? "✓" : "□" %>  parking n°</span>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.parking_detail, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.parking_detail %>
             <% end %>
             <span class="ml-3"><%= @contrat.garage ? "✓" : "□" %>  garage n°</span>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.garage_detail, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.garage_detail %>
             <% end %>
             <span class="ml-3"><%= @contrat.autre_partie_privative ? "✓" : "□" %>  Autres :</span>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.autre_partie_privative_detail, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.autre_partie_privative_detail %>
             <% end %>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -431,7 +431,7 @@
               □
             <% end %>
             laverie
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -456,19 +456,19 @@
               □
             <% end %>
             autres  :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.autre_partie_commune, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.autre_partie_commune %>
             <% end %>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1 mr-3" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
           </p>
           <p class="">E. Équipement d’accès aux technologies de l’information et de la communication [modalités de réception de la télévision dans l’immeuble, modalités de raccordement internet etc.] :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.equipement_technologique, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.equipement_technologique %>
@@ -506,7 +506,7 @@
           <h5 class="mt-5 my-4"><strong>III. Date de prise d’effet et durée du contrat</strong></h5>
           <p class="">La durée du contrat et sa date de prise d’effet sont ainsi définies :</p>
           <p class="">A. Date de prise d’effet du contrat :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.date_prise_effet, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.date_prise_effet %>
@@ -515,7 +515,7 @@
           <p class="">B. Durée du contrat :
             <%= @contrat.duree_contrat  == "3 ans" ? "✓" : "□" %> 3 ans
             <%= @contrat.duree_contrat  == "6 ans" ? "✓" : "□" %> 6 ans (minimum 6 ans si le bailleur est une personne morale)
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -523,7 +523,7 @@
           </p>
           <p class="mb-0 ">
             <%= @contrat.duree_contrat  == "Durée réduite" ? "✓" : "□" %> Durée réduite :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.nb_duree_reduite, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%=  @contrat.nb_duree_reduite %>
@@ -532,7 +532,7 @@
           </p>
           <p class="" style="font-size: 12px">*Limité aux événements précis qui justifient que le bailleur personne physique ait à reprendre le local pour des raisons professionnelles ou familiales.</p>
           <p class="">C. Le cas échéant, événement et raison justifiant la durée réduite du contrat de location :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.justif_duree_reduite, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.justif_duree_reduite %>
@@ -546,7 +546,7 @@
           <p class="">A. Loyer</p>
           <p class="">1° Fixation du loyer initial :</p>
           <p class="mb-0">a) Montant du loyer mensuel* :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.loyer_mensuel, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.loyer_mensuel %>
@@ -559,7 +559,7 @@
           <p class="">- le loyer du logement objet du présent contrat est soumis au décret fixant annuellement le montant maximum d’évolution des loyers à la relocation :
             <%= @contrat.decret_evolution_loyer ? "✓" : "□" %> Oui
             <%= @contrat.decret_evolution_loyer == false ? "✓" : "□" %> Non
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -567,32 +567,32 @@
           </p>
           <p class="">- le loyer du logement objet du présent contrat est soumis au loyer de référence majoré fixé par arrêté préfectoral : <%= @contrat.loyer_reference ? "✓" : "□" %> Oui
             <%= @contrat.loyer_reference == false ? "✓" : "□" %> Non
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
           </p>
           <p class="">- montant du loyer de référence :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.montant_loyer_reference, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.montant_loyer_reference %>
             <% end %>
             €/m2
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
             <% end %>
             - montant du loyer de référence majoré :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.montant_loyer_majore, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.montant_loyer_majore %>
             <% end %>
             €/m2
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -600,7 +600,7 @@
           </p>
           <p class="">- le cas échéant, complément de loyer [si un complément de loyer est prévu, indiquer le montant du loyer de base, nécessairement égal au loyer de référence majoré, le montant du complément de loyer et les caractéristiques du logement justifiant le complément de loyer] : </p>
           <p>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to simple_format(@contrat.justif_complement_loyer), edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= simple_format(@contrat.justif_complement_loyer) %>
@@ -609,7 +609,7 @@
           <p class="mb-0 ">c) Le cas échéant, informations relatives au loyer du dernier locataire [montant du dernier loyer acquitté par le précédent locataire, date de versement et date de la dernière révision du loyer]* :</p>
           <p class="" style="font-size: 12px">*Mention obligatoire si le précédent locataire a quitté le logement moins de dix-huit mois avant la signature du bail.</p>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to simple_format(@contrat.loyer_dernier_locataire), edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= simple_format(@contrat.loyer_dernier_locataire) %>
@@ -617,14 +617,14 @@
           </p>
           <p class="">2° Le cas échéant, modalités de révision :</p>
           <p class="">a) Date de révision :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.date_revision_loyer, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.date_revision_loyer %>
             <% end %>
           </p>
           <p>b) Date ou trimestre de référence de l’IRL :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.reference_irl, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.reference_irl %>
@@ -650,7 +650,7 @@
           <div class="dclr"></div> -->
           <p class="">B. Charges récupérables</p>
           <p class="mb-1">1. Modalité de règlement des charges récupérables :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -660,14 +660,14 @@
           <p class="mb-1"><%= @contrat.modalite_paiement_charges  == "Paiement périodique des charges sans provision" ? "✓" : "□" %> Paiement périodique des charges sans provision</p>
           <p class=""><%= @contrat.modalite_paiement_charges  == "Forfait de charges" ? "✓" : "□" %> (En cas de colocation seulement) Forfait de charges</p>
           <p class="">2. Le cas échéant, montant des provisions sur charges ou, en cas de colocation, du forfait de charge :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.provision_charges, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.provision_charges %>
             <% end %>
           </p>
           <p class="mb-0 ">3. Le cas échéant, en cas de colocation et si les parties en conviennent, modalités de révision du forfait de charges* :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.modalite_revision_forfait, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.modalite_revision_forfait %>
@@ -677,14 +677,14 @@
           <p class="mb-0 ">C. Le cas échéant, contribution pour le partage des économies de charges*:</p>
           <p class="" style="font-size: 12px">*Art. 23-1 de la loi n° 89-462 du 6 juillet 1989.</p>
           <p class="">1. Montant et durée de la participation du locataire restant à courir au jour de la signature du contrat :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.contribution_economie_charge, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.contribution_economie_charge %>
             <% end %>
           </p>
           <p class="">2. Éléments propres à justifier les travaux réalisés donnant lieu à cette contribution :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.justif_contribution_travaux, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.justif_contribution_travaux %>
@@ -695,7 +695,7 @@
             Oui
             <%= @contrat.colocation_assurance == false ? "✓" : "□" %>
             Non
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -703,7 +703,7 @@
           </p>
           <p class="" style="font-size: 12px">*Au cours de l’exécution du contrat de location et dans les conditions prévues par la loi, les colocataires peuvent provoquer la résiliation de l’assurance souscrite par le bailleur pour leur compte.</p>
           <p class="mb-0 ">1. Montant total annuel récupérable au titre de l’assurance pour compte des colocataires* :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.montant_annuel_assurance, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.montant_annuel_assurance %>
@@ -711,7 +711,7 @@
           </p>
           <p class="" style="font-size: 12px">*Correspond au montant de la prime d’assurance annuelle, éventuellement majoré dans la limite d’un montant fixé par décret en Conseil d’Etat.</p>
           <p class="">2. Montant récupérable par douzième :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.montant_mensuel_assurance, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.montant_mensuel_assurance %>
@@ -719,7 +719,7 @@
           </p>
           <p class="">E. Modalités de paiement</p>
           <p class="mb-0">Périodicité du paiement* :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.perdiodicite_paiement, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.perdiodicite_paiement %>
@@ -728,7 +728,7 @@
               <%= @contrat.paiement_echoir_echu  == "à échoir" ? "✓" : "□" %> à échoir
               <%= @contrat.paiement_echoir_echu  == "à terme échu" ? "✓" : "□" %> à terme échu
             </span>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <span class="ml-1" style="font-size: 12px">
                 <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
               </span>
@@ -736,13 +736,13 @@
           </p>
           <p class="" style="font-size: 12px">*Paiement mensuel de droit à tout moment à la demande du locataire.</p>
           <p class="">Date ou période de paiement :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.date_periode_paiement, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.date_periode_paiement %>
             <% end %>
             <span class="ml-3">Lieu de paiement :</span>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.lieu_paiement , edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.lieu_paiement %>
@@ -750,27 +750,27 @@
           </p>
           <p class="">Montant total dû à la première échéance de paiement pour une période complète de location :</p>
           <p class="">Loyer (hors charges) :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.loyer_hors_charges, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.loyer_hors_charges %>
             <% end %> €
             <span class="ml-3">Charges récupérables :</span>
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.charge_recuperable, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.charge_recuperable %>
             <% end %> €
           </p>
           <p class="">Contribution pour le partage des économies de charges :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.contribution_partage_economie_charges, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.contribution_partage_economie_charges %>
             <% end %>
           </p>
           <p class="">En cas de colocation, à l’assurance récupérable pour le compte des colocataires :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.colocation_assurance_recuperable, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.colocation_assurance_recuperable %>
@@ -778,14 +778,14 @@
           </p>
           <p class="">F. Le cas échéant, exclusivement lors d’un renouvellement de contrat, modalités de réévaluation d’un loyer manifestement sous-évalué</p>
           <p class="">1. Montant de la hausse ou de la baisse de loyer mensuelle :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.hausse_baisse_loyer, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.hausse_baisse_loyer %>
             <% end %>
           </p>
           <p class="">2. Modalité d’application annuelle de la hausse [par tiers ou par sixième selon la durée du contrat et le montant de la hausse de loyer] :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.modalite_hausse_annuelle, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.modalite_hausse_annuelle %>
@@ -814,7 +814,7 @@
           <p class="mb-0 ">A. Le cas échéant, montant et nature des travaux d’amélioration ou de mise en conformité avec les caractéristiques de décence effectués depuis la fin du dernier contrat de location ou depuis le dernier renouvellement* :</p>
           <p class="" style="font-size: 12px">*Le cas échéant, préciser par ailleurs le montant des travaux d’amélioration effectués au cours des six derniers mois.</p>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to simple_format(@contrat.travaux_amelioration), edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= simple_format(@contrat.travaux_amelioration) %>
@@ -823,7 +823,7 @@
           <p class="mb-0 ">B. Majoration du loyer en cours de bail consécutive à des travaux d’amélioration entrepris par le bailleur* [nature des travaux, modalités d’exécution, délai de réalisation ainsi que montant de la majoration du loyer] :</p>
           <p class="" style="font-size: 12px">*Clause invalide pour les travaux de mise en conformité aux caractéristiques de décence.</p>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to simple_format(@contrat.travaux_majoration_loyer), edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= simple_format(@contrat.travaux_majoration_loyer) %>
@@ -831,7 +831,7 @@
           </p>
           <p class="">C. Le cas échéant, diminution de loyer en cours de bail consécutive à des travaux entrepris par le locataire [durée de cette diminution et, en cas de départ anticipé du locataire, modalités de son dédommagement sur justification des dépenses effectuées] :</p>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to simple_format(@contrat.travaux_diminution_loyer), edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= simple_format(@contrat.travaux_diminution_loyer) %>
@@ -840,7 +840,7 @@
           <h5 class="mt-5 my-4"><strong>VI. Garanties</strong></h5>
           <p class="">Le cas échéant, montant du dépôt de garantie de l’exécution des obligations du locataire / Garantie autonome [inférieur ou égal à un mois de loyers hors charges] :</p>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.depot_garantie , edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.depot_garantie %>
@@ -898,7 +898,7 @@
           <p class="">- prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong>315 €</strong></p>
           <p class="">- Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong>60 €</strong></p>
           <p class="">- autres prestations [détail des prestations et conditions de rémunération] :
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.honoraires_autres, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.honoraires_autres %>
@@ -909,7 +909,7 @@
           <p class="">Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong>0 €</strong></p>
           <h5 class="mt-5 my-4"><strong>X. Autres conditions particulières [A définir par les parties]</strong></h5>
           <p class="">
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.autre_condition, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.autre_condition %>
@@ -953,13 +953,13 @@
           <p class="mb-0 ">F. Le cas échéant, références aux loyers habituellement constatés dans le voisinage pour des logements comparables*</p>
           <p class="" style="font-size: 12px">*Lorsque la détermination du montant du loyer est la conséquence d’une procédure liée au fait que le loyer précédemment appliqué était manifestement sous évalué.</p>
           <p class="">Le
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.date_signature, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.date_signature %>
             <% end %>
             , à
-            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.lieu_signature, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
               <%= @contrat.lieu_signature %>
@@ -1005,7 +1005,7 @@
                 <p>Signature électronique du bailleur <i class="fas fa-check" style="color: green"></i></p>
               <% else %>
                 <p>Signature électronique du bailleur <i class="fas fa-times" style="color: red"></i></p>
-                <% if @contrat.user == current_user %>
+                <% if @contrat.locataire_candidature.annonce.user == current_user %>
                   <%= link_to "Signer", edit_contrat_path(@contrat)  %>
                 <% end %>
               <% end %>

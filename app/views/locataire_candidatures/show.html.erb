@@ -7,10 +7,12 @@
     </div>
     <h3 class="text-center mt-5 mb-4">Dossier de location
       <% if @locataire_candidature.user_id == current_user.id %>
-        <span class="ml-3" style="font-size: 14px">
-          <%#= link_to '', edit_locataire_candidature_path(@locataire_candidature), class:"fas fa-edit" %>
-          <%= link_to '', locataire_candidature_contrats_path(@locataire_candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer votre dossier de location?'}, class:"fas fa-trash" %>
-        </span>
+        <% if @locataire_candidature.statut_proprietaire != "Accepté" %>
+          <span class="ml-3" style="font-size: 14px">
+            <%#= link_to '', edit_locataire_candidature_path(@locataire_candidature), class:"fas fa-edit" %>
+            <%= link_to '', locataire_candidature_path(@locataire_candidature), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer votre dossier de location?'}, class:"fas fa-trash" %>
+          </span>
+        <% end %>
       <% end %>
     </h3>
     <div class="text-center"><%= render "locataire_candidatures/dossier_location" %></div>
