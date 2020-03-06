@@ -133,7 +133,7 @@ json.array!  @notifications do |notification|
     json.url contrat_path(notification.notifiable)
   elsif notification.action == "create_mandat_notify_proprio"
     json.url annonce_path(notification.notifiable.annonce)
-  elsif notification.action == "create_mandat_notify_proprio"
+  elsif notification.action == "create_annonce_notify_proprio"
     json.url annonce_path(notification.notifiable)
   # elsif notification.action == "new_registration"
   #   json.url profile_all_users_path
