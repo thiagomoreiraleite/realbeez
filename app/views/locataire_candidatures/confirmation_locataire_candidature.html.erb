@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-12 col-md-8 offset-md-2 text-justify px-4" style="line-height: 1.8em">
         <h5 class="text-center mt-3 my-5 pt-5" style="color: #D8A727">Confirmation de l'acceptation du dossier de location</h5>
-        <p>Cher <%= LocataireCandidature.find(params[:id].to_i).annonce.user.prénom.captialize %>,</p>
-        <p class="mb-1">Vous avez accepté le dossier de location de <%= Locataire.find(LocataireCandidature.find(params[:id].to_i).locataire_id).prenom.captialize %> <%= Locataire.find(LocataireCandidature.find(params[:id].to_i).locataire_id).nom.capitalize %>.</p>
+        <p>Cher <%= LocataireCandidature.find(params[:id].to_i).annonce.user.prénom.capitalize %>,</p>
+        <p class="mb-1">Vous avez accepté le dossier de location de <%= Locataire.find(LocataireCandidature.find(params[:id].to_i).locataire_id).prenom.captitalize %> <%= Locataire.find(LocataireCandidature.find(params[:id].to_i).locataire_id).nom.capitalize %>.</p>
         <% if LocataireCandidature.find(params[:id].to_i).annonce.agent_user_id == nil %>
           <p class="">Vous pouvez dès à présent créer votre contrat de location, l'actualiser si des informations sont manquantes et le signer en cliquant sur le lien ci-dessous.</p>
         <% else %>
