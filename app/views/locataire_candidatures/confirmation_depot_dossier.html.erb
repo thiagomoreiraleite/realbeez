@@ -5,7 +5,7 @@
         <h5 class="text-center mt-3 my-5 pt-5" style="color: #D8A727">Confirmation du dépot de dossier de location</h5>
         <p>Cher <%= LocataireCandidature.find(params[:id].to_i).user.prénom %>,</p>
         <p class="mb-1">Votre dossier de location a bien été déposé pour le bien immobilier <%= LocataireCandidature.find(params[:id].to_i).annonce.titre_annonce %>.</p>
-        <p>Vous serez informé par la reception d'une notification et d'un email dès que le propriétaire du bien aura accepté ou rejeté votre dossier.</p>
+        <p>Vous serez informé par la reception d'une notification et d'un email dès que le propriétaire du bien aura soit accepté ou rejeté votre dossier.</p>
         <p class="mb-1">A très bientôt,</p>
         <p>Votre équipe Realbeez</p>
         <%= link_to "Voir mon dossier de location", locataire_candidature_path(params[:id].to_i) %>
