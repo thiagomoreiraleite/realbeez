@@ -227,7 +227,7 @@ class LocataireCandidaturesController < ApplicationController
       @locataires_locataire_rejeté << dossier
     end
     # Dossier de candidature à déposer
-    @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", current_user.id, "active")
+    @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", current_user.id, "active").order(created_at: :desc)
     # Dossier de location déposé par agent
     @dossier_agent = LocataireCandidature.where("agent = ? AND statut = ?", "Oui", "active").order(created_at: :asc)
     @dossier_agent_locataire = @dossier_agent.select{ |l| l.locataire_email.split.last == current_user.email }
@@ -274,7 +274,7 @@ class LocataireCandidaturesController < ApplicationController
     @locataires_agent_en_cours = @locataires.select{ |l| l.statut_proprietaire == "En cours" }.sort_by{ |l| l.updated_at }
     @locataires_agent_accepté = @locataires.select{ |l| l.statut_proprietaire == "Accepté" }.sort_by{ |l| l.updated_at }
     @locataires_agent_rejeté = @locataires.select{ |l| l.statut_proprietaire == "Rejeté" }.sort_by{ |l| l.updated_at }
-    @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", current_user.id, "active")
+    @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", current_user.id, "active").order(created_at: :desc)
   end
 
   def locataires_all

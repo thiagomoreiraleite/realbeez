@@ -1,0 +1,66 @@
+<div class="border p-4 mb-5" style="background-color: white; border-radius: 5px; box-shadow: 0 0 8px rgba(0,0,0,0.1)">
+  <!-- AUTRES DOCUMENTS -->
+  <p style="color: #D8A727; font-weight: bold">RESUME</p>
+  <p class="mb-1"><strong>Locataire principal :</strong></p>
+  <ul>
+    <li>
+      <p class="mb-1"><%= Locataire.find(@locataire_candidature.locataire_id).prenom.capitalize %> <%= Locataire.find(@locataire_candidature.locataire_id).nom.capitalize %> est actuellement
+        <% if Locataire.find(@locataire_candidature.locataire_id).activite != "autre" %>
+          <%= Locataire.find(@locataire_candidature.locataire_id).activite %>
+        <% end %>
+        <% if Locataire.find(@locataire_candidature.locataire_id).activite == "autre" %>
+          <%= Locataire.find(@locataire_candidature.locataire_id).activite_autre %>
+        <% end %>
+        <% if Locataire.find(@locataire_candidature.locataire_id).type_contrat != "n/a" %>
+          <%= Locataire.find(@locataire_candidature.locataire_id).type_contrat %>
+        <% end %>
+      </p>
+    </li>
+    <li>
+      <p class="">Ses revenus nets mensuels s'élèvent à <%= Locataire.find(@locataire_candidature.locataire_id).revenus %> €</p>
+    </li>
+  </ul>
+  <!-- COLOCATAIRE -->
+  <% if Locataire.find(@locataire_candidature.locataire_id).locataire_supplementaires != [] %>
+    <% Locataire.find(@locataire_candidature.locataire_id).locataire_supplementaires.each do |l| %>
+      <p class="mb-1"><strong>Colocataire :</strong></p>
+      <ul>
+        <li>
+          <p class="mb-1"><%= l.prenom.capitalize %> <%= l.nom.capitalize %> est actuellement
+            <% if l.activite != "autre" %>
+              <%= l.activite %>
+            <% end %>
+            <% if l.activite == "autre" %>
+              <%= l.activite_autre %>
+            <% end %>
+            <% if l.type_contrat != "n/a" %>
+              <%= l.type_contrat %>
+            <% end %>
+          </p>
+        </li>
+        <li>
+          <p class="">Ses revenus nets mensuels s'élèvent à <%= l.revenus %> €</p>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+  <p><strong>Garant (caution solidaire) : </strong></p>
+  <ul>
+    <li>
+      <p class="mb-1"><%= Locataire.find(@locataire_candidature.locataire_id).prenom_garant.capitalize %> <%= Locataire.find(@locataire_candidature.locataire_id).nom_garant.capitalize %> est actuellement
+        <% if Locataire.find(@locataire_candidature.locataire_id).activite_garant != "autre" %>
+          <%= Locataire.find(@locataire_candidature.locataire_id).activite_garant %>
+        <% end %>
+        <% if Locataire.find(@locataire_candidature.locataire_id).activite_garant == "autre" %>
+          <%= Locataire.find(@locataire_candidature.locataire_id).activite_autre_garant %>
+        <% end %>
+        <% if Locataire.find(@locataire_candidature.locataire_id).type_contrat_garant != "n/a" %>
+          <%= Locataire.find(@locataire_candidature.locataire_id).type_contrat_garant %>
+        <% end %>
+      </p>
+    </li>
+    <li>
+      <p class="">Ses revenus nets mensuels s'élèvent à <%= Locataire.find(@locataire_candidature.locataire_id).revenus_garant %> €</p>
+    </li>
+  </ul>
+</div>

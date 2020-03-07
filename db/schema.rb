@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_025215) do
+ActiveRecord::Schema.define(version: 2020_03_07_081512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -237,6 +237,10 @@ ActiveRecord::Schema.define(version: 2020_03_02_025215) do
     t.string "fiche_paye_mois2", default: "image/upload/v1582613499/default_annonce.png"
     t.string "fiche_paye_mois3", default: "image/upload/v1582613499/default_annonce.png"
     t.string "contrat", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "activite"
+    t.string "activite_autre"
+    t.string "type_contrat"
+    t.string "revenus"
     t.index ["locataire_id"], name: "index_locataire_supplementaires_on_locataire_id"
   end
 
@@ -274,6 +278,14 @@ ActiveRecord::Schema.define(version: 2020_03_02_025215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "agent", default: "Non"
+    t.string "activite"
+    t.string "activite_autre"
+    t.string "type_contrat"
+    t.string "revenus"
+    t.string "activite_garant"
+    t.string "activite_autre_garant"
+    t.string "type_contrat_garant"
+    t.string "revenus_garant"
     t.index ["user_id"], name: "index_locataires_on_user_id"
   end
 

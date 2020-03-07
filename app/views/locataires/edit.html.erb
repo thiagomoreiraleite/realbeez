@@ -25,6 +25,7 @@
           <%= f.input :justif_dom, label: false %>
           <%= f.input :justif_dom_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
+          <%= f.input :revenus, label: "Revenus mensuels nets en €" %>
           <%= f.input :fiche_paye_mois1, label: false %>
           <%= f.input :fiche_paye_mois1_cache, as: :hidden %>
           <%= f.input :fiche_paye_mois2, label: false %>
@@ -32,6 +33,9 @@
           <%= f.input :fiche_paye_mois3, label: false %>
           <%= f.input :fiche_paye_mois3_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
+          <%= f.input :activite, collection: ["employé(e)", "indépendant(e)", "entrepreneur", "étudiant(e)", "retraité", "sans emploi", "autre"], label: 'Activité exercée', include_blank: false %>
+          <%= f.input :activite_autre, label: "Si vous avez choisi autre à la question ci-dessus :" %>
+          <%= f.input :type_contrat, collection: ["en CDI", "en CDD", "n/a"], label: "Type de contrat", as: :radio_buttons %>
           <%= f.input :contrat, label: false %>
           <%= f.input :contrat_cache, as: :hidden %>
           <!-- COLOCATAIRE -->
@@ -53,6 +57,7 @@
               <%= p.input :justif_dom, label: false %>
               <%= p.input :justif_dom_cache, as: :hidden %>
               <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
+              <%= p.input :revenus, label: "Revenus mensuels nets en €" %>
               <%= p.input :fiche_paye_mois1, label: false %>
               <%= p.input :fiche_paye_mois1_cache, as: :hidden %>
               <%= p.input :fiche_paye_mois2, label: false %>
@@ -60,6 +65,9 @@
               <%= p.input :fiche_paye_mois3, label: false %>
               <%= p.input :fiche_paye_mois3_cache, as: :hidden %>
               <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
+              <%= p.input :activite, collection: ["employé(e)", "indépendant(e)", "entrepreneur", "étudiant(e)", "retraité", "sans emploi", "autre"], label: 'Activité exercée', include_blank: false %>
+              <%= p.input :activite_autre, label: "Si vous avez choisi autre à la question ci-dessus :" %>
+              <%= p.input :type_contrat, collection: ["en CDI", "en CDD", "n/a"], label: "Type de contrat", as: :radio_buttons  %>
               <%= p.input :contrat, label: false %>
               <%= p.input :contrat_cache, as: :hidden %>
             <% end %>
@@ -81,6 +89,7 @@
           <%= f.input :justif_dom_garant, label: false %>
           <%= f.input :justif_dom_garant_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
+          <%= f.input :revenus_garant, label: "Revenus mensuels nets en €" %>
           <%= f.input :fiche_paye_mois1_garant, label: false %>
           <%= f.input :fiche_paye_mois1_garant_cache, as: :hidden %>
           <%= f.input :fiche_paye_mois2_garant, label: false %>
@@ -88,6 +97,9 @@
           <%= f.input :fiche_paye_mois3_garant, label: false %>
           <%= f.input :fiche_paye_mois3_garant_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
+          <%= f.input :activite_garant, collection: ["employé(e)", "indépendant(e)", "entrepreneur", "étudiant(e)", "retraité", "sans emploi", "autre"], label: 'Activité exercée', include_blank: false %>
+          <%= f.input :activite_autre_garant, label: "Si vous avez choisi autre à la question ci-dessus :" %>
+          <%= f.input :type_contrat_garant, collection: ["en CDI", "en CDD", "n/a"], label: "Type de contrat", as: :radio_buttons %>
           <%= f.input :contrat_garant, label: false %>
           <%= f.input :contrat_garant_cache, as: :hidden %>
           <!-- AJOUTER DOCUMENTS -->

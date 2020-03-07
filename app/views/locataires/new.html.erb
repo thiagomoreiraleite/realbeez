@@ -6,7 +6,7 @@
         <%= simple_form_for [@locataire] do |f| %>
           <!--  <%# if current_user.statut == "Agent" %>
             <p class="mt-4 border-top" style="color: #D8A727; font-weight: bold"></p>
-            <%#= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons %>
+            <%#= f.input :agent, label: "Vous êtes un agent et déposez un dossier pour le compte d'un locataire", collection: ["Oui", "Non"], as: :radio_buttons, checked: "en CDI"  %>
           <%# end %> -->
           <p class="mt-4 border-top pt-3 mb-0" style="color: #D8A727; font-weight: bold">LE LOCATAIRE PRINCIPAL </p>
           <p><span style="color: red; font-size: 12px; font-style: italic">(Téléchargez tous vos documents aux formats : jpg, png, ou pdf)</span></p>
@@ -34,6 +34,7 @@
           <%= f.input :justif_dom, label: false %>
           <%= f.input :justif_dom_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
+          <%= f.input :revenus, label: "Revenus mensuels nets en €" %>
           <%= f.input :fiche_paye_mois1, label: false %>
           <%= f.input :fiche_paye_mois1_cache, as: :hidden %>
           <%= f.input :fiche_paye_mois2, label: false %>
@@ -41,6 +42,9 @@
           <%= f.input :fiche_paye_mois3, label: false %>
           <%= f.input :fiche_paye_mois3_cache, as: :hidden %>
           <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
+          <%= f.input :activite, collection: ["employé(e)", "indépendant(e)", "entrepreneur", "étudiant(e)", "retraité", "sans emploi", "autre"], label: 'Activité exercée', include_blank: false %>
+          <%= f.input :activite_autre, label: "Si vous avez choisi autre à la question ci-dessus :" %>
+          <%= f.input :type_contrat, collection: ["en CDI", "en CDD", "n/a"], label: "Type de contrat", as: :radio_buttons, checked: "en CDI"  %>
           <%= f.input :contrat, label: false %>
           <%= f.input :contrat_cache, as: :hidden %>
           <!-- Ajouter un colocataire -->
@@ -51,55 +55,63 @@
             <p id="supprimer_locataire" style="color:#167FFB" class="mb-0"><i class="fas fa-times-circle mr-1" style="color: red"></i>Supprimer colocataire</p>
           </div>
           <!-- COLOCATAIRE -->
-          <!--     <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">COLOCATAIRE</p>
+          <!-- <p class="mt-4 border-top pt-3" style="color: #D8A727; font-weight: bold">COLOCATAIRE</p> -->
           <%#= f.simple_fields_for :locataire_supplementaires do |p| %>
             <%#= p.input :prenom, label: "Prénom"%>
             <%#= p.input :nom, label: "Nom" %>
-          <%# end %> -->
-          <!-- Information du garant -->
-          <p class="mt-5 border-top pt-3" style="color: #D8A727; font-weight: bold">LE GARANT (caution solidaire)</p>
-          <%= f.input :prenom_garant, label: "Prénom" %>
-          <%= f.input :nom_garant, label: "Nom" %>
-          <%= f.input :adresse_garant, label: "Adresse"  %>
-          <%= f.input :ville_garant, label: "Ville"  %>
-          <%= f.input :tel_garant, label: "Téléphone"  %>
-          <%= f.input :email_garant  %>
-          <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport </p>
-          <%= f.input :id_recto_garant, label: false %>
-          <%= f.input :id_recto_garant_cache, as: :hidden %>
-          <%= f.input :id_verso_garant, label: false %>
-          <%= f.input :id_verso_garant_cache, as: :hidden %>
-          <p class="mt-4" style="color: #D8A727">Justificatif de domicile</p>
-          <%= f.input :justif_dom_garant, label: false %>
-          <%= f.input :justif_dom_garant_cache, as: :hidden %>
-          <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
-          <%= f.input :fiche_paye_mois1_garant, label: false %>
-          <%= f.input :fiche_paye_mois1_garant_cache, as: :hidden %>
-          <%= f.input :fiche_paye_mois2_garant, label: false %>
-          <%= f.input :fiche_paye_mois2_garant_cache, as: :hidden %>
-          <%= f.input :fiche_paye_mois3_garant, label: false %>
-          <%= f.input :fiche_paye_mois3_garant_cache, as: :hidden %>
-          <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
-          <%= f.input :contrat_garant, label: false %>
-          <%= f.input :contrat_garant_cache, as: :hidden %>
-          <!-- AJOUTER DOCUMENTS -->
-          <p class="border-top mt-5 mb-0"></p>
-          <p class="mt-2 pt-3" style="color: #D8A727">Autres justificatifs (optionnel)</p>
-          <!--    <%#= f.simple_fields_for :documents do |p| %>
+            <%#= p.input :revenus, label: "Revenus mensuels nets en €" %>
+            <%#= p.input :activite, collection: ["employé(e)", "indépendant(e)", "entrepreneur", "étudiant(e)", "retraité", "sans emploi", "autre"], label: 'Activité exercée', include_blank: false %>
+            <%#= p.input :activite_autre, label: "Si vous avez choisi autre à la question ci-dessus :" %>
+            <%#= p.input :type_contrat, collection: ["en CDI", "en CDD", "n/a"], label: "Type de contrat", as: :radio_buttons, checked: "en CDI" %>
+            <%# end %>
+            <!-- Information du garant -->
+            <p class="mt-5 border-top pt-3" style="color: #D8A727; font-weight: bold">LE GARANT (caution solidaire)</p>
+            <%= f.input :prenom_garant, label: "Prénom" %>
+            <%= f.input :nom_garant, label: "Nom" %>
+            <%= f.input :adresse_garant, label: "Adresse"  %>
+            <%= f.input :ville_garant, label: "Ville"  %>
+            <%= f.input :tel_garant, label: "Téléphone"  %>
+            <%= f.input :email_garant  %>
+            <p class="mt-4" style="color: #D8A727">Pièce d'identité (recto / verso) ou passeport </p>
+            <%= f.input :id_recto_garant, label: false %>
+            <%= f.input :id_recto_garant_cache, as: :hidden %>
+            <%= f.input :id_verso_garant, label: false %>
+            <%= f.input :id_verso_garant_cache, as: :hidden %>
+            <p class="mt-4" style="color: #D8A727">Justificatif de domicile</p>
+            <%= f.input :justif_dom_garant, label: false %>
+            <%= f.input :justif_dom_garant_cache, as: :hidden %>
+            <p class="mt-4" style="color: #D8A727">3 derniers bulletin de salaire</p>
+            <%= f.input :revenus_garant, label: "Revenus mensuels nets en €" %>
+            <%= f.input :fiche_paye_mois1_garant, label: false %>
+            <%= f.input :fiche_paye_mois1_garant_cache, as: :hidden %>
+            <%= f.input :fiche_paye_mois2_garant, label: false %>
+            <%= f.input :fiche_paye_mois2_garant_cache, as: :hidden %>
+            <%= f.input :fiche_paye_mois3_garant, label: false %>
+            <%= f.input :fiche_paye_mois3_garant_cache, as: :hidden %>
+            <p class="mt-4" style="color: #D8A727">Contrat de travail</p>
+            <%= f.input :activite_garant, collection: ["employé(e)", "indépendant(e)", "entrepreneur", "étudiant(e)", "retraité", "sans emploi", "autre"], label: 'Activité exercée', include_blank: false %>
+            <%= f.input :activite_autre_garant, label: "Si vous avez choisi autre à la question ci-dessus :" %>
+            <%= f.input :type_contrat_garant, collection: ["en CDI", "en CDD", "n/a"], label: "Type de contrat", as: :radio_buttons, checked: "en CDI"  %>
+            <%= f.input :contrat_garant, label: false %>
+            <%= f.input :contrat_garant_cache, as: :hidden %>
+            <!-- AJOUTER DOCUMENTS -->
+            <p class="border-top mt-5 mb-0"></p>
+            <p class="mt-2 pt-3" style="color: #D8A727">Autres justificatifs (optionnel)</p>
+            <!--    <%#= f.simple_fields_for :documents do |p| %>
             <%#= p.input :titre, label: false, placeholder: "Nom du fichier"%>
             <%#= p.input :piece_jointe, label: false %>
           <%# end %> -->
-          <div id="document_form"></div>
-          <div class="d-flex mt-4">
-            <p id="ajouter_document" style="color:#167FFB" class="mb-0"><i class="fas fa-plus-circle mr-1" style="color: green"></i>Ajouter document</p>
-            <p class="mx-1 mb-0">/</p>
-            <p id="supprimer_document" style="color:#167FFB" class="mb-0"><i class="fas fa-times-circle mr-1" style="color: red"></i>Supprimer document</p>
-          </div>
-          <!-- COMPLEMENT D'INFORMATION -->
-          <p class="border-top mt-5 mb-0"></p>
-          <p class="mt-2 pt-3" style="color: #D8A727">Complément d'information (optionnel)</p>
-          <%= f.input :message, label: false %>
-          <!--  <p class="mt-4">Réservé à l'agent afin de confirmer que le dossier de candidature est complet</p>
+            <div id="document_form"></div>
+            <div class="d-flex mt-4">
+              <p id="ajouter_document" style="color:#167FFB" class="mb-0"><i class="fas fa-plus-circle mr-1" style="color: green"></i>Ajouter document</p>
+              <p class="mx-1 mb-0">/</p>
+              <p id="supprimer_document" style="color:#167FFB" class="mb-0"><i class="fas fa-times-circle mr-1" style="color: red"></i>Supprimer document</p>
+            </div>
+            <!-- COMPLEMENT D'INFORMATION -->
+            <p class="border-top mt-5 mb-0"></p>
+            <p class="mt-2 pt-3" style="color: #D8A727">Complément d'information (optionnel)</p>
+            <%= f.input :message, label: false %>
+            <!--  <p class="mt-4">Réservé à l'agent afin de confirmer que le dossier de candidature est complet</p>
           <%#= f.input :statut_agent, label: false, collection:
             [
               "Complet",
@@ -112,10 +124,10 @@
               "Refusé",
               "Demande d'information complémentaire"
             ] %> -->
-          <%= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
-          <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
-        <% end %>
+            <%= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
+            <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>

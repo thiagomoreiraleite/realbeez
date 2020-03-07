@@ -271,7 +271,15 @@ class LocatairesController < ApplicationController
       :fiche_paye_mois3_garant,
       :contrat_garant,
       :message,
-      locataire_supplementaires_attributes: [:id, :locataire_id, :nom, :prenom, :adresse, :ville, :tel, :email, :id_recto, :id_verso, :justif_dom, :fiche_paye_mois1, :fiche_paye_mois2, :fiche_paye_mois3, :contrat],
+      :activite,
+      :activite_autre,
+      :type_contrat,
+      :revenus,
+      :activite_garant,
+      :activite_autre_garant,
+      :type_contrat_garant,
+      :revenus_garant,
+      locataire_supplementaires_attributes: [:id, :locataire_id, :nom, :prenom, :adresse, :ville, :tel, :email, :id_recto, :id_verso, :justif_dom, :fiche_paye_mois1, :fiche_paye_mois2, :fiche_paye_mois3, :contrat, :activite, :activite_autre, :type_contrat, :revenus],
       documents_attributes: [:id, :locataire_id, :titre, :piece_jointe]
     )
   end

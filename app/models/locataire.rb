@@ -21,5 +21,5 @@ class Locataire < ApplicationRecord
   mount_uploader :fiche_paye_mois3_garant, PhotoUploader
   mount_uploader :contrat_garant, PhotoUploader
 
-  validates :agent, :prenom, :nom, :adresse, :ville, :tel, :email, presence: true
+  validates :agent, :prenom, :nom, :adresse, :ville, :tel, :email, :activite, :revenus, :type_contrat, presence: true
 end
