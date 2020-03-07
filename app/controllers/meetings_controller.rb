@@ -12,12 +12,13 @@ class MeetingsController < ApplicationController
         @meetings_agent << meeting
       end
     end
-    @meetings_proprio = []
+    @meetings_proprio_unsorted = []
     current_user.annonces.each do |annonce|
       annonce.meetings.each do |meeting|
-        @meetings_proprio << meeting
+        @meetings_proprio_unsorted << meeting
       end
     end
+    @meetings_proprio = @meetings_proprio_unsorted.sort_by { |meeting| meeting.start_time }
   end
 
   # GET /meetings/1
