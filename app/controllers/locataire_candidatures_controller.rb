@@ -148,6 +148,9 @@ class LocataireCandidaturesController < ApplicationController
   def accept_locataire
     authorize @locataire_candidature
     @locataire_candidature.statut_proprietaire = "Accepté"
+    @locataire_array = User.where("email = ? ", Locataire.find(@locataire_candidature.locataire_id).email)
+    @locataire_user = User.where("email = ? ", Locataire.find(@locataire_candidature.locataire_id).email)[0]
+
     if @locataire_candidature.save
       @admin = User.where("email = ?", "contact@realbeez.com")[0]
       # Create a notification for agent
@@ -160,10 +163,12 @@ class LocataireCandidaturesController < ApplicationController
       # Create notification for locataire
       if @locataire_candidature.agent == "Non"
         Notification.create(recipient: @locataire_candidature.user, actor: current_user, action: "accept_locataire_notify_locataire", notifiable: @locataire_candidature)
-        # Send email to locataire
-        mail_locataire = LocataireCandidatureMailer.with(locataire: @locataire_candidature).accept_locataire_notify_locataire
-        mail_locataire.deliver_now
+      elsif @locataire_array != []
+        Notification.create(recipient: @locataire_user, actor: current_user, action: "accept_locataire_notify_locataire", notifiable: @locataire_candidature)
       end
+      # Send email to Locataire
+      mail_locataire = LocataireCandidatureMailer.with(locataire: @locataire_candidature).accept_locataire_notify_locataire
+      mail_locataire.deliver_now
       # Send email to Admin
       mail_admin = LocataireCandidatureMailer.with(locataire: @locataire_candidature).accept_locataire_notify_admin
       mail_admin.deliver_now

@@ -1,4 +1,4 @@
-<p>Bonjour <%= @locataire_candidature.user.prénom.capitalize %>,</p>
+<p>Bonjour <%= Locataire.find(@locataire_candidature.locataire_id).prenom.capitalize %>,</p>
 <p>Nous avons le plaisir de vous informer que <%= @locataire_candidature.annonce.user.prénom.capitalize + " a accepté votre dossier de location."%></p>
 <% if @locataire_candidature.annonce.agent_user_id == nil %>
   <p>Le propriétaire du bien prendra contact avec vous afin de convenir d'un rendez-vous et d'établir l'état des lieux d'entrée.</p>

@@ -42,7 +42,7 @@ class LocataireCandidatureMailer < ApplicationMailer
   def accept_locataire_notify_locataire
     @locataire_candidature = params[:locataire]
     mail(
-      to:       @locataire_candidature.user.email,
+      to:       Locataire.find(@locataire_candidature.locataire_id).email,
       subject:  "#{@locataire_candidature.annonce.user.prénom.capitalize} #{@locataire_candidature.annonce.user.nom.capitalize[0]}. accepte votre dossier de location"
     )
   end
