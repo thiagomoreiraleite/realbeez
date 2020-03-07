@@ -17,18 +17,18 @@ class MandatsController < ApplicationController
     @mandat.user = @annonce.user
     @mandat.annonce = @annonce
     if @mandat.save
-      if @annonce.email_proprio != "" && @annonce.agent == "Oui"
-        # NOTIFICATION
-        # Send to proprio if registered
-        @proprio_array = User.where("email = ? ", @annonce.email_proprio)
-        @proprio_user = User.where("email = ? ", @annonce.email_proprio)[0]
-        if @proprio_array != []
-          Notification.create(recipient: @proprio_user, actor: current_user, action: "create_mandat_notify_proprio", notifiable: @mandat)
-        end
-      end
+      # if @annonce.email_proprio != "" && @annonce.agent == "Oui"
+      # NOTIFICATION
+      # Send to proprio if registered
+      #   @proprio_array = User.where("email = ? ", @annonce.email_proprio)
+      #   @proprio_user = User.where("email = ? ", @annonce.email_proprio)[0]
+      #   if @proprio_array != [] || @mandat.user != current_user
+      #     Notification.create(recipient: @proprio_user, actor: current_user, action: "create_mandat_notify_proprio", notifiable: @mandat)
+      #   end
+      # end
       # Send email to proprio
-      mail_agent = MandatMailer.with(mandat: @mandat).create_mandat_notify_proprio
-      mail_agent.deliver_now
+      # mail_agent = MandatMailer.with(mandat: @mandat).create_mandat_notify_proprio
+      # mail_agent.deliver_now
       redirect_to annonce_path(@annonce)
     else
       render :new
