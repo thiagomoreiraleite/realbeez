@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/investissement_locatif', to: 'pages#investissement_locatif', as: :investissement_locatif
   get '/recommandation', to: 'pages#recommandation', as: :recommandation
   get '/contrat_template', to: 'pages#contrat_template', as: :contrat_template
+  get '/outils', to: 'pages#outils', as: :outils
   resources :pages, only: [:new, :create]
 
   # Parrains
