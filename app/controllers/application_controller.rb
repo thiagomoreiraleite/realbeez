@@ -1,4 +1,18 @@
 class ApplicationController < ActionController::Base
+  after_action :return_errors, only: [:page_not_found, :server_error]
+
+  def page_not_found
+    @status = 404
+    @layout = "application"
+    @template = "not_found_error"
+  end
+
+  def server_error
+    @status = 500
+    @layout = "error"
+    @template = "internal_server_error"
+  end
+
   # force_ssl
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -28,6 +42,13 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def return_errors
+    respond_to do |format|
+      format.html { render template: 'errors/' + @template, layout: 'layouts/' + @layout, status: @status }
+      format.all  { render nothing: true, status: @status }
+    end
   end
 
 

@@ -29,7 +29,8 @@ module Realbeez
 
     config.time_zone = "Paris"
 
-  end
+    config.exceptions_app = self.routes
 
+  end
 
 end
