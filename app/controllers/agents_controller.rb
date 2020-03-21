@@ -15,7 +15,7 @@ class AgentsController < ApplicationController
     # @agent_strasbourg = Profile.where("statut = ?", "Agent").near("strasbourg", 50).map{ |agent| agent}.count
     # @agent_mulhouse = Profile.where("statut = ?", "Agent").near("mulhouse", 50).map{ |agent| agent}.count
     @agent_france = Profile.where("statut = ?", "Agent").map{ |agent| agent}.count
-    @agent_no_justif = Agent.where(justif_entrepreneur: "image/upload/v1575902902/default_annonce.png")
+    @agent_no_justif = Agent.where(justif_entrepreneur: "image/upload/v1582613499/default_annonce.png")
     @agent_approved_no_justif = @agent_no_justif.select { |agent| agent.user.statut == "Agent"}
     @agent_approved_no_justif_count = @agent_approved_no_justif.count
   end
