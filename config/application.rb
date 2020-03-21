@@ -2,6 +2,8 @@ require_relative 'boot'
 
 require 'rails/all'
 
+config.exceptions_app = self.routes
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -29,7 +31,6 @@ module Realbeez
 
     config.time_zone = "Paris"
 
-    config.exceptions_app = self.routes
 
   end
 
