@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/recommandation', to: 'pages#recommandation', as: :recommandation
   get '/contrat_template', to: 'pages#contrat_template', as: :contrat_template
   get '/outils', to: 'pages#outils', as: :outils
+  get '/documents_contrat_bail', to: 'pages#documents_contrat_bail', as: :documents_contrat_bail
   resources :pages, only: [:new, :create]
 
   # Parrains
