@@ -17,7 +17,7 @@
     <div class="profile-friends">
       <div class="search navigations">
         <h3 id="candidature_reçue" class="active" style="font-size: 16px">Reçues</h3>
-        <!-- <h3 id="candidature_approuvé" style="font-size: 16px">Approuvées</h3> -->
+        <h3 id="candidature_approuvé" style="font-size: 16px">Approuvées</h3>
         <h3 id="candidature_rejeté" style="font-size: 16px">Rejetées</h3>
       </div>
       <div id="friends-toPlace" class="row">
@@ -84,7 +84,7 @@
     // add class
     target.classList.add("active");
     };
-    
+
      this.addEventListener("click", (e) => {
     console.log(e)
     const whereToShow = document.querySelector("#friends-toPlace");
@@ -96,6 +96,60 @@
       whereToShow.insertAdjacentHTML("beforeend", `
       <% if @agent_candidature_reçue != []  %>
         <% @agent_candidature_reçue.each do |agent| %>
+          <div class="col-sm-12 col-lg-10 offset-lg-1">
+            <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
+              <div class="row no-gutters", style="border-radius: 30px">
+                <div class="col-md-4">
+                  <p class="mb-0"><%= image_tag (cl_image_path agent.user.photo), crop: :fill, style:"object-fit:cover; height: 170px; width: 170px", class: "rounded-circle center p-3" %></p>
+                </div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                  <div class="card-body">
+                    <div>
+                      <h5 class="card-title"><%= agent.user.prénom.titlecase %> <%= agent.user.nom.capitalize %></h5>
+                      <p class="card-text">Adresse : <%= agent.user.adresse %></p>
+                      <p class="card-text">Ville : <%= agent.user.ville.capitalize %></p>
+                      <p class="card-text">Longitude : <%= agent.user.longitude %></p>
+                      <p class="card-text">Latitude : <%= agent.user.latitude %></p>
+                      <p class="card-text">Date de naissance : <%= agent.date_de_naissance %></p>
+                      <p class="card-text">Tel : <%= agent.user.téléphone %></p>
+                      <p class="card-text">Email : <%= agent.user.email %></p>
+                      <p class="card-text">Auto-entrepreneur : <%= agent.auto_entrepreneur %></p>
+                      <p><%= link_to "Voir justificatif de l'Insee", "https://res.cloudinary.com/dvfwroq5k/#{agent.justif_entrepreneur.identifier}", :target => "_blank"  %></p>
+                      <p class="card-text">Expériences : <%= simple_format(agent.experience) %></p>
+                      <p class="card-text">Connu grâce à : <%= agent.connaissance %></p>
+                      <p class="card-text">Statut : <%= agent.statut %></p>
+                      <%#= image_tag (cl_image_path agent.cv) %>
+                      <p style="font-weight: bold">Disponibilités</p>
+                      <% agent.user.availabilities.each do |availability| %>
+                        <p><%= availability.jours %></p>
+                          <p>
+                            <% availability.heures.each do |heure| %>
+                              <%= heure %>
+                            <% end %>
+                          </p>
+                      <% end %>
+                      <div class="my-3">
+                        <%= link_to "Approuver", accept_agent_path(agent), method: :post, class: "btn btn-yellow-mustard" %>
+                        <%= link_to "Rejeter", decline_agent_path(agent), method: :post, class: "btn btn-danger" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <h4 class="text-center" style="width: 100%;">"Aucune candidature en cours"</h4>
+      <% end %>
+        `);
+      }
+    if (id === "candidature_approuvé") {
+      addClassSelected(e.target);
+      whereToShow.innerHTML = "";
+      whereToShow.insertAdjacentHTML("beforeend", `
+      <% if @agent_candidature_approuvé != []  %>
+        <% @agent_candidature_approuvé.each do |agent| %>
           <div class="col-sm-12 col-lg-10 offset-lg-1">
             <div class="card mb-3 border-0" style="border-radius: 15px; box-shadow: 1px 1px 5px rgba(0,0,0,0.2);">
               <div class="row no-gutters", style="border-radius: 30px">
