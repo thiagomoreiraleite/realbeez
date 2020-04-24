@@ -105,7 +105,7 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title"><%= agent.user.prénom.titlecase %> <%= agent.user.nom.capitalize %></h5>
+                      <h5 class="card-title"><%= link_to agent.user.prénom.titlecase, profile_path(agent.user) %> <%= link_to agent.user.nom.titlecase, profile_path(agent.user) %></h5
                       <p class="card-text">Adresse : <%= agent.user.adresse %></p>
                       <p class="card-text">Ville : <%= agent.user.ville.capitalize %></p>
                       <p class="card-text">Longitude : <%= agent.user.longitude %></p>
@@ -159,7 +159,7 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title"><%= agent.user.prénom.titlecase %> <%= agent.user.nom.capitalize %></h5>
+                      <h5 class="card-title"><%= link_to agent.user.prénom.titlecase, profile_path(agent.user) %> <%= link_to agent.user.nom.titlecase, profile_path(agent.user) %></h5
                       <p class="card-text">Adresse : <%= agent.user.adresse %></p>
                       <p class="card-text">Ville : <%= agent.user.ville.capitalize %></p>
                       <p class="card-text">Longitude : <%= agent.user.longitude %></p>
@@ -213,7 +213,7 @@
                 <div class="col-md-8 d-flex flex-column justify-content-between">
                   <div class="card-body">
                     <div>
-                      <h5 class="card-title"><%= agent.user.prénom.titlecase %> <%= agent.user.nom %></h5>
+                      <h5 class="card-title"><%= link_to agent.user.prénom.titlecase, profile_path(agent.user) %> <%= link_to agent.user.nom.titlecase, profile_path(agent.user) %></h5
                       <p class="card-text">Adresse : <%= agent.user.adresse%></p>
                       <p class="card-text">Ville : <%= agent.user.ville.capitalize %></p>
                       <p class="card-text">Date de naissance : <%= agent.date_de_naissance %></p>
