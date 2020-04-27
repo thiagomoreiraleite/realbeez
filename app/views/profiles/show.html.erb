@@ -68,20 +68,26 @@
       <div class="pb-2 border-bottom border-info">
       </div>
       <p class="text-center my-5" style="font-weight: bold; font-size: 24px;">Informations</p>
+      <!-- Experiences -->
+      <% unless @profile.agent.nil? %>
+        <% if @profile.agent.experience.nil? || @profile.agent.experience == "" %>
+          <% if user_signed_in? %>
+            <% if @profile == current_user %>
+              <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= link_to "Aucune description" , edit_agent_path(current_user.agent.id) %></p>
+            <% else %>
+              <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i>Aucune description</p>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="d-flex" style="">
+            <p class=" mt-0 mb-3"  ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i></p>
+            <p><%= simple_format(@profile.agent.experience) %></p>
+          </div>
+        <% end %>
+      <% end %>
       <!-- ONLY VISIBLE FOR CURRENT USER -->
       <% if user_signed_in? %>
         <% if @profile == current_user %>
-          <% unless @profile.agent.nil? %>
-            <% if @profile.agent.experience.nil? || @profile.agent.experience == "" %>
-              <!-- if current user is profile user and there is no description, add a link to add it -->
-              <p class=" mt-0 mb-3" style="" ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i><%= link_to "Aucune description" , edit_agent_path(current_user.agent.id) %></p>
-            <% else %>
-              <div class="d-flex" style="">
-                <p class=" mt-0 mb-3"  ><i class="fas fa-info-circle mr-3" style="color: #D8A727"></i></p>
-                <p><%= simple_format(@profile.agent.experience) %></p>
-              </div>
-            <% end %>
-          <% end %>
           <% if @profile.téléphone == nil || @profile.téléphone == "" %>
             <p class=" mt-0 mb-3" style="" ><i class="fas fa-phone-square mr-3" style="color: #D8A727"></i><%= link_to "Aucun numéro de téléphone", edit_user_registration_path(current_user)%>
             </p>
@@ -140,7 +146,7 @@
           <% unless @profile.agent.nil? %>
             <div class="border p-2" style="border-radius: 10px">
               <p class="text-center" style="font-weight: bold; color: #D8A727">FOR ADMIN</p>
-              <p class="card-text my-1">Expérience : <%= @profile.agent.experience %></p>
+              <!-- <p class="card-text my-1">Expérience : <%= @profile.agent.experience %></p> -->
               <p class="card-text my-1">Email : <%= @profile.agent.user.email %></p>
               <p class="card-text my-1">Adresse : <%= @profile.agent.user.adresse %></p>
               <p class="card-text my-1">Ville : <%= @profile.agent.user.ville.capitalize %></p>
