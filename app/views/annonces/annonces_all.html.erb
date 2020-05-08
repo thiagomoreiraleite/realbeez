@@ -13,7 +13,7 @@
             <% unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
               <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
-                  <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+                  <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; width: 100%"%>
                   <div class="px-3">
                     <div class="mt-2">
                       <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
@@ -86,7 +86,7 @@
       // add class
       target.classList.add("active");
       };
-      
+
        this.addEventListener("click", (e) => {
         console.log(e)
         const whereToShow = document.querySelector("#friends-toPlace");
@@ -101,7 +101,7 @@
                 <% unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
                   <div class="col-sm-12 col-md-6 col-lg-4">
                     <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
-                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; width: 100%"%>
                       <div class="px-3">
                         <div class="mt-2">
                           <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
@@ -177,7 +177,7 @@
                       <% end %>
                     </div>
                     <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
-                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; object-fit: cover; width: 100%"%>
+                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; width: 100%"%>
                       <div class="px-3">
                         <div class="mt-2">
                           <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
