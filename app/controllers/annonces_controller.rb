@@ -248,7 +248,7 @@ class AnnoncesController < ApplicationController
       @annonce.user = current_user
     end
     @annonce.statut = "active"
-    @annonce.price_cents = 37500
+    # @annonce.price_cents = 37500
     authorize @annonce
     unless @annonce.ville == ""
       if @annonce.latitude == nil or @annonce.longitude == nil
@@ -336,7 +336,8 @@ class AnnoncesController < ApplicationController
       :photo1,
       :photo2,
       :photo3,
-      :photo4
+      :photo4,
+      :price_cents
     )
   end
 

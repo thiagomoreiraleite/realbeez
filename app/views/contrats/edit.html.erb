@@ -386,15 +386,15 @@
           <p style="font-size: 12px">*Tarif en province hors zones tendues et très tendues</p>
           <p class="">B. Détail et répartition des honoraires</p>
           <p class="">1. Honoraires à la charge du bailleur :</p>
-          <p class="">- prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong>315 €</strong></p>
-          <p class="">- Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong>60 €</strong></p>
+          <p class="">- prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong><%= '%.2f' % (@contrat.honoraires_visite_bail.to_f / 100) %> €</strong></p>
+          <p class="">- Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong><%= '%.2f' % (@contrat.honoraires_etat_lieux.to_f / 100) %> €</strong></p>
           <p class="">- autres prestations [détail des prestations et conditions de rémunération] :</p>
           <div class="col-12 col-lg-6">
             <%= f.input :honoraires_autres, label: false %>
           </div>
           <p class="">2. Honoraires à la charge du locataire :</p>
-          <p class="">Prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong>0 €</strong></p>
-          <p class="">Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong>0 €</strong></p>
+          <p class="">Prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong><%= '%.2f' % (315 - (@contrat.honoraires_visite_bail.to_f / 100)) %> €</strong></p>
+          <p class="">Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong><%= '%.2f' % (60 - (@contrat.honoraires_etat_lieux.to_f / 100)) %> €</strong></p>
           <h5 class="mt-5 my-4"><strong>X. Autres conditions particulières [A définir par les parties]</strong></h5>
           <div class="col-12 col-lg-6">
             <%= f.input :autre_condition, label: false %>

@@ -13,6 +13,8 @@
               <%= f.input :prenom_proprio, label: false, placeholder:"Prénom du propriétaire"%>
               <%= f.input :nom_proprio, label: false, placeholder:"Nom du propriétaire"%>
               <%= f.input :email_proprio, label: false, placeholder:"Email du propriétaire"%>
+              <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
+              <%= f.input :price_cents, label: false, input_html: {value: 37500}%>
             </div>
           <% end %>
           <%= f.input :titre_annonce, label: "Titre de l'annonce"%>

@@ -99,8 +99,8 @@ class ContratsController < ApplicationController
     @contrat.travaux_majoration_loyer = "n/a"
     @contrat.travaux_diminution_loyer = "n/a"
     @contrat.depot_garantie = @locataire_candidature.annonce.loyer_mensuel - @locataire_candidature.annonce.charges
-    @contrat.honoraires_visite_bail = 315
-    @contrat.honoraires_etat_lieux = 60
+    @contrat.honoraires_visite_bail = (@locataire_candidature.annonce.price_cents * 0.84).to_f
+    @contrat.honoraires_etat_lieux = (@locataire_candidature.annonce.price_cents * 0.16).to_f
     @contrat.honoraires_autres = "n/a"
     @contrat.autre_condition = "n/a"
     @contrat.date_signature = Date.today.strftime("%d/%m/%Y")
@@ -150,6 +150,8 @@ class ContratsController < ApplicationController
 
   def show
     authorize @contrat
+    @honoraires_proprio =
+      @honoraire
   end
 
   def edit
