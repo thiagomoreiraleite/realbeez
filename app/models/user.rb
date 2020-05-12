@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  after_create :send_welcome_email, :send_new_registration, :set_geolocation
+  after_create :send_welcome_email, :send_new_registration
+  # , :set_geolocation
   # after_destroy :send_delete_account
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -75,13 +76,13 @@ class User < ApplicationRecord
   #   mail.deliver_now
   # end
 
-  def set_geolocation
-    @user = self
-    if @user.latitude == nil or @user.longitude == nil
-      results = Geocoder.search("#{@user.ville}")
-      @user.latitude = results.first.coordinates[0]
-      @user.longitude = results.first.coordinates[1]
-      @user.save
-    end
-  end
+  # def set_geolocation
+  #   @user = self
+  #   if @user.latitude == nil or @user.longitude == nil
+  #     results = Geocoder.search("#{@user.ville}")
+  #     @user.latitude = results.first.coordinates[0]
+  #     @user.longitude = results.first.coordinates[1]
+  #     @user.save
+  #   end
+  # end
 end
