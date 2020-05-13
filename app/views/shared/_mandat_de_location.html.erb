@@ -46,7 +46,14 @@
           <p class="text-justify"><strong>Loyer</strong> : Le loyer initial mensuel sera de <%= @annonce.loyer_mensuel %> € charges comprises, dont <%= @annonce.charges == nil ? 0 : @annonce.charges %> € de charges mensuelles, payable tous les premiers du mois.</p>
           <p class="text-justify"><strong>Charges</strong> : L’ensemble des charges d’entretien courant, ainsi que les consommations d’eau, d’électricité,
             de gaz et de fuel (pour le chauffage) seront pris en charge par le locataire.</p>
-          <p class="text-justify"><strong>Cautionnement</strong> : Le dépôt de garantie directement réglé au propriétaire sera de <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %> €.</p>
+          <p class="text-justify"><strong>Cautionnement</strong> : Le dépôt de garantie directement réglé au propriétaire sera de
+          <!-- Dépot de garantie est égal à 1 mois de loyer hors charges pour les non-meublé et de 2 mois de loyer hors charges pour les meublés -->
+          <% if @annonce.meublé == "Meublé" %>
+            <%= (@annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges)) * 2 %>
+          <% else %>
+             <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %>
+          <% end %>
+             €.</p>
           <p class="text-justify"><strong>Jouissance</strong> : Les biens à louer sont libres de toute location, occupation. La prise de possession des lieux
             sera subordonnée au paiement des sommes précitées et à la signature du contrat de location par le
             preneur.</p>
