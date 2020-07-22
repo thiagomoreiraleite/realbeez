@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # Pages
   root to: 'pages#home'
   get '/tarifs', to: 'pages#details_tarifs', as: :details
@@ -126,10 +127,8 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   get '/confirmation_contact', to: 'contacts#confirmation_contact', as: :confirmation_contact
 
-  # if Rails.env.production?
-  #   get '404', to: 'application#page_not_found'
-  #   get '422', to: 'application#server_error'
-  #   get '500', to:  'application#server_error'
-  # end
+  # get '/404', to: "errors#not_found"
+  # get '/422', to: "errors#unacceptable"
+  # get '/500', to: "errors#internal_error"
 
 end
