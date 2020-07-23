@@ -54,7 +54,10 @@
               <div class="col-9 d-flex flex-column justify-content-between">
                 <div class="card-body ml-4">
                   <div>
-                    <h5 class="card-title mb-2"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
+                    <div class="d-flex align-items-center">
+                      <h5 class="card-title mb-2"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
+                      <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                    </div>
                     <!-- ==========RATING ============-->
                     <div class="mb-2 font-size-mobile">
                       <% unless profile.agent.reviews == [] %>
@@ -93,7 +96,8 @@
                     <%# if profile.requested_friends.any? { |f| f == current_user } %>
                     <%#= link_to "En cours", add_friend_path(profile), method: :post, class: "disabled btn btn-secondary  " %>
                     <%# else %>
-                    <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent mb-1 stretched-link" %>
+                    <%= link_to "Sélectionner", profile_path(profile), class: "btn btn-transparent mb-1 " %>
+                    <!-- stretched-link -->
                     <%#= link_to "Contacter", new_conversation_path(message: {to: profile.id }), class: "btn btn-transparent mb-1" %>
                     <%# end %>
                     <%# end %>
