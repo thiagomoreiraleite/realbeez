@@ -80,7 +80,7 @@ GEM
       aws_cf_signer
       rest-client
     coderay (1.1.2)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     cookies_eu (1.7.6)
       js_cookie_rails (~> 2.2.0)
     crass (1.0.4)
@@ -109,7 +109,7 @@ GEM
       stateful_enum
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.6.0)
+    i18n (1.8.4)
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -137,7 +137,7 @@ GEM
     mini_magick (4.9.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.11.3)
+    minitest (5.14.1)
     monetize (1.9.2)
       money (~> 6.12)
     money (6.13.4)
@@ -243,7 +243,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tzinfo (1.2.5)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
