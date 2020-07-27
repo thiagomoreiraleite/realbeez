@@ -198,15 +198,27 @@
       <!-- Tableau de bord -->
       <% if user_signed_in? %>
         <div class="container justify-content-center">
-          <p class="pt-4 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
+          <p class="pt-5 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
         </div>
         <!-- Disponibilité -->
-        <div class="container">
+        <div class="container pb-5">
           <div class="row">
             <div class="col-12 col-md-6 col-lg-11 offset-lg-1">
               <%= render "shared/disponibilités" %>
               <!-- retour vers page précédente -->
               <!-- <div class="container pb-3 px-0"><%#= link_to 'Retour', 'javascript:history.go(-1);' %></div> -->
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="container justify-content-center">
+          <p class="pt-5 text-center pb-2" style="font-weight: bold; width: auto; font-size: 24px">Tableau de bord</p>
+        </div>
+        <!-- Disponibilité -->
+        <div class="container pb-5">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-11 offset-lg-1">
+              <%= render "shared/disponibilités_show_proprio" %>
             </div>
           </div>
         </div>
