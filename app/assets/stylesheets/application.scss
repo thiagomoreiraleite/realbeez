@@ -19,6 +19,12 @@
   }
 }
 
+.picture-mobile-carousel {
+   @media only screen and (max-width: 576px) {
+     height: 264px !important;
+  }
+}
+
 .hide-on-large {
   @media only screen and (min-width: 992px) {
     display: none;
