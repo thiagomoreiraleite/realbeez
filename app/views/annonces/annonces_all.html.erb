@@ -12,34 +12,46 @@
           <% @annonces_proprio_en_cours.each do |annonce| %>
             <% unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
               <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
-                  <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; width: 100%"%>
+                <div class="content border mb-5 text-center", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+                  <%= link_to annonce_path(annonce.id) do %>
+                    <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height: 250px; width:100%; object-fit: contain; background-color: #CAD1D9"%>
+                    <!-- ; object-fit: cover -->
+                    <!-- object-position: center center; -->
+                  <% end %>
                   <div class="px-3">
-                    <div class="mt-2">
-                      <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
-                      <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
-                    </div>
-                    <div class="mt-0">
-                      <p class='my-1', style="font-size: 14px">Nb de pièces  : <%= annonce.pièces %></p>
-                      <p style="font-size: 14px">Loyer mensuel  : <%= annonce.loyer_mensuel %></p>
-                      <p style="font-size: 14px">Proprio : <%= link_to User.find(annonce.user_id).prénom.capitalize, profile_path(User.find(annonce.user_id)) %> <%= link_to User.find(annonce.user_id).nom.capitalize, profile_path(User.find(annonce.user_id)) %></p>
-                      <% if annonce.agent_user_id != nil %>
-                        <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
-                      <% else %>
-                        <p style="font-size: 14px">Aucun agent assigné</p>
+                    <div class="mt-4">
+                      <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                        <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
                       <% end %>
-                      <div class="d-flex px-0 justify-content-around">
+                    </div>
+                    <div class="mt-0 pl-3">
+                      <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                        <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-map-marker-alt" style="color: #D8A727"></i> <%= annonce.ville.capitalize %></p>
+                        <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièce(s)</p>
+                        <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-coins" style="color: #D8A727"></i> <%= annonce.loyer_mensuel %> €</p>
+                      <% end %>
+                      <p class="text-left mb-1 mt-3" style="font-size: 14px">Proprio : <%= link_to User.find(annonce.user_id).prénom.capitalize, profile_path(User.find(annonce.user_id)) %> <%= link_to User.find(annonce.user_id).nom.capitalize, profile_path(User.find(annonce.user_id)) %></p>
+                      <% if annonce.agent_user_id != nil %>
+                        <p class="text-left mb-1" style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
+                      <% else %>
+                        <p class="text-left mb-1" style="font-size: 14px">Aucun agent assigné</p>
+                      <% end %>
+                      <div class="d-flex px-0 mt-4">
                         <!-- put phone of agent if agent is assigned -->
                         <% if annonce.agent_user_id != nil %>
-                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone" style="color: #D8A727"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
                         <% else %>
-                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                          <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone" style="color: #D8A727"></i> <%= annonce.téléphone%></p>
                         <% end %>
-                        <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                        <%#= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
                         <!-- send message -->
-                        <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
-                          <div class="">
+                        <% if annonce.agent_user_id != nil %>
+                          <div class="ml-5">
                             <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                          </div>
+                        <% else %>
+                          <div class="ml-5">
+                            <%= link_to "", new_conversation_path(message: {to: annonce.user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
                           </div>
                         <% end %>
                       </div>
@@ -86,7 +98,7 @@
       // add class
       target.classList.add("active");
       };
-
+      
        this.addEventListener("click", (e) => {
         console.log(e)
         const whereToShow = document.querySelector("#friends-toPlace");
@@ -100,31 +112,46 @@
               <% @annonces_proprio_en_cours.each do |annonce| %>
                 <% unless annonce.statut == "annulé" || annonce.statut == "Loué"  %>
                   <div class="col-sm-12 col-md-6 col-lg-4">
-                    <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
-                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; width: 100%"%>
+                    <div class="content border mb-5 text-center", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+                      <%= link_to annonce_path(annonce.id) do %>
+                        <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height: 250px; width:100%; object-fit: contain; background-color: #CAD1D9"%>
+                        <!-- ; object-fit: cover -->
+                        <!-- object-position: center center; -->
+                      <% end %>
                       <div class="px-3">
-                        <div class="mt-2">
-                          <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
-                          <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
-                        </div>
-                        <div class="mt-0">
-                          <p class='my-1', style="font-size: 14px">Nb de pièces : <%= annonce.pièces %></p>
-                          <p style="font-size: 14px">Loyer mensuel : <%= annonce.loyer_mensuel %></p>
-                          <% if annonce.agent_user_id != nil %>
-                            <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
-                          <% else %>
-                            <p style="font-size: 14px">Aucun agent assigné</p>
+                        <div class="mt-4">
+                          <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                            <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
                           <% end %>
-                          <div class="d-flex px-0 justify-content-around">
+                        </div>
+                        <div class="mt-0 pl-3">
+                          <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                            <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-map-marker-alt" style="color: #D8A727"></i> <%= annonce.ville.capitalize %></p>
+                            <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièce(s)</p>
+                            <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-coins" style="color: #D8A727"></i> <%= annonce.loyer_mensuel %> €</p>
+                          <% end %>
+                          <p class="text-left mb-1 mt-3" style="font-size: 14px">Proprio : <%= link_to User.find(annonce.user_id).prénom.capitalize, profile_path(User.find(annonce.user_id)) %> <%= link_to User.find(annonce.user_id).nom.capitalize, profile_path(User.find(annonce.user_id)) %></p>
+                          <% if annonce.agent_user_id != nil %>
+                            <p class="text-left mb-1" style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
+                          <% else %>
+                            <p class="text-left mb-1" style="font-size: 14px">Aucun agent assigné</p>
+                          <% end %>
+                          <div class="d-flex px-0 mt-4">
+                            <!-- put phone of agent if agent is assigned -->
                             <% if annonce.agent_user_id != nil %>
-                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone" style="color: #D8A727"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
                             <% else %>
-                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone" style="color: #D8A727"></i> <%= annonce.téléphone%></p>
                             <% end %>
-                            <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
-                            <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
-                              <div class="">
+                            <%#= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                            <!-- send message -->
+                            <% if annonce.agent_user_id != nil %>
+                              <div class="ml-5">
                                 <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                              </div>
+                            <% else %>
+                              <div class="ml-5">
+                                <%= link_to "", new_conversation_path(message: {to: annonce.user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
                               </div>
                             <% end %>
                           </div>
@@ -176,31 +203,46 @@
                         <% end %>
                       <% end %>
                     </div>
-                    <div class="content border mb-5", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
-                      <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height:200px; object-position: center center; width: 100%"%>
+                    <div class="content border mb-5 text-center", style=" box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+                      <%= link_to annonce_path(annonce.id) do %>
+                        <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height: 250px; width:100%; object-fit: contain; background-color: #CAD1D9"%>
+                        <!-- ; object-fit: cover -->
+                        <!-- object-position: center center; -->
+                      <% end %>
                       <div class="px-3">
-                        <div class="mt-2">
-                          <p class=""class="text-left mb-2", style="font-size: 14px"><i class="fas fa-map-marker-alt"></i> <%= annonce.ville.capitalize %></p>
-                          <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
-                        </div>
-                        <div class="mt-0">
-                          <p class='my-1', style="font-size: 14px">Nb de pièces : <%= annonce.pièces %></p>
-                          <p style="font-size: 14px">Loyer mensuel : <%= annonce.loyer_mensuel %></p>
-                          <% if annonce.agent_user_id != nil %>
-                            <p style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
-                          <% else %>
-                            <p style="font-size: 14px">Aucun agent assigné</p>
+                        <div class="mt-4">
+                          <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                            <p class="text-left text-truncate mt-0", style="font-size: 20px"><%= annonce.titre_annonce %></p>
                           <% end %>
-                          <div class="d-flex px-0 justify-content-around">
+                        </div>
+                        <div class="mt-0 pl-3">
+                          <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                            <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-map-marker-alt" style="color: #D8A727"></i> <%= annonce.ville.capitalize %></p>
+                            <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièce(s)</p>
+                            <p class="text-left mb-1" style="font-size: 14px"><i class="fas fa-coins" style="color: #D8A727"></i> <%= annonce.loyer_mensuel %> €</p>
+                          <% end %>
+                          <p class="text-left mb-1 mt-3" style="font-size: 14px">Proprio : <%= link_to User.find(annonce.user_id).prénom.capitalize, profile_path(User.find(annonce.user_id)) %> <%= link_to User.find(annonce.user_id).nom.capitalize, profile_path(User.find(annonce.user_id)) %></p>
+                          <% if annonce.agent_user_id != nil %>
+                            <p class="text-left mb-1" style="font-size: 14px">Agent : <%= link_to User.find(annonce.agent_user_id).prénom.capitalize, profile_path(User.find(annonce.agent_user_id)) %> <%= link_to User.find(annonce.agent_user_id).nom.capitalize, profile_path(User.find(annonce.agent_user_id)) %></p>
+                          <% else %>
+                            <p class="text-left mb-1" style="font-size: 14px">Aucun agent assigné</p>
+                          <% end %>
+                          <div class="d-flex px-0 mt-4">
+                            <!-- put phone of agent if agent is assigned -->
                             <% if annonce.agent_user_id != nil %>
-                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone" style="color: #D8A727"></i> <%= User.find(annonce.agent_user_id).téléphone%></p>
                             <% else %>
-                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone"></i> <%= annonce.téléphone%></p>
+                              <p style="color:rgba(0,0,0,0.6)"><i class="fas fa-phone" style="color: #D8A727"></i> <%= annonce.téléphone%></p>
                             <% end %>
-                            <%= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
-                            <% if annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
-                              <div class="">
+                            <%#= link_to "Détails", annonce_path(annonce), class: "my-0", style:"font-size: 14px; text-decoration: none" %>
+                            <!-- send message -->
+                            <% if annonce.agent_user_id != nil %>
+                              <div class="ml-5">
                                 <%= link_to "", new_conversation_path(message: {to: annonce.agent_user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
+                              </div>
+                            <% else %>
+                              <div class="ml-5">
+                                <%= link_to "", new_conversation_path(message: {to: annonce.user_id }), class: "fas fa-envelope", style:"font-size: 20px; color: #D8A727" %>
                               </div>
                             <% end %>
                           </div>
