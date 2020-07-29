@@ -48,10 +48,11 @@
       <% if @annonces != []  %>
         <% @annonces.each do |annonce| %>
           <div class="col-sm-12 col-md-6 col-lg-4">
-            <div class="content border mb-5", style="box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
+            <div class="content border mb-5 text-center", style="box-shadow: 0 0 5px rgba(0,0,0,0.1); background-color: white">
               <%= link_to annonce_path(annonce.id) do %>
-                <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height: 260px; width: 100% "%>
+                <%= cl_image_tag annonce.photo, class: "rounded-top", style: "height: 248px; width:100%; object-fit: contain; background-color: #CAD1D9"%>
                 <!-- ; object-fit: cover -->
+                <!-- object-position: center center; -->
               <% end %>
               <%#= cl_image_tag annonce.photo, class: "rounded-top", style: "height: 260px; width: 100% ; object-fit: cover"%>
               <div class="px-3">
@@ -63,7 +64,7 @@
                 <div class="mt-0 pl-3">
                   <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
                     <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-map-marker-alt" style="color: #D8A727"></i> <%= annonce.ville.capitalize %></p>
-                    <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièces</p>
+                    <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièce(s)</p>
                     <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-coins" style="color: #D8A727"></i> <%= annonce.loyer_mensuel %> €</p>
                   <% end %>
                   <div class="d-flex px-0 mt-4">
@@ -218,7 +219,7 @@
                   <div class="mt-0 pl-3">
                     <%= link_to annonce_path(annonce.id), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
                       <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-map-marker-alt" style="color: #D8A727"></i> <%= annonce.ville.capitalize %></p>
-                      <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièces</p>
+                      <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-expand-arrows-alt" style="color: #D8A727"></i> <%= annonce.pièces %> pièce(s)</p>
                       <p class="text-left mb-1", style="font-size: 14px"><i class="fas fa-coins" style="color: #D8A727"></i> <%= annonce.loyer_mensuel %> €</p>
                     <% end %>
                     <div class="d-flex px-0 mt-4">
