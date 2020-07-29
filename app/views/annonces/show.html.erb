@@ -53,20 +53,20 @@
   </div>
   <% if policy(@annonce).show? %>
     <!-- Carousel -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner">
-        <div class="carousel-item active text-center" style="background-color: rgb(200, 200, 200)">
+        <div class="carousel-item active text-center" style="background-color: #CAD1D9">
           <%= cl_image_tag @annonce.photo, class: "rounded-top picture-mobile", style: "height:80vh; object-position: center center; object-fit: cover"%>
         </div>
-        <div class="carousel-item text-center" style="background-color: rgb(200, 200, 200)">
+        <div class="carousel-item text-center" style="background-color: #CAD1D9">
           <%= cl_image_tag @annonce.photo1, class: "rounded-top picture-mobile", style: "height:80vh; object-position: center center; object-fit: cover"%>
         </div>
-        <div class="carousel-item text-center" style="background-color: rgb(200, 200, 200)">
+        <div class="carousel-item text-center" style="background-color: #CAD1D9">
           <%= cl_image_tag @annonce.photo2, class: "rounded-top picture-mobile", style: "height:80vh; object-position: center center; object-fit: cover"%>
         </div>
       </div>
