@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = policy_scope(Meeting).order(created_at: :desc)
+    @meetings = policy_scope(Meeting).order(created_at: :asc)
     @meetings_current_user_all = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
     @meetings_agent = []
     @meetings_current_user_all.each do |meeting|

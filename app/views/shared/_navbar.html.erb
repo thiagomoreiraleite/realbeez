@@ -106,6 +106,7 @@
                 <%#= link_to "Toutes les candidatures", candidature_all_path, class: "dropdown-item" %>
                 <%= link_to "Toutes les annonces", annonces_all_path, class: "dropdown-item" %>
                 <%= link_to "Tous les dossiers de location", locataires_all_path, class: "dropdown-item" %>
+                <%= link_to "Toutes les visites", meetings_path(visites: {from: 'admin'}), class: "dropdown-item" %>
               </div>
             <% end %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
