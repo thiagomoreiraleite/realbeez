@@ -392,3 +392,18 @@
 <!--   <li><%#= cl_image_tag(picture.photo, width: 400, height: 300, crop: :fill) %></li>
   <%# end %>
 </ul> -->
+<% if user_signed_in? %>
+  <% if current_user.admin == true %>
+    <div class="container my-5">
+      <p style="font-weight: bold; color: #D8A727">Visites prévues pour ce bien</p>
+      <% counter = 0 %>
+      <% @meetings.each do |meeting|%>
+        <% counter +=1 %>
+        <div class="d-flex align-items-center">
+          <p class="mb-1">Rdv n° <%= counter %> : le <%= meeting.start_time.strftime("%d/%m/%Y")  %> à <%= meeting.start_time.strftime("%H:%M")  %></p>
+          <%= link_to "", meeting_path(meeting), class:"fas fa-search ml-3 mb-1" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

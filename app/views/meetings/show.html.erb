@@ -32,13 +32,14 @@
             <p><%= @meeting.name.capitalize %></p>
           <% end %>
         </div>
-        <% if current_user.admin == true %>
-          <div class="mb-2 mt-4"><%= link_to 'Retour', meetings_path(visites: {from: 'admin'}) %></div>
-        <% elsif current_user == @meeting.annonce.user %>
-          <div class="mb-2 mt-4"><%= link_to 'Retour', meetings_path(visites: {from: 'proprio'}) %></div>
-        <% else %>
-          <div class="mb-2 mt-3"><%= link_to 'Retour', meetings_path %></div>
-        <% end %>
+        <!-- Button retour -->
+        <%# if current_user.admin == true %>
+        <!-- <div class="mb-2 mt-4"><%#= link_to 'Retour', meetings_path(visites: {from: 'admin'}) %></div> -->
+        <%# elsif current_user == @meeting.annonce.user %>
+        <!-- <div class="mb-2 mt-4"><%#= link_to 'Retour', meetings_path(visites: {from: 'proprio'}) %></div> -->
+        <%# else %>
+        <!-- <div class="mb-2 mt-3"><%#= link_to 'Retour', meetings_path %></div> -->
+        <%# end %>
       </div>
     </div>
   </div>

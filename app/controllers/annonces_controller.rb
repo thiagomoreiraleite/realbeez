@@ -213,6 +213,7 @@ class AnnoncesController < ApplicationController
 
   def show
     authorize @annonce
+    @meetings = @annonce.meetings.order(start_time: :asc)
     @annonces = []
     @annonces << @annonce
     if @annonce.latitude != nil
