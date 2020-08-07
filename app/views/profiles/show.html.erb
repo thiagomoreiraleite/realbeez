@@ -6,7 +6,7 @@
       <% if user_signed_in? %>
         <% if @profile.id == current_user.id %>
           <h3 class="" >Profil de <%= @profile.prénom.titlecase %> <%= @profile.nom %></h3>
-          <%= link_to "", new_page_path(message: {to: User.where("id = ?", params[:id].to_i )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+          <%#= link_to "", new_page_path(message: {to: User.where("id = ?", params[:id].to_i )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
         <% else %>
           <h3 class="" >Profil de <%= @profile.prénom.titlecase %> <%= @profile.nom[0].titlecase+"." %></h3>
           <%= link_to "", new_page_path(message: {to: User.where("id = ?", params[:id].to_i )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>

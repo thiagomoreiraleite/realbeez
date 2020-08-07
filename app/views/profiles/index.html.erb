@@ -60,7 +60,13 @@
                       <%= link_to profile_path(profile), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
                         <h5 class="card-title mb-2"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
                       <% end %>
-                      <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                      <% if user_signed_in? %>
+                        <% if profile.id != current_user.id %>
+                          <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                        <% end %>
+                      <% else %>
+                        <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                      <% end %>
                     </div>
                     <!-- ==========RATING ============-->
                     <%= link_to profile_path(profile), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
@@ -157,7 +163,13 @@
                         <%= link_to profile_path(profile), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
                           <h5 class="card-title mb-2"><%= profile.prénom.titlecase %> <%= profile.nom[0].titlecase+"." %> </h5>
                         <% end %>
-                        <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                        <% if user_signed_in? %>
+                          <% if profile.id != current_user.id %>
+                            <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                          <% end %>
+                        <% else %>
+                          <%= link_to "", new_page_path(message: {to: User.where("id = ?", profile.id )[0] }), class:"fas fa-envelope ml-4 mb-2", style:"color: #D8A727; opacity: 0.6; font-size: 18px" %>
+                        <% end %>
                       </div>
                       <!-- ==========RATING ============-->
                       <%= link_to profile_path(profile), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
