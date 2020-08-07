@@ -13,4 +13,13 @@ class MeetingMailer < ApplicationMailer
       subject:  "#{@meeting.user.prénom.capitalize} a prévu une visite"
     )
   end
+
+  def visit_agent_notify_admin
+    @meeting = params[:meeting]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    mail(
+      to:       @admin.email,
+      subject:  "#{@meeting.user.prénom.capitalize} a prévu une visite"
+    )
+  end
 end

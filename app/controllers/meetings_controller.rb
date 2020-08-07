@@ -4,7 +4,7 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = policy_scope(Meeting).order(created_at: :asc)
+    @meetings = policy_scope(Meeting).order(start_time: :asc)
     @meetings_current_user_all = policy_scope(Meeting.where("user_id = ?", current_user.id)).order(start_time: :asc)
     @meetings_agent = []
     @meetings_current_user_all.each do |meeting|
@@ -60,6 +60,9 @@ class MeetingsController < ApplicationController
           # Send email
           mail = MeetingMailer.with(meeting: @meeting).visit_agent
           mail.deliver_now
+          # Send email to Admin
+          mail_admin = MeetingMailer.with(meeting: @meeting).visit_agent_notify_admin
+          mail_admin.deliver_now
         end
         format.html { redirect_to @meeting, notice: 'La visite a été ajoutée.' }
         format.json { render :show, status: :created, location: @meeting }
