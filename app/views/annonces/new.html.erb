@@ -16,6 +16,8 @@
               <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
               <%= f.input :price_cents, label: false, input_html: {value: 37500}%>
             </div>
+          <% else %>
+            <%= f.input :agent, collection: ["Oui", "Non"], checked: "Non", as: :radio_buttons, :as => :hidden %>
           <% end %>
           <%= f.input :titre_annonce, label: "Titre de l'annonce"%>
           <%= f.input :type_de_bien, collection:
