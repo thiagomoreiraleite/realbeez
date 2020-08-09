@@ -31,13 +31,13 @@ class NotificationsController < ApplicationController
 
   # check all notification and delete all where notification.notifiable == nil
   def delete_non_notifiable
-    @notifications = Notification.all
+    @notifications_all = Notification.all
     # @notifications.each do |notif|
     #   if notif.notifiable == nil
     #     notif.destroy
     #   end
     # end
-    @non_notifiable = @notifications.find_all { |i| i.notifiable == nil }
+    @non_notifiable = @notifications_all.find_all { |i| i.notifiable == nil }
     @non_notifiable.each do |notif|
       notif.destroy
     end
