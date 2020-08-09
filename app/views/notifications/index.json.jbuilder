@@ -27,8 +27,8 @@ json.array!  @notifications do |notification|
       json.type "accepte votre candidature"
     elsif notification.action == "candidature_decline_agent_RB"
       json.type "rejète votre candidature"
-    elsif notification.action == "candidature_update_agent_RB"
-      json.type "a modifié son profil agent"
+    # elsif notification.action == "candidature_update_agent_RB"
+    #   json.type "a modifié son profil agent"
     elsif notification.action == "checkout_agent_notify_admin"
       json.type "a loué un bien"
     elsif notification.action == "checkout_agent_notify_proprio"
@@ -136,12 +136,12 @@ json.array!  @notifications do |notification|
     else
       json.url root_path
     end
-  elsif notification.action == "candidature_update_agent_RB"
-    if notification.notifiable != nil
-      json.url agents_path
-    else
-      json.url root_path
-    end
+  # elsif notification.action == "candidature_update_agent_RB"
+  #   if notification.notifiable != nil
+  #     json.url agents_path
+  #   else
+  #     json.url root_path
+  #   end
   elsif notification.action == "checkout_agent_notify_admin"
     if notification.notifiable != nil
       json.url annonce_path(notification.notifiable)
