@@ -8,6 +8,7 @@ class NotificationsController < ApplicationController
 
   def all_notifications
     authorize @notifications = policy_scope(Notification.where("recipient_id = ?", current_user.id)).order(created_at: :desc)
+    delete_non_notifiable
   end
 
   def destroy
@@ -25,6 +26,17 @@ class NotificationsController < ApplicationController
       notification.save
     end
     render json: {success: true}
+    delete_non_notifiable
+  end
+
+  # check all notification and delete all where notification.notifiable == nil
+  def delete_non_notifiable
+    @notifications = Notification.all
+    @notifications.each do |notif|
+      if notif.notifiable == nil
+        notif.destroy
+      end
+    end
   end
 
   private

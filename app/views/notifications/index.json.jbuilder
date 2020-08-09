@@ -72,69 +72,190 @@ json.array!  @notifications do |notification|
     end
   end
 
+
   # URL
   if notification.action == "candidature_create_proprio"
-    json.url show_agent_path(notification.notifiable)
+     if notification.notifiable != nil
+      json.url show_agent_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_create_agent"
-    json.url show_proprio_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url show_proprio_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_accept_proprio"
-    json.url annonce_path(notification.notifiable.annonce)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable.annonce)
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_accept_agent"
-    json.url annonce_path(notification.notifiable.annonce)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable.annonce)
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_reject_proprio"
-    json.url candidature_agent_path
+    if notification.notifiable != nil
+      json.url candidature_agent_path
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_reject_agent"
-    json.url candidature_proprio_path
+    if notification.notifiable != nil
+      json.url candidature_proprio_path
+    else
+      json.url root_path
+    end
   elsif notification.action == "visit_agent"
-    json.url meetings_path(visites: {from: 'proprio'})
+    if notification.notifiable != nil
+      json.url meetings_path(visites: {from: 'proprio'})
+    else
+      json.url root_path
+    end
   elsif notification.action == "rating_agent"
-    json.url profile_path(current_user)
+    if notification.notifiable != nil
+      json.url profile_path(current_user)
+    else
+      json.url root_path
+    end
   # elsif notification.action == "candidature_become_agent_RB"
   #   json.url agents_path
   elsif notification.action == "candidature_accept_agent_RB"
-    json.url profile_path(notification.notifiable.user)
+    if notification.notifiable != nil
+      json.url profile_path(notification.notifiable.user)
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_decline_agent_RB"
-    json.url profile_path(notification.notifiable.user)
+    if notification.notifiable != nil
+      json.url profile_path(notification.notifiable.user)
+    else
+      json.url root_path
+    end
   elsif notification.action == "candidature_update_agent_RB"
-    json.url agents_path
+    if notification.notifiable != nil
+      json.url agents_path
+    else
+      json.url root_path
+    end
   elsif notification.action == "checkout_agent_notify_admin"
-    json.url annonce_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "checkout_agent_notify_proprio"
-    json.url annonce_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "checkout_proprio_notify_admin"
-    json.url annonce_path(notification.notifiable.annonce)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable.annonce)
+    else
+      json.url root_path
+    end
   elsif notification.action == "checkout_proprio_notify_agent"
-    json.url annonce_path(notification.notifiable.annonce)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable.annonce)
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_locataire_notify_agent"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_locataire_notify_proprio"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "accept_locataire_notify_agent"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "accept_locataire_notify_locataire"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "reject_locataire_notify_agent"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "reject_locataire_notify_locataire"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "update_locataire_notify_agent"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "update_locataire_notify_proprio"
-    json.url locataire_candidature_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url locataire_candidature_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "destroy_locataire_notify_agent"
-    json.url locataires_agent_path
+    if notification.notifiable != nil
+      json.url locataires_agent_path
+    else
+      json.url root_path
+    end
   elsif notification.action == "destroy_locataire_notify_proprio"
-    json.url locataires_proprio_path
+    if notification.notifiable != nil
+      json.url locataires_proprio_path
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_bail_notify_agent"
-    json.url contrat_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url contrat_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_bail_notify_locataire"
-    json.url contrat_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url contrat_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_bail_notify_proprio"
-    json.url contrat_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url contrat_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_mandat_notify_proprio"
-    json.url annonce_path(notification.notifiable.annonce)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable.annonce)
+    else
+      json.url root_path
+    end
   elsif notification.action == "create_annonce_notify_proprio"
-    json.url annonce_path(notification.notifiable)
+    if notification.notifiable != nil
+      json.url annonce_path(notification.notifiable)
+    else
+      json.url root_path
+    end
   # elsif notification.action == "new_registration"
   #   json.url profile_all_users_path
   end

@@ -12,6 +12,10 @@ class NotificationPolicy < ApplicationPolicy
     true
   end
 
+  def delete_non_notifiable?
+    true
+  end
+
   class Scope < Scope
     def resolve
       scope.all

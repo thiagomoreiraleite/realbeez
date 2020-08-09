@@ -6,7 +6,7 @@
         <%= simple_form_for [@annonce] do |f| %>
           <% if current_user.statut == "Agent" %>
             <div class="text-justify">
-              <%= f.input :agent, label: "Vous êtes un agent et publiez une annonce pour le compte d'un propriétaire", collection: ["Oui", "Non"], as: :radio_buttons %>
+              <%= f.input :agent, label: "Vous êtes un agent et publiez une annonce pour le compte d'un propriétaire", collection: ["Oui", "Non"], checked: "Oui", as: :radio_buttons %>
             </div>
             <div class="border-top border-bottom py-3 my-3">
               <p>Si vous avez choisi "Oui", veuillez renseigner les informations concernant le propriétaire :</p>
