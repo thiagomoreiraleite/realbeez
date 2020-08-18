@@ -63,4 +63,8 @@
       <p class="">Ses revenus nets mensuels s'élèvent à <%= Locataire.find(@locataire_candidature.locataire_id).revenus_garant %> €</p>
     </li>
   </ul>
+  <!-- Link to google drive -->
+  <% if Locataire.find(@locataire_candidature.locataire_id).drive != nil && Locataire.find(@locataire_candidature.locataire_id).drive != "" %>
+    <p><%= link_to "Voir justificatifs sauvegardés sur Google drive", Locataire.find(@locataire_candidature.locataire_id).drive , class:"btn btn-transparent", target: :blank  %></p>
+  <% end %>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_081512) do
+ActiveRecord::Schema.define(version: 2020_08_18_163406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_081512) do
     t.string "activite_autre_garant"
     t.string "type_contrat_garant"
     t.string "revenus_garant"
+    t.string "drive"
     t.index ["user_id"], name: "index_locataires_on_user_id"
   end
 
