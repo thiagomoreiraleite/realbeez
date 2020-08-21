@@ -47,13 +47,13 @@
           <p class="text-justify"><strong>Charges</strong> : L’ensemble des charges d’entretien courant, ainsi que les consommations d’eau, d’électricité,
             de gaz et de fuel (pour le chauffage) seront pris en charge par le locataire.</p>
           <p class="text-justify"><strong>Cautionnement</strong> : Le dépôt de garantie directement réglé au propriétaire sera de
-          <!-- Dépot de garantie est égal à 1 mois de loyer hors charges pour les non-meublé et de 2 mois de loyer hors charges pour les meublés -->
-          <% if @annonce.meublé == "Meublé" %>
-            <%= (@annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges)) * 2 %>
-          <% else %>
-             <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %>
-          <% end %>
-             €.</p>
+            <!-- Dépot de garantie est égal à 1 mois de loyer hors charges pour les non-meublé et de 2 mois de loyer hors charges pour les meublés -->
+            <% if @annonce.meublé == "Meublé" %>
+              <%= (@annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges)) * 2 %>
+            <% else %>
+              <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %>
+            <% end %>
+            €.</p>
           <p class="text-justify"><strong>Jouissance</strong> : Les biens à louer sont libres de toute location, occupation. La prise de possession des lieux
             sera subordonnée au paiement des sommes précitées et à la signature du contrat de location par le
             preneur.</p>
@@ -66,7 +66,6 @@
             <li class="mb-1">Faire toute publicité qu’il jugera utile (commerciale, petites annonces…), les frais y afférents restant à la charge exclusive
               du mandataire. Il peut notamment diffuser des
               informations concernant les biens sur des sites Internet.</li>
-            <li class="mb-1">Apposer un panneau sur l’immeuble.</li>
             <li class="mb-1">Communiquer éventuellement le dossier de l’opération à tout confrère qu’il jugera susceptible de concourir à la location.</li>
             <li class="mb-1">Réclamer et faire établir (avec l'accord préalable du mandant), si nécessaire, toutes pièces utiles auprès de toutes personnes privées ou publiques, notamment le constat d’huissier dans les cas prévus par la loi et, selon le bail, soit le dossier de diagnostic technique prévu par l’article 3-1 de la loi du 6 juillet 1989, soit les diagnostics et certificats prévus par les articles L.1334-7 du code de la santé publique, L.125-5 du code de l’environnement et L.134-3 du code de la construction et de l’habitation.</li>
             <li class="mb-1">Rédiger le contrat de location aux prix, charges et conditions convenus aux présentes. Établir les documents annexes (état
@@ -90,15 +89,15 @@
           <p class="text-justify">Le présent mandat est consenti sans exclusivité pour une période de 6 mois à compter de ce jour, mais pourra être révoqué à tout moment avec un préavis de quinze jours.</p>
           <h5 class="my-4 p-2 text-center" style="background-color: white; box-shadow: 0 0 8px rgba(0,0,0,0.1); color: #D8A727"><strong>LA REMUNERATION</strong></h5>
           <p>Lorsque la location aura été effectivement conclue, la rémunération du mandataire sera exigible. Celle-ci est fixée à la somme de
-          <!-- Amount of fees to pay by landlord -->
-          <% if params[:annonce_id] != nil %>
-            <% honoraires = Annonce.find(params[:annonce_id].to_i).price_cents.to_f/100 %>
-            <%= '%.2f' % honoraires %>
-          <% else %>
-            <% honoraires = (@mandat.annonce.price_cents.to_f/100) %>
-            <%= '%.2f' % honoraires %>
-          <% end %>
-          € hors taxes (TVA non applicable - article 293 B du CGI).</p>
+            <!-- Amount of fees to pay by landlord -->
+            <% if params[:annonce_id] != nil %>
+              <% honoraires = Annonce.find(params[:annonce_id].to_i).price_cents.to_f/100 %>
+              <%= '%.2f' % honoraires %>
+            <% else %>
+              <% honoraires = (@mandat.annonce.price_cents.to_f/100) %>
+              <%= '%.2f' % honoraires %>
+            <% end %>
+            € hors taxes (TVA non applicable - article 293 B du CGI).</p>
           <!-- SIGNATURE -->
           <!-- SHOW PAGE -->
           <% if params[:action] == "show" %>
