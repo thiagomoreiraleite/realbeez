@@ -1,45 +1,97 @@
-<% if User.find(params[:message][:to].to_i).email == "contact@realbeez.com" %>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 mb-5">
-        <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez-nous</h5>
-        <p class="mb-4">Vous pouvez aussi nous contacter par email à l'adresse suivante : contact@realbeez.com</p>
-        <%= form_for "", url: pages_path do |f| %>
-          <div class="form-group">
-            <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
-            <%=f.hidden_field :destinataire, value: "" %>
-          </div>
-          <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right' %>
-        <% end %>
-        <p class="mt-4">Vous souhaitez qu'un conseillé vous rappelle? Laissez-nous vos coordonnées.</p>
+<% if params[:message] != nil %>
+  <% if User.find(params[:message][:to].to_i).email == "contact@realbeez.com" %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 mb-5">
+          <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez-nous</h5>
+          <p class="mb-4">Vous pouvez aussi nous contacter par email à l'adresse suivante : contact@realbeez.com</p>
+          <%= form_for "", url: pages_path do |f| %>
+            <div class="form-group">
+              <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
+              <%=f.hidden_field :destinataire, value: User.where("email = ?", "contact@realbeez.com")[0].id %>
+            </div>
+            <%= recaptcha_tags %>
+            <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
+          <% end %>
+          <p class="mt-4">Vous souhaitez qu'un conseillé vous rappelle? Laissez-nous vos coordonnées.</p>
+        </div>
       </div>
     </div>
-  </div>
+  <% else %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 mb-5">
+          <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez <%= User.find(params[:message][:to].to_i).prénom.capitalize %> <%= User.find(params[:message][:to].to_i).nom[0].capitalize %>.</h5>
+          <%= form_for "", url: pages_path do |f| %>
+            <div class="form-group">
+              <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
+              <%=f.hidden_field :destinataire, value: params[:message][:to].to_i %>
+            </div>
+            <%= recaptcha_tags %>
+            <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% else %>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-6 mb-5">
-        <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez <%= User.find(params[:message][:to].to_i).prénom.capitalize %> <%= User.find(params[:message][:to].to_i).nom[0].capitalize %>.</h5>
-        <%= form_for "", url: pages_path do |f| %>
-          <div class="form-group">
-            <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
-            <%=f.hidden_field :destinataire, value: params[:message][:to].to_i %>
-          </div>
-          <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right' %>
-        <% end %>
+  <% if User.find(params[:destinataire].to_i).email == "contact@realbeez.com" %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 mb-5">
+          <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez-nous</h5>
+          <p class="mb-4">Vous pouvez aussi nous contacter par email à l'adresse suivante : contact@realbeez.com</p>
+          <%= form_for "", url: pages_path do |f| %>
+            <div class="form-group">
+              <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
+              <%=f.hidden_field :destinataire, value: User.where("email = ?", "contact@realbeez.com")[0].id %>
+            </div>
+            <%= recaptcha_tags %>
+            <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
+          <% end %>
+          <p class="mt-4">Vous souhaitez qu'un conseillé vous rappelle? Laissez-nous vos coordonnées.</p>
+        </div>
       </div>
     </div>
-  </div>
+  <% else %>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 mb-5">
+          <h5 class="text-center mt-3 my-5" style="color: #D8A727">Contactez <%= User.find(params[:destinataire].to_i).prénom.capitalize %> <%= User.find(params[:destinataire].to_i).nom[0].capitalize %>.</h5>
+          <%= form_for "", url: pages_path do |f| %>
+            <div class="form-group">
+              <%= f.text_field :email, required: true, placeholder: "Votre email", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :subject, required: true, placeholder: "Objet", rows: 4, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
+              <%=f.hidden_field :destinataire, value: params[:destinataire].to_i %>
+            </div>
+            <%= recaptcha_tags %>
+            <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
