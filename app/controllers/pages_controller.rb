@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home, :details_tarifs, :mentions_legales, :nous_decouvrir, :fiches_pratiques, :statut_auto_entrepreneur, :new, :create, :reponse_contactez_nous, :charges_deductibles, :recommandation, :investissement_locatif, :outils, :documents_contrat_bail]
-  invisible_captcha only: [:create], on_spam: :your_spam_callback_method
 
   def home
     # if user_signed_in? && current_user.ville != nil
@@ -41,9 +40,4 @@ class PagesController < ApplicationController
     redirect_to reponse_contactez_nous_path
   end
 
-  private
-
-  def your_spam_callback_method
-    redirect_to root_path
-  end
 end

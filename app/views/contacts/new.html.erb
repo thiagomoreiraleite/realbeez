@@ -22,7 +22,6 @@
       <p class="mb-0">Laissez-nous vos coordonnées et nous vous</p>
       <p class="mb-2">contacterons dans les plus brefs délais.</p>
       <%= simple_form_for [@contact] do |f| %>
-        <%= f.invisible_captcha :subtitle %>
         <div class="d-flex">
           <%= f.input :prenom, label: false, placeholder: "Prénom" %>
           <%= f.input :nom, label: false, placeholder: "Nom" %>
@@ -32,6 +31,7 @@
           <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
         </div>
         <%= f.input :email, label: false, placeholder: "Email" %>
+        <%= recaptcha_tags %>
         <div class="d-flex justify-content-end">
           <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
         </div>
@@ -53,7 +53,6 @@
       <p class="mb-0">Laissez-nous vos coordonnées et nous vous</p>
       <p class="mb-2">contacterons dans les plus brefs délais.</p>
       <%= simple_form_for [@contact] do |f| %>
-        <%= f.invisible_captcha :subtitle %>
         <div class="d-flex">
           <%= f.input :prenom, label: false, placeholder: "Prénom" %>
           <%= f.input :nom, label: false, placeholder: "Nom" %>
@@ -63,6 +62,7 @@
           <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
         </div>
         <%= f.input :email, label: false, placeholder: "Email" %>
+        <%= recaptcha_tags %>
         <div class="d-flex justify-content-end">
           <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
         </div>
