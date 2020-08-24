@@ -46,3 +46,4 @@ gem 'mailboxer', github: 'mailboxer/mailboxer'
 gem 'has_friendship'
 gem 'letter_opener', group: :development
 gem 'cookies_eu'
+gem 'invisible_captcha'

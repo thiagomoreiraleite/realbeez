@@ -1,5 +1,7 @@
 # app/controllers/users/registrations_controller.rb
 class Users::RegistrationsController < Devise::RegistrationsController
+  invisible_captcha only: [:create], on_spam: :your_spam_callback_method
+
   # DELETE /resource
   def destroy
     resource.soft_delete
@@ -7,5 +9,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     set_flash_message :notice, :destroyed
     yield resource if block_given?
     respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+  end
+
+  private
+
+  def your_spam_callback_method
+    redirect_to root_path
   end
 end
