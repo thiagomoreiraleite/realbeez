@@ -36,6 +36,7 @@
         <%# end %>
       </nav> -->
       <%= simple_form_for [@contact] do |f| %>
+        <%= f.invisible_captcha :subtitle %>
         <div class="d-flex">
           <%= f.input :prenom, label: false, placeholder: "Prénom" %>
           <%= f.input :nom, label: false, placeholder: "Nom" %>
@@ -76,6 +77,7 @@
       <p class="mb-0">Laissez-nous vos coordonnées et nous vous</p>
       <p class="mb-2">contacterons dans les plus brefs délais.</p>
       <%= simple_form_for [@contact] do |f| %>
+        <%= f.invisible_captcha :subtitle %>
         <div class="d-flex">
           <%= f.input :prenom, label: false, placeholder: "Prénom" %>
           <%= f.input :nom, label: false, placeholder: "Nom" %>
