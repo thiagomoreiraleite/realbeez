@@ -13,9 +13,9 @@
     <%= link_to "Louer mon bien", new_contact_path, class: "nav-link hide-on-mobile nav-white", style:"", class:"btn btn-transparent-bold-white" %>
   </div>
   <div class="container d-flex align-items-center" style="height: 750px">
-    <div class="border" style="border-radius: 5px; background-color: white; padding: 30px 30px">
+    <div class="border" style="border-radius: 5px; background-color: white; padding: 20px 30px">
       <h1 style="color: #D8A727; font-family: Simply Rounded; font-size: 24px; letter-spacing: 1px">Trouvez rapidement un locataire</h1>
-      <h1 class="mb-4" style="color: #D8A727; font-family: Simply Rounded; font-size: 24px; letter-spacing: 1px">pour votre bien immobilier</h1>
+      <h1 class="mb-3" style="color: #D8A727; font-family: Simply Rounded; font-size: 24px; letter-spacing: 1px">pour votre bien immobilier</h1>
       <!--   <h3 class="px-2" style="color: white; font-weight:bold">Et si le meilleur agent immobilier était votre voisin de quartier...</h3> -->
       <p class="mb-2" style="color: rgb(100, 100, 100); font-size: 16px; font-weight: bold">Un forfait fixe à <span style="font-size: 18px; color: #D8A727">375 €</span> sans aucune contrainte !</p>
       <ul class="mb-4">
@@ -45,8 +45,9 @@
           <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
         </div>
         <%= f.input :email, label: false, placeholder: "Email" %>
+        <%= recaptcha_tags %>
         <div class="d-flex justify-content-end">
-          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
+          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard mt-2" %>
         </div>
       <% end %>
     </div>
@@ -85,8 +86,9 @@
           <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
         </div>
         <%= f.input :email, label: false, placeholder: "Email" %>
+        <%= recaptcha_tags %>
         <div class="d-flex justify-content-end">
-          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard" %>
+          <%= f.submit "Envoyer", class: "btn btn-yellow-mustard mt-3" %>
         </div>
       <% end %>
     </div>
