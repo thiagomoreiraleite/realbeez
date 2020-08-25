@@ -22,8 +22,10 @@
           <%= f.input :parrain, as: :hidden, input_html: {value: User.find(params[:referred_by]).email } %>
         <% end %>
       </div>
+      <%= flash[:recaptcha_error] %>
+      <%= recaptcha_tags %>
       <div class="form-actions mb-5">
-        <%= f.button :submit, "Valider", class: "btn btn-yellow-mustard" %>
+        <%= f.button :submit, "Valider", class: "btn btn-yellow-mustard mt-3" %>
       </div>
     </div>
   </div>
