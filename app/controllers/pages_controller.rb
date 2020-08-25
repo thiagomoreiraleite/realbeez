@@ -36,7 +36,7 @@ class PagesController < ApplicationController
     receipt = params
     # Send email
     mail = PageMailer.with(conversation: receipt).contactez_nous
-    if verify_recaptcha(message: "Confirmez que vous n'êtes pas un robot")
+    if verify_recaptcha
       mail.deliver_now
       redirect_to reponse_contactez_nous_path
     else

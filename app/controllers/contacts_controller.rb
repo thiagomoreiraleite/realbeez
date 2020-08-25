@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
 
   def create
     authorize @contact = Contact.new(contact_params)
-    if verify_recaptcha(model: @contact) && @contact.save
+    if verify_recaptcha && @contact.save
       # Send email to Admin
       mail = ContactMailer.with(contact: @contact).create_new_contact
       mail.deliver_now
