@@ -16,6 +16,7 @@
               <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
               <%=f.hidden_field :destinataire, value: User.where("email = ?", "contact@realbeez.com")[0].id %>
             </div>
+            <%= flash[:recaptcha_error] %>
             <%= recaptcha_tags %>
             <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
           <% end %>
@@ -39,6 +40,7 @@
               <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
               <%=f.hidden_field :destinataire, value: params[:message][:to].to_i %>
             </div>
+            <%= flash[:recaptcha_error] %>
             <%= recaptcha_tags %>
             <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
           <% end %>
@@ -64,6 +66,7 @@
               <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
               <%=f.hidden_field :destinataire, value: User.where("email = ?", "contact@realbeez.com")[0].id %>
             </div>
+            <%= flash[:recaptcha_error] %>
             <%= recaptcha_tags %>
             <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
           <% end %>
@@ -87,6 +90,7 @@
               <%= f.text_area :body, required: true, placeholder: "Votre message", rows: 4, class: "form-control" %>
               <%=f.hidden_field :destinataire, value: params[:destinataire].to_i %>
             </div>
+            <%= flash[:recaptcha_error] %>
             <%= recaptcha_tags %>
             <%= f.submit "Envoyé", class: 'btn btn-yellow-mustard pull-right mt-3' %>
           <% end %>

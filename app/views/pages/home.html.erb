@@ -45,6 +45,7 @@
           <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
         </div>
         <%= f.input :email, label: false, placeholder: "Email" %>
+        <%= flash[:recaptcha_error] %>
         <%= recaptcha_tags %>
         <div class="d-flex justify-content-end">
           <%= f.submit "Envoyer", class: "btn btn-yellow-mustard mt-2" %>
@@ -86,6 +87,7 @@
           <%= f.input :telephone, label: false, placeholder: "Téléphone" %>
         </div>
         <%= f.input :email, label: false, placeholder: "Email" %>
+        <%= flash[:recaptcha_error] %>
         <%= recaptcha_tags %>
         <div class="d-flex justify-content-end">
           <%= f.submit "Envoyer", class: "btn btn-yellow-mustard mt-3" %>
