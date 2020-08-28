@@ -965,9 +965,9 @@
           <p class="">1. Honoraires à la charge du bailleur :
             <strong>
               <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
-                <%= link_to '%.2f' % @contrat.honoraire_bailleur, edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <%= link_to '%.2f' % @contrat.honoraire_bailleur + " €", edit_contrat_path(@contrat), class:"text-decoration-none" %>
               <% else %>
-                <%= '%.2f' % @contrat.honoraire_bailleur  %>
+                <%= '%.2f' % @contrat.honoraire_bailleur %> €
               <% end %>
             </strong>
           </p>
@@ -988,9 +988,9 @@
           <p class="">2. Honoraires à la charge du locataire :
             <strong>
               <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
-                <%= link_to '%.2f' % @contrat.honoraire_locataire, edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <%= link_to '%.2f' % @contrat.honoraire_locataire + " €", edit_contrat_path(@contrat), class:"text-decoration-none" %>
               <% else %>
-                <%= '%.2f' % @contrat.honoraire_locataire  %>
+                <%= '%.2f' % @contrat.honoraire_locataire  %> €
               <% end %>
             </strong>
           </p>

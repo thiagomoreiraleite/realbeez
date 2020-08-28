@@ -552,7 +552,7 @@
         <p class="">B. Détail et répartition des honoraires</p>
         <p class="">1. Honoraires à la charge du bailleur :
           <strong>
-            <%= '%.2f' % @contrat.honoraire_bailleur  %>
+            <%= '%.2f' % @contrat.honoraire_bailleur  %> €
           </strong>
         </p>
         <%= simple_format(@contrat.honoraire_bailleur_detail) %>
@@ -561,7 +561,7 @@
         </p>
         <p class="">2. Honoraires à la charge du locataire :</p>
         <strong>
-          <%= '%.2f' % @contrat.honoraire_locataire  %>
+          <%= '%.2f' % @contrat.honoraire_locataire  %> €
         </strong>
         <%= simple_format(@contrat.honoraire_locataire_detail) %>
         <h5 class="mt-5 my-4"><strong>X. Autres conditions particulières [A définir par les parties]</strong></h5>
