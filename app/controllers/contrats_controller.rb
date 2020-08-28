@@ -93,7 +93,7 @@ class ContratsController < ApplicationController
     @contrat.justif_complement_loyer = "n/a"
     @contrat.loyer_dernier_locataire = "à compléter"
     @contrat.date_revision_loyer = "n/a"
-    @contrat.reference_irl = "4T 2019 : 130,26"
+    @contrat.reference_irl = "2T 2020 : 130,57"
     @contrat.modalite_paiement_charges = "Provisions sur charges avec régularisation annuelle"
     @contrat.provision_charges = "n/a"
     @contrat.modalite_revision_forfait = "n/a"
