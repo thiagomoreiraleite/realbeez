@@ -965,9 +965,17 @@
           <p class="">1. Honoraires à la charge du bailleur :
             <strong>
               <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
-                <%= link_to '%.2f' % @contrat.honoraire_bailleur + " €", edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <% if @contrat.honoraire_bailleur != "" && @contrat.honoraire_bailleur != nil %>
+                  <%= link_to '%.2f' % @contrat.honoraire_bailleur + " €", edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <% else %>
+                  <%= link_to "n/a", edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <% end %>
               <% else %>
-                <%= '%.2f' % @contrat.honoraire_bailleur %> €
+                <% if @contrat.honoraire_bailleur != "" && @contrat.honoraire_bailleur != nil %>
+                  <%= '%.2f' % @contrat.honoraire_bailleur %> €
+                <% else %>
+                  "n/a"
+                <% end %>
               <% end %>
             </strong>
           </p>
@@ -988,9 +996,17 @@
           <p class="">2. Honoraires à la charge du locataire :
             <strong>
               <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
-                <%= link_to '%.2f' % @contrat.honoraire_locataire + " €", edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <% if @contrat.honoraire_locataire != "" && @contrat.honoraire_locataire != nil %>
+                  <%= link_to '%.2f' % @contrat.honoraire_locataire + " €", edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <% else %>
+                  <%= link_to "n/a", edit_contrat_path(@contrat), class:"text-decoration-none" %>
+                <% end %>
               <% else %>
-                <%= '%.2f' % @contrat.honoraire_locataire  %> €
+                <% if @contrat.honoraire_locataire != "" && @contrat.honoraire_locataire != nil %>
+                  <%= '%.2f' % @contrat.honoraire_locataire  %> €
+                <% else %>
+                  "n/a"
+                <% end %>
               <% end %>
             </strong>
           </p>
