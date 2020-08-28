@@ -1004,9 +1004,9 @@
           <h5 class="mt-5 my-4"><strong>X. Autres conditions particulières [A définir par les parties]</strong></h5>
           <p class="">
             <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
-              <%= link_to @contrat.autre_condition, edit_contrat_path(@contrat), class:"text-decoration-none" %>
+              <%= link_to simple_format(@contrat.autre_condition), edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
-              <%= @contrat.autre_condition %>
+              <%= simple_format(@contrat.autre_condition) %>
             <% end %>
           </p>
           <h5 class="mt-5 my-4"><strong>XI. Annexes</strong></h5>
