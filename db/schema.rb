@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_163406) do
+ActiveRecord::Schema.define(version: 2020_08_28_185109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_163406) do
     t.string "date_prise_effet"
     t.string "duree_contrat"
     t.string "nb_duree_reduite"
-    t.string "justif_duree_reduite"
+    t.text "justif_duree_reduite"
     t.integer "loyer_mensuel"
     t.boolean "decret_evolution_loyer"
     t.boolean "loyer_reference"
@@ -181,6 +181,24 @@ ActiveRecord::Schema.define(version: 2020_08_18_163406) do
     t.string "garant"
     t.string "societe_civile"
     t.string "autre_autre_partie_logement"
+    t.text "contrat_type"
+    t.string "date_naissance_bailleur"
+    t.string "lieu_naissance_bailleur"
+    t.text "clause_solidarite"
+    t.text "clause_resolutoire"
+    t.text "caution_solidaire"
+    t.text "autre_info"
+    t.string "civilite_locataire"
+    t.string "date_naissance_locataire"
+    t.string "lieu_naissance_locataire"
+    t.text "consistance_logement"
+    t.text "garantie_duree"
+    t.text "plafond_applicable"
+    t.text "domicile_locataire"
+    t.decimal "honoraire_bailleur", precision: 10, scale: 2
+    t.text "honoraire_bailleur_detail"
+    t.decimal "honoraire_locataire", precision: 10, scale: 2
+    t.text "honoraire_locataire_detail"
     t.index ["locataire_candidature_id"], name: "index_contrats_on_locataire_candidature_id"
     t.index ["user_id"], name: "index_contrats_on_user_id"
   end

@@ -14,33 +14,36 @@
             <h5 class="mb-0"><strong>LOCAUX MEUBLES A USAGE D'HABITATION</strong></h5>
           <% end %>
         </div>
-        <div class="" style="font-size: 12px">
-          <p class=""><strong>Champ du contrat type </strong>: le présent contrat type de location est applicable aux locations et aux colocations de logement nu et qui constitue la résidence principale du preneur, à l’exception :</p>
-          <ul>
-            <li>
-              <p class="">des colocations formalisées par la conclusion de plusieurs contrats entre les colocataires et le bailleur ;</p>
-            </li>
-            <li>
-              <p class="">des locations de logements faisant l’objet d’une convention passée en application de l’article L.351-2 ou de l’article L. 321-8 du code de la construction et de l’habitation ;</p>
-            </li>
-            <li>
-              <p class="">des locations de logement appartenant à un organisme d’habitation à loyer modéré ne faisant pas l’objet d’une convention passée en application de l’article L.351-2 précité.</p>
-            </li>
-          </ul>
-          <p class=""><strong>En conséquence :</strong></p>
-          <ul>
-            <li>
-              <p class="">le présent contrat type de location contient uniquement les clauses essentielles du contrat dont la législation et la réglementation en vigueur au jour de sa publication imposent la mention par les parties dans le contrat. Il appartient cependant aux parties de s'assurer des dispositions applicables au jour de la conclusion du contrat ;</p>
-            </li>
-            <li>
-              <p class="">au-delà de ces clauses, les parties sont également soumises à l'ensemble des dispositions légales et réglementaires d'ordre public applicables aux baux d'habitation sans qu'il soit nécessaire de les faire figurer dans le contrat et qui sont rappelées utilement dans la notice d'information qui doit être jointe à chaque contrat ;</p>
-            </li>
-            <li>
-              <p class="">les parties sont libres de prévoir dans le contrat d'autres clauses particulières, propres à chaque location, dans la mesure où celles-ci sont conformes aux dispositions législatives et réglementaires en vigueur. Les parties peuvent également convenir de l'utilisation de tout autre support pour établir leur contrat, dans le respect du présent contrat type.</p>
-            </li>
-          </ul>
-        </div>
         <%= simple_form_for [@locataire_candidature, @contrat] do |f| %>
+          <div class="" style="font-size: 12px">
+            <p class=""><strong>Champ du contrat type </strong>:
+              <%= f.input :contrat_type, label: false %>
+            </p>
+            <!-- le présent contrat type de location est applicable aux locations et aux colocations de logement nu et qui constitue la résidence principale du preneur, à l’exception :
+            <ul>
+              <li>
+                <p class="">des colocations formalisées par la conclusion de plusieurs contrats entre les colocataires et le bailleur ;</p>
+              </li>
+              <li>
+                <p class="">des locations de logements faisant l’objet d’une convention passée en application de l’article L.351-2 ou de l’article L. 321-8 du code de la construction et de l’habitation ;</p>
+              </li>
+              <li>
+                <p class="">des locations de logement appartenant à un organisme d’habitation à loyer modéré ne faisant pas l’objet d’une convention passée en application de l’article L.351-2 précité.</p>
+              </li>
+            </ul> -->
+            <p class=""><strong>En conséquence :</strong></p>
+            <ul>
+              <li>
+                <p class="">le présent contrat type de location contient uniquement les clauses essentielles du contrat dont la législation et la réglementation en vigueur au jour de sa publication imposent la mention par les parties dans le contrat. Il appartient cependant aux parties de s'assurer des dispositions applicables au jour de la conclusion du contrat ;</p>
+              </li>
+              <li>
+                <p class="">au-delà de ces clauses, les parties sont également soumises à l'ensemble des dispositions légales et réglementaires d'ordre public applicables aux baux d'habitation sans qu'il soit nécessaire de les faire figurer dans le contrat et qui sont rappelées utilement dans la notice d'information qui doit être jointe à chaque contrat ;</p>
+              </li>
+              <li>
+                <p class="">les parties sont libres de prévoir dans le contrat d'autres clauses particulières, propres à chaque location, dans la mesure où celles-ci sont conformes aux dispositions législatives et réglementaires en vigueur. Les parties peuvent également convenir de l'utilisation de tout autre support pour établir leur contrat, dans le respect du présent contrat type.</p>
+              </li>
+            </ul>
+          </div>
           <%#= f.input :type_habitat_immeuble, label: false, collection: ["collectif", "individuel"], as: :radio_buttons %>
           <h5 class="mt-5 my-4"><strong>I. Désignation des parties</strong></h5>
           <p class="">Le présent contrat est conclu entre les soussignés :</p>
@@ -53,6 +56,14 @@
           <p class="mt-4"><strong>Nom et prénom du bailleur : </strong>  </p>
           <div class="col-12 col-lg-6">
             <%= f.input :nom_bailleur, label: false %>
+          </div>
+          <p class="mb-1">Date de naissance :  </p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :date_naissance_bailleur, label: false %>
+          </div>
+          <p class="mb-3">Lieu de naissance : </p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :lieu_naissance_bailleur, label: false %>
           </div>
           <p class="">Dénomination (si personne morale) :  </p>
           <div class="col-12 col-lg-6">
@@ -101,6 +112,10 @@
             <%= f.input :garant, label: false %>
           </div>
           <p class="mt-4"><strong>Nom et prénom du ou des locataires</strong>, adresse email (facultatif)], : </p>
+          <p class="">Titre de civilité</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :civilite_locataire, collection: ["Madame", "Mademoiselle", "Monsieur"], label: false %>
+          </div>
           <div class="col-12 col-lg-6">
             <% nb_locataire = @contrat.nom_locataire.count %>
             <% count = 0 %>
@@ -108,6 +123,18 @@
               <%= f.input :nom_locataire, label: false, include_hidden: false, input_html: {multiple: true, value: @contrat.nom_locataire[count]} %>
               <% count += 1 %>
             <% end %>
+          </div>
+          <p class="">Date de naissance</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :date_naissance_locataire, label: false %>
+          </div>
+          <p class="">Lieu de naissance</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :lieu_naissance_locataire, label: false %>
+          </div>
+          <p class="">Adresse</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :domicile_locataire, label: false %>
           </div>
           <p class="">désigné(s) ci-après <strong>« le locataire »</strong> ;</p>
           <p class="">Il a été convenu ce qui suit :</p>
@@ -117,6 +144,10 @@
           <p class="">Adresse du logement [exemples : adresse / bâtiment / étage / porte etc.] :</p>
           <div class="col-12 col-lg-6">
             <%= f.input :adresse_logement, label: false %>
+          </div>
+          <p class="mb-1">Description du logement: </p>
+          <div class="ml-3" style="">
+            <%= f.input :consistance_logement, label: false %>
           </div>
           <p class="mb-1">Type d’habitat, Immeuble : </p>
           <div class="ml-3" style="">
@@ -199,20 +230,24 @@
           <div class="col-12 col-lg-6">
             <%= f.input :date_prise_effet, label: false %>
           </div>
-          <p class="">B. Durée du contrat : </p>
-          <div class="ml-3" style="">
-            <%= f.input :duree_contrat, collection: ["3 ans", "6 ans", "Durée réduite :"], as: :radio_buttons, label: "" %>
+          <p class="">B. Durée du contrat : 1 an / 3 ans / 6 ans</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :duree_contrat, label: false %>
+            <!--  <div class="col-12 col-lg-6">
+              <%#= f.input :nb_duree_reduite, label: "" %>
+            </div> -->
+          </div>
+          <% if @contrat.locataire_candidature.annonce.meublé == "Non meublé" || @contrat.locataire_candidature.annonce.meublé == "" %>
+            <p class="" style="font-size: 12px">*Durée réduite limitée aux événements précis qui justifient que le bailleur personne physique ait à reprendre le local pour des raisons professionnelles ou familiales.</p>
+            <p class="">C. Le cas échéant, événement et raison justifiant la durée réduite du contrat de location :</p>
             <div class="col-12 col-lg-6">
               <%= f.input :nb_duree_reduite, label: false %>
             </div>
-          </div>
-          (durée minimale d’un an lorsqu’un événement précis* le justifie)
-          <p class="" style="font-size: 12px">*Limité aux événements précis qui justifient que le bailleur personne physique ait à reprendre le local pour des raisons professionnelles ou familiales.</p>
-          <p class="">C. Le cas échéant, événement et raison justifiant la durée réduite du contrat de location :</p>
+          <% end %>
           <div class="col-12 col-lg-6">
             <%= f.input :justif_duree_reduite, label: false %>
           </div>
-          <p class="">En l’absence de proposition de renouvellement du contrat, celui-ci est, à son terme, reconduit tacitement pour 3 ou 6 ans et dans les mêmes conditions. Le locataire peut mettre fin au bail à tout moment, après avoir donné congé. Le bailleur, quant à lui, peut mettre fin au bail à son échéance et après avoir donné congé, soit pour reprendre le logement en vue de l’occuper lui-même ou une personne de sa famille, soit pour le vendre, soit pour un motif sérieux et légitime.</p>
+          <!--  <p class="">En l’absence de proposition de renouvellement du contrat, celui-ci est, à son terme, reconduit tacitement pour 3 ou 6 ans et dans les mêmes conditions. Le locataire peut mettre fin au bail à tout moment, après avoir donné congé. Le bailleur, quant à lui, peut mettre fin au bail à son échéance et après avoir donné congé, soit pour reprendre le logement en vue de l’occuper lui-même ou une personne de sa famille, soit pour le vendre, soit pour un motif sérieux et légitime.</p> -->
           <!--  -->
           <!-- Chapitre 4 -->
           <h5 class="mt-5 my-4"><strong>IV. Conditions financières</strong></h5>
@@ -362,17 +397,22 @@
             <%= f.input :travaux_diminution_loyer, label: false %>
           </div>
           <h5 class="mt-5 my-4"><strong>VI. Garanties</strong></h5>
-          <p class="">Le cas échéant, montant du dépôt de garantie de l’exécution des obligations du locataire / Garantie autonome [inférieur ou égal à un mois de loyers hors charges] :</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :garantie_duree, label: false %>
+          </div>
           <div class="col-12 col-lg-6">
             <%= f.input :depot_garantie, label: false %>
           </div>
           <!--  -->
           <!-- Chapter 7 -->
           <h5 class="mt-5 my-4"><strong>VII. Clause de solidarité</strong></h5>
-          <p class="">Modalités particulières des obligations en cas de pluralité de locataires : en cas de colocation, c'est à dire de la location d’un même logement par plusieurs locataires, constituant leur résidence principale et formalisée par la conclusion d’un contrat unique ou de plusieurs contrats entre les locataires et le bailleur, les locataires sont tenus conjointement, solidairement et indivisiblement à l’égard du bailleur au paiement des loyers, charges et accessoires dus en application du présent bail. La solidarité d'un des colocataires et celle de la personne qui s'est portée caution pour lui prennent fin à la date d'effet du congé régulièrement délivré et lorsqu'un nouveau colocataire figure au bail. A défaut, la solidarité du colocataire sortant s'éteint au plus tard à l'expiration d'un délai de six mois après la date d'effet du congé.</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :clause_solidarite, label: false %>
+          </div>
           <h5 class="mt-5 my-4"><strong>VIII. Clause résolutoire</strong></h5>
-          <p class="">Modalités de résiliation de plein droit du contrat : Le bail sera résilié de plein droit en cas d'inexécution des obligations du locataire, soit en cas de défaut de paiement des loyers et des charges locatives au terme convenu, de non-versement du dépôt de garantie, de défaut d'assurance du locataire contre les risques locatifs, de troubles de voisinage constatés par une décision de justice passée en force de chose jugée rendue au profit d'un tiers. Le bailleur devra assigner le locataire devant le tribunal pour faire constater l'acquisition de la clause résolutoire et la résiliation de plein droit du bail. Lorsque le bailleur souhaite mettre en œuvre la clause résolutoire pour défaut de paiement des loyers et des charges ou pour non- versement du dépôt de garantie, il doit préalablement faire signifier au locataire, par acte d'huissier, un commandement de payer, qui doit mentionner certaines informations et notamment la faculté pour le locataire de saisir le fonds de solidarité pour le logement. De plus, pour les bailleurs personnes physiques ou les sociétés immobilières familiales, le commandement de payer doit être signalé par l'huissier à la commission de coordination des actions de prévention des expulsions locatives dès lors que l'un des seuils relatifs au montant et à l'ancienneté de la dette, fixé par arrêté préfectoral, est atteint. Le locataire peut, à compter de la réception du commandement, régler sa dette, saisir le juge d'instance pour demander des délais de paiement, voire demander ponctuellement une aide financière à un fonds de solidarité pour le logement. Si le locataire ne s'est pas acquitté des sommes dues dans les deux mois suivant la signification, le bailleur peut alors assigner le locataire en justice pour faire constater la résiliation de plein droit du bail. En cas de défaut d'assurance, le bailleur ne peut assigner en justice le locataire pour faire constater l'acquisition de la clause résolutoire qu'après un délai d'un mois après un commandement demeuré infructueux. Clause applicable selon les modalités décrites au paragraphe 4.3.2.1. de la notice d'information jointe au présent bail.</p>
-          <p class="">Le cas échéant, préciser par ailleurs le montant des travaux d’amélioration effectués au cours des six derniers mois. Clause invalide pour les travaux de mise en conformité aux caractéristiques de décence ;</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :clause_resolutoire, label: false %>
+          </div>
           <h5 class="mt-5 mt-4 mb-0"><strong>IX. Le cas échéant, honoraires de location*</strong></h5>
           <p class="mb-4 " style="font-size: 12px">*A mentionner lorsque le contrat de location est conclu avec le concours d’une personne mandatée et rémunérée à cette fin.</p>
           <p class="">A. Dispositions applicables</p>
@@ -380,21 +420,36 @@
           <p class="">Les honoraires des personnes mandatées pour effectuer la visite du preneur, constituer son dossier et rédiger un bail sont partagés entre le bailleur et le preneur. Le montant toutes taxes comprises imputé au preneur pour ces prestations ne peut excéder celui imputé au bailleur et demeure inférieur ou égal à un plafond par mètre carré de surface habitable de la chose louée fixé par voie réglementaire et révisable chaque année, dans des conditions définies par décret. Ces honoraires sont dus à la signature du bail.</p>
           <p class="">Les honoraires des personnes mandatées pour réaliser un état des lieux sont partagés entre le bailleur et le preneur. Le montant toutes taxes comprises imputé au locataire pour cette prestation ne peut excéder celui imputé au bailleur et demeure inférieur ou égal à un plafond par mètre carré de surface habitable de la chose louée fixé par voie réglementaire et révisable chaque année, dans des conditions définies par décret. Ces honoraires sont dus à compter de la réalisation de la prestation. »</p>
           <p class="">Plafonds applicables :</p>
-          <p class="mb-0 ">- montant du plafond des honoraires imputables aux locataires en matière de prestation de visite du preneur, de constitution de son dossier et de rédaction de bail : 8 €*/m2 de surface habitable ;</p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :plafond_applicable, label: false %>
+          </div>
+          <!--   <p class="mb-0 ">- montant du plafond des honoraires imputables aux locataires en matière de prestation de visite du preneur, de constitution de son dossier et de rédaction de bail : 8 €*/m2 de surface habitable ;</p>
           <p style="font-size: 12px">*Tarif en province hors zones tendues et très tendues</p>
           <p class="mb-0 ">- montant du plafond des honoraires imputables aux locataires en matière d’établissement de l’état des lieux d’entrée : 3 €*/m2 de surface habitable.</p>
-          <p style="font-size: 12px">*Tarif en province hors zones tendues et très tendues</p>
+          <p style="font-size: 12px">*Tarif en province hors zones tendues et très tendues</p> -->
           <p class="">B. Détail et répartition des honoraires</p>
           <p class="">1. Honoraires à la charge du bailleur :</p>
-          <p class="">- prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong><%= '%.2f' % (@contrat.honoraires_visite_bail.to_f / 100) %> €</strong></p>
-          <p class="">- Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong><%= '%.2f' % (@contrat.honoraires_etat_lieux.to_f / 100) %> €</strong></p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :honoraire_bailleur, as: :float, required: :true, label: false, placeholder: "Montant des honoraires bailleur" %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :honoraire_bailleur_detail, label: false, placeholder: "Prestations inclus dans les honoraires" %>
+          </div>
+          <!-- <p class="">- prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong><%#= '%.2f' % (@contrat.honoraires_visite_bail.to_f / 100) %> €</strong></p>
+          <p class="">- Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong><%#= '%.2f' % (@contrat.honoraires_etat_lieux.to_f / 100) %> €</strong></p> -->
           <p class="">- autres prestations [détail des prestations et conditions de rémunération] :</p>
           <div class="col-12 col-lg-6">
             <%= f.input :honoraires_autres, label: false %>
           </div>
           <p class="">2. Honoraires à la charge du locataire :</p>
-          <p class="">Prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong><%= '%.2f' % (315 - (@contrat.honoraires_visite_bail.to_f / 100)) %> €</strong></p>
-          <p class="">Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong><%= '%.2f' % (60 - (@contrat.honoraires_etat_lieux.to_f / 100)) %> €</strong></p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :honoraire_locataire, label: false, placeholder: "Montant des honoraires locataire" %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :honoraire_locataire_detail, label: false, placeholder: "Prestations inclus dans les honoraires" %>
+          </div>
+          <!-- <p class="">Prestations de visite du preneur, de constitution de son dossier et de rédaction de bail [détail des prestations effectivement réalisées et montant des honoraires toutes taxes comprises dus à la signature du bail] : <strong><%#= '%.2f' % (315 - (@contrat.honoraires_visite_bail.to_f / 100)) %> €</strong></p>
+          <p class="">Prestation de réalisation de l’état des lieux d’entrée [montant des honoraires TTC] : <strong><%#= '%.2f' % (60 - (@contrat.honoraires_etat_lieux.to_f / 100)) %> €</strong></p> -->
           <h5 class="mt-5 my-4"><strong>X. Autres conditions particulières [A définir par les parties]</strong></h5>
           <div class="col-12 col-lg-6">
             <%= f.input :autre_condition, label: false %>
@@ -418,6 +473,12 @@
           <p class="" style="font-size: 12px">*Dispositif applicable dans certains territoires présentant une proportion importante d’habitat dégradé délimité localement par l’établissement public de coopération intercommunale compétent en matière d’habitat ou, à défaut, le conseil municipal (art. 92 de la loi n° 2014-366 du 24 mars 2014 pour l’accès au logement et un urbanisme rénové).</p>
           <p class="mb-0 ">F. Le cas échéant, références aux loyers habituellement constatés dans le voisinage pour des logements comparables*</p>
           <p class="" style="font-size: 12px">*Lorsque la détermination du montant du loyer est la conséquence d’une procédure liée au fait que le loyer précédemment appliqué était manifestement sous évalué.</p>
+          <p class="mb-0 ">G. Les actes de caution solidaire de :</p>
+          <p class="">
+            <div class="col-12 col-lg-6">
+              <%= f.input :caution_solidaire, label: false %>
+            </div>
+          </p>
           <p class="">Le </p>
           <div class="col-12 col-lg-6">
             <%= f.input :date_signature, label: false %>
@@ -458,7 +519,11 @@
             <%= f.submit "Valider", class: "btn btn-yellow-mustard mb-5" %>
             <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
           </div>
-          <p class="mt-5">www.realbeez.com - contrat de location conforme à la loi Alur – janvier 2020</p>
+          <p class="mt-5"></p>
+          <p class="border-top pt-2"><strong>Informations additionnelles</strong></p>
+          <div class="col-12 col-lg-6">
+            <%= f.input :autre_info, label: false %>
+          </div>
         <% end %>
       </div>
     </div>
