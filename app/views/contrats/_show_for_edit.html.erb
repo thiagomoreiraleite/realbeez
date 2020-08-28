@@ -123,7 +123,7 @@
         <p class="mt-4 mb-1"><strong>Nom et prénom du ou des locataires</strong>, adresse email (facultatif)] : </p>
         <p class="mt-3 mb-1">Titre de civilité : <%= @contrat.civilite_locataire %></p>
         <% @contrat.nom_locataire.each do |locataire| %>
-          <p class="mb-1"><%= locataire %></p>
+          <p class="mb-1"><%= simple_format(locataire) %></p>
         <% end %>
         <p class="mt-3 mb-1">Date de naissance :<%= @contrat.date_naissance_locataire %></p>
         <p class="">Lieu de naissance : <%= @contrat.lieu_naissance_locataire %></p>
