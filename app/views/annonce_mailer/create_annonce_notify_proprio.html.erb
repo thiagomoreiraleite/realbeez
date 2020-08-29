@@ -2,6 +2,7 @@
 <p class="mb-1">Votre agent a publié une annonce pour la mise en location de votre bien.</p>
 <p class="mb-1">Connectez-vous ou créez un compte afin de voir votre annonce, la modifier si nécessaire et signer votre mandat de location.</p>
 <p>Votre email de connection à utiliser : <%= @annonce.email_proprio %> </p>
+<p>Mot de passe temporaire à modifier : 123456</p>
 <p>A très bientôt</p>
 <p>Realbeez</p>
-<p><%= link_to "Voir votre annonce et signer le mandat", annonce_url(@annonce) %></p>
+<p><%= link_to "Voir votre annonce et signer le mandat",  new_user_session_url %></p>

@@ -13,6 +13,9 @@
               <%= f.input :prenom_proprio, label: false, placeholder:"Prénom du propriétaire"%>
               <%= f.input :nom_proprio, label: false, placeholder:"Nom du propriétaire"%>
               <%= f.input :email_proprio, label: false, placeholder:"Email du propriétaire"%>
+              <p class="mb-1"><span style="color:red"><strong>Important </strong></span>: Si le propriétaire ne possède pas de compte sur le site, cliquez sur "créer compte propriétaire" <strong>(mot de passe temporaire : 123456)</strong>.</p>
+              <p> Puis poursuivez la publication de l'annonce.</p>
+              <%= f.submit "Créer compte propriétaire", class: "btn btn-yellow-mustard mb-5" %>
               <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
               <%= f.input :price_cents, label: false, placeholder:"Honoraires payés par le propriétaire"%>
             </div>

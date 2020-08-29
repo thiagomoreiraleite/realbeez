@@ -38,7 +38,7 @@ supprimerDocument();
 // });
 
 
-
+const emailProprio = document.querySelector("#email_proprio")
 
 
 

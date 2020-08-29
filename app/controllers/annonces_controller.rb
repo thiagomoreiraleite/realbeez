@@ -241,7 +241,8 @@ class AnnoncesController < ApplicationController
     if @annonce.agent == "Oui"
       @annonce.agent_user_id = current_user.id
       if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
-        @annonce.user = current_user
+        create_user
+        @annonce.user = @email_proprietaire
       else
         @annonce.user = @email_proprietaire
       end
@@ -292,7 +293,8 @@ class AnnoncesController < ApplicationController
     # if params[:annonce][:agent] == "Oui"
     # @annonce.agent_user_id = current_user.id
     if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
-      @annonce.user = current_user
+      create_user
+      @annonce.user = @email_proprietaire
     else
       @annonce.user = @email_proprietaire
     end
@@ -302,6 +304,10 @@ class AnnoncesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def create_user
+    user = User.create(email: params[:annonce][:email_proprio], nom: params[:annonce][:nom_proprio], prénom: params[:annonce][:prenom_proprio], ville: "Paris", password: "123456" )
   end
 
   def destroy
