@@ -902,10 +902,18 @@
           <% end %>
           <p class="">
             <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
-              <%= link_to @contrat.depot_garantie , edit_contrat_path(@contrat), class:"text-decoration-none" %>
+              <% if @contrat.depot_garantie == 0 %>
+                <%= link_to "Montant du dépôt de garantie à compléter" , edit_contrat_path(@contrat), class:"text-decoration-none" %>
+              <% else %>
+                <%= link_to @contrat.depot_garantie , edit_contrat_path(@contrat), class:"text-decoration-none" %> €
+              <% end %>
             <% else %>
-              <%= @contrat.depot_garantie %>
-            <% end %> €
+              <% if @contrat.depot_garantie == 0 %>
+                Montant du dépôt de garantie à compléter
+              <% else %>
+                <%= @contrat.depot_garantie %> €
+              <% end %>
+            <% end %>
           </p>
           <!--  -->
           <!-- Chapter 7 -->

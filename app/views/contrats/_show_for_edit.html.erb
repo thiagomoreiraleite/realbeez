@@ -497,9 +497,13 @@
           <%= simple_format(@contrat.travaux_diminution_loyer) %>
         </p>
         <h5 class="mt-5 my-4"><strong>VI. Garanties</strong></h5>
-        <%= simple_format(@contrat.garantie_duree) %> €
+        <%= simple_format(@contrat.garantie_duree) %>
         <p class="">
-          <%= @contrat.depot_garantie %> €
+          <% if @contrat.depot_garantie == 0 %>
+            Montant du dépôt de garantie à compléter
+          <% else %>
+            <%= @contrat.depot_garantie %> €
+          <% end %>
         </p>
         <!--  -->
         <!-- Chapter 7 -->
