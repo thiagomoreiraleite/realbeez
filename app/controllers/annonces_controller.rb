@@ -125,7 +125,7 @@ class AnnoncesController < ApplicationController
   end
 
   def mes_annonces
-    @annonces = current_user.annonces
+    @annonces = current_user.annonces.order(created_at: :desc)
     @annonces_proprio_en_cours = @annonces.select{ |annonce| annonce.statut == "active"}
     @annonces_proprio_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
@@ -139,7 +139,7 @@ class AnnoncesController < ApplicationController
   end
 
   def biens_a_gerer
-    @annonces = Annonce.where("agent_user_id = ?", current_user.id.to_s)
+    @annonces = Annonce.where("agent_user_id = ?", current_user.id.to_s).order(created_at: :desc)
     @annonces_agent_en_cours = @annonces.select{ |annonce| annonce.statut == "active"}
     @annonces_agent_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
@@ -153,7 +153,7 @@ class AnnoncesController < ApplicationController
   end
 
   def annonces_all
-    @annonces = Annonce.all
+    @annonces = Annonce.all.order(created_at: :desc)
     @annonces_proprio_en_cours = @annonces.select{ |annonce| annonce.statut != "Loué"}
     @annonces_proprio_loué = @annonces.select{ |annonce| annonce.statut == "Loué"}
     @markers = @annonces.where.not(latitude: nil, longitude: nil).map do |annonce|
