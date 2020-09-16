@@ -7,7 +7,7 @@
           <% if current_user.statut == "Agent" %>
             <div class="text-justify mb-5">
               <%= f.input :agent, label: "Vous êtes un agent et publiez une annonce pour le compte d'un propriétaire", collection: ["Oui", "Non"], checked: "Oui", as: :radio_buttons %>
-              <%= f.input :mandat_exclusif, label: "Mandat exclusif", collection: [["Oui", true], ["Non", false]], as: :radio_buttons, label_method: :first, value_method: :second %>
+              <%#= f.input :mandat_exclusif, label: "Mandat exclusif", collection: [["Oui", true], ["Non", false]], as: :radio_buttons, label_method: :first, value_method: :second %>
               <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
               <%= f.input :price_cents, label: false, input_html: {value: 37500}%>
             </div>
