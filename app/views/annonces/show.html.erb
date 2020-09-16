@@ -248,7 +248,11 @@
                   <p class="mb-1">Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.titlecase %></p>
                   <p class="">Adresse du bien à louer : <%= @annonce.adresse %></p>
                   <p class="mb-1"><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.user.email %></p>
-                  <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
+                  <% if @annonce.user.téléphone == nil || @annonce.user.téléphone == "" %>
+                    <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.telephone_proprio %></p>
+                  <% else %>
+                    <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
+                  <% end %>
                   <p><strong>Mandat exclusif : <%= @annonce.mandat_exclusif ? "Oui" : "Non" %></strong> </p>
                   <!-- send a messge -->
                   <div class="d-flex my-3">
@@ -352,7 +356,11 @@
             <p class="mb-1">Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.titlecase %></p>
             <p>Adresse du bien à louer : <%= @annonce.adresse %></p>
             <p class="mb-1"><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.user.email %></p>
-            <p><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
+            <% if @annonce.user.téléphone == nil || @annonce.user.téléphone == "" %>
+              <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.telephone_proprio %></p>
+            <% else %>
+              <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
+            <% end %>
             <p><strong>Mandat exclusif : <%= @annonce.mandat_exclusif ? "Oui" : "Non" %></strong> </p>
             <!-- send a messge -->
             <div class="d-flex my-3">
