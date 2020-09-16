@@ -237,7 +237,7 @@ class AnnoncesController < ApplicationController
 
   def create
     @annonce = Annonce.new(annonce_params)
-    @email_proprietaire = User.where("email = ?", @annonce.email_proprio)[0]
+    @email_proprietaire = User.where("email = ?", @annonce.email_proprio.downcase)[0]
     if @annonce.agent == "Oui"
       @annonce.agent_user_id = current_user.id
       if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
@@ -289,7 +289,7 @@ class AnnoncesController < ApplicationController
 
   def update
     authorize @annonce
-    @email_proprietaire = User.where("email = ?", params[:annonce][:email_proprio])[0]
+    @email_proprietaire = User.where("email = ?", params[:annonce][:email_proprio].downcase)[0]
     # if params[:annonce][:agent] == "Oui"
     # @annonce.agent_user_id = current_user.id
     if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
@@ -307,7 +307,7 @@ class AnnoncesController < ApplicationController
   end
 
   def create_user
-    user = User.create(email: params[:annonce][:email_proprio], nom: params[:annonce][:nom_proprio], prénom: params[:annonce][:prenom_proprio], ville: "Paris", password: "123456" )
+    user = User.create(email: params[:annonce][:email_proprio], nom: params[:annonce][:nom_proprio], prénom: params[:annonce][:prenom_proprio], téléphone: params[:annonce][:telephone_proprio],ville: "Paris", password: "123456" )
   end
 
   def destroy
@@ -344,7 +344,9 @@ class AnnoncesController < ApplicationController
       :photo2,
       :photo3,
       :photo4,
-      :price_cents
+      :price_cents,
+      :telephone_proprio,
+      :mandat_exclusif
     )
   end
 

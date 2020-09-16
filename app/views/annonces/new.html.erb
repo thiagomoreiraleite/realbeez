@@ -5,19 +5,21 @@
       <div class="center">
         <%= simple_form_for [@annonce] do |f| %>
           <% if current_user.statut == "Agent" %>
-            <div class="text-justify">
+            <div class="text-justify mb-5">
               <%= f.input :agent, label: "Vous êtes un agent et publiez une annonce pour le compte d'un propriétaire", collection: ["Oui", "Non"], checked: "Oui", as: :radio_buttons %>
+              <%= f.input :mandat_exclusif, label: "Mandat exclusif", collection: [["Oui", true], ["Non", false]], as: :radio_buttons, label_method: :first, value_method: :second %>
+              <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
+              <%= f.input :price_cents, label: false, input_html: {value: 37500}%>
             </div>
             <div class="border-top border-bottom py-3 my-3">
-              <p>Si vous avez choisi "Oui", veuillez renseigner les informations concernant le propriétaire.</p>
+              <p>Veuillez renseigner les informations concernant le propriétaire</p>
               <%= f.input :prenom_proprio, label: false, placeholder:"Prénom du propriétaire"%>
               <%= f.input :nom_proprio, label: false, placeholder:"Nom du propriétaire"%>
               <%= f.input :email_proprio, label: false, placeholder:"Email du propriétaire"%>
+              <%= f.input :telephone_proprio, label: false, placeholder:"Téléphone du propriétaire"%>
               <p class="mb-1"><span style="color:red"><strong>Important </strong></span>: Si le propriétaire ne possède pas de compte sur le site, cliquez sur "créer compte propriétaire" <strong>(mot de passe temporaire : 123456)</strong>.</p>
               <p> Puis poursuivez la publication de l'annonce.</p>
-              <%= f.submit "Créer compte propriétaire", class: "btn btn-yellow-mustard mb-5" %>
-              <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
-              <%= f.input :price_cents, label: false, input_html: {value: 37500}%>
+              <%= f.submit "Créer compte propriétaire", class: "btn btn-yellow-mustard mb-4" %>
             </div>
           <% else %>
             <%= f.input :agent, collection: ["Oui", "Non"], checked: "Non", as: :radio_buttons, :as => :hidden %>
