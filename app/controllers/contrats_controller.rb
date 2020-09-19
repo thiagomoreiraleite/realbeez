@@ -164,12 +164,7 @@ deux mois de loyers hors charges] :"
     @contrat.signature_locataire
     if @contrat.save
       # NOTIFICATION
-      # Send to Locataire if registered
-      @locataire_array = User.where("email = ? ", Locataire.find(@contrat.locataire_candidature.locataire_id).email)
-      @locataire_user = User.where("email = ? ", Locataire.find(@contrat.locataire_candidature.locataire_id).email)[0]
-      if @locataire_array != []
-        Notification.create(recipient: @locataire_user, actor: current_user, action: "create_bail_notify_locataire", notifiable: @contrat)
-      end
+
       # Send notification to Agent if agent assigned and if landlord created the contrat
       if @contrat.locataire_candidature.annonce.agent_user_id != nil
         if @contrat.user == @contrat.locataire_candidature.annonce.user
@@ -192,8 +187,8 @@ deux mois de loyers hors charges] :"
 
       # EMAIL
       # Send to Locataire, use email in dossier_locataire
-      mail_locataire = ContratMailer.with(contrat: @contrat).create_bail_notify_locataire
-      mail_locataire.deliver_now
+      # mail_locataire = ContratMailer.with(contrat: @contrat).create_bail_notify_locataire
+      # mail_locataire.deliver_now
       # Send to Admin
       mail_admin = ContratMailer.with(contrat: @contrat).create_bail_notify_admin
       mail_admin.deliver_now
@@ -216,6 +211,33 @@ deux mois de loyers hors charges] :"
   def update
     authorize @contrat
     if @contrat.update(contrat_params)
+      if @contrat.signature_bailleur == true && @contrat.signature_locataire == nil
+        # EMAIL
+        # Send to Locataire, use email in dossier_locataire
+        mail_locataire = ContratMailer.with(contrat: @contrat).create_bail_notify_locataire
+        mail_locataire.deliver_now
+        # Send to admin
+        mail_admin = ContratMailer.with(contrat: @contrat).signature_proprio_notify_admin
+        mail_admin.deliver_now
+        # Send to agent
+        mail_admin = ContratMailer.with(contrat: @contrat).signature_proprio_notify_agent
+        mail_admin.deliver_now
+        # NOTIFICATION
+        # Send to Locataire if registered
+        @locataire_array = User.where("email = ? ", Locataire.find(@contrat.locataire_candidature.locataire_id).email)
+        @locataire_user = User.where("email = ? ", Locataire.find(@contrat.locataire_candidature.locataire_id).email)[0]
+        if @locataire_array != []
+          Notification.create(recipient: @locataire_user, actor: current_user, action: "create_bail_notify_locataire", notifiable: @contrat)
+        end
+      end
+      if @contrat.signature_locataire == true
+        # Send to admin
+        mail_admin = ContratMailer.with(contrat: @contrat).signature_locataire_notify_admin
+        mail_admin.deliver_now
+        # Send to agent
+        mail_admin = ContratMailer.with(contrat: @contrat).signature_locataire_notify_agent
+        mail_admin.deliver_now
+      end
       redirect_to @contrat
     else
       render :edit

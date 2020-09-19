@@ -1,12 +1,21 @@
 <!-- Créer contrat de location -->
 <% if @locataire_candidature.statut_proprietaire == "Accepté" %>
   <div class="text-center">
+    <!-- if no contract created put button "create contract" -->
     <% if @locataire_candidature.contrat == nil %>
       <% if current_user == @locataire_candidature.annonce.user || @locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
         <%= link_to "Créer contrat de location", locataire_candidature_contrats_path(@locataire_candidature), method: :post, class:"btn btn-transparent-bold"  %>
       <% end %>
     <% else %>
-      <%= link_to "Voir contrat de location", contrat_path(@locataire_candidature.contrat), class:"btn btn-transparent-bold"  %>
+      <!-- if contract is created put "voir contract" visible for agent, proprio and admin but not for tenant -->
+      <% if current_user.admin == true || @locataire_candidature.user_id == current_user.id || @locataire_candidature.annonce.user_id == current_user.id || @locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+        <%= link_to "Voir contrat de location", contrat_path(@locataire_candidature.contrat), class:"btn btn-transparent-bold"  %>
+        <!-- voir contract visible only for locataire only if the landlord already signed the contract -->
+      <% elsif @locataire_candidature.locataire_email.split.last == current_user.email  %>
+        <% if @locataire_candidature.contrat.signature_bailleur == true %>
+          <%= link_to "Voir contrat de location", contrat_path(@locataire_candidature.contrat), class:"btn btn-transparent-bold"  %>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <p class="mt-3"><%= link_to "Modèle d'état des lieux", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/v1583485373/Modèle_état_des_lieux_dtd4fp.pdf",class: "btn btn-transparent stretched-link", class:"btn btn-transparent-bold"  %></p>

@@ -182,7 +182,9 @@
                                 <%= link_to "Créer contrat de bail", locataire_candidature_contrats_path(locataire), method: :post, class:"btn btn-transparent"  %>
                               <% end %>
                             <% else %>
-                              <%= link_to "Voir contrat de bail", contrat_path(locataire.contrat), class:"btn btn-transparent"  %>
+                              <% if locataire.contrat.signature_bailleur == true %>
+                                <%= link_to "Voir contrat de bail", contrat_path(locataire.contrat), class:"btn btn-transparent"  %>
+                              <% end %>
                             <% end %>
                           </div>
                         <% end %>

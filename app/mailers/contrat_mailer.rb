@@ -40,4 +40,59 @@ class ContratMailer < ApplicationMailer
     )
   end
 
+  def signature_proprio_notify_admin
+    @contrat = params[:contrat]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    @locataire =  Locataire.find(@contrat.locataire_candidature.locataire_id)
+    @proprio = @contrat.locataire_candidature.annonce.user
+    mail(
+      to:       @admin.email,
+      subject:  "Contrat de location signé par le propriétaire #{@proprio.prénom.capitalize} #{@proprio.nom.capitalize}."
+    )
+  end
+
+  def signature_proprio_notify_agent
+    @contrat = params[:contrat]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    @locataire =  Locataire.find(@contrat.locataire_candidature.locataire_id)
+    @proprio = @contrat.locataire_candidature.annonce.user
+    @agent = User.find(@contrat.locataire_candidature.annonce.agent_user_id.to_i)
+    mail(
+      to:       @agent.email,
+      subject:  "Contrat de location signé par le propriétaire #{@proprio.prénom.capitalize} #{@proprio.nom.capitalize}."
+    )
+  end
+
+  def signature_locataire_notify_admin
+    @contrat = params[:contrat]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    @locataire =  Locataire.find(@contrat.locataire_candidature.locataire_id)
+    mail(
+      to:       @admin.email,
+      subject:  "Contrat de location signé par la locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
+    )
+  end
+
+  def signature_locataire_notify_agent
+    @contrat = params[:contrat]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    @locataire =  Locataire.find(@contrat.locataire_candidature.locataire_id)
+    @agent =  User.find(@contrat.locataire_candidature.annonce.agent_user_id.to_i)
+    mail(
+      to:       @agent.email,
+      subject:  "Contrat de location signé par la locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
+    )
+  end
+
+  def signature_locataire_notify_proprio
+    @contrat = params[:contrat]
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    @locataire =  Locataire.find(@contrat.locataire_candidature.locataire_id)
+    @proprio = @contrat.locataire_candidature.annonce.user
+    mail(
+      to:       @proprio.email,
+      subject:  "Contrat de location signé par la locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
+    )
+  end
+
 end
