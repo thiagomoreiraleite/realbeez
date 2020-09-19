@@ -69,7 +69,7 @@ class ContratMailer < ApplicationMailer
     @locataire =  Locataire.find(@contrat.locataire_candidature.locataire_id)
     mail(
       to:       @admin.email,
-      subject:  "Contrat de location signé par la locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
+      subject:  "Contrat de location signé par le locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
     )
   end
 
@@ -80,7 +80,7 @@ class ContratMailer < ApplicationMailer
     @agent =  User.find(@contrat.locataire_candidature.annonce.agent_user_id.to_i)
     mail(
       to:       @agent.email,
-      subject:  "Contrat de location signé par la locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
+      subject:  "Contrat de location signé par le locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
     )
   end
 
@@ -91,7 +91,7 @@ class ContratMailer < ApplicationMailer
     @proprio = @contrat.locataire_candidature.annonce.user
     mail(
       to:       @proprio.email,
-      subject:  "Contrat de location signé par la locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
+      subject:  "Contrat de location signé par le locataire #{@locataire.prenom.capitalize} #{@locataire.nom.capitalize}."
     )
   end
 
