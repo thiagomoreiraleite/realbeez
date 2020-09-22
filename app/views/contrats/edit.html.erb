@@ -5,9 +5,11 @@
     <div class="row text-justify" >
       <div class="col-sm-12 col-lg-10 offset-lg-1 px-5" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 5px">
         <%= simple_form_for [@locataire_candidature, @contrat] do |f| %>
-          <p class="mt-3 mb-1" style="font-style: italic ">Lorsque le contract est finalisé, cochez "Oui" et un email automatique sera envoyé au propriétaire afin qu'il procède à la signature éléctronique du contrat :
-            <%= f.input :statut_contrat, collection: [['Oui', true], ['Non', false]], as: :radio_buttons, label: "" %>
-          </p>
+          <% if current_user.admin == true || @contrat.locataire_candidature.user_id == current_user.id || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <p class="mt-3 mb-1" style="font-style: italic ">Lorsque le contract est finalisé, cochez "Oui" et un email automatique sera envoyé au propriétaire afin qu'il procède à la signature éléctronique du contrat :
+              <%= f.input :statut_contrat, collection: [['Oui', true], ['Non', false]], as: :radio_buttons, label: "" %>
+            </p>
+          <% end %>
           <div class="text-center border py-3 my-5 px-3" style="">
             <h3 class=""><strong>Contrat de location</strong></h3>
             <p class="mb-0 ">Soumis au titre Ier de la loi du 6 juillet 1989 tendant à améliorer les rapports locatifs et portant</p>
