@@ -243,6 +243,9 @@ deux mois de loyers hors charges] :"
           # Send email to proprio if agent created contrat
           mail_proprio = ContratMailer.with(contrat: @contrat).create_bail_notify_proprio
           mail_proprio.deliver_now
+          # Send to Admin
+          mail_admin = ContratMailer.with(contrat: @contrat).create_bail_notify_admin
+          mail_admin.deliver_now
         end
       end
       redirect_to @contrat
