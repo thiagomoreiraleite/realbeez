@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_054908) do
+ActiveRecord::Schema.define(version: 2020_09_22_133015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_054908) do
     t.string "email_proprio"
     t.string "telephone_proprio"
     t.boolean "mandat_exclusif", default: false
+    t.integer "depot_garantie"
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 
@@ -201,6 +202,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_054908) do
     t.text "honoraire_bailleur_detail"
     t.decimal "honoraire_locataire", precision: 10, scale: 2
     t.text "honoraire_locataire_detail"
+    t.boolean "statut_contrat", default: false
     t.index ["locataire_candidature_id"], name: "index_contrats_on_locataire_candidature_id"
     t.index ["user_id"], name: "index_contrats_on_user_id"
   end

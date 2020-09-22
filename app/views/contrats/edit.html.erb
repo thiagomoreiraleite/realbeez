@@ -4,17 +4,20 @@
     </div>
     <div class="row text-justify" >
       <div class="col-sm-12 col-lg-10 offset-lg-1 px-5" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 5px">
-        <div class="text-center border py-3 my-5 px-3" style="">
-          <h3 class=""><strong>Contrat de location</strong></h3>
-          <p class="mb-0 ">Soumis au titre Ier de la loi du 6 juillet 1989 tendant à améliorer les rapports locatifs et portant</p>
-          <p class="">modification de la loi n° 86-1290 du 23 décembre 1986</p>
-          <% if @contrat.locataire_candidature.annonce.meublé == "Non meublé" || @contrat.locataire_candidature.annonce.meublé == "" %>
-            <h5 class="mb-0"><strong>LOCAUX VIDES A USAGE D’HABITATION</strong></h5>
-          <% elsif @contrat.locataire_candidature.annonce.meublé == "Meublé" %>
-            <h5 class="mb-0"><strong>LOCAUX MEUBLES A USAGE D'HABITATION</strong></h5>
-          <% end %>
-        </div>
         <%= simple_form_for [@locataire_candidature, @contrat] do |f| %>
+          <p class="mt-3 mb-1" style="font-style: italic ">Lorsque le contract est finalisé, cochez "Oui" et un email automatique sera envoyé au propriétaire afin qu'il procède à la signature éléctronique du contrat :
+            <%= f.input :statut_contrat, collection: [['Oui', true], ['Non', false]], as: :radio_buttons, label: "" %>
+          </p>
+          <div class="text-center border py-3 my-5 px-3" style="">
+            <h3 class=""><strong>Contrat de location</strong></h3>
+            <p class="mb-0 ">Soumis au titre Ier de la loi du 6 juillet 1989 tendant à améliorer les rapports locatifs et portant</p>
+            <p class="">modification de la loi n° 86-1290 du 23 décembre 1986</p>
+            <% if @contrat.locataire_candidature.annonce.meublé == "Non meublé" || @contrat.locataire_candidature.annonce.meublé == "" %>
+              <h5 class="mb-0"><strong>LOCAUX VIDES A USAGE D’HABITATION</strong></h5>
+            <% elsif @contrat.locataire_candidature.annonce.meublé == "Meublé" %>
+              <h5 class="mb-0"><strong>LOCAUX MEUBLES A USAGE D'HABITATION</strong></h5>
+            <% end %>
+          </div>
           <div class="" style="font-size: 12px">
             <p class=""><strong>Champ du contrat type </strong>:
               <%= f.input :contrat_type, label: false %>

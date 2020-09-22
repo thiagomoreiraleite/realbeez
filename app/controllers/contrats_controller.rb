@@ -123,7 +123,11 @@ class ContratsController < ApplicationController
 deux mois de loyers hors charges] :"
     end
 
-    @contrat.depot_garantie = 0
+    if @locataire_candidature.annonce.depot_garantie == nil || @locataire_candidature.annonce.depot_garantie == ""
+      @contrat.depot_garantie = 0
+    else
+      @contrat.depot_garantie = @locataire_candidature.annonce.depot_garantie
+    end
     @contrat.clause_solidarite = "Modalités particulières des obligations en cas de pluralité de locataires : en cas de colocation, c'est à dire de la location d’un même logement par plusieurs locataires, constituant leur résidence principale et formalisée par la conclusion d’un contrat unique ou de plusieurs contrats entre les locataires et le bailleur, les locataires sont tenus conjointement, solidairement et indivisiblement à l’égard du bailleur au paiement des loyers, charges et accessoires dus en application du présent bail. La solidarité d'un des colocataires et celle de la personne qui s'est portée caution pour lui prennent fin à la date d'effet du congé régulièrement délivré et lorsqu'un nouveau colocataire figure au bail. A défaut, la solidarité du colocataire sortant s'éteint au plus tard à l'expiration d'un délai de six mois après la date d'effet du congé."
     @contrat.clause_resolutoire ="Modalités de résiliation de plein droit du contrat : Le bail sera résilié de plein droit en cas d'inexécution des obligations du locataire, soit en cas de défaut de paiement des loyers et des charges locatives au terme convenu, de non-versement du dépôt de garantie, de défaut d'assurance du locataire contre les risques locatifs, de troubles de voisinage constatés par une décision de justice passée en force de chose jugée rendue au profit d'un tiers. Le bailleur devra assigner le locataire devant le tribunal pour faire constater l'acquisition de la clause résolutoire et la résiliation de plein droit du bail. Lorsque le bailleur souhaite mettre en œuvre la clause résolutoire pour défaut de paiement des loyers et des charges ou pour non- versement du dépôt de garantie, il doit préalablement faire signifier au locataire, par acte d'huissier, un commandement de payer, qui doit mentionner certaines informations et notamment la faculté pour le locataire de saisir le fonds de solidarité pour le logement. De plus, pour les bailleurs personnes physiques ou les sociétés immobilières familiales, le commandement de payer doit être signalé par l'huissier à la commission de coordination des actions de prévention des expulsions locatives dès lors que l'un des seuils relatifs au montant et à l'ancienneté de la dette, fixé par arrêté préfectoral, est atteint. Le locataire peut, à compter de la réception du commandement, régler sa dette, saisir le juge d'instance pour demander des délais de paiement, voire demander ponctuellement une aide financière à un fonds de solidarité pour le logement. Si le locataire ne s'est pas acquitté des sommes dues dans les deux mois suivant la signification, le bailleur peut alors assigner le locataire en justice pour faire constater la résiliation de plein droit du bail. En cas de défaut d'assurance, le bailleur ne peut assigner en justice le locataire pour faire constater l'acquisition de la clause résolutoire qu'après un délai d'un mois après un commandement demeuré infructueux. Clause applicable selon les modalités décrites au paragraphe 4.3.2.1. de la notice d'information jointe au présent bail.
 
@@ -175,14 +179,7 @@ deux mois de loyers hors charges] :"
           mail_agent.deliver_now
         end
 
-        # Send notification to proprio if agent created the contrat
-        if @contrat.user.id.to_s == @contrat.locataire_candidature.annonce.agent_user_id
-          @proprio_user = @contrat.locataire_candidature.annonce.user
-          Notification.create(recipient: @proprio_user, actor: current_user, action: "create_bail_notify_proprio", notifiable: @contrat)
-          # Send email to proprio if agent created contrat
-          mail_proprio = ContratMailer.with(contrat: @contrat).create_bail_notify_proprio
-          mail_proprio.deliver_now
-        end
+
       end
 
       # EMAIL
@@ -237,6 +234,16 @@ deux mois de loyers hors charges] :"
         # Send to agent
         mail_admin = ContratMailer.with(contrat: @contrat).signature_locataire_notify_agent
         mail_admin.deliver_now
+      end
+      # Send notification to proprio if agent created the contrat
+      if @contrat.user.id.to_s == @contrat.locataire_candidature.annonce.agent_user_id
+        if @contrat.statut_contrat == true
+          @proprio_user = @contrat.locataire_candidature.annonce.user
+          Notification.create(recipient: @proprio_user, actor: current_user, action: "create_bail_notify_proprio", notifiable: @contrat)
+          # Send email to proprio if agent created contrat
+          mail_proprio = ContratMailer.with(contrat: @contrat).create_bail_notify_proprio
+          mail_proprio.deliver_now
+        end
       end
       redirect_to @contrat
     else
@@ -347,6 +354,7 @@ deux mois de loyers hors charges] :"
       :honoraire_bailleur_detail,
       :honoraire_locataire,
       :honoraire_locataire_detail,
+      :statut_contrat,
       nom_locataire: [],
       partie_commune: [],
       autre_partie_logement: [],

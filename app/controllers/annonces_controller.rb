@@ -346,7 +346,8 @@ class AnnoncesController < ApplicationController
       :photo4,
       :price_cents,
       :telephone_proprio,
-      :mandat_exclusif
+      :mandat_exclusif,
+      :depot_garantie
     )
   end
 

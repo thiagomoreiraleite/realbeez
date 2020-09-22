@@ -10,6 +10,7 @@
               <%= f.input :mandat_exclusif, label: "Mandat exclusif", collection: [["Oui", true], ["Non", false]], as: :radio_buttons, label_method: :first, value_method: :second %>
               <p class="mb-1">Montant des honoraires payés par le propriétaire <span style="color: red">(en centime d'euro)</span></p>
               <%= f.input :price_cents, label: false, input_html: {value: 37500}%>
+              <%= f.input :depot_garantie, input_html: { min: '0', step: 'any' }, label: "Montant du dépôt de garantie" %>
             </div>
             <div class="border-top border-bottom py-3 my-3">
               <p>Veuillez renseigner les informations concernant le propriétaire</p>

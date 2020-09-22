@@ -54,10 +54,14 @@
             de gaz et de fuel (pour le chauffage) seront pris en charge par le locataire.</p>
           <p class="text-justify"><strong>Cautionnement</strong> : Le dépôt de garantie directement réglé au propriétaire sera de
             <!-- Dépot de garantie est égal à 1 mois de loyer hors charges pour les non-meublé et de 2 mois de loyer hors charges pour les meublés -->
-            <% if @annonce.meublé == "Meublé" %>
-              <%= (@annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges)) * 2 %>
+            <% if @annonce.depot_garantie == nil || @annonce.depot_garantie == "" %>
+              <% if @annonce.meublé == "Meublé" %>
+                <%= (@annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges)) * 2 %>
+              <% else %>
+                <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %>
+              <% end %>
             <% else %>
-              <%= @annonce.loyer_mensuel - (@annonce.charges == nil ? 0 : @annonce.charges) %>
+              <%= @annonce.depot_garantie %>
             <% end %>
             €.</p>
           <p class="text-justify"><strong>Jouissance</strong> : Les biens à louer sont libres de toute location, occupation. La prise de possession des lieux

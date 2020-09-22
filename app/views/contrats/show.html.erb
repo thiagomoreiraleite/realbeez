@@ -10,6 +10,19 @@
     <div class="dclr"></div> -->
       <div class="row text-justify" >
         <div class="col-sm-12 col-lg-10 offset-lg-1 px-5" style="background-color: white; box-shadow: 1px 1px 5px rgba(0,0,0,0.2); border-radius: 5px">
+          <% if current_user.admin == true || @contrat.locataire_candidature.user_id == current_user.id || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s %>
+            <p class="mt-3 mb-1">Contrat finalisé
+              <% if @contrat.statut_contrat %>
+                <i class="fas fa-check ml-2 my-0" style="color: green"></i>
+              <% else %>
+                <i class="fas fa-times ml-2 my-0" style="color: red"></i>
+              <% end %>
+              <span class="ml-2" style="font-size: 14px">
+                <%= link_to '', edit_contrat_path(@contrat), class:"fas fa-edit" %>
+              </span>
+            </p>
+            <p style="font-style: italic; font-size: 12px">Cochez "Oui" et un email automatique sera envoyé au propriétaire</p>
+          <% end %>
           <div class="text-center border py-3 my-5 px-3" style="">
             <h3 class=""><strong>Contrat de location</strong>
               <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
