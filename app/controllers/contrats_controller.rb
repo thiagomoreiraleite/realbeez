@@ -237,7 +237,7 @@ deux mois de loyers hors charges] :"
       end
       # Send notification to proprio if agent created the contrat
       if @contrat.user.id.to_s == @contrat.locataire_candidature.annonce.agent_user_id
-        if @contrat.statut_contrat == true
+        if @contrat.statut_contrat == true && @contrat.signature_bailleur == nil
           @proprio_user = @contrat.locataire_candidature.annonce.user
           Notification.create(recipient: @proprio_user, actor: current_user, action: "create_bail_notify_proprio", notifiable: @contrat)
           # Send email to proprio if agent created contrat
