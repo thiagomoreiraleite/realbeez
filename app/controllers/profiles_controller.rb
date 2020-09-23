@@ -156,6 +156,9 @@ class ProfilesController < ApplicationController
         @reviews = @profile.agent.reviews.order(created_at: :desc)
       end
     end
+    # Appartment managed by the agent
+    @annonce_en_cours = Annonce.where("agent_user_id = ? AND statut = ?", params[:id].to_s, "active" ).order(created_at: :desc)
+    @annonce_rented = Annonce.where("agent_user_id = ? AND statut = ?", params[:id].to_s, "Loué" ).order(created_at: :desc)
   end
 
   def add_friend
