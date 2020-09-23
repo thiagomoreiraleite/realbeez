@@ -231,98 +231,50 @@
           </div>
         </div>
       <% end %>
-      <div class="col-12 col-md-7 offset-md-1 pb-5">
-        <!-- Laptop version -->
-        <div class="ml-5 pl-3 hide-on-small">
-          <!-- Appartment managed and rented by the agent = EN COURS -->
-          <p class="mt-4 mb-3" style="font-weight: bold; color: #D8A727">Appartements proposés par <%= @profile.prénom %></p>
-          <table class="table table-hover border-right border-left border-bottom" style="background-color: white; font-size: 12px">
-            <thead>
-              <tr>
-                <th scope="col">Date de publication</th>
-                <th scope="col">Titre de l'annonce</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @annonce_en_cours.each do |annonce| %>
-                <tr>
-                  <td><%= link_to annonce.created_at.strftime("%d/%m/%Y"), annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                  <td><%= link_to annonce.titre_annonce, annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <!-- Appartment managed and rented by the agent = RENTED -->
-          <% if user_signed_in?%>
-            <% if current_user.admin == true %>
-              <% unless @profile.agent.nil? %>
-                <p class="mt-4 mb-3" style="font-weight: bold; color: #D8A727">Appartements loués</p>
-                <table class="table table-hover border-right border-left border-bottom" style="background-color: white; font-size: 12px">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date de publication</th>
-                      <th scope="col">Titre de l'annonce</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @annonce_rented.each do |annonce| %>
-                      <tr>
-                        <td><%= link_to annonce.created_at.strftime("%d/%m/%Y"), annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                        <td><%= link_to annonce.titre_annonce, annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-8 offset-md-1 pb-5">
+            <!-- Appartment managed and rented by the agent = EN COURS -->
+            <p class="" style="font-weight: bold; color: #D8A727">Appartements proposés par <%= @profile.prénom %></p>
+            <% @annonce_en_cours.each do |annonce| %>
+              <%= link_to annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                <div class="d-flex align-items-center mb-4" style="box-shadow: 1px 1px 5px rgba(0,0,0,0.2)">
+                  <%= image_tag (cl_image_path annonce.photo), crop: :fill, style:"object-fit:cover; height: 120px; width: 120px", class: "rounded center p-3" %>
+                  <div class="pl-3">
+                    <h5 class="mt-2" style="font-size: 16px"><%= annonce.titre_annonce %></h5>
+                    <p><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= annonce.ville %></p>
+                  </div>
+                </div>
               <% end %>
             <% end %>
-          <% end %>
-        </div>
-        <!-- Mobile version -->
-        <div class="hide-on-large">
-          <!-- Appartment managed and rented by the agent = EN COURS -->
-          <p class="mt-4 mb-3" style="font-weight: bold; color: #D8A727">Appartements proposés par <%= @profile.prénom %></p>
-          <table class="table table-hover border-right border-left border-bottom" style="background-color: white; font-size: 12px">
-            <thead>
-              <tr>
-                <th scope="col">Date de publication</th>
-                <th scope="col">Titre de l'annonce</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @annonce_en_cours.each do |annonce| %>
-                <tr>
-                  <td><%= link_to annonce.created_at.strftime("%d/%m/%Y"), annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                  <td><%= link_to annonce.titre_annonce, annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-          <!-- Appartment managed and rented by the agent = RENTED -->
-          <% if user_signed_in?%>
-            <% if current_user.admin == true %>
-              <% unless @profile.agent.nil? %>
-                <p class="mt-4 mb-3" style="font-weight: bold; color: #D8A727">Appartements loués</p>
-                <table class="table table-hover border-right border-left border-bottom" style="background-color: white; font-size: 12px">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date de publication</th>
-                      <th scope="col">Titre de l'annonce</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @annonce_rented.each do |annonce| %>
-                      <tr>
-                        <td><%= link_to annonce.created_at.strftime("%d/%m/%Y"), annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                        <td><%= link_to annonce.titre_annonce, annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" %></td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              <% end %>
-            <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
+      <!-- Appartment rented -->
+      <% if user_signed_in?%>
+        <% if current_user.admin == true %>
+          <% unless @profile.agent.nil? %>
+            <div class="container">
+              <div class="row">
+                <div class="col-12 col-md-8 offset-md-1 pb-5">
+                  <p class="" style="font-weight: bold; color: #D8A727">Appartements loués par <%= @profile.prénom %> (only for admin)</p>
+                  <% @annonce_rented.each do |annonce| %>
+                    <%= link_to annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
+                      <div class="d-flex align-items-center mb-4" style="box-shadow: 1px 1px 5px rgba(0,0,0,0.2)">
+                        <%= image_tag (cl_image_path annonce.photo), crop: :fill, style:"object-fit:cover; height: 120px; width: 120px", class: "rounded center p-3" %>
+                        <div class="pl-3">
+                          <h5 class="mt-2" style="font-size: 16px"><%= annonce.titre_annonce %></h5>
+                          <p><i class="fas fa-map-marker-alt mr-3" style="color: #D8A727"></i><%= annonce.ville %></p>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
