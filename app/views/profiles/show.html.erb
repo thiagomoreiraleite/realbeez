@@ -235,7 +235,9 @@
         <div class="row">
           <div class="col-12 col-md-8 offset-md-1 pb-5">
             <!-- Appartment managed and rented by the agent = EN COURS -->
-            <p class="" style="font-weight: bold; color: #D8A727">Appartements proposés par <%= @profile.prénom %></p>
+            <% if @annonce_en_cours != [] %>
+              <p class="" style="font-weight: bold; color: #D8A727">Appartements proposés par <%= @profile.prénom %></p>
+            <% end %>
             <% @annonce_en_cours.each do |annonce| %>
               <%= link_to annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
                 <div class="d-flex align-items-center mb-4" style="box-shadow: 1px 1px 5px rgba(0,0,0,0.2)">
@@ -257,7 +259,9 @@
             <div class="container">
               <div class="row">
                 <div class="col-12 col-md-8 offset-md-1 pb-5">
-                  <p class="" style="font-weight: bold; color: #D8A727">Appartements loués par <%= @profile.prénom %> (only for admin)</p>
+                  <% if @annonce_rented != [] %>
+                    <p class="" style="font-weight: bold; color: #D8A727">Appartements loués par <%= @profile.prénom %> (only for admin)</p>
+                  <% end %>
                   <% @annonce_rented.each do |annonce| %>
                     <%= link_to annonce_path(annonce), style:"text-decoration: none; color: rgb(100, 100, 100)" do %>
                       <div class="d-flex align-items-center mb-4" style="box-shadow: 1px 1px 5px rgba(0,0,0,0.2)">
