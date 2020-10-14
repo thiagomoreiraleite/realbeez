@@ -315,109 +315,113 @@
             <% if @annonce.checkout_proprio != "check" %>
               <div class="text-center mt-5" style="">
                 <p style="font-weight: bold; color: #D8A727">Confirmer lorsque <%= @agent_user.prénom.titlecase %> aura loué ce bien</p>
-                <%= form_tag orders_path do %>
-                  <%= hidden_field_tag 'annonce_id', @annonce.id %>
-                  <%= submit_tag 'Confirmer et payer', class: 'btn btn-transparent-bold' %>
-                <% end %>
-              </div>
-            <% else %>
-              <!-- flat is rented and checked out by proprio -->
-              <div class="text-center" style="font-size:; font-weight: bold">
-                Validation agent
-                <% if @annonce.checkout_agent == "check" %>
-                  <i class="fas fa-check" style="color: green"></i>
-                <% else %>
-                  <i class="fas fa-times" style="color: red"></i>
-                <% end %>
-              </div>
-              <div class="text-center" style="font-size:; font-weight: bold">
-                Validation propriétaire
-                <% if @annonce.checkout_proprio == "check" %>
-                  <i class="fas fa-check" style="color: green"></i>
-                <% else %>
-                  <i class="fas fa-times" style="color: red"></i>
-                <% end %>
-              </div>
-            <% end %>
-            <div class="mt-2 text-center">
-              <% if @annonce.statut == "Loué"%>
-                <% @annonce.orders.each do |order| %>
-                  <% if order.state == "paid" %>
-                    <p class="mb-1"><strong>Ordre de paiement n°<%= order.id %> : Reçu</strong><i class="fas fa-check ml-1" style="color: green"></i></p>
+                <%#= form_tag orders_path do %>
+                  <%#= hidden_field_tag 'annonce_id', @annonce.id %>
+                  <%#= submit_tag 'Confirmer et payer', class: 'btn btn-transparent-bold' %>
+                  <%# end %>
+                  <!-- CHECKOUT PROPRIO WITHOUT STRIPE PAYMENT  -->
+                  <div class="text-center my-2" style="">
+                    <%= link_to "J'ai loué mon bien !", checkout_proprio_path(@annonce), data: { confirm: 'Vous confirmez que votre bien a été loué ?' }, class: 'btn btn-transparent-bold', style:'font-size: 14px'  %>
+                  </div>
+                </div>
+              <% else %>
+                <!-- flat is rented and checked out by proprio -->
+                <div class="text-center" style="font-size:; font-weight: bold">
+                  Validation agent
+                  <% if @annonce.checkout_agent == "check" %>
+                    <i class="fas fa-check" style="color: green"></i>
                   <% else %>
-                    <p class="mb-1"><strong>Ordre de paiement n° <%= order.id %> : <%= link_to "A PAYER", orders_path %></strong><i class="fas fa-times ml-1" style="color: red"></i></p>
+                    <i class="fas fa-times" style="color: red"></i>
+                  <% end %>
+                </div>
+                <div class="text-center" style="font-size:; font-weight: bold">
+                  Validation propriétaire
+                  <% if @annonce.checkout_proprio == "check" %>
+                    <i class="fas fa-check" style="color: green"></i>
+                  <% else %>
+                    <i class="fas fa-times" style="color: red"></i>
+                  <% end %>
+                </div>
+              <% end %>
+              <div class="mt-2 text-center">
+                <% if @annonce.statut == "Loué"%>
+                  <% @annonce.orders.each do |order| %>
+                    <% if order.state == "paid" %>
+                      <p class="mb-1"><strong>Ordre de paiement n°<%= order.id %> : Reçu</strong><i class="fas fa-check ml-1" style="color: green"></i></p>
+                    <% else %>
+                      <p class="mb-1"><strong>Ordre de paiement n° <%= order.id %> : <%= link_to "A PAYER", orders_path %></strong><i class="fas fa-times ml-1" style="color: red"></i></p>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </div>
-            <!-- FOR ADMIN -->
-          <% elsif @annonce.agent_user_id != nil && current_user.admin == true %>
-            <div class="col-12 col-md-8">
-              <p style="font-weight: bold">Récuperer les clés du bien à louer auprès du propriétaire ci-dessous :</p>
-              <p class="mb-1">Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.titlecase %></p>
-              <p>Adresse du bien à louer : <%= @annonce.adresse %></p>
-              <p class="mb-1"><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.user.email %></p>
-              <% if @annonce.user.téléphone == nil || @annonce.user.téléphone == "" %>
-                <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.telephone_proprio %></p>
-              <% else %>
-                <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
-              <% end %>
-              <p><strong>Mandat exclusif : <%= @annonce.mandat_exclusif ? "Oui" : "Non" %></strong> </p>
-              <!-- send a messge -->
-              <div class="d-flex my-3">
-                <%= link_to "Contacter", new_conversation_path(message: {to: @annonce.user_id }), class: "btn btn-transparent mb-1 text-center" %>
               </div>
-              <p style="font-weight: bold">Téléchargez les photos pour publier votre annonce</p>
-              <div class="d-flex">
-                <p><%= link_to "Photo 1", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
-                <p class="mx-2"><%= link_to "Photo 2", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo1.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
-                <p><%= link_to "Photo 3", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo2.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+              <!-- FOR ADMIN -->
+            <% elsif @annonce.agent_user_id != nil && current_user.admin == true %>
+              <div class="col-12 col-md-8">
+                <p style="font-weight: bold">Récuperer les clés du bien à louer auprès du propriétaire ci-dessous :</p>
+                <p class="mb-1">Propriétaire : <%= @annonce.user.prénom.capitalize %> <%= @annonce.user.nom.titlecase %></p>
+                <p>Adresse du bien à louer : <%= @annonce.adresse %></p>
+                <p class="mb-1"><i class="fas fa-envelope mr-3 mr-3"></i> <%= @annonce.user.email %></p>
+                <% if @annonce.user.téléphone == nil || @annonce.user.téléphone == "" %>
+                  <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.telephone_proprio %></p>
+                <% else %>
+                  <p class=""><i class="fas fa-phone-square mr-3"></i> <%= @annonce.user.téléphone %></p>
+                <% end %>
+                <p><strong>Mandat exclusif : <%= @annonce.mandat_exclusif ? "Oui" : "Non" %></strong> </p>
+                <!-- send a messge -->
+                <div class="d-flex my-3">
+                  <%= link_to "Contacter", new_conversation_path(message: {to: @annonce.user_id }), class: "btn btn-transparent mb-1 text-center" %>
+                </div>
+                <p style="font-weight: bold">Téléchargez les photos pour publier votre annonce</p>
+                <div class="d-flex">
+                  <p><%= link_to "Photo 1", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+                  <p class="mx-2"><%= link_to "Photo 2", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo1.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+                  <p><%= link_to "Photo 3", "https://res.cloudinary.com/dvfwroq5k/image/upload/fl_attachment/#{@annonce.photo2.filename}", :target => "_blank",class: "btn btn-transparent"  %></p>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-        <%#= link_to "Louer ce bien", "", class: "btn btn-success"  %>
-      </div>
-      <!-- link to previous page -->
-      <!--  <div class="mb-4"><%#= link_to 'Retour', 'javascript:history.go(-1);' %></div> -->
-    <% end %>
-  </div>
-  <% if @annonce.latitude != nil %>
-    <div class="container my-5">
-      <div
+          <%#= link_to "Louer ce bien", "", class: "btn btn-success"  %>
+        </div>
+        <!-- link to previous page -->
+        <!--  <div class="mb-4"><%#= link_to 'Retour', 'javascript:history.go(-1);' %></div> -->
+      <% end %>
+    </div>
+    <% if @annonce.latitude != nil %>
+      <div class="container my-5">
+        <div
       id="map"
       style="width: 100%;
       height: 600px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     ></div>
-    <% end %>
-    <div class="container my-3 pl-0">
-      <%= link_to "Toutes les annonces", annonces_path, style:"font-size: 16px" %>
+      <% end %>
+      <div class="container my-3 pl-0">
+        <%= link_to "Toutes les annonces", annonces_path, style:"font-size: 16px" %>
+      </div>
     </div>
-  </div>
-  <!-- code to show all the picture uploaded by multiple upload -->
-  <!-- <ul>
+    <!-- code to show all the picture uploaded by multiple upload -->
+    <!-- <ul>
   <%# @annonce.pictures.each do |picture| %> -->
-  <!-- `picture` here is an instance of the Picture model -->
-  <!--   <li><%#= cl_image_tag(picture.photo, width: 400, height: 300, crop: :fill) %></li>
+    <!-- `picture` here is an instance of the Picture model -->
+    <!--   <li><%#= cl_image_tag(picture.photo, width: 400, height: 300, crop: :fill) %></li>
   <%# end %>
 </ul> -->
-  <% if user_signed_in? %>
-    <% if current_user.admin == true %>
-      <div class="container my-5">
-        <p style="font-weight: bold; color: #D8A727">Visites prévues pour ce bien</p>
-        <% counter = 0 %>
-        <% @meetings.each do |meeting|%>
-          <% counter +=1 %>
-          <div class="d-flex align-items-center">
-            <p class="mb-1">Rdv n° <%= counter %> : le <%= meeting.start_time.strftime("%d/%m/%Y")  %> à <%= meeting.start_time.strftime("%H:%M")  %></p>
-            <%= link_to "", meeting_path(meeting), class:"fas fa-search ml-3 mb-1" %>
-          </div>
-        <% end %>
-      </div>
+    <% if user_signed_in? %>
+      <% if current_user.admin == true %>
+        <div class="container my-5">
+          <p style="font-weight: bold; color: #D8A727">Visites prévues pour ce bien</p>
+          <% counter = 0 %>
+          <% @meetings.each do |meeting|%>
+            <% counter +=1 %>
+            <div class="d-flex align-items-center">
+              <p class="mb-1">Rdv n° <%= counter %> : le <%= meeting.start_time.strftime("%d/%m/%Y")  %> à <%= meeting.start_time.strftime("%H:%M")  %></p>
+              <%= link_to "", meeting_path(meeting), class:"fas fa-search ml-3 mb-1" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
+  <% else %>
+    <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Annonce supprimée"</h4>
   <% end %>
-<% else %>
-  <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Annonce supprimée"</h4>
-<% end %>

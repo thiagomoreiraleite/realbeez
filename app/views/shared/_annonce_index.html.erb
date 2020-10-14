@@ -148,11 +148,16 @@
                 <% elsif annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
                   <!-- when flat is rented need to checkout -->
                   <% if annonce.checkout_proprio != "check" %>
+                    <!-- CHECKOUT PROPRIO WITH REDIRECT TO ORDER AND PAYMENT WITH STRIPE -->
+                    <!--    <div class="text-center my-2" style="">
+                      <%#= form_tag orders_path do %>
+                        <%#= hidden_field_tag 'annonce_id', annonce.id %>
+                        <%#= submit_tag 'J\'ai loué mon bien !', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
+                      <%# end %>
+                    </div> -->
+                    <!-- CHECKOUT PROPRIO WITHOUT STRIPE PAYMENT  -->
                     <div class="text-center my-2" style="">
-                      <%= form_tag orders_path do %>
-                        <%= hidden_field_tag 'annonce_id', annonce.id %>
-                        <%= submit_tag 'J\'ai loué mon bien !', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
-                      <% end %>
+                      <%= link_to "J'ai loué mon bien !", checkout_proprio_path(annonce), data: { confirm: 'Vous confirmez que votre bien a été loué ?' }, class: 'btn btn-transparent-bold', style:'font-size: 14px'  %>
                     </div>
                   <% else %>
                     <!-- flat is rented and checked out by proprio -->
@@ -302,11 +307,16 @@
                   <% elsif annonce.agent_user_id != nil && annonce.user_id == current_user.id %>
                     <!-- when flat is rented need to checkout -->
                     <% if annonce.checkout_proprio != "check" %>
+                      <!-- CHECKOUT PROPRIO WITH REDIRECT TO ORDER AND PAYMENT WITH STRIPE -->
+                      <!--   <div class="text-center my-2" style="">
+                        <%#= form_tag orders_path do %>
+                          <%#= hidden_field_tag 'annonce_id', annonce.id %>
+                          <%#= submit_tag 'J\'ai loué mon bien !', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
+                        <%# end %>
+                      </div> -->
+                      <!-- CHECKOUT PROPRIO WITHOUT STRIPE PAYMENT  -->
                       <div class="text-center my-2" style="">
-                        <%= form_tag orders_path do %>
-                          <%= hidden_field_tag 'annonce_id', annonce.id %>
-                          <%= submit_tag 'J\'ai loué mon bien !', data: { confirm: 'Vous confirmez que votre bien a été loué. Vous allez être redirigé vers le site de paiement sécurisé.' }, class: 'btn btn-transparent-bold', style:'font-size: 14px' %>
-                        <% end %>
+                        <%= link_to "J'ai loué mon bien !", checkout_proprio_path(annonce), data: { confirm: 'Vous confirmez que votre bien a été loué ?' }, class: 'btn btn-transparent-bold', style:'font-size: 14px'  %>
                       </div>
                     <% else %>
                       <!-- flat is rented and checked out by proprio -->

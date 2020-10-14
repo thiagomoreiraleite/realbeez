@@ -187,28 +187,27 @@ class AnnoncesController < ApplicationController
     redirect_to @annonce
   end
 
-  # Checkout proprio is now done through "Order create"
   def checkout_proprio
     authorize @annonce
     @annonce.checkout_proprio = "check"
     @annonce.save
-    # @admin = User.where("email = ?", "contact@realbeez.com")[0]
-    # @recipient = User.find(@annonce.agent_user_id)
+    @admin = User.where("email = ?", "contact@realbeez.com")[0]
+    @recipient = User.find(@annonce.agent_user_id)
     # # Create a notification
     # Notification.create(recipient: @admin, actor: current_user, action: "checkout_proprio_notify_admin", notifiable: @annonce)
-    # Notification.create(recipient: @recipient, actor: current_user, action: "checkout_proprio_notify_agent", notifiable: @annonce)
+    Notification.create(recipient: @recipient, actor: current_user, action: "checkout_proprio_notify_agent", notifiable: @annonce)
     # # Send email to Admin
-    # mail_admin = AnnonceMailer.with(annonce: @annonce).checkout_proprio_notify_admin
-    # mail_admin.deliver_now
+    mail_admin = AnnonceMailer.with(annonce: @annonce).checkout_proprio_notify_admin
+    mail_admin.deliver_now
     # # Send email to Agent
-    # mail_agent = AnnonceMailer.with(annonce: @annonce).checkout_proprio_notify_agent
-    # mail_agent.deliver_now
-    redirect_to profile_path(current_user)
+    mail_agent = AnnonceMailer.with(annonce: @annonce).checkout_proprio_notify_agent
+    mail_agent.deliver_now
+    # redirect_to profile_path(current_user)
     if @annonce.checkout_agent == "check" && @annonce.checkout_proprio == "check"
       @annonce.statut = "Loué"
       @annonce.save
     end
-    redirect_to @annonce
+    # redirect_to @annonce
   end
 
   def show

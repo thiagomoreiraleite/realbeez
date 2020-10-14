@@ -1,0 +1,18 @@
+<p></p>
+<p></p>
+<div class="pb-5" style="">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 offset-md-3 text-justify px-4" style="line-height: 1.8em">
+        <h5 class="text-center mt-3 my-5 pt-5" style="color: #D8A727">Merci d'avoir utilisé les services de Realbeez !</h5>
+        <p>Cher <%= @annonce.user.prénom %>,</p>
+        <p class="mb-1"></p>
+        <p>Vous pouvez désormais laisser un avis et noter votre agent <%= User.find(@annonce.agent_user_id.to_i).prénom %>.</p>
+        <p>Votre équipe Realbeez</p>
+        <div class="d-flex justify-content-center mt-4">
+          <p><%= link_to "Notez votre agent", new_agent_review_path(User.find(@annonce.agent_user_id.to_i).agent), class: 'btn btn-transparent-bold', style:'font-size: 14px' %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

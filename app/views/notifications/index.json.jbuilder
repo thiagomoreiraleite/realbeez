@@ -162,7 +162,7 @@ json.array!  @notifications do |notification|
     end
   elsif notification.action == "checkout_proprio_notify_agent"
     if notification.notifiable != nil
-      json.url annonce_path(notification.notifiable.annonce)
+      json.url annonce_path(notification.notifiable)
     else
       json.url root_path
     end
