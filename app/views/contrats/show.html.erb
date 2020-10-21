@@ -825,7 +825,7 @@
             <% else %>
               <%= @contrat.loyer_hors_charges %>
             <% end %> €
-            <span class="ml-3">Charges récupérables :</span>
+            <span class="ml-3">Charges :</span>
             <% if @contrat.user_id == current_user.id || current_user.admin == true || @contrat.locataire_candidature.annonce.agent_user_id == current_user.id.to_s || @contrat.locataire_candidature.annonce.user == current_user %>
               <%= link_to @contrat.charge_recuperable, edit_contrat_path(@contrat), class:"text-decoration-none" %>
             <% else %>
