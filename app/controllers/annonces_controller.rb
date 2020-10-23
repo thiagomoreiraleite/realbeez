@@ -236,8 +236,8 @@ class AnnoncesController < ApplicationController
 
   def create
     @annonce = Annonce.new(annonce_params)
-    @email_proprietaire = User.where("email = ?", @annonce.email_proprio.downcase)[0]
     if @annonce.agent == "Oui"
+      @email_proprietaire = User.where("email = ?", @annonce.email_proprio.downcase)[0]
       @annonce.agent_user_id = current_user.id
       if @email_proprietaire == [] || @email_proprietaire == "" || @email_proprietaire == nil
         create_user
