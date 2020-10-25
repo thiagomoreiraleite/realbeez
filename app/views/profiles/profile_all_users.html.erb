@@ -41,8 +41,10 @@
                       </div>
                       <p class="pt-0 card-text mb-2"><i class="fas fa-user-circle  mr-3" style="color: #D8A727"></i><% if profile.statut.nil? %>
                           User
-                        <% else %>
+                        <% elsif profile.statut == "Agent" %>
                           <%= profile.statut %><i class="fas fa-check-circle ml-1" style="color: green"></i>
+                        <% elsif profile.statut == "deleted" %>
+                          <span style="color:red">Supprimé</span>
                         <% end %>
                       </p>
                       <% unless profile.agent.nil? || profile.agent == []%>
