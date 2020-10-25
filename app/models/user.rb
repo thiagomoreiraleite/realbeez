@@ -48,6 +48,9 @@ class User < ApplicationRecord
     update_attribute(:adresse, "deleted")
     update_attribute(:nom, "deleted")
     update_attribute(:téléphone, "deleted")
+    update_attribute(:ville, "deleted")
+    update_attribute(:longitude, nil)
+    update_attribute(:latitude, nil)
   end
 
   # ensure user account is active
