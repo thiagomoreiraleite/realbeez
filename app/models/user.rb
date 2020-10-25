@@ -45,6 +45,9 @@ class User < ApplicationRecord
   def soft_delete
     update_attribute(:deleted_at, Time.current)
     update_attribute(:statut, "deleted")
+    update_attribute(:adresse, nil)
+    update_attribute(:nom, "deleted")
+    update_attribute(:téléphone, nil)
   end
 
   # ensure user account is active
