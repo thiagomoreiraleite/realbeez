@@ -44,7 +44,7 @@
                         <% elsif profile.statut == "Agent" %>
                           <%= profile.statut %><i class="fas fa-check-circle ml-1" style="color: green"></i>
                         <% elsif profile.statut == "deleted" %>
-                          <span style="color:red">Supprimé</span>
+                          <span style="color:red">Deleted</span>
                         <% end %>
                       </p>
                       <% unless profile.agent.nil? || profile.agent == []%>
