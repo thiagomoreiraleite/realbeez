@@ -350,7 +350,8 @@ class AnnoncesController < ApplicationController
       :price_cents,
       :telephone_proprio,
       :mandat_exclusif,
-      :depot_garantie
+      :depot_garantie,
+      :duree_mandat
     )
   end
 

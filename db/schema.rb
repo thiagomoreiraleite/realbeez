@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_133015) do
+ActiveRecord::Schema.define(version: 2020_10_25_113017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_133015) do
     t.string "telephone_proprio"
     t.boolean "mandat_exclusif", default: false
     t.integer "depot_garantie"
+    t.string "duree_mandat"
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 
