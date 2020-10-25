@@ -288,7 +288,7 @@ class AnnoncesController < ApplicationController
 
   def update
     authorize @annonce
-    if @annonce.agent == "Oui" && @annonce.agent_user_id.to_i == current_user.id
+    if @annonce.agent == "Oui" && @annonce.agent_user_id.to_i == current_user.id || @annonce.agent == "Oui" && current_user.admin == true
       @email_proprietaire = User.where("email = ?", params[:annonce][:email_proprio].downcase)[0]
       # if params[:annonce][:agent] == "Oui"
       # @annonce.agent_user_id = current_user.id
