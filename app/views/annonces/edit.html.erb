@@ -13,20 +13,19 @@
               <%= f.input :depot_garantie, input_html: { min: '0', step: 'any' }, label: "Montant du dépôt de garantie" %>
             </div>
             <%#= f.input :agent, label: "Vous êtes un agent et publiez une annonce pour le compte d'un propriétaire", collection: ["Oui", "Non"], as: :radio_buttons %>
-          </div>
-          <div class="border-top border-bottom py-3 my-3">
-            <p>Vous publiez une annonce pour le propriétaire cité ci-dessous</p>
-            <%= f.input :prenom_proprio, label: false, placeholder:"Prénom du propriétaire"%>
-            <%= f.input :nom_proprio, label: false, placeholder:"Nom du propriétaire"%>
-            <%= f.input :email_proprio, label: false, placeholder:"Email du propriétaire"%>
-            <%= f.input :telephone_proprio, label: false, placeholder:"Téléphone du propriétaire"%>
-            <p class="mb-1"><span style="color:red"><strong>Important </strong></span>: Si le propriétaire ne possède pas de compte sur le site, cliquez sur "créer compte propriétaire" <strong>(mot de passe temporaire : 123456)</strong>.</p>
-            <p> Puis poursuivez la publication de l'annonce.</p>
-            <%= f.submit "Créer compte propriétaire", class: "btn btn-yellow-mustard mb-4" %>
-          </div>
-        <% end %>
-        <%= f.input :titre_annonce, label: "Titre de l'annonce" %>
-        <%= f.input :type_de_bien, collection:
+            <div class="border-top border-bottom py-3 my-3">
+              <p>Vous publiez une annonce pour le propriétaire cité ci-dessous</p>
+              <%= f.input :prenom_proprio, label: false, placeholder:"Prénom du propriétaire"%>
+              <%= f.input :nom_proprio, label: false, placeholder:"Nom du propriétaire"%>
+              <%= f.input :email_proprio, label: false, placeholder:"Email du propriétaire"%>
+              <%= f.input :telephone_proprio, label: false, placeholder:"Téléphone du propriétaire"%>
+              <p class="mb-1"><span style="color:red"><strong>Important </strong></span>: Si le propriétaire ne possède pas de compte sur le site, cliquez sur "créer compte propriétaire" <strong>(mot de passe temporaire : 123456)</strong>.</p>
+              <p> Puis poursuivez la publication de l'annonce.</p>
+              <%= f.submit "Créer compte propriétaire", class: "btn btn-yellow-mustard mb-4" %>
+            </div>
+          <% end %>
+          <%= f.input :titre_annonce, label: "Titre de l'annonce" %>
+          <%= f.input :type_de_bien, collection:
             [
               "Appartement",
               "Maison",
@@ -34,10 +33,10 @@
               "Parking",
               "Autre",
             ] %>
-        <%= f.input :meublé, label: "Meublé / Non meublé",collection: ["Meublé", "Non meublé"]  %>
-        <%= f.input :surface, input_html: { min: '0', step: 'any' }, label: "Surface en m2" %>
-        <%= f.input :pièces, input_html: { min: '0', step: 'any' }  %>
-        <%= f.input :classe_énergie, collection:
+          <%= f.input :meublé, label: "Meublé / Non meublé",collection: ["Meublé", "Non meublé"]  %>
+          <%= f.input :surface, input_html: { min: '0', step: 'any' }, label: "Surface en m2" %>
+          <%= f.input :pièces, input_html: { min: '0', step: 'any' }  %>
+          <%= f.input :classe_énergie, collection:
             [
               "A (moins de 50)",
               "B (de 51 à 90)]",
@@ -50,7 +49,7 @@
               "I (de 751 et plus)]",
               "Vierge"
             ]  %>
-        <%= f.input :ges, collection:
+          <%= f.input :ges, collection:
             [
               "A (moins de 5)",
               "B (de 5 à 10)]",
@@ -63,28 +62,28 @@
               "I (de 146 et plus)]",
               "Vierge"
             ],label: "GES"  %>
-        <%= f.input :description %>
-        <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises) en €" %>
-        <%= f.input :charges, input_html: { min: '0', step: 'any' }  %>
-        <%= f.input :ville %>
-        <%= f.input :adresse %>
-        <%= f.input :email %>
-        <%= f.input :téléphone %>
-        <div class="mb-4">
-          <p class="mt-4" style="color: #D8A727">Téléchargez vos photos <span style="color: red; font-size: 12px; font-style: italic">(Formats acceptés : jpg ou png)</span></p>
-          <%= f.input :photo, label: false %>
-          <%= f.input :photo_cache, as: :hidden %>
-          <%= f.input :photo1, label: false %>
-          <%= f.input :photo1_cache, as: :hidden %>
-          <%= f.input :photo2, label: false %>
-          <%= f.input :photo2_cache, as: :hidden %>
-        </div>
-        <!-- multiple upload photo -->
-        <%#= f.input :pictures, as: :file, input_html: { multiple: true } %>
-        <%= f.submit "Modifier", class: "btn btn-yellow-mustard mb-5" %>
-        <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
-      <% end %>
+          <%= f.input :description %>
+          <%= f.input :loyer_mensuel, label: "Loyer mensuel (charges comprises) en €" %>
+          <%= f.input :charges, input_html: { min: '0', step: 'any' }  %>
+          <%= f.input :ville %>
+          <%= f.input :adresse %>
+          <%= f.input :email %>
+          <%= f.input :téléphone %>
+          <div class="mb-4">
+            <p class="mt-4" style="color: #D8A727">Téléchargez vos photos <span style="color: red; font-size: 12px; font-style: italic">(Formats acceptés : jpg ou png)</span></p>
+            <%= f.input :photo, label: false %>
+            <%= f.input :photo_cache, as: :hidden %>
+            <%= f.input :photo1, label: false %>
+            <%= f.input :photo1_cache, as: :hidden %>
+            <%= f.input :photo2, label: false %>
+            <%= f.input :photo2_cache, as: :hidden %>
+          </div>
+          <!-- multiple upload photo -->
+          <%#= f.input :pictures, as: :file, input_html: { multiple: true } %>
+          <%= f.submit "Modifier", class: "btn btn-yellow-mustard mb-5" %>
+          <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
 </div>
