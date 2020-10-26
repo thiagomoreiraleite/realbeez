@@ -20,7 +20,8 @@ class ReviewsController < ApplicationController
       @nb_ratings = @agent.reviews.count.to_f
       @average_ratings = (@sum_ratings/@nb_ratings)
       @agent.user.rating = @average_ratings.to_f
-      @agent.user.save
+      @user = @agent.user
+      @user.save
       redirect_to profile_path(@agent.user)
     else
       flash[:alert] = "Vous avez déja publié un commentaire"
