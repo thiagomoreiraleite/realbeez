@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
         @distance = params[:search][:distance].to_i
       end
       if params[:search][:query].empty?
-        @profiles = policy_scope(Profile.where("statut = ?", "Agent")).order(created_at: :asc).page(params[:page]).per_page(18)
+        @profiles = policy_scope(Profile.where("statut = ?", "Agent")).order("rating DESC, created_at ASC").page(params[:page]).per_page(18)
         @markers = @profiles.where.not(latitude: nil, longitude: nil).map do |profile|
           {
             lat: profile.latitude,
@@ -18,6 +18,7 @@ class ProfilesController < ApplicationController
             infoWindow: render_to_string(partial: "info_window", locals: { profile: profile })
           }
         end
+
       else
         if policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)) != []
           @profiles = policy_scope(Profile.where("statut = ?", "Agent").near(params[:search][:query],@distance)).page(params[:page]).per_page(18)
