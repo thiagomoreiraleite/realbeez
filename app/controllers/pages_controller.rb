@@ -16,7 +16,7 @@ class PagesController < ApplicationController
     #   end
     # else
     # @annonces = Annonce.where("statut = ?", "active").order(created_at: :desc).limit(3)
-    @profiles = Profile.where("statut = ?", "Agent").order(rating: :desc).limit(10)
+    @profiles = Profile.where("statut = ?", "Agent").order("rating DESC, created_at ASC").limit(10)
     @contact = Contact.new
     # end
   end
