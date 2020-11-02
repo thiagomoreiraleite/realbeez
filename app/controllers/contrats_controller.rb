@@ -9,12 +9,21 @@ class ContratsController < ApplicationController
   def create
     authorize @contrat = Contrat.new
     @locataire_candidature = LocataireCandidature.find(params[:locataire_candidature_id])
-    @contrat.contrat_type =
-    "
+    if @locataire_candidature.annonce.meublé == "Meublé"
+      @contrat.contrat_type =
+      "
     Le présent contrat type de location est applicable aux locations et aux colocations de logement meublé et qui constitue la résidence principale du preneur, à l’exception :
     - des colocations formalisées par la conclusion de plusieurs contrats entre les locataires et le bailleur ;
     - des locations de logement appartenant à un organisme d’habitation à loyer modéré et faisant l’objet d’une convention passée en application de l’article L.351-2 du code de la construction et de l’habitation.
     "
+    else
+      @contrat.contrat_type =
+      "
+    Le présent contrat type de location est applicable aux locations et aux colocations de logement vide et qui constitue la résidence principale du preneur, à l’exception :
+    - des colocations formalisées par la conclusion de plusieurs contrats entre les locataires et le bailleur ;
+    - des locations de logement appartenant à un organisme d’habitation à loyer modéré et faisant l’objet d’une convention passée en application de l’article L.351-2 du code de la construction et de l’habitation.
+    "
+    end
     @contrat.locataire_candidature = @locataire_candidature
     @contrat.user = current_user
     @contrat.qualite_bailleur = "Personne physique"
