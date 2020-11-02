@@ -16,7 +16,7 @@ class BlogPolicy < ApplicationPolicy
     true
   end
 
-  def delete?
+  def destroy?
     true
   end
 

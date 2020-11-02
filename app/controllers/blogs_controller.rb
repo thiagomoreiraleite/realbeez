@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
 
   def index
-    @blogs = policy_scope(Blog).order(date: :desc)
+    @blogs = policy_scope(Blog.where("statut = ?", "active")).order(date: :desc)
   end
 
   def show
@@ -17,7 +17,7 @@ class BlogsController < ApplicationController
   def create
     authorize @blog = Blog.new(blog_params)
     @blog.user = current_user
-    # @blog.statut = "annulé"
+    @blog.statut = "active"
     if @blog.save
       redirect_to blog_path(@blog)
     else
@@ -38,12 +38,12 @@ class BlogsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   authorize @blog
-  #   @locataire.statut = "annulé"
-  #   @locataire.save
-  #   redirect_to locataires_locataire_path
-  # end
+  def destroy
+    authorize @blog
+    @blog.statut = "annulé"
+    @blog.save
+    redirect_to blogs_path
+  end
 
   private
 
@@ -85,6 +85,7 @@ class BlogsController < ApplicationController
       :intro_7,
       :photo_7,
       :texte_7,
+      :disclaimer
     )
   end
 end

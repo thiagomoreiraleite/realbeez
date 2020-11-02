@@ -1,60 +1,65 @@
-<h3 class="text-center mt-5 mb-5">Modifier l'article</h3>
-<div class="container center">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="center">
-        <%= simple_form_for [@blog] do |f| %>
-          <%= f.input :titre, label: "Titre de l'annonce"%>
-          <%= f.input :date, label: "Date de publication"%>
-          <%= f.input :photo, label: "Photo principal" %>
-          <%= f.input :photo_cache, as: :hidden %>
-          <%= f.input :intro, label: "Introduction"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_1, label: "Titre 1"%>
-          <%= f.input :intro_1, label: "Introduction 1"%>
-          <%= f.input :photo_1, label: "Photo 1" %>
-          <%= f.input :photo_1_cache, as: :hidden %>
-          <%= f.input :texte_1, label: "Texte 1"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_2, label: "Titre 2"%>
-          <%= f.input :intro_2, label: "Introduction 2"%>
-          <%= f.input :photo_2, label: "Photo 2" %>
-          <%= f.input :photo_2_cache, as: :hidden %>
-          <%= f.input :texte_2, label: "Texte 2"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_3, label: "Titre 3"%>
-          <%= f.input :intro_3, label: "Introduction 3"%>
-          <%= f.input :photo_3, label: "Photo 3" %>
-          <%= f.input :photo_3_cache, as: :hidden %>
-          <%= f.input :texte_3, label: "Texte 3"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_4, label: "Titre 4"%>
-          <%= f.input :intro_4, label: "Introduction 4"%>
-          <%= f.input :photo_4, label: "Photo 4" %>
-          <%= f.input :photo_4_cache, as: :hidden %>
-          <%= f.input :texte_4, label: "Texte 4"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_5, label: "Titre 5"%>
-          <%= f.input :intro_5, label: "Introduction 5"%>
-          <%= f.input :photo_5, label: "Photo 5" %>
-          <%= f.input :photo_5_cache, as: :hidden %>
-          <%= f.input :texte_5, label: "Texte 5"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_6, label: "Titre 6"%>
-          <%= f.input :intro_6, label: "Introduction 6"%>
-          <%= f.input :photo_6, label: "Photo 6" %>
-          <%= f.input :photo_6_cache, as: :hidden %>
-          <%= f.input :texte_6, label: "Texte 6"%>
-          <div class="border-top my-4"></div>
-          <%= f.input :titre_7, label: "Titre 7"%>
-          <%= f.input :intro_7, label: "Introduction 7"%>
-          <%= f.input :photo_7, label: "Photo 7" %>
-          <%= f.input :photo_7_cache, as: :hidden %>
-          <%= f.input :texte_7, label: "Texte 7"%>
-          <%= f.submit "Modifier", class: "btn btn-yellow-mustard mb-5 mt-4" %>
-          <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5 mt-4" %>
-        <% end %>
+<% if current_user.admin == true %>
+  <h3 class="text-center mt-5 mb-5">Modifier l'article</h3>
+  <div class="container center">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-6">
+        <div class="center">
+          <%= simple_form_for [@blog] do |f| %>
+            <%= f.input :titre, label: "Titre de l'annonce"%>
+            <%= f.input :date, label: "Date de publication"%>
+            <%= f.input :photo, label: "Photo principal" %>
+            <%= f.input :photo_cache, as: :hidden %>
+            <%= f.input :intro, label: "Introduction"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_1, label: "Titre 1"%>
+            <%= f.input :intro_1, label: "Introduction 1"%>
+            <%= f.input :photo_1, label: "Photo 1" %>
+            <%= f.input :photo_1_cache, as: :hidden %>
+            <%= f.input :texte_1, label: "Texte 1"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_2, label: "Titre 2"%>
+            <%= f.input :intro_2, label: "Introduction 2"%>
+            <%= f.input :photo_2, label: "Photo 2" %>
+            <%= f.input :photo_2_cache, as: :hidden %>
+            <%= f.input :texte_2, label: "Texte 2"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_3, label: "Titre 3"%>
+            <%= f.input :intro_3, label: "Introduction 3"%>
+            <%= f.input :photo_3, label: "Photo 3" %>
+            <%= f.input :photo_3_cache, as: :hidden %>
+            <%= f.input :texte_3, label: "Texte 3"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_4, label: "Titre 4"%>
+            <%= f.input :intro_4, label: "Introduction 4"%>
+            <%= f.input :photo_4, label: "Photo 4" %>
+            <%= f.input :photo_4_cache, as: :hidden %>
+            <%= f.input :texte_4, label: "Texte 4"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_5, label: "Titre 5"%>
+            <%= f.input :intro_5, label: "Introduction 5"%>
+            <%= f.input :photo_5, label: "Photo 5" %>
+            <%= f.input :photo_5_cache, as: :hidden %>
+            <%= f.input :texte_5, label: "Texte 5"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_6, label: "Titre 6"%>
+            <%= f.input :intro_6, label: "Introduction 6"%>
+            <%= f.input :photo_6, label: "Photo 6" %>
+            <%= f.input :photo_6_cache, as: :hidden %>
+            <%= f.input :texte_6, label: "Texte 6"%>
+            <div class="border-top my-4"></div>
+            <%= f.input :titre_7, label: "Titre 7"%>
+            <%= f.input :intro_7, label: "Introduction 7"%>
+            <%= f.input :photo_7, label: "Photo 7" %>
+            <%= f.input :photo_7_cache, as: :hidden %>
+            <%= f.input :texte_7, label: "Texte 7"%>
+            <%= f.input :disclaimer, label: "Avertissement en pied de page"%>
+            <%= f.submit "Modifier", class: "btn btn-yellow-mustard mb-5 mt-4" %>
+            <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5 mt-4" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <h4 class="text-center mt-5" style="width: 100%; color:#DA334A; font-style: italic">"Vous n'avez pas accès à cette page"</h4>
+<% end %>
