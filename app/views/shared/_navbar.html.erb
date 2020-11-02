@@ -30,8 +30,15 @@
           <%= link_to "Parrainage", recommandation_path, class: "nav-link" %>
         </li>
       <% end %>
+      <% if user_signed_in? %>
+        <% if current_user.statut == "Agent" || current_user.admin == true %>
+          <li class="nav-item">
+            <%= link_to "Nos fiches pratiques", fiches_pratiques_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      <% end %>
       <li class="nav-item">
-        <%= link_to "Nos fiches pratiques", fiches_pratiques_path, class: "nav-link" %>
+        <%= link_to "Blog", blogs_path, class: "nav-link" %>
       </li>
       <!-- <li class="nav-item">
         <%#= link_to "Devenir agent Realbeez", new_agent_path, class: "nav-link"%>
@@ -107,6 +114,7 @@
                 <%= link_to "Toutes les annonces", annonces_all_path, class: "dropdown-item" %>
                 <%= link_to "Tous les dossiers de location", locataires_all_path, class: "dropdown-item" %>
                 <%= link_to "Toutes les visites", meetings_path(visites: {from: 'admin'}), class: "dropdown-item" %>
+                <%= link_to "Publier un article", new_blog_path, class: "dropdown-item" %>
               </div>
             <% end %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

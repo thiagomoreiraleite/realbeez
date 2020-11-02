@@ -127,6 +127,9 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   get '/confirmation_contact', to: 'contacts#confirmation_contact', as: :confirmation_contact
 
+  # Blog
+  resources :blogs, only:[:new, :create, :edit, :update, :destroy, :show, :index]
+
   # get '/404', to: "errors#not_found"
   # get '/422', to: "errors#unacceptable"
   # get '/500', to: "errors#internal_error"

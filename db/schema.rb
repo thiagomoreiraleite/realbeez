@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_144211) do
+ActiveRecord::Schema.define(version: 2020_11_01_195418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,45 @@ ActiveRecord::Schema.define(version: 2020_10_26_144211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_availabilities_on_user_id"
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "photo", default: "image/upload/v1582613499/default_annonce.png"
+    t.string "titre"
+    t.date "date"
+    t.text "intro"
+    t.string "titre_1"
+    t.text "intro_1"
+    t.string "photo_1", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_1"
+    t.string "titre_2"
+    t.text "intro_2"
+    t.string "photo_2", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_2"
+    t.string "titre_3"
+    t.text "intro_3"
+    t.string "photo_3", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_3"
+    t.string "titre_4"
+    t.text "intro_4"
+    t.string "photo_4", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_4"
+    t.string "titre_5"
+    t.text "intro_5"
+    t.string "photo_5", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_5"
+    t.string "titre_6"
+    t.text "intro_6"
+    t.string "photo_6", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_6"
+    t.string "titre_7"
+    t.text "intro_7"
+    t.string "photo_7", default: "image/upload/v1582613499/default_annonce.png"
+    t.text "texte_7"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "candidatures", force: :cascade do |t|
@@ -482,6 +521,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_144211) do
 
   add_foreign_key "annonces", "users"
   add_foreign_key "availabilities", "users"
+  add_foreign_key "blogs", "users"
   add_foreign_key "candidatures", "annonces"
   add_foreign_key "candidatures", "users"
   add_foreign_key "documents", "locataires"
