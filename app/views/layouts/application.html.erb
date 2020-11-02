@@ -65,6 +65,9 @@
                 <a href="https://www.linkedin.com/company/realbeez" style="color: black; opacity: 0.6; font-size: 14px" target="_blank"><i class="fab fa-linkedin"></i> Linkedin</a>
               </div>
               <div class="mb-1">
+                <%= link_to "Blog", blogs_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
+              </div>
+              <div class="mb-1">
                 <%= link_to "Contactez-nous", new_page_path(message: {to: User.where("email = ?", "contact@realbeez.com")[0] }), style:"color: black; opacity: 0.6; font-size: 14px" %>
               </div>
               <!--      <div class="mb-1">
@@ -114,9 +117,6 @@
                   </div>
                 <% end %>
               <% end %>
-              <div class="mb-1">
-                <%= link_to "Le Blog", blogs_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
-              </div>
               <div class="mb-1">
                 <%= link_to "Nous découvrir", nous_decouvrir_path, style:"color: black; opacity: 0.6; font-size: 14px" %>
               </div>
