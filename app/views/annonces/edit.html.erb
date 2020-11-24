@@ -81,6 +81,10 @@
           </div>
           <!-- multiple upload photo -->
           <%#= f.input :pictures, as: :file, input_html: { multiple: true } %>
+          <% if current_user.admin == true %>
+            <p class="mt-4" style="color: #D8A727">Pour changer l'agent en charge, renseignez son identifiant</p>
+            <%= f.input :agent_user_id, label: false %>
+          <% end %>
           <%= f.submit "Modifier", class: "btn btn-yellow-mustard mb-5" %>
           <%= link_to "Annuler", root_path, class:"btn btn-danger mb-5" %>
         <% end %>

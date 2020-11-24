@@ -227,6 +227,7 @@ class AnnoncesController < ApplicationController
     unless @annonce.agent_user_id.nil?
       @agent_user = User.find(@annonce.agent_user_id.to_i)
     end
+    @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", @annonce.agent_user_id.to_i, "active").order(created_at: :desc)
   end
 
   def new
@@ -351,7 +352,8 @@ class AnnoncesController < ApplicationController
       :telephone_proprio,
       :mandat_exclusif,
       :depot_garantie,
-      :duree_mandat
+      :duree_mandat,
+      :agent_user_id
     )
   end
 

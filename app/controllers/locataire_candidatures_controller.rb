@@ -9,10 +9,19 @@ class LocataireCandidaturesController < ApplicationController
     authorize @locataire_candidature = LocataireCandidature.new
     @annonce = Annonce.find(params[:annonce_id])
     @dossier_location = []
-    current_user.locataires.each do |locataire|
-      if locataire.statut == "active"
-        @dossier_location << "Réf. ID-#{locataire.id} | #{locataire.prenom} #{locataire.nom} - #{locataire.email}"
+    if current_user.admin == true
+      User.find(@annonce.agent_user_id.to_i).locataires.each do |locataire|
+        if locataire.statut == "active"
+          @dossier_location << "Réf. ID-#{locataire.id} | #{locataire.prenom} #{locataire.nom} - #{locataire.email}"
+        end
       end
+    else
+      current_user.locataires.each do |locataire|
+        if locataire.statut == "active"
+          @dossier_location << "Réf. ID-#{locataire.id} | #{locataire.prenom} #{locataire.nom} - #{locataire.email}"
+        end
+      end
+
     end
     @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", current_user.id, "active")
 
