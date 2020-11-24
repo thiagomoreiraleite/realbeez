@@ -857,8 +857,8 @@
   <% end %>
   <!-- Locataire dossier -->
   <div class="container">
-    <% if @locataire_dossier != [] %>
-      <p style="font-weight: bold; color: #D8A727">Les dossiers de location de l'agent (only for admin)</p>
+    <p style="font-weight: bold; color: #D8A727">Les dossiers de location de l'agent (only for admin)</p>
+    <% if @locataire_dossiers != [] %>
       <!-- Mobile version -->
       <div class="hide-on-large" style="font-size: 12px">
         <table class="table table-hover" style="background-color: white">
@@ -911,6 +911,8 @@
         </table>
         <br>
       </div>
+    <% else %>
+      <p class="" style="width: 100%; color: red">"Aucun dossier de location"</p>
     <% end %>
   </div>
 <% end %>
