@@ -20,6 +20,7 @@ class ReviewsController < ApplicationController
       @nb_ratings = @agent.reviews.count.to_f
       @average_ratings = (@sum_ratings/@nb_ratings)
       @agent.user.rating = @average_ratings.to_f
+      @agent.user.nb_rating = @agent.reviews.count.to_f
       @user = @agent.user
       @user.save
       redirect_to profile_path(@agent.user)

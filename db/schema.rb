@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_150219) do
+ActiveRecord::Schema.define(version: 2020_12_11_061155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -517,6 +517,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_150219) do
     t.datetime "deleted_at"
     t.string "parrain"
     t.decimal "rating", precision: 10, scale: 2, default: "0.0"
+    t.integer "nb_rating"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
