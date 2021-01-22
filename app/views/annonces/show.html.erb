@@ -856,63 +856,67 @@
     <% end %>
   <% end %>
   <!-- Locataire dossier -->
-  <div class="container">
-    <p style="font-weight: bold; color: #D8A727">Les dossiers de location de l'agent (only for admin)</p>
-    <% if @locataire_dossiers != [] %>
-      <!-- Mobile version -->
-      <div class="hide-on-large" style="font-size: 12px">
-        <table class="table table-hover" style="background-color: white">
-          <thead>
-            <tr>
-              <th scope="col">Réf</th>
-              <th scope="col">Locataire principal</th>
-              <th scope="col">Détails</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @locataire_dossiers.each do |locataire| %>
-              <tr>
-                <td>ID-<%= locataire.id %></td>
-                <td><%= locataire.prenom %> <%= locataire.nom %></td>
-                <td>
-                  <%= link_to '', locataire, class:"fas fa-search" %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <br>
+  <% if user_signed_in? %>
+    <% if current_user.admin == true %>
+      <div class="container">
+        <p style="font-weight: bold; color: #D8A727">Les dossiers de location de l'agent (only for admin hello)</p>
+        <% if @locataire_dossiers != [] %>
+          <!-- Mobile version -->
+          <div class="hide-on-large" style="font-size: 12px">
+            <table class="table table-hover" style="background-color: white">
+              <thead>
+                <tr>
+                  <th scope="col">Réf</th>
+                  <th scope="col">Locataire principal</th>
+                  <th scope="col">Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @locataire_dossiers.each do |locataire| %>
+                  <tr>
+                    <td>ID-<%= locataire.id %></td>
+                    <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                    <td>
+                      <%= link_to '', locataire, class:"fas fa-search" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+          </div>
+          <!-- Laptop version -->
+          <div class="hide-on-small" style="font-size: 12px">
+            <table class="table table-hover" style="background-color: white">
+              <thead>
+                <tr>
+                  <th scope="col">Référence</th>
+                  <th scope="col">Créé le</th>
+                  <th scope="col">Locataire principal</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @locataire_dossiers.each do |locataire| %>
+                  <tr>
+                    <td>ID-<%= locataire.id %></td>
+                    <td><%= locataire.created_at.strftime("%d/%m/%Y") %></td>
+                    <td><%= locataire.prenom %> <%= locataire.nom %></td>
+                    <td><%= locataire.email%></td>
+                    <td>
+                      <%= link_to '', locataire, class:"fas fa-search" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+          </div>
+        <% else %>
+          <p class="" style="width: 100%; color: red">"Aucun dossier de location"</p>
+        <% end %>
       </div>
-      <!-- Laptop version -->
-      <div class="hide-on-small" style="font-size: 12px">
-        <table class="table table-hover" style="background-color: white">
-          <thead>
-            <tr>
-              <th scope="col">Référence</th>
-              <th scope="col">Créé le</th>
-              <th scope="col">Locataire principal</th>
-              <th scope="col">Email</th>
-              <th scope="col">Détails</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @locataire_dossiers.each do |locataire| %>
-              <tr>
-                <td>ID-<%= locataire.id %></td>
-                <td><%= locataire.created_at.strftime("%d/%m/%Y") %></td>
-                <td><%= locataire.prenom %> <%= locataire.nom %></td>
-                <td><%= locataire.email%></td>
-                <td>
-                  <%= link_to '', locataire, class:"fas fa-search" %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <br>
-      </div>
-    <% else %>
-      <p class="" style="width: 100%; color: red">"Aucun dossier de location"</p>
     <% end %>
-  </div>
+  <% end %>
 <% end %>
