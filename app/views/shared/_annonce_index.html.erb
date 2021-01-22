@@ -22,7 +22,11 @@
       <%= form_for :search, defaults: { required: false }, url:annonces_path, method: "GET", html: { class: '' } do |f| %>
         <div class="align-items-center justify-content-center">
           <section class="" style="">
-            <%= f.text_field :query, label: false, placeholder: "Entrez votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+            <% if params[:search] != nil %>
+              <%= f.text_field :query, label: false, placeholder: params[:search][:query], input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+            <% else %>
+              <%= f.text_field :query, label: false, placeholder: "Entrez votre adresse", input_html: {}, style: "width: 20em; border-radius: 9999px; border-style: none; height: 2.5em; margin-left: auto; margin-right: auto; left: 0; right: 0; padding-left: 16px; opacity: 0.8;" %>
+            <% end %>
           </section>
           <section class="text-center mt-2" style="font-size:12px">
             <% if params[:search] != nil %>
