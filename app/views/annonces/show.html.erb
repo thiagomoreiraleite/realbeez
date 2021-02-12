@@ -836,10 +836,13 @@
   <!--   <li><%#= cl_image_tag(picture.photo, width: 400, height: 300, crop: :fill) %></li>
   <%# end %>
 </ul> -->
+  <!-- Information only for Admin -->
   <% if user_signed_in? %>
     <% if current_user.admin == true %>
-      <div class="container my-5">
-        <p style="font-weight: bold; color: #D8A727">Visites prévues pour ce bien (only for admin)</p>
+      <div class="container mb-5 p-3" style="background-color: white; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1)">
+        <h5 class="mt-4 mb-5 text-center">Informations pour les administrateurs</h5>
+        <p style="font-weight: ">Montant des frais d'agence à payer par le propriétaire : <%= @annonce.price_cents/100 %> €</p>
+        <p style="font-weight: bold; color: #D8A727" class="mt-4">Visites prévues pour ce bien</p>
         <% counter = 0 %>
         <% if @meetings != [] %>
           <% @meetings.each do |meeting|%>
@@ -852,14 +855,8 @@
         <% else %>
           <p class="" style="width: 100%; color: red">"Aucune visite de prévue"</p>
         <% end %>
-      </div>
-    <% end %>
-  <% end %>
-  <!-- Locataire dossier -->
-  <% if user_signed_in? %>
-    <% if current_user.admin == true %>
-      <div class="container">
-        <p style="font-weight: bold; color: #D8A727">Les dossiers de location de l'agent (only for admin hello)</p>
+        <!-- Locataire dossier -->
+        <p style="font-weight: bold; color: #D8A727" class="mt-5">Les dossiers de location de l'agent</p>
         <% if @locataire_dossiers != [] %>
           <!-- Mobile version -->
           <div class="hide-on-large" style="font-size: 12px">
