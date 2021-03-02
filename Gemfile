@@ -30,7 +30,7 @@ group :development, :test do
 end
 
 gem 'cloudinary', '~> 1.9.1'
-gem "carrierwave", ">= 1.3.2"
+gem "carrierwave", ">= 1.3.1"
 gem 'pundit'
 gem "geocoder", ">= 1.6.1"
 gem 'pg_search'

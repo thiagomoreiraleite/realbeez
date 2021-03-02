@@ -224,7 +224,7 @@ class AnnoncesController < ApplicationController
         }
       end
     end
-    unless @annonce.agent_user_id.nil?
+    unless @annonce.agent_user_id.nil? || @annonce.agent_user_id == ""
       @agent_user = User.find(@annonce.agent_user_id.to_i)
     end
     @locataire_dossiers = Locataire.where("user_id = ? AND statut = ?", @annonce.agent_user_id.to_i, "active").order(created_at: :desc)
