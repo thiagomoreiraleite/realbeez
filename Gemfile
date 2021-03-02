@@ -6,7 +6,7 @@ gem "devise", ">= 4.7.1"
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma'
-gem 'rails', '5.2.4.3'
+gem 'rails', '5.2.4.5'
 gem 'redis'
 
 gem 'autoprefixer-rails'
